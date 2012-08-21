@@ -1,5 +1,6 @@
-DayZ Bliss Private Server
-=========================
+DayZ Blizzard Private Server (forked from DayZ Bliss Private Server)
+====================================================================
+_________________________________________________________________________________________________
 
 This is a private server project for DayZ.
 This code is currently compatible with DayZ 1.7.2.5 and ArmA 2 OA beta patch build 95883.
