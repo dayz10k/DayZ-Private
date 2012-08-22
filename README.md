@@ -1,4 +1,4 @@
-DayZ Blizzard Private Server (forked from DayZ Bliss Private Server)
+DayZ Blizzard Private Server (forked from Bliss Project)
 ====================================================================
 _________________________________________________________________________________________________
 

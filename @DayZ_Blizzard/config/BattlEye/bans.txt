@@ -1,6 +1,3 @@
-deadbeefdeadbeefdeadbeefdeadbeef -1 Community Banfile
-d34db33fd34db33fd34db33fd34db33f -1 #########################################
-deaddeaddeaddeaddeaddeaddeaddead -1 #########################################
 2b3b8f7898b322baf196af8f1d454df9 -1 W 4d9b2182 0x0f44d938
 1ed92d0ccc51febb1d852994ff8fc3d8 -1 W 4d9b2182 0x0f44d938
 2417562a8d7d2340e82a5be427df1609 -1 W 4d9b2182 0x0f44d938
