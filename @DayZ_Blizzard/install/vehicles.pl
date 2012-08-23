@@ -1,13 +1,11 @@
 #!/usr/bin/perl -w
-# Author: Guru Abdul
-# Script generating vehicles for DayZ Arma mod
+# Author: Guru Abdul, ayan4m1
+# Script to generate vehicles in DayZ
 
 use POSIX;
 use DBI;
 use DBD::mysql;
 use Getopt::Long;
-
-print "INFO: Started vehicle insertion.\n";
 
 my %args = ();
 
@@ -36,8 +34,15 @@ my %db = (
 	'world' => $args{'world'} ? $args{'world'} : 'chernarus'
 );
 
+if ($args{'help'}) {
+	print "usage: vehicles.pl [--host hostname] [--user username] [--pass password] [--port port] [--limit limit] [--world chernarus|lingor]\n";
+	print "       If you run a Lingor island server, you MUST run vehicles.pl with \"--world lingor\" or vehicles will not spawn correctly\n";
+	exit;
+}
+
 my $dsn = "dbi:mysql:$db{'name'}:$db{'host'}:$db{'port'}";
-print "INFO: Instance ".$db{'instance'}.", user is ".$db{'user'}.", database is ".$db{'name'}."\n";
+print "INFO: Instance $db{'instance'}, user is $db{'user'}, database is $db{'name'}\n";
+print "INFO: World is $db{'world'}\n";
 my $dbh = DBI->connect($dsn, $db{'user'}, $db{'pass'}) or die "Couldn't connect to db: ".DBI->errstr."\n";
 
 #Cleanup various objects
@@ -81,10 +86,10 @@ if ($args{'cleanup'}) {
 	}
 }
 
-my $numGenerated=0;#counter for the number of generated vehicles
-my @vehicles = ("UAZ%","ATV%","Skoda%","TT650%","Old_bike%","UH1H%","hilux%","Ikarus%","Tractor","S1203%","V3S_Civ","UralCivil","car%","%boat%","PBX","Volha%","SUV%");
-my @vehicleLimits = (4,3,3,3,10,3,3,3,3,4,1,1,2,4,1,3,1);
-my @chances = (0.65,0.7,0.65,0.7,0.95,0.25,0.55,0.55,0.75,0.55,0.55,0.55,0.55,0.75,0.55,0.55,0.45);
+my $numGenerated=0; #counter for the number of generated vehicles
+my @vehicles = ("%boat%","ATV%","car%","hilux%","Ikarus%","Old_bike%","PBX","S1203%","Skoda%","SUV%","Tractor","TT650%","UAZ%","UH1H%","UralCivil","V3S_Civ","Volha%");
+my @vehicleLimits = (6,3,5,3,3,10,1,4,3,1,3,1,4,4,3,2,3);
+my @chances = (0.65,0.7,0.75,0.55,0.55,0.95,0.55,0.55,0.65,0.45,0.55,0.7,0.65,0.25,0.55,0.55,0.55);
 my $n=0;
 my $do=0;
 $sth = $dbh->prepare("SELECT COUNT(*) FROM objects WHERE instance=? AND otype NOT IN ('TentStorage','Hedgehog_DZ','Wire_cat1','Sandbag1_DZ','TrapBear')") or die;
@@ -115,8 +120,8 @@ for (my $i=0;$i<scalar @vehicles;$i++)
 		#print "ModChance: ".$chance."\n";
 	}
 	print "INFO: Generating ".$spawnCount." vehicles of type: ".$vehicle."\n";
-	my $sts = $dbh->prepare('SELECT * FROM spawns WHERE otype like ? AND NOT uuid IN (SELECT uid FROM objects WHERE instance = ?) ORDER BY RAND() LIMIT ?') or die;
-	$sts->execute($vehicle,$db{'instance'},$spawnCount) or die;
+	my $sts = $dbh->prepare('SELECT * FROM spawns WHERE otype like ? AND world = ? AND NOT uuid IN (SELECT uid FROM objects WHERE instance = ?) ORDER BY RAND() LIMIT ?') or die;
+	$sts->execute($vehicle,$db{'world'},$db{'instance'},$spawnCount) or die;
 	while ((@data = $sts->fetchrow_array())&&$globalVehicleCount+$n<$db{'limit'})
 	{
 		print "Generating vehicle parts damage!\n";
