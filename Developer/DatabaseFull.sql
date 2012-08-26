@@ -253,7 +253,7 @@ CREATE TABLE `scheduler` (
 
 LOCK TABLES `scheduler` WRITE;
 /*!40000 ALTER TABLE `scheduler` DISABLE KEYS */;
-INSERT INTO `scheduler` VALUES (4,'This server is managed through Crosire\'s Private Server Controlcenter! Have fun!','l',0,3,0);
+INSERT INTO `scheduler` VALUES (4,'This server is managed through Crosires Private Server Controlcenter! Have fun!','l',0,3,0);
 /*!40000 ALTER TABLE `scheduler` ENABLE KEYS */;
 UNLOCK TABLES;
 
