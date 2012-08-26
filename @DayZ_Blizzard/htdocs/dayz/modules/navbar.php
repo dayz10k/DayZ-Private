@@ -48,8 +48,7 @@ if (isset($_SESSION['user_id']))
 				<li class="li-dashboard root active"><a href="index.php" style="color:#FFF;" class="dashboard item">Dashboard</a></li>
 				<li class="li-users parent root"><span class=" daddy item"><span>Control</span></span>
 					<ul class="level2 parent-users">
-						<li class="li-mass-mail-users"><a href="index.php?view=vip" class="class:massmail item">Manage VIPs</a></li>
-						<li class="li-mass-mail-users"><a href="index.php?view=admin" class="class:massmail item">Manage admins</a></li>
+						<li class="li-mass-mail-users"><a href="index.php?view=admin" class="class:massmail item">Admins</a></li>
 						<li class="li- separator"><span></span></li>
 						<li class="li-mass-mail-users"><a href="index.php?view=control" class="class:massmail item">Configuration</a></li>
 					</ul>
