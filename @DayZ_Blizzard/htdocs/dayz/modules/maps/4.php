@@ -15,7 +15,7 @@
 	if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
 	if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
 
-	$query = "SELECT * FROM object_classes WHERE Classname='".$row['otype']."'";
+	$query = "SELECT * FROM objects_classes WHERE Classname='".$row['otype']."'";
 	$result = mysql_query($query) or die(mysql_error());
 	$class = mysql_fetch_assoc($result);		
 
