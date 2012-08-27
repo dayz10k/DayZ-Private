@@ -1,4 +1,8 @@
--- DayZ Database dump for Crosire's Private Server Controlcenter
+-- MySQL dump 10.13  Distrib 5.5.25a, for Win32 (x86)
+--
+-- Host: localhost    Database: dayz
+-- ------------------------------------------------------
+-- Server version	5.5.25a
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -166,6 +170,57 @@ CREATE TABLE `main` (
 LOCK TABLES `main` WRITE;
 /*!40000 ALTER TABLE `main` DISABLE KEYS */;
 /*!40000 ALTER TABLE `main` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migration_schema_log`
+--
+
+DROP TABLE IF EXISTS `migration_schema_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `migration_schema_log` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `schema_name` varchar(255) NOT NULL,
+  `event_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `old_version` varchar(255) NOT NULL,
+  `new_version` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migration_schema_log`
+--
+
+LOCK TABLES `migration_schema_log` WRITE;
+/*!40000 ALTER TABLE `migration_schema_log` DISABLE KEYS */;
+INSERT INTO `migration_schema_log` VALUES (1,'Bliss','2012-08-27 13:47:48','0.000000','0.010000'),(2,'Bliss','2012-08-27 13:47:48','0.010000','0.020000'),(3,'Bliss','2012-08-27 13:47:48','0.020000','0.030000'),(4,'Bliss','2012-08-27 13:47:48','0.030000','0.040000'),(5,'Bliss','2012-08-27 13:47:48','0.040000','0.050000'),(6,'Bliss','2012-08-27 13:47:49','0.050000','0.060000'),(7,'Bliss','2012-08-27 13:47:49','0.060000','0.070000');
+/*!40000 ALTER TABLE `migration_schema_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `migration_schema_version`
+--
+
+DROP TABLE IF EXISTS `migration_schema_version`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `migration_schema_version` (
+  `name` varchar(255) NOT NULL,
+  `version` varchar(255) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migration_schema_version`
+--
+
+LOCK TABLES `migration_schema_version` WRITE;
+/*!40000 ALTER TABLE `migration_schema_version` DISABLE KEYS */;
+INSERT INTO `migration_schema_version` VALUES ('Bliss','0.070000');
+/*!40000 ALTER TABLE `migration_schema_version` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -344,7 +399,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `delO`(IN myuid VARCHAR(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `delO`(IN myuid VARCHAR(50))
 BEGIN
       DELETE FROM objects WHERE uid=myuid; --
 END */;;
@@ -363,7 +418,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `getLoadout`(IN myinstance INT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `getLoadout`(IN myinstance INT)
 BEGIN
     SELECT IF((SELECT loadout FROM instances WHERE instance=myinstance) IS NULL,"[]",(SELECT loadout FROM instances WHERE instance=myinstance)); --
 END */;;
@@ -382,7 +437,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `getO`(in myinstance int, in page int)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `getO`(in myinstance int, in page int)
 begin
   set @i = myinstance; -- 
   set @s = 5; -- 
@@ -406,7 +461,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `getOC`(in myinstance int)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `getOC`(in myinstance int)
 begin
   select floor(count(*) / 5) from objects where instance = myinstance; -- 
 end */;;
@@ -425,7 +480,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `getTasks`(in myinstance int, in page int)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `getTasks`(in myinstance int, in page int)
 begin
   set @i = myinstance; -- 
   set @s = 10; -- 
@@ -449,7 +504,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `getTC`(in myinstance int)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `getTC`(in myinstance int)
 begin
   select floor(count(*) / 10) from scheduler join instances on mvisibility = visibility where instance = myinstance; -- 
 end */;;
@@ -468,7 +523,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `getTime`(IN myinstance INT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `getTime`(IN myinstance INT)
 BEGIN
       SELECT DATE_FORMAT(NOW(),'%d-%m-%Y'), TIME_FORMAT(CURRENT_TIMESTAMP + INTERVAL (SELECT if((SELECT timezone FROM instances WHERE instance=myinstance) IS NULL,0,(SELECT timezone FROM instances WHERE instance=myinstance))) HOUR,'%T'); --
 END */;;
@@ -487,7 +542,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `insOselI`(IN myuid VARCHAR(50),IN mytype VARCHAR(255),IN myhealth VARCHAR(1024),IN myhp DOUBLE,IN myfuel DOUBLE,IN myowner INT,IN mypos VARCHAR(255),IN myinstance INT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `insOselI`(IN myuid VARCHAR(50),IN mytype VARCHAR(255),IN myhealth VARCHAR(1024),IN myhp DOUBLE,IN myfuel DOUBLE,IN myowner INT,IN mypos VARCHAR(255),IN myinstance INT)
 BEGIN
       INSERT INTO objects (uid,otype,health,damage,oid,pos,fuel,instance) VALUES (myuid,mytype,myhealth,myhp,myowner,mypos,myfuel,myinstance); --
 END */;;
@@ -506,7 +561,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `insUNselI`(in myuid varchar(128), in myname varchar(255))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `insUNselI`(in myuid varchar(128), in myname varchar(255))
 begin
       insert into main (uid, name,survival) values (myuid, myname, now()); --
       select last_insert_id(); --
@@ -526,7 +581,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `logLogin`(in unique_id varchar(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `logLogin`(in unique_id varchar(50))
 begin
   insert into
     log_entry (profile_id, log_code_id)
@@ -547,7 +602,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `logLogout`(in unique_id varchar(50))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `logLogout`(in unique_id varchar(50))
 begin
   insert into
     log_entry (profile_id, log_code_id)
@@ -568,7 +623,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `selIIBSM`(in myuid varchar(128))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `selIIBSM`(in myuid varchar(128))
 begin
       select id, inventory, backpack, floor(time_to_sec(timediff(now(),survival))/60), model, late, ldrank from main where uid = myuid and death = 0; --
 end */;;
@@ -587,7 +642,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `selIPIBMSSS`(in myuid varchar(128))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `selIPIBMSSS`(in myuid varchar(128))
 begin
       select id, pos, inventory, backpack, medical, floor(time_to_sec(timediff(now(),survival))/60), kills, state, late, ldrank, hs, hkills, bkills from main where uid = myuid and death = 0; --
 end */;;
@@ -606,7 +661,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `selMPSSH`(IN myid INT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `selMPSSH`(IN myid INT)
 BEGIN
       SELECT medical, pos, kills, state, humanity, hs, hkills, bkills FROM main WHERE id=myid AND death=0; --
 END */;;
@@ -625,7 +680,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `setCD`(IN myid INT)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `setCD`(IN myid INT)
 BEGIN
       UPDATE main SET death=1 WHERE id=myid; --
 END */;;
@@ -644,7 +699,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `update`(in myid int, in mypos varchar(1024), in myinv varchar(2048), in myback varchar(2048), in mymed varchar(1024), in myate int, in mydrank int, in mytime int, in mymod varchar(255), in myhum int, in myk int, in myhs int, in myhk int, in mybk int, in mystate varchar(255))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `update`(in myid int, in mypos varchar(1024), in myinv varchar(2048), in myback varchar(2048), in mymed varchar(1024), in myate int, in mydrank int, in mytime int, in mymod varchar(255), in myhum int, in myk int, in myhs int, in myhk int, in mybk int, in mystate varchar(255))
 begin
       update main set kills=kills+myk,hs=hs+myhs,bkills=bkills+mybk,hkills=hkills+myhk,
       	state=mystate,model=if(mymod='any',model,mymod),late=if(myate=-1,0,late+myate),ldrank=if(mydrank=-1,0,ldrank+mydrank),stime=stime+mytime,
@@ -667,7 +722,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `updIH`(IN myid INT,IN myhealth VARCHAR(1024),IN myhp DOUBLE)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `updIH`(IN myid INT,IN myhealth VARCHAR(1024),IN myhp DOUBLE)
 BEGIN
       UPDATE objects SET health=myhealth,damage=myhp WHERE id=myid; --
 END */;;
@@ -686,7 +741,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `updII`(in myid int, in myinv varchar(1024))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `updII`(in myid int, in myinv varchar(1024))
 begin
       update objects set inventory=myinv where id=myid; --
 end */;;
@@ -705,7 +760,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `updIPF`(IN myid INT,IN mypos VARCHAR(255),IN myfuel DOUBLE)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `updIPF`(IN myid INT,IN mypos VARCHAR(255),IN myfuel DOUBLE)
 BEGIN
       UPDATE objects SET pos=if(mypos='[]',pos,mypos),fuel=myfuel WHERE id=myid; --
 END */;;
@@ -724,7 +779,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `updUI`(in myuid varchar(50), in myinv varchar(2048))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `updUI`(in myuid varchar(50), in myinv varchar(2048))
 begin
   update objects set inventory = myinv where uid not like '%.%' and convert(uid, unsigned integer) between (convert(myuid, unsigned integer) - 2) and (convert(myuid, unsigned integer) + 2); -- 
 end */;;
@@ -743,7 +798,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`dayz`@`localhost`*/ /*!50003 PROCEDURE `updV`(IN myuid VARCHAR(50),IN mytype VARCHAR(255) ,IN mypos VARCHAR(255), IN myhealth VARCHAR(1024))
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `updV`(IN myuid VARCHAR(50),IN mytype VARCHAR(255) ,IN mypos VARCHAR(255), IN myhealth VARCHAR(1024))
 BEGIN
       UPDATE objects SET otype=if(mytype='',otype,mytype),health=myhealth,pos=if(mypos='[]',pos,mypos) WHERE uid=myuid; --
 END */;;
@@ -762,4 +817,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed
+-- Dump completed on 2012-08-27 15:58:27
