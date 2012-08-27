@@ -192,7 +192,7 @@ function row_online_player($row, $player, $path){
 	$name = "<a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$player[4]."</a>";
 	$uid = "<a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row["uid"]."</a>";
 	
-	$icon = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="'.$path.'images/icons/player'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
+	$icon = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="'.$path.'images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
 	
 	$tablerow = "<tr>
 				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$icon."</td>
