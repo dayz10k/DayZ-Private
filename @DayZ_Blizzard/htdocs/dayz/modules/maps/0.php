@@ -79,7 +79,7 @@
 				while ($row=mysql_fetch_array($res)) {
 					$Worldspace = str_replace("[", "", $row['pos']);
 					$Worldspace = str_replace("]", "", $Worldspace);
-					$Worldspace = explode("|", $Worldspace);					
+					$Worldspace = explode(",", $Worldspace);					
 					if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
 					if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
 					$dead = ($row['death'] ? '_dead' : '');

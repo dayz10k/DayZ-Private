@@ -7,7 +7,7 @@
 	while ($row=mysql_fetch_array($res)) {
 		$Worldspace = str_replace("[", "", $row['pos']);
 		$Worldspace = str_replace("]", "", $Worldspace);
-		$Worldspace = explode("|", $Worldspace);
+		$Worldspace = explode(",", $Worldspace);
 		$x = 0;
 		$y = 0;
 		if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
