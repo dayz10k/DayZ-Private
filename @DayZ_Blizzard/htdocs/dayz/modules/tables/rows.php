@@ -27,7 +27,7 @@ function header_vehicle($show, $chbox){
 function row_player($row){
 	$Worldspace = str_replace("[", "", $row['pos']);
 	$Worldspace = str_replace("]", "", $Worldspace);
-	$Worldspace = explode("|", $Worldspace);
+	$Worldspace = explode(",", $Worldspace);
 	$x = 0;
 	$y = 0;
 	if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
@@ -116,7 +116,7 @@ function row_online_player($row, $player, $path){
 	$y = 0;
 	$Worldspace = str_replace("[", "", $row['pos']);
 	$Worldspace = str_replace("]", "", $Worldspace);
-	$Worldspace = explode("|", $Worldspace);					
+	$Worldspace = explode(",", $Worldspace);					
 	if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
 	if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
 	$dead = ($row['death'] ? '_dead' : '');
@@ -211,7 +211,7 @@ function row_vehicle($row, $chbox){
 	$y = 0;
 	$Worldspace = str_replace("[", "", $row['pos']);
 	$Worldspace = str_replace("]", "", $Worldspace);
-	$Worldspace = explode("|", $Worldspace);					
+	$Worldspace = explode(",", $Worldspace);					
 	if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
 	if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
 	$Inventory  = $row['inventory'];
