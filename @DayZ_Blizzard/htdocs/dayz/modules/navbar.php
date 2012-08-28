@@ -46,11 +46,11 @@ if (isset($_SESSION['user_id']))
 			<div class="table">
 				<ul class="select menutop level1">
 				<li class="li-dashboard root active"><a href="index.php" style="color:#FFF;" class="dashboard item">Dashboard</a></li>
-				<li class="li-users parent root"><span class=" daddy item"><span>Control</span></span>
+				<!-- Fully overhauled by Crosire -->
+				<li class="li-users parent root"><a href="index.php?view=control" style="color:#FFF;" class="class:massmail item">Start/Stop</a></li>
+				<li class="li-users parent root"><span class=" daddy item"><span>Options</span></span>
 					<ul class="level2 parent-users">
 						<li class="li-mass-mail-users"><a href="index.php?view=admin" class="class:massmail item">Admins</a></li>
-						<li class="li- separator"><span></span></li>
-						<li class="li-mass-mail-users"><a href="index.php?view=control" class="class:massmail item">Start/Stop</a></li>
 					</ul>
 				</li>
 				<li class="li-users parent root"><span class=" daddy item"><span>Entities</span></span>
@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id']))
 						<li class="li-mass-mail-users"><a href="index.php?view=search" class="class:massmail item">Search</a></li>
 					</ul>
 				</li>
-				<li class="li-users parent root"><span class=" daddy item"><span>Map view</span></span>
+				<li class="li-users parent root"><span class=" daddy item"><span>Map</span></span>
 					<ul class="level2 parent-users">
 						<li class="li-user-manager parent"><a href="#nogo" class="class:user daddy item">Players</a>
 							<ul class="level3 parent-user-manager">
