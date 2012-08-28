@@ -103,8 +103,8 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 		
 		if (count($Unknown)>0){
 			$rows .= "<tr>
-				<td><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row['name']."</a></td>
-				<td><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row['uid']."</a></td>
+				<td>".$row['name']."</td>
+				<td>".$row['uid']."</td>
 				<td>top:".round((154-($Worldspace[2]/100)))." left:".round(($Worldspace[1]/100))."</td>
 				<td>";
 				foreach($Unknown as $uitem => $uval)
@@ -156,7 +156,7 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Player Name</a>	</th>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">Player ID</a></th>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Player UID</a></th>
 					<th class="table-header-repeat line-left"><a href="">Position</a></th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Unknown items</a></th>
 				</tr>
@@ -166,6 +166,18 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 				</table>
 				<!--  end product-table................................... --> 
 
+			<?
+			}
+			else{
+			?>
+			<div id="message-green">
+				<table border="0" width="100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="green-left">No unknown items found!</td>
+					<td class="green-right"><a class="close-red"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
+				</tr>
+				</table>
+				</div>
 			<?
 			}
 			?>

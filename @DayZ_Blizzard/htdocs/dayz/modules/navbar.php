@@ -50,7 +50,7 @@ if (isset($_SESSION['user_id']))
 					<ul class="level2 parent-users">
 						<li class="li-mass-mail-users"><a href="index.php?view=admin" class="class:massmail item">Admins</a></li>
 						<li class="li- separator"><span></span></li>
-						<li class="li-mass-mail-users"><a href="index.php?view=control" class="class:massmail item">Configuration</a></li>
+						<li class="li-mass-mail-users"><a href="index.php?view=control" class="class:massmail item">Start/Stop</a></li>
 					</ul>
 				</li>
 				<li class="li-users parent root"><span class=" daddy item"><span>Entities</span></span>
