@@ -17,6 +17,6 @@
 	$gameexe = "arma2oaserver.exe"; 	//server executable name
 	$exepath = ""; 				//executable path
 
-	$serverstring = " -beta=Expansion".DS."beta;Expansion".DS."beta".DS."Expansion -mod=@DayZ;@DAyZ_Blizzard; -name=Server -config=config.cfg -cfg=basic.cfg -profiles=Server -cpuCount=2 -maxMem=1578"; //server startup parametres
+	$serverstring = " -beta=Expansion".DS."beta;Expansion".DS."beta".DS."Expansion -mod=@DayZ;@DAyZ_Blizzard; -name=Server -config=config.cfg -cfg=basic.cfg -profiles=Server -cpuCount=2 -maxMem=2048"; //server startup parametres
 	$config = "config.cfg"; 		//server config file
 ?>
