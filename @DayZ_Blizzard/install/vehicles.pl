@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
-# Author: Guru Abdul, ayan4m1
-# Script to generate vehicles in DayZ
+# Author: Guru Abdul
+# Script generating vehicles for DayZ Arma mod
 
 use POSIX;
 use DBI;
@@ -16,7 +16,7 @@ GetOptions(
 	'hostname|host|dbhost|h=s',
 	'username|user|dbuser|u=s',
 	'password|pass|dbpass|p=s',
-	'database|dbname|d=s',
+	'database|name|dbname|d=s',
 	'port|dbport=s',
 	'world|map|w|m=s',
 	'cleanup',
@@ -35,7 +35,7 @@ my %db = (
 );
 
 if ($args{'help'}) {
-	print "usage: vehicles.pl [--host hostname] [--user username] [--pass password] [--port port] [--limit limit] [--world chernarus|lingor]\n";
+	print "usage: vehicles.pl [--host hostname] [--user username] [--pass password] [--database database] [--port port] [--limit limit] [--world chernarus|lingor]\n";
 	print "       If you run a Lingor island server, you MUST run vehicles.pl with \"--world lingor\" or vehicles will not spawn correctly\n";
 	exit;
 }
@@ -86,10 +86,10 @@ if ($args{'cleanup'}) {
 	}
 }
 
-my $numGenerated=0; #counter for the number of generated vehicles
-my @vehicles = ("%boat%","ATV%","car%","hilux%","Ikarus%","Old_bike%","PBX","S1203%","Skoda%","SUV%","Tractor","TT650%","UAZ%","UH1H%","UralCivil","V3S_Civ","Volha%");
-my @vehicleLimits = (6,3,5,3,3,10,1,4,3,1,3,1,4,4,3,2,3);
-my @chances = (0.65,0.7,0.75,0.55,0.55,0.95,0.55,0.55,0.65,0.45,0.55,0.7,0.65,0.25,0.55,0.55,0.55);
+my $numGenerated=0;#counter for the number of generated vehicles
+my @vehicles = ("UAZ%","ATV%","Skoda%","TT650%","Old_bike%","UH1H%","hilux%","Ikarus%","Tractor","S1203%","V3S_Civ","UralCivil","car%","%boat%","PBX","Volha%","SUV%");
+my @vehicleLimits = (4,3,3,3,10,3,3,3,3,4,1,1,2,4,1,3,1);
+my @chances = (0.65,0.7,0.65,0.7,0.95,0.25,0.55,0.55,0.75,0.55,0.55,0.55,0.55,0.75,0.55,0.55,0.45);
 my $n=0;
 my $do=0;
 $sth = $dbh->prepare("SELECT COUNT(*) FROM objects WHERE instance=? AND otype NOT IN ('TentStorage','Hedgehog_DZ','Wire_cat1','Sandbag1_DZ','TrapBear')") or die;
