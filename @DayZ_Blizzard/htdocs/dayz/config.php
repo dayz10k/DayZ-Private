@@ -1,22 +1,22 @@
 <?php
 	defined('DS') ? null : define('DS',DIRECTORY_SEPARATOR);
-	$path = ""; 				//path to the files, ex. "/admin/"
+	$path = "";
 
-	$serverip = "127.0.0.1";  		//server host
-	$serverport = 2302; 			//server port
-	$rconpassword = "adminpass"; 		//rcon password
+	$serverip = "127.0.0.1";
+	$serverport = 2302;
+	$rconpassword = "adminpass";
 
-	$hostname = "127.0.0.1";  		//database host
-	$username = "dayz"; 			//database user
-	$password = "123456"; 			//database password
-	$dbName = "dayz"; 			//database name
+	$hostname = "127.0.0.1";
+	$username = "dayz";
+	$password = "123456";
+	$dbName = "dayz";
 
-	$sitename = "DayZ Administration"; 	//Admin panel name
+	$sitename = "DayZ Administration";
 
-	$gamepath = "";				//path to the game
-	$gameexe = "arma2oaserver.exe"; 	//server executable name
-	$exepath = ""; 				//executable path
+	$gamepath = "";
+	$gameexe = "arma2oaserver.exe";
+	$exepath = "";
 
-	$serverstring = " -beta=Expansion".DS."beta;Expansion".DS."beta".DS."Expansion -mod=@DayZ;@DAyZ_Blizzard; -name=Server -config=config.cfg -cfg=basic.cfg -profiles=Server -cpuCount=2 -maxMem=2048"; //server startup parametres
-	$config = "config.cfg"; 		//server config file
+	$serverstring = " -beta=Expansion".DS."beta;Expansion".DS."beta".DS."Expansion -mod=@DayZ;@DAyZ_Blizzard; -name=Server -config=config.cfg -cfg=basic.cfg -profiles=Server -port=2302 -cpuCount=2 -maxMem=2048";
+	$config = "config.cfg";
 ?>

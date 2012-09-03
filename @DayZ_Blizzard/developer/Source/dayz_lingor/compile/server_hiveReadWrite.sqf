@@ -40,8 +40,8 @@ switch (_result select 1) do
 		_m = call compile (_date select 1);
 		_y = call compile (_date select 2);
 		_d = call compile (_date select 0);
-		_h = 12;
-		_mm = 0;
+		_h = call compile (_time select 0);
+		_mm = call compile (_time select 1);
 		_ret = ["PASS",[_y,_m,_d,_h,_mm]];
 	};
 };

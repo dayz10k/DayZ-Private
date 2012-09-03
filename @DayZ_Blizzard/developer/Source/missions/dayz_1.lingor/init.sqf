@@ -1,8 +1,9 @@
 startLoadingScreen ["","DayZ_loadingScreen"];
 enableSaving [false, false];
 
-dayZ_instance = 1;	//The instance
+dayZ_instance =	1;	//The instance
 hiveInUse	=	true;
+dayzHiveRequest = [];
 initialized = false;
 dayz_previousID = 0;
 dayz_hiveVersionNo = 1;
@@ -25,4 +26,10 @@ if (!isDedicated) then {
 	0 cutText [(localize "STR_AUTHENTICATING"), "BLACK FADED",60];
 	_id = player addEventHandler ["Respawn", {_id = [] spawn player_death;}];
 	_playerMonitor = 	[] execVM "\z\addons\dayz_code\system\player_monitor.sqf";
+
+	//Create burn effect for each helicopter wreck
+	_helis = allMissionObjects "UH1Wreck_DZ";
+	{
+		nul = [_x, 2, time, false, false] spawn BIS_Effects_Burn;
+	} forEach _helis;
 };
