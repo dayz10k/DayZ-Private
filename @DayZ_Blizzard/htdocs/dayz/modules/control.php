@@ -1,5 +1,5 @@
 <? 
-if (isset($_SESSION['user_id']))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"control")!==false))
 {
 $pagetitle = "Server control";
 
@@ -8,62 +8,129 @@ $pagetitle = "Server control";
 <?
 	echo "<title>".$pagetitle." - ".$sitename."</title>";
 	echo "<h1>".$pagetitle."</h1>";
-	$commandString = "start \"\" /d \"".$gamepath."\" /b ".'"'.$exepath.'"'.$serverstring; 
 	
+	$servercommandString = "start \"\" /d \"".$serverpath."\" /b ".'"'.$serverexepath.'"'.$serverstring;
+	$beccommandString = "start \"\" /d \"".$becpath."\" ".'"'.$becpath.'\\'.$becexe.'"'.$becstring;
+	$haxcommandString = "start \"\" /d \"".$haxpath."\" ".'"'.$haxpath.'\\'.$haxexe.'"';
+
 	$serverrunning = false;
+	$becrunning = false;
+	$haxrunning = false;
 	
 	if (isset($_GET['action'])){
 		switch($_GET['action']){
 			case 0:
 				
-				pclose(popen($commandString, 'r'));
+				pclose(popen($servercommandString, 'r'));
 				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{$_SESSION['login']}',NOW())";
 				$sql2 = mysql_query($query) or die(mysql_error());
-				sleep(10);
+				sleep(5);
 		
 				break;
 			case 1:
-				$exestatus = exec('tasklist /FI "IMAGENAME eq '.$gameexe.'" /FO CSV');
-				$exestatus = explode(",", strtolower($exestatus));
-				$exestatus = $exestatus[0];
-				$exestatus = str_replace('"', "", $exestatus);
+				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$serverexe.'" /FO CSV');
+				$serverexestatus = explode(",", strtolower($serverexestatus));
+				$serverexestatus = $serverexestatus[0];
+				$serverexestatus = str_replace('"', "", $serverexestatus);
 				
-				if ($exestatus == strtolower($gameexe)){
-					$output = exec('taskkill /IM '.$exestatus);
+				if ($serverexestatus == strtolower($serverexe)){
+					$output = exec('taskkill /IM '.$serverexestatus);
 					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())";
 					$sql2 = mysql_query($query) or die(mysql_error());
 				}
-				sleep(10);
+				sleep(5);
+
+				break;
+			case 3:
+				pclose(popen($beccommandString, 'r'));
+				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START BEC','{$_SESSION['login']}',NOW())";
+				$sql2 = mysql_query($query) or die(mysql_error());
+				sleep(5);
+
+				break;
+			case 4:
+				$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$becexe.'" /FO CSV');
+				$becexestatus = explode(",", strtolower($becexestatus));
+				$becexestatus = $becexestatus[0];
+				$becexestatus = str_replace('"', "", $becexestatus);
+				
+				if ($becexestatus == strtolower($becexe)){
+					$output = exec('taskkill /IM '.$becexestatus);
+					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP BEC','{$_SESSION['login']}',NOW())";
+					$sql2 = mysql_query($query) or die(mysql_error());
+				}
+				sleep(5);
+
+				break;
+			case 5:
+				pclose(popen($haxcommandString, 'r'));
+				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START ANTIHAX','{$_SESSION['login']}',NOW())";
+				$sql2 = mysql_query($query) or die(mysql_error());
+				sleep(5);
+
+				break;
+			case 6:
+				$haxexestatus = exec('tasklist /FI "IMAGENAME eq '.$haxexe.'" /FO CSV');
+				$haxexestatus = explode(",", strtolower($haxexestatus));
+				$haxexestatus = $haxexestatus[0];
+				$haxexestatus = str_replace('"', "", $haxexestatus);
+				
+				if ($haxexestatus == strtolower($haxexe)){
+					$output = exec('taskkill /IM '.$haxexestatus);
+					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP ANTIHAX','{$_SESSION['login']}',NOW())";
+					$sql2 = mysql_query($query) or die(mysql_error());
+				}
+				sleep(5);
 
 				break;
 			default:
-				$exestatus = exec('tasklist /FI "IMAGENAME eq '.$gameexe.'" /FO CSV');
-				$exestatus = explode(",", strtolower($exestatus));
-				$exestatus = $exestatus[0];
-				$exestatus = str_replace('"', "", $exestatus);
+				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$serverexe.'" /FO CSV');
+				$serverexestatus = explode(",", strtolower($serverexestatus));
+				$serverexestatus = $serverexestatus[0];
+				$serverexestatus = str_replace('"', "", $serverexestatus);
 				
-				if ($exestatus == strtolower($gameexe)){
-					$output = exec('taskkill /IM '.$exestatus);
+				if ($serverexestatus == strtolower($serverexe)){
+					$output = exec('taskkill /IM '.$serverexestatus);
 					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())";
 					$sql2 = mysql_query($query) or die(mysql_error());
 
 				}
-				sleep(10);
+				sleep(5);
 
 		}
 	}
+
+	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$serverexe.'" /FO CSV');
+	$serverexestatus = explode(",", strtolower($serverexestatus));
+	$serverexestatus = $serverexestatus[0];
+	$serverexestatus = str_replace('"', "", $serverexestatus);
 	
+	$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$becexe.'" /FO CSV');
+	$becexestatus = explode(",", strtolower($becexestatus));
+	$becexestatus = $becexestatus[0];
+	$becexestatus = str_replace('"', "", $becexestatus);
 	
+	$haxexestatus = exec('tasklist /FI "IMAGENAME eq '.$haxexe.'" /FO CSV');
+	$haxexestatus = explode(",", strtolower($haxexestatus));
+	$haxexestatus = $haxexestatus[0];
+	$haxexestatus = str_replace('"', "", $haxexestatus);
 	
-	$exestatus = exec('tasklist /FI "IMAGENAME eq '.$gameexe.'" /FO CSV');
-	$exestatus = explode(",", strtolower($exestatus));
-	$exestatus = $exestatus[0];
-	$exestatus = str_replace('"', "", $exestatus);
-	
-	if ($exestatus == strtolower($gameexe)){
+	if ($serverexestatus == strtolower($serverexe)){
 		$serverrunning = true;
 	} else {
 		$serverrunning = false;
+	}
+	
+	if ($becexestatus == strtolower($becexe)){
+		$becrunning = true;
+	} else {
+		$becrunning = false;
+	}
+	
+	if ($haxexestatus == strtolower($haxexe)){
+		$haxrunning = true;
+	} else {
+		$haxrunning = false;
 	}
 ?>
 </div>
@@ -107,8 +174,108 @@ $pagetitle = "Server control";
 					<div class="clear"></div>
 				</div>
 				<!--  end step-holder -->
-			<?
-			} else {
+				
+				<!--  Code by Crosire -->
+				<? if ($becrunning){
+				?>
+					<!--  bec message-green -->
+					<div id="message-green">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="green-left">BattlEye Extended Controls is running.</td>
+						<td class="green-right"><a class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
+					</tr>
+					</table>
+					</div>
+					<!--  end message-green -->
+					<!--  bec stop step-holder -->
+					<div id="step-holder">	
+						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
+						<div class="step-light-left">Start BEC</div>
+						<div class="step-light-right">&nbsp;</div>
+						<div class="step-no"><a href="index.php?view=control&action=4"><img src="<?echo $path;?>images/stop.png"/></a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=4">Stop BEC</a></div>
+						<div class="step-dark-round">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+					<!--  end step-holder -->
+				<? } else {
+				?>
+					<!--  bec message-yellow -->
+					<div id="message-yellow">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="yellow-left">BattlEye Extended Controls is not running.</td>
+						<td class="yellow-right"><a class="close-yellow"><img src="<?echo $path;?>images/table/icon_close_yellow.gif"   alt="" /></a></td>
+					</tr>
+					</table>
+					</div>
+					<!--  end message-yellow -->
+					<!--  bec start step-holder -->
+					<div id="step-holder">	
+						<div class="step-no"><a href="index.php?view=control&action=3"><img src="<?echo $path;?>images/start.png"/></a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=3">Start BEC</a></div>
+						<div class="step-dark-right">&nbsp;</div>
+						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
+						<div class="step-light-left">Stop BEC</div>
+						<div class="step-light-round">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+					<!--  end step-holder -->
+				<?
+				}
+				?>
+				<? if ($haxrunning){
+				?>
+					<!--  hax message-green -->
+					<div id="message-green">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="green-left">DayZ AntiHax is running.</td>
+						<td class="green-right"><a class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
+					</tr>
+					</table>
+					</div>
+					<!--  end message-green -->
+					<!--  hax stop step-holder -->
+					<div id="step-holder">	
+						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
+						<div class="step-light-left">Start AntiHax</div>
+						<div class="step-light-right">&nbsp;</div>
+						<div class="step-no"><a href="index.php?view=control&action=6"><img src="<?echo $path;?>images/stop.png"/></a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=6">Stop AntiHax</a></div>
+						<div class="step-dark-round">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+					<!--  end step-holder -->
+				<? } else {
+				?>
+					<!--  hax message-yellow -->
+					<div id="message-yellow">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="yellow-left">DayZ AntiHax is not running.</td>
+						<td class="yellow-right"><a class="close-yellow"><img src="<?echo $path;?>images/table/icon_close_yellow.gif"   alt="" /></a></td>
+					</tr>
+					</table>
+					</div>
+					<!--  end message-yellow -->
+					<!--  hax start step-holder -->
+					<div id="step-holder">	
+						<div class="step-no"><a href="index.php?view=control&action=5"><img src="<?echo $path;?>images/start.png"/></a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=5">Start AntiHax</a></div>
+						<div class="step-dark-right">&nbsp;</div>
+						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
+						<div class="step-light-left">Stop AntiHax</div>
+						<div class="step-light-round">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+					<!--  end step-holder -->
+					<!--  Code end by Crosire -->
+				<?
+				}
+				?>
+			<? } else {
 			?>
 				<!--  start message-red -->
 				<div id="message-red">
@@ -131,12 +298,61 @@ $pagetitle = "Server control";
 					<div class="clear"></div>
 				</div>
 				<!--  end step-holder -->
-
+				<? if ($haxrunning){
+				?>
+					<!--  hax message-green -->
+					<div id="message-green">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="green-left">DayZ AntiHax is running.</td>
+						<td class="green-right"><a class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
+					</tr>
+					</table>
+					</div>
+					<!--  end message-green -->
+					<!--  hax stop step-holder -->
+					<div id="step-holder">	
+						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
+						<div class="step-light-left">Start AntiHax</div>
+						<div class="step-light-right">&nbsp;</div>
+						<div class="step-no"><a href="index.php?view=control&action=6"><img src="<?echo $path;?>images/stop.png"/></a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=6">Stop AntiHax</a></div>
+						<div class="step-dark-round">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+					<!--  end step-holder -->
+				<? } else {
+				?>
+					<!--  hax message-yellow -->
+					<div id="message-yellow">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="yellow-left">DayZ AntiHax is not running.</td>
+						<td class="yellow-right"><a class="close-yellow"><img src="<?echo $path;?>images/table/icon_close_yellow.gif"   alt="" /></a></td>
+					</tr>
+					</table>
+					</div>
+					<!--  end message-yellow -->
+					<!--  hax start step-holder -->
+					<div id="step-holder">	
+						<div class="step-no"><a href="index.php?view=control&action=5"><img src="<?echo $path;?>images/start.png"/></a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=5">Start AntiHax</a></div>
+						<div class="step-dark-right">&nbsp;</div>
+						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
+						<div class="step-light-left">Stop AntiHax</div>
+						<div class="step-light-round">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+					<!--  end step-holder -->
+					<!--  Code end by Crosire -->
+				<?
+				}
+				?>
 			<?
 			}
 				$configarray = null;
-				//$serverconfig = parse_ini_file($gamepath.DS.$config);
-				$lines = file($gamepath.DS.$config);
+				//$serverconfig = parse_ini_file($serverpath.DS.$serverconfig);
+				$lines = file($serverpath.DS.$serverconfig);
 				foreach ($lines as $l) {
 					preg_match("/^(?P<key>\w+)\s+=\s+(?P<value>.*;)/", $l, $matches);
 					if (isset($matches['key'])) {
@@ -211,8 +427,8 @@ $pagetitle = "Server control";
 					</tr>
 					<tr><th>Missions:</th>
 					<td><textarea class="form-textarea" name="missions" cols="" rows="">
-template = dayz_195.Chernarus;
-difficulty = "Recruit";</textarea></td>
+					template = dayz_1.Chernarus;
+					difficulty = "recruit";</textarea></td>
 					</tr>
 					<tr><th></th>
 					<td>

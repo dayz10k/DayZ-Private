@@ -47,10 +47,10 @@ if (isset($_SESSION['user_id']))
 				<ul class="select menutop level1">
 				<li class="li-dashboard root active"><a href="index.php" style="color:#FFF;" class="dashboard item">Dashboard</a></li>
 				<!-- Fully overhauled by Crosire -->
-				<li class="li-users parent root"><a href="index.php?view=control" style="color:#FFF;" class="class:massmail item">Start/Stop</a></li>
+				<li class="li-users parent root"><a href="index.php?view=control" style="color:#FFF;" class="class:massmail item">Control</a></li>
 				<li class="li-users parent root"><span class=" daddy item"><span>Options</span></span>
 					<ul class="level2 parent-users">
-						<li class="li-mass-mail-users"><a href="index.php?view=admin" class="class:massmail item">Admins</a></li>
+						<li class="li-mass-mail-users"><a href="index.php?view=admin" class="class:massmail item">Users</a></li>
 					</ul>
 				</li>
 				<li class="li-users parent root"><span class=" daddy item"><span>Entities</span></span>

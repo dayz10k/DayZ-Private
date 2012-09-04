@@ -1,5 +1,5 @@
 <?
-if (isset($_SESSION['user_id']))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list")!==false))
 {	
 	$pnumber = 0;
 	$tableheader = '';

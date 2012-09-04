@@ -2,11 +2,6 @@
 if (isset($_SESSION['user_id']))
 {
 
-/*
-** Функция для генерации соли, используемоей в хешировании пароля
-** возращает 3 случайных символа
-*/
-
 function GenerateSalt($n=3)
 {
 	$key = '';
@@ -42,7 +37,7 @@ if (empty($_POST))
 			<!--  start table-content  -->
 			
 			<div id="table-content">
-				<h2>Enter login and password for new admin</h2>
+				<h2>Enter login, password and privileges for new user</h2>
 				
 				<form id="regform" action="index.php?view=register">
 				
@@ -55,6 +50,12 @@ if (empty($_POST))
 					<tr>
 						<th valign="top">Password:</th>
 						<td><input type="text" class="inp-form" name="password" /></td>
+						<td></td>
+					</tr>
+					<tr>
+						<th valign="top">Privileges:</th>
+						<td><input type="text" class="inp-form" name="privileges" /></td>
+						<td>&nbsp;&nbsp;(Possible permissions: map, list, user, control")</td>
 						<td></td>
 					</tr>
 					<tr>
@@ -80,6 +81,7 @@ if (empty($_POST))
 					var $form = $( this ),
 						term = $form.find( 'input[name="login"]' ).val(),
 						term2 = $form.find( 'input[name="password"]' ).val(),
+						term3 = $form.find( 'input[name="privileges"]' ).val(),
 						url = $form.attr( 'action' );
 						
 					var d = document.getElementById('content-table-inner');
@@ -91,7 +93,7 @@ if (empty($_POST))
 					d.removeChild(olddiv);
 
 					/* Send the data using post and put the results in a div */
-					$.post( url, { login: term, password: term2 },
+					$.post( url, { login: term, password: term2, privileges: term3 },
 					  function( data ) {
 						  var content = $( data ).find( '#content' );
 						  $( "#result" ).empty().append( content );
@@ -116,56 +118,46 @@ if (empty($_POST))
 }
 else
 {
-	// обрабатывае пришедшие данные функцией mysql_real_escape_string перед вставкой в таблицу БД
-	
+
 	$login = (isset($_POST['login'])) ? mysql_real_escape_string($_POST['login']) : '';
 	$password = (isset($_POST['password'])) ? mysql_real_escape_string($_POST['password']) : '';
-	
-	// проверяем на наличие ошибок (например, длина логина и пароля)
-	
+	$permissions = (isset($_POST['privileges'])) ? mysql_real_escape_string($_POST['privileges']) : '';
+
 	$error = false;
 	$errort = '';
 	
 	if (strlen($login) < 2)
 	{
 		$error = true;
-		$errort .= 'Login must be at least 2х characters.<br />';
+		$errort .= 'Login must be at least 2 characters.<br />';
 	}
 	if (strlen($password) < 6)
 	{
 		$error = true;
 		$errort .= 'Password must be at least 6 characters.<br />';
 	}
-	
-	// проверяем, если юзер в таблице с таким же логином
-	$query = "SELECT `id`
-				FROM `users`
-				WHERE `login`='{$login}'
-				LIMIT 1";
+
+	$query = "SELECT `id` FROM `users` WHERE `login`='{$login}' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	if (mysql_num_rows($sql)==1)
 	{
 		$error = true;
 		$errort .= 'Login already used.<br />';
 	}
-	
-	// если ошибок нет, то добавляем юзаре в таблицу
+
 	if (!$error)
 	{
-		// генерируем соль и пароль
-		
 		$salt = GenerateSalt();
 		$hashed_password = md5(md5($password) . $salt);
 		
-		$query = "INSERT
-					INTO `users`
-					SET
+		$query = "INSERT INTO `users` SET
 						`login`='{$login}',
 						`password`='{$hashed_password}',
-						`salt`='{$salt}'";
+						`salt`='{$salt}',
+						`permissions`='{$permissions}'";
 		$sql = mysql_query($query) or die(mysql_error());
 
-		$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('REGISTER ADMIN: {$login}','{$_SESSION['login']}',NOW())";
+		$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('REGISTER USER: {$login}','{$_SESSION['login']}',NOW())";
 		$sql2 = mysql_query($query) or die(mysql_error());
 		?>
 		<!--  start message-green -->
@@ -173,7 +165,7 @@ else
 			<div id="message-green">
 			<table border="0" width="100%" cellpadding="0" cellspacing="0">
 			<tr>
-				<td class="green-left">New admin is succesfully registered!</td>
+				<td class="green-left">New user is succesfully registered!</td>
 				<td class="green-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif" alt="" /></a></td>
 			</tr>
 			</table>

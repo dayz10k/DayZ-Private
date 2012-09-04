@@ -1,11 +1,11 @@
 <?
 		
-	$exestatus = exec('tasklist /FI "IMAGENAME eq '.$gameexe.'" /FO CSV');
+	$exestatus = exec('tasklist /FI "IMAGENAME eq '.$serverexe.'" /FO CSV');
 	$exestatus = explode(",", strtolower($exestatus));
 	$exestatus = $exestatus[0];
 	$exestatus = str_replace('"', "", $exestatus);
 	
-	if ($exestatus == strtolower($gameexe)){
+	if ($exestatus == strtolower($serverexe)){
 		$serverrunning = true;
 		$delresult .= '<div id="message-red">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">

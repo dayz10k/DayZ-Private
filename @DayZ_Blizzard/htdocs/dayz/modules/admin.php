@@ -1,7 +1,7 @@
 <?php
-if (isset($_SESSION['user_id']))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user")!==false))
 {
-	$pagetitle = "Manage admins";
+	$pagetitle = "Manage users";
 	$delresult = "";
 	if (isset($_POST["user"])){
 		$aDoor = $_POST["user"];
@@ -11,14 +11,14 @@ if (isset($_SESSION['user_id']))
 			$query = "SELECT * FROM users WHERE id = ".$aDoor[$i].""; 
 			$res2 = mysql_query($query) or die(mysql_error());
 			while ($row2=mysql_fetch_array($res2)) {
-				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE ADMIN: ".$row2['login']."','{$_SESSION['login']}',NOW())";
+				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE USER: ".$row2['login']."','{$_SESSION['login']}',NOW())";
 				$sql2 = mysql_query($query) or die(mysql_error());
 				$query = "DELETE FROM `users` WHERE id='".$aDoor[$i]."'";
 				$sql2 = mysql_query($query) or die(mysql_error());
 				$delresult .= '<div id="message-green">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td class="green-left">Admin '.$row2['login'].' successfully removed!</td>
+					<td class="green-left">User '.$row2['login'].' successfully removed!</td>
 					<td class="green-right"><a class="close-green"><img src="'.$path.'images/table/icon_close_green.gif" alt="" /></a></td>
 				</tr>
 				</table>
@@ -35,29 +35,23 @@ if (isset($_SESSION['user_id']))
 	
 	$users="";
 	while ($row=mysql_fetch_array($res)) {
-		$users .= "<tr><td><input name=\"user[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td><td>".$row['id']."</td><td>".$row['login']."</td><td>".$row['lastlogin']."</td></tr>";
+		$users .= "<tr><td><input name=\"user[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td><td>".$row['id']."</td><td>".$row['login']."</td><td>".$row['permissions']."</td><td>".$row['lastlogin']."</td></tr>";
 	}
 	
-	$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('MANAGE ADMINS','{$_SESSION['login']}',NOW())";
+	$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('MANAGE USERS','{$_SESSION['login']}',NOW())";
 	$sql2 = mysql_query($query) or die(mysql_error());
-	
-	
-	
-	
 
 ?>
-<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-				<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="<?echo $path;?>images/table/action_delete.gif" alt="" /></a><br />
-				<? include ('/modules/register.php'); ?>
-</div>
+	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
+			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="<?echo $path;?>images/table/action_delete.gif" alt="" /></a><br />
+			<? include ('/modules/register.php'); ?>
+	</div>
 	<div id="page-heading">
 		<h1><? echo $pagetitle; ?></h1>
 		<h1><? echo "<title>".$pagetitle." - ".$sitename."</title>"; ?></h1>
 	</div>
 	<!-- end page-heading -->
 
-	
-	
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
 		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
@@ -82,8 +76,8 @@ if (isset($_SESSION['user_id']))
 							<img width="21" height="21" alt="" src="<?echo $path;?>images/forms/icon_plus.gif"></a>
 						</div>
 						<div class="right">
-							<h5><a href="#" onclick="ShowModalPopup('dvPopup'); return false;">Add admin</a></h5>
-							Add new administrator
+							<h5><a href="#" onclick="ShowModalPopup('dvPopup'); return false;">Add user</a></h5>
+							Add new user
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -93,11 +87,12 @@ if (isset($_SESSION['user_id']))
 			<!--  start table-content  -->
 			<div id="table-content">
 			<form action="index.php?view=admin" method="post">
-				<table border="0" width="75%" cellpadding="0" cellspacing="0" id="product-table">
+				<table border="1" width="75%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left"><a href="">Delete</a></th>
 					<th class="table-header-repeat line-left" width="5%"><a href="">Id</a>	</th>
-					<th class="table-header-repeat line-left minwidth-1" width="75%"><a href="">Login</a></th>
+					<th class="table-header-repeat line-left minwidth-1" width="30%"><a href="">Username</a></th>
+					<th class="table-header-repeat line-left minwidth-1" width="45%"><a href="">Privileges</a></th>
 					<th class="table-header-repeat line-left minwidth-1" width="20%"><a href="">Last access</a></th>
 				</tr>
 				<? echo $users; ?>				

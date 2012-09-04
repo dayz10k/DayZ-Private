@@ -11,10 +11,7 @@ if (!empty($_POST))
 {
 	$login = (isset($_POST['login'])) ? mysql_real_escape_string($_POST['login']) : '';
 	
-	$query = "SELECT `salt`
-				FROM `users`
-				WHERE `login`='{$login}'
-				LIMIT 1";
+	$query = "SELECT `salt` FROM `users` WHERE `login`='{$login}' LIMIT 1";
 	$sql = mysql_query($query) or die(mysql_error());
 	
 	if (mysql_num_rows($sql) == 1)
@@ -22,10 +19,7 @@ if (!empty($_POST))
 		$row = mysql_fetch_assoc($sql);
 		$salt = $row['salt'];
 		$password = md5(md5($_POST['password']) . $salt);
-		$query = "SELECT `id`
-					FROM `users`
-					WHERE `login`='{$login}' AND `password`='{$password}'
-					LIMIT 1";
+		$query = "SELECT `id` FROM `users` WHERE `login`='{$login}' AND `password`='{$password}' LIMIT 1";
 		$sql = mysql_query($query) or die(mysql_error());
 
 		if (mysql_num_rows($sql) == 1)
@@ -33,7 +27,12 @@ if (!empty($_POST))
 			$row = mysql_fetch_assoc($sql);
 			$_SESSION['user_id'] = $row['id'];
 			$_SESSION['login'] = $login;
-			$time = 86400; // ставим куку на 24 часа
+			$time = 86400;
+			
+			$query = "SELECT `permissions` FROM `users` WHERE `login`='{$login}' LIMIT 1";
+			$sql = mysql_query($query) or die(mysql_error());
+			$row = mysql_fetch_assoc($sql);
+			$_SESSION['user_permissions'] = $row['permissions'];
 			
 			if (isset($_POST['remember']))
 			{
@@ -86,7 +85,7 @@ if (!empty($_POST))
 				</tr>
 				<tr>
 					<th>Password</th>
-					<td><input type="password" name="password" value=""  onfocus="this.value=''" class="login-inp" /></td>
+					<td><input type="password" name="password" value="" onfocus="this.value=''" class="login-inp" /></td>
 				</tr>
 				<tr>
 					<th></th>

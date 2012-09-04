@@ -292,6 +292,7 @@ CREATE TABLE `users` (
   `login` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(32) NOT NULL DEFAULT '',
   `salt` char(3) NOT NULL DEFAULT '',
+  `permissions` varchar(50) NOT NULL DEFAULT '',
   `lastlogin` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
@@ -304,7 +305,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','4f749f2c908b8ead47c20db6da1b04aa','l=i',NULL);
+INSERT INTO `users` VALUES (1,'admin','4f749f2c908b8ead47c20db6da1b04aa','l=i','list,map,control,user',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

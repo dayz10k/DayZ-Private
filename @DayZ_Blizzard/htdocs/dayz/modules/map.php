@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['user_id']))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"map")!==false))
 {
 
 	switch ($show) {
