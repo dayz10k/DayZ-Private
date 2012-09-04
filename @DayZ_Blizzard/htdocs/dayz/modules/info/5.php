@@ -38,7 +38,7 @@ while ($row=mysql_fetch_array($res)) {
 			<tr>
 				<td align="center"><img src='<? echo $path; ?>images/vehicles/<? echo $row['otype']; ?>.png'></td>
 				<td>
-					<h2>Position:</h2><h3><? echo "left:".round(($Worldspace[1]/100))." top:".round((154-($Worldspace[2]/100))); ?></h3>
+					<h2>Position:</h2><h3><? if ($dbName=="dayz_lingor") {echo "left:".round(($Worldspace[1]/100))." top:".round($Worldspace[2]/100);} else {echo "left:".round(($Worldspace[1]/100))." top:".round((154-($Worldspace[2]/100)));} ?></h3>
 				</td>	
 			</tr>				
 			</table>

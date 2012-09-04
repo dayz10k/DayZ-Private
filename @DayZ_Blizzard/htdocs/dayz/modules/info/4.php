@@ -86,7 +86,7 @@ while ($row=mysql_fetch_array($res)) {
 							</div>
 							<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 							<?
-								echo sprintf("%03d",round($Worldspace[1]/100)).sprintf("%03d",round((154-($Worldspace[2]/100))));
+								if ($dbName=="dayz_lingor") {echo sprintf("%03d",round($Worldspace[1]/100)).sprintf("%03d",round($Worldspace[2]/100));} else {echo sprintf("%03d",round($Worldspace[1]/100)).sprintf("%03d",round((154-($Worldspace[2]/100))));}
 							?>
 							</div>							
 						</div>

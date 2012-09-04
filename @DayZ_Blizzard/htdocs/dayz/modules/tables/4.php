@@ -103,7 +103,7 @@
 		if (!$serverrunning){ 
 			$chbox = "<td class=\"gear_preview\"><input name=\"vehicle[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td>";
 		}	
-		$tablerows .= row_vehicle($row, $chbox);
+		if($dbName=="dayz_lingor") {$tablerows .= row_vehicle($row, $chbox, "lingor");} else {$tablerows .= row_vehicle($row, $chbox, "chernarus");}
 	}
 	include ('paging.php');
 ?>

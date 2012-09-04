@@ -30,7 +30,7 @@
 	$tableheader = header_player(0);
 		
 	while ($row=mysql_fetch_array($res)) {
-		$tablerows .= row_player($row);
+		if ($dbName=="dayz_lingor"){$tablerows .= row_player($row, "lingor");} else {$tablerows .= row_player($row, "chernarus");}
 	}
 	include ('paging.php');
 ?>

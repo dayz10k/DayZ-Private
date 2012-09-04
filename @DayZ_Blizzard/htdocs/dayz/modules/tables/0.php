@@ -83,7 +83,7 @@
 				$uid = "";
 				
 				while ($row=mysql_fetch_array($res)) {					
-					$tablerows .= row_online_player($row, $players[$i], $path);
+					if ($dbName=="dayz_lingor"){$tablerows .= row_online_player($row, $players[$i], $path, "lingor");} else {$tablerows .= row_online_player($row, $players[$i], $path, "chernarus");}
 				}
 			}
 		}
