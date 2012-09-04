@@ -229,7 +229,7 @@ function row_online_player($row, $player, $path, $world){
 	return $tablerow;	
 }
 
-function row_vehicle($row, $chbox, $world){
+function row_vehicle($row, $chbox, $world) {
 	$x = 0;
 	$y = 0;
 	$Worldspace = str_replace("[", "", $row['pos']);

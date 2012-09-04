@@ -1,5 +1,4 @@
 <?
-		
 	$exestatus = exec('tasklist /FI "IMAGENAME eq '.$serverexe.'" /FO CSV');
 	$exestatus = explode(",", strtolower($exestatus));
 	$exestatus = $exestatus[0];
@@ -26,13 +25,8 @@
 				</table>
 				</div>';
 	}
-	
-	//////
-	
 
-	////
-	
-	if (isset($_POST["vehicle"])){
+	if (isset($_POST["vehicle"])) {
 		$aDoor = $_POST["vehicle"];
 		$N = count($aDoor);
 		for($i=0; $i < $N; $i++)
