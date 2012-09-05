@@ -320,7 +320,7 @@ function row_vehicle($row, $chbox, $world) {
 			<td align=\"center\" class=\"gear_preview\">".$HitpointsPreview. "</td>
 		</tr>";
 	}
-	//return $tablerow;
+	return $tablerow;
 }
 
 ?>
