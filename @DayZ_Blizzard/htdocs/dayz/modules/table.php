@@ -27,11 +27,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 			$pagetitle = "Online players";
 			break;
 		case 1:
-			$query = "SELECT * FROM survivor WHERE is_death = '0'"; 
+			$query = "SELECT * FROM survivor WHERE is_dead = '0'"; 
 			$pagetitle = "Alive players";		
 			break;
 		case 2:
-			$query = "SELECT * FROM survivor WHERE is_death = '1'"; 
+			$query = "SELECT * FROM survivor WHERE is_dead = '1'"; 
 			$pagetitle = "Dead players";	
 			break;
 		case 3:
