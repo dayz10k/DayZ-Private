@@ -1,7 +1,7 @@
 startLoadingScreen ["","DayZ_loadingScreen"];
 enableSaving [false, false];
 
-dayZ_instance =	1;	//The instance
+dayZ_instance = 1;	//The instance
 hiveInUse	=	true;
 dayzHiveRequest = [];
 initialized = false;
