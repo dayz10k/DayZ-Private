@@ -19,18 +19,20 @@ while ($row=mysql_fetch_array($res)) {
 	//$Backpack  = str_replace('"', "", $Backpack );
 	$Backpack  = json_decode($Backpack);
 
-	
-	
 	$owner = "";
 	$ownerid = "";
 	$owneruid = "";
 	if ($row['oid'] != "0"){
-		$query = "SELECT * FROM main WHERE id = ".$row['oid']." LIMIT 1"; 
+		$query = "SELECT * FROM survivor WHERE id = ".$row['oid']." LIMIT 1"; 
 		$res2	= mysql_query($query) or die(mysql_error());
 		while ($row2=mysql_fetch_array($res2)) {
-			$owner = $row2['name'];
+			$query3 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
+			$res3 = mysql_query($query3) or die(mysql_error());
+			while ($row3=mysql_fetch_array($res3)) {				
+				$owner = $row3['name'];
+			}
 			$ownerid = $row2['id'];
-			$owneruid = $row2['uid'];
+			$owneruid = $row2['unique_id'];
 		}
 	}
 	

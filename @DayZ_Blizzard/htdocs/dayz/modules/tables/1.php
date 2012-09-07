@@ -30,7 +30,11 @@
 	$tableheader = header_player(0);
 		
 	while ($row=mysql_fetch_array($res)) {
-		if ($dbName=="dayz_lingor"){$tablerows .= row_player($row, "lingor");} else {$tablerows .= row_player($row, "chernarus");}
+		$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
+		$res2 = mysql_query($query2) or die(mysql_error());
+		while ($row2=mysql_fetch_array($res2)) {
+			if ($dbName=="dayz_lingor"){$tablerows .= row_player($row, $row2, "lingor");} else {$tablerows .= row_player($row, $row2, "chernarus");}
+		}
 	}
 	include ('paging.php');
 ?>

@@ -27,15 +27,15 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 			$pagetitle = "Online players";
 			break;
 		case 1:
-			$query = "SELECT * FROM main WHERE death = '0'"; 
+			$query = "SELECT * FROM survivor WHERE is_death = '0'"; 
 			$pagetitle = "Alive players";		
 			break;
 		case 2:
-			$query = "SELECT * FROM main WHERE death = '1'"; 
+			$query = "SELECT * FROM survivor WHERE is_death = '1'"; 
 			$pagetitle = "Dead players";	
 			break;
 		case 3:
-			$query = "SELECT * FROM main"; 
+			$query = "SELECT * FROM survivor"; 
 			$pagetitle = "All players";	
 			break;
 		case 4:
@@ -45,10 +45,6 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 		case 5:
 			$query = "SELECT * FROM spawns";
 			$pagetitle = "Vehicle spawn locations";	
-			break;
-		case 6:
-			$query = "SELECT * FROM spawns";
-			$pagetitle = "TEST Online Players";	
 			break;
 		default:
 			$pagetitle = "Online players";

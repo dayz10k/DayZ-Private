@@ -61,7 +61,7 @@
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 
-				$query = "SELECT * FROM main WHERE name LIKE '%". str_replace(" ", "%' OR name LIKE '%", $good). "%' ORDER BY lastupdate DESC LIMIT 1"; 				
+				$query = "SELECT * FROM survivor WHERE unique_id LIKE '%". str_replace(" ", "%' OR unique_id LIKE '%", $good). "%' ORDER BY lastupdate DESC LIMIT 1"; 				
 
 				$res = null;
 				$res = mysql_query($query) or die(mysql_error());
@@ -82,13 +82,18 @@
 					$Worldspace = explode(",", $Worldspace);					
 					if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
 					if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
-					$dead = ($row['death'] ? '_dead' : '');
+					$dead = ($row['is_dead'] ? '_dead' : '');
 					$inventory = substr($row['inventory'], 0, 40)."...";
 					$backpack = substr($row['backpack'], 0, 40)."...";
-					$name = $row['name'];
 					$id = $row['id'];
-					$uid = $row['uid'];
+					$uid = $row['unique_id'];
 					$model = $row['model'];
+
+					$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$uid;
+					$res2 = mysql_query($query2) or die(mysql_error());
+					while ($row2=mysql_fetch_array($res2)) {
+						$name = $row2['name'];
+					}
 					
 				}				
 				$description = "<h2><a href=\"index.php?view=info&show=1&id=".$uid."&cid=".$id."\">".htmlspecialchars($name, ENT_QUOTES)." - ".$uid."</a></h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/models/".str_replace('"', '', $model).".png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>left:".round(($y/100))." top:".round(((15360-$x)/100))."</td></tr></table>";

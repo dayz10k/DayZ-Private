@@ -19,7 +19,7 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 	require_once($path.'modules/xml2array.php');
 	$items_xml = XML2Array::createArray($xml);
 	
-	$query = "SELECT * FROM main";
+	$query = "SELECT * FROM survivor";
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 	$rows = null;

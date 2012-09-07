@@ -3,12 +3,11 @@ $cid = '';
 if (isset($_GET['cid'])){
 	$cid = " AND id ='".$_GET['cid']."'";
 }
-$query = "SELECT * FROM main WHERE uid = ".$_GET["id"].$cid." LIMIT 1"; 
+$query = "SELECT * FROM survivor WHERE unique_id = ".$_GET["id"].$cid." LIMIT 1"; 
 $res = mysql_query($query) or die(mysql_error());
 $number = mysql_num_rows($res);
 while ($row=mysql_fetch_array($res)) {
 
-	
 	$Worldspace = str_replace("[", "", $row['pos']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
@@ -39,6 +38,12 @@ while ($row=mysql_fetch_array($res)) {
 	
 	$Inventory = (array_merge($Inventory[0], $Inventory[1]));
 	
+	$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
+	$res2 = mysql_query($query2) or die(mysql_error());
+	while ($row2=mysql_fetch_array($res2)) {				
+		$name = $row2['name'];
+	}
+
 	for ($i=0; $i<count($Inventory); $i++){
 		if(array_key_exists($i,$Inventory)){
 			//$debug .= 'Debug:&nbsp;'.$Inventory[$i].';<br />';
@@ -80,8 +85,8 @@ while ($row=mysql_fetch_array($res)) {
 
 ?>	
 	<div id="page-heading">
-		<h1><? echo "<title>".$row['name']." - ".$sitename."</title>"; ?></h1>
-		<h1><? echo $row['name']; ?> - <? echo $row['uid']; ?> - Last save: <? echo $row['lastupdate']; ?></h1>
+		<h1><? echo "<title>".$name." - ".$sitename."</title>"; ?></h1>
+		<h1><? echo $name; ?> - <? echo $row['unique_id']; ?> - Last save: <? echo $row['last_update']; ?></h1>
 	</div>
 	<!-- end page-heading -->
 
@@ -127,16 +132,16 @@ while ($row=mysql_fetch_array($res)) {
 							</div>							
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-95px">
-							<?echo 'Zombie kills:&nbsp;'.$row['kills'];?>
+							<?echo 'Zombie kills:&nbsp;'.$row['zombie_kills'];?>
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-75px">
-							<?echo 'Zombie headshots:&nbsp;'.$row['hs'];?>
+							<?echo 'Zombie headshots:&nbsp;'.$row['headshots'];?>
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-55px">
-							<?echo 'Human killed:&nbsp;'.$row['hkills'];?>
+							<?echo 'Survivor killed:&nbsp;'.$row['survivor_kills'];?>
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-35px">
-							<?echo 'Bandit killed:&nbsp;'.$row['bkills'];?>
+							<?echo 'Bandit killed:&nbsp;'.$row['bandit_kills'];?>
 						</div>
 					</div>
 					<div class="gear_inventory">

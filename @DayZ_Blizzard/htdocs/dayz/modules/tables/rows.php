@@ -25,7 +25,7 @@ function header_vehicle($show, $chbox){
 		</tr>';
 }
 
-function row_player($row, $world){
+function row_player($row, $row2, $world){
 	$Worldspace = str_replace("[", "", $row['pos']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
@@ -115,20 +115,20 @@ function row_player($row, $world){
 	if($world=="lingor") {
 		$tablerow = "<tr>
 			<td align=\"center\" class=\"gear_preview\">".$icon."</td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row['name']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row['uid']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round($x/100))."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$health."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row2['name']."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['unique_id']."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round($x/100))."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
 			<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
 			<td align=\"center\" class=\"gear_preview\">".$BackpackPreview. "</td>
 		</tr>";
 	} else {
 			$tablerow = "<tr>
 			<td align=\"center\" class=\"gear_preview\">".$icon."</td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row['name']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row['uid']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round((154-($x/100))))."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$health."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row2['name']."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['unique_id']."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round((154-($x/100))))."</a></td>
+			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
 			<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
 			<td align=\"center\" class=\"gear_preview\">".$BackpackPreview. "</td>
 		</tr>";
@@ -136,7 +136,7 @@ function row_player($row, $world){
 	return $tablerow;	
 }
 
-function row_online_player($row, $player, $path, $world){
+function row_online_player($row, $row2, $player, $path, $world){
 	$x = 0;
 	$y = 0;
 	$Worldspace = str_replace("[", "", $row['pos']);
@@ -232,8 +232,8 @@ function row_online_player($row, $player, $path, $world){
 				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$icon."</td>
 				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$name."</td>
 				<td align=\"center\" class=\"gear_preview\">".$uid."</td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round(($x/100)))."</a></td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$health."</a></td>
+				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round(($x/100)))."</a></td>
+				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
 				<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
 				<td align=\"center\" class=\"gear_preview\">".$BackpackPreview."</td>
 				<tr>";
@@ -242,8 +242,8 @@ function row_online_player($row, $player, $path, $world){
 				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$icon."</td>
 				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$name."</td>
 				<td align=\"center\" class=\"gear_preview\">".$uid."</td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round((154-($x/100))))."</a></td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$health."</a></td>
+				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round((154-($x/100))))."</a></td>
+				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
 				<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
 				<td align=\"center\" class=\"gear_preview\">".$BackpackPreview."</td>
 				<tr>";	
