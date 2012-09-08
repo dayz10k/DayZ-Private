@@ -22,7 +22,4 @@ $becpath = "";
 $becexe = "BEC.exe";
 $becstring = " -f config.cfg";
 
-$haxpath = "";
-$haxexe = "antihax.exe";
-
 ?>

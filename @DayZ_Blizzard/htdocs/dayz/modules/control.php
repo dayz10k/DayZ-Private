@@ -11,16 +11,13 @@ $pagetitle = "Server control";
 	
 	$servercommandString = "start \"\" /d \"".$serverpath."\" /b ".'"'.$serverexepath.'"'.$serverstring;
 	$beccommandString = "start \"\" /d \"".$becpath."\" ".'"'.$becpath.'\\'.$becexe.'"'.$becstring;
-	$haxcommandString = "start \"\" /d \"".$haxpath."\" ".'"'.$haxpath.'\\'.$haxexe.'"';
 
 	$serverrunning = false;
 	$becrunning = false;
-	$haxrunning = false;
 	
 	if (isset($_GET['action'])){
 		switch($_GET['action']){
 			case 0:
-				
 				pclose(popen($servercommandString, 'r'));
 				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{$_SESSION['login']}',NOW())";
 				$sql2 = mysql_query($query) or die(mysql_error());
@@ -62,27 +59,6 @@ $pagetitle = "Server control";
 				sleep(5);
 
 				break;
-			case 5:
-				pclose(popen($haxcommandString, 'r'));
-				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START ANTIHAX','{$_SESSION['login']}',NOW())";
-				$sql2 = mysql_query($query) or die(mysql_error());
-				sleep(5);
-
-				break;
-			case 6:
-				$haxexestatus = exec('tasklist /FI "IMAGENAME eq '.$haxexe.'" /FO CSV');
-				$haxexestatus = explode(",", strtolower($haxexestatus));
-				$haxexestatus = $haxexestatus[0];
-				$haxexestatus = str_replace('"', "", $haxexestatus);
-				
-				if ($haxexestatus == strtolower($haxexe)){
-					$output = exec('taskkill /IM '.$haxexestatus);
-					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP ANTIHAX','{$_SESSION['login']}',NOW())";
-					$sql2 = mysql_query($query) or die(mysql_error());
-				}
-				sleep(5);
-
-				break;
 			default:
 				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$serverexe.'" /FO CSV');
 				$serverexestatus = explode(",", strtolower($serverexestatus));
@@ -110,28 +86,8 @@ $pagetitle = "Server control";
 	$becexestatus = $becexestatus[0];
 	$becexestatus = str_replace('"', "", $becexestatus);
 	
-	$haxexestatus = exec('tasklist /FI "IMAGENAME eq '.$haxexe.'" /FO CSV');
-	$haxexestatus = explode(",", strtolower($haxexestatus));
-	$haxexestatus = $haxexestatus[0];
-	$haxexestatus = str_replace('"', "", $haxexestatus);
-	
-	if ($serverexestatus == strtolower($serverexe)){
-		$serverrunning = true;
-	} else {
-		$serverrunning = false;
-	}
-	
-	if ($becexestatus == strtolower($becexe)){
-		$becrunning = true;
-	} else {
-		$becrunning = false;
-	}
-	
-	if ($haxexestatus == strtolower($haxexe)){
-		$haxrunning = true;
-	} else {
-		$haxrunning = false;
-	}
+	if ($serverexestatus == strtolower($serverexe)){$serverrunning = true;} else {$serverrunning = false;}
+	if ($becexestatus == strtolower($becexe)){$becrunning = true;} else {$becrunning = false;}
 ?>
 </div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
@@ -166,10 +122,10 @@ $pagetitle = "Server control";
 				<!--  start step-holder -->
 				<div id="step-holder">	
 					<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
-					<div class="step-light-left">Start server</div>
+					<div class="step-light-left">Start</div>
 					<div class="step-light-right">&nbsp;</div>
 					<div class="step-no"><a href="index.php?view=control&action=1"><img src="<?echo $path;?>images/stop.png"/></a></div>
-					<div class="step-dark-left"><a href="index.php?view=control&action=1">Stop server</a></div>
+					<div class="step-dark-left"><a href="index.php?view=control&action=1">Stop</a></div>
 					<div class="step-dark-round">&nbsp;</div>
 					<div class="clear"></div>
 				</div>
@@ -191,10 +147,10 @@ $pagetitle = "Server control";
 					<!--  bec stop step-holder -->
 					<div id="step-holder">	
 						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
-						<div class="step-light-left">Start BEC</div>
+						<div class="step-light-left">Start</div>
 						<div class="step-light-right">&nbsp;</div>
 						<div class="step-no"><a href="index.php?view=control&action=4"><img src="<?echo $path;?>images/stop.png"/></a></div>
-						<div class="step-dark-left"><a href="index.php?view=control&action=4">Stop BEC</a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=4">Stop</a></div>
 						<div class="step-dark-round">&nbsp;</div>
 						<div class="clear"></div>
 					</div>
@@ -214,64 +170,14 @@ $pagetitle = "Server control";
 					<!--  bec start step-holder -->
 					<div id="step-holder">	
 						<div class="step-no"><a href="index.php?view=control&action=3"><img src="<?echo $path;?>images/start.png"/></a></div>
-						<div class="step-dark-left"><a href="index.php?view=control&action=3">Start BEC</a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=3">Start</a></div>
 						<div class="step-dark-right">&nbsp;</div>
 						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
-						<div class="step-light-left">Stop BEC</div>
+						<div class="step-light-left">Stop</div>
 						<div class="step-light-round">&nbsp;</div>
 						<div class="clear"></div>
 					</div>
 					<!--  end step-holder -->
-				<?
-				}
-				?>
-				<? if ($haxrunning){
-				?>
-					<!--  hax message-green -->
-					<div id="message-green">
-					<table border="0" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<td class="green-left">DayZ AntiHax is running.</td>
-						<td class="green-right"><a class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
-					</tr>
-					</table>
-					</div>
-					<!--  end message-green -->
-					<!--  hax stop step-holder -->
-					<div id="step-holder">	
-						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
-						<div class="step-light-left">Start AntiHax</div>
-						<div class="step-light-right">&nbsp;</div>
-						<div class="step-no"><a href="index.php?view=control&action=6"><img src="<?echo $path;?>images/stop.png"/></a></div>
-						<div class="step-dark-left"><a href="index.php?view=control&action=6">Stop AntiHax</a></div>
-						<div class="step-dark-round">&nbsp;</div>
-						<div class="clear"></div>
-					</div>
-					<!--  end step-holder -->
-				<? } else {
-				?>
-					<!--  hax message-yellow -->
-					<div id="message-yellow">
-					<table border="0" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<td class="yellow-left">DayZ AntiHax is not running.</td>
-						<td class="yellow-right"><a class="close-yellow"><img src="<?echo $path;?>images/table/icon_close_yellow.gif"   alt="" /></a></td>
-					</tr>
-					</table>
-					</div>
-					<!--  end message-yellow -->
-					<!--  hax start step-holder -->
-					<div id="step-holder">	
-						<div class="step-no"><a href="index.php?view=control&action=5"><img src="<?echo $path;?>images/start.png"/></a></div>
-						<div class="step-dark-left"><a href="index.php?view=control&action=5">Start AntiHax</a></div>
-						<div class="step-dark-right">&nbsp;</div>
-						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
-						<div class="step-light-left">Stop AntiHax</div>
-						<div class="step-light-round">&nbsp;</div>
-						<div class="clear"></div>
-					</div>
-					<!--  end step-holder -->
-					<!--  Code end by Crosire -->
 				<?
 				}
 				?>
@@ -290,65 +196,15 @@ $pagetitle = "Server control";
 				<!--  start step-holder -->
 				<div id="step-holder">	
 					<div class="step-no"><a href="index.php?view=control&action=0"><img src="<?echo $path;?>images/start.png"/></a></div>
-					<div class="step-dark-left"><a href="index.php?view=control&action=0">Start server</a></div>
+					<div class="step-dark-left"><a href="index.php?view=control&action=0">Start</a></div>
 					<div class="step-dark-right">&nbsp;</div>
 					<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
-					<div class="step-light-left">Stop server</div>
+					<div class="step-light-left">Stop</div>
 					<div class="step-light-round">&nbsp;</div>
 					<div class="clear"></div>
 				</div>
 				<!--  end step-holder -->
-				<? if ($haxrunning){
-				?>
-					<!--  hax message-green -->
-					<div id="message-green">
-					<table border="0" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<td class="green-left">DayZ AntiHax is running.</td>
-						<td class="green-right"><a class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
-					</tr>
-					</table>
-					</div>
-					<!--  end message-green -->
-					<!--  hax stop step-holder -->
-					<div id="step-holder">	
-						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
-						<div class="step-light-left">Start AntiHax</div>
-						<div class="step-light-right">&nbsp;</div>
-						<div class="step-no"><a href="index.php?view=control&action=6"><img src="<?echo $path;?>images/stop.png"/></a></div>
-						<div class="step-dark-left"><a href="index.php?view=control&action=6">Stop AntiHax</a></div>
-						<div class="step-dark-round">&nbsp;</div>
-						<div class="clear"></div>
-					</div>
-					<!--  end step-holder -->
-				<? } else {
-				?>
-					<!--  hax message-yellow -->
-					<div id="message-yellow">
-					<table border="0" width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<td class="yellow-left">DayZ AntiHax is not running.</td>
-						<td class="yellow-right"><a class="close-yellow"><img src="<?echo $path;?>images/table/icon_close_yellow.gif"   alt="" /></a></td>
-					</tr>
-					</table>
-					</div>
-					<!--  end message-yellow -->
-					<!--  hax start step-holder -->
-					<div id="step-holder">	
-						<div class="step-no"><a href="index.php?view=control&action=5"><img src="<?echo $path;?>images/start.png"/></a></div>
-						<div class="step-dark-left"><a href="index.php?view=control&action=5">Start AntiHax</a></div>
-						<div class="step-dark-right">&nbsp;</div>
-						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
-						<div class="step-light-left">Stop AntiHax</div>
-						<div class="step-light-round">&nbsp;</div>
-						<div class="clear"></div>
-					</div>
-					<!--  end step-holder -->
-					<!--  Code end by Crosire -->
 				<?
-				}
-				?>
-			<?
 			}
 				$configarray = null;
 				//$serverconfig = parse_ini_file($serverpath.DS.$serverconfig);
