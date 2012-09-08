@@ -102,10 +102,40 @@ drop table whitelist;
 alter table instances
   change reserved whitelist tinyint(1) unsigned not null default 0;
 
+alter table profile
+  modify survival_attempts int(3) unsigned not null default 1,
+  modify total_survival_time int(5) unsigned not null default 0,
+  modify total_survivor_kills int(4) unsigned not null default 0,
+  modify total_bandit_kills int(4) unsigned not null default 0,
+  modify total_zombie_kills int(5) unsigned not null default 0,
+  modify total_headshots int(5) unsigned not null default 0;
 
---
--- Dumping routines for database 'dayz_chernarus'
---
+
+/*!50003 DROP PROCEDURE IF EXISTS `proc_checkWhitelist` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = latin1 */ ;
+/*!50003 SET character_set_results = latin1 */ ;
+/*!50003 SET collation_connection  = latin1_swedish_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_checkWhitelist`(in p_instanceId int, in p_uniqueId varchar(128))
+begin
+  select
+    if(i.whitelist = 1, is_whitelisted, 1)
+  from
+    profile p
+    join instances i on i.instance = p_instanceId
+  where
+    p.unique_id = p_uniqueId; --
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `proc_deleteObject` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -118,7 +148,7 @@ alter table instances
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_deleteObject`(in `p_uniqueId` varchar(128))
 begin
-  delete from objects where uid = p_uniqueid; --
+  delete from objects where uid = p_uniqueid; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -137,7 +167,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getInstanceLoadout`(in `p_instanceId` int)
 begin
-  select loadout from instances where instance = p_instanceId; --
+  select loadout from instances where instance = p_instanceId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -156,9 +186,9 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getInstanceTime`(in `p_instanceId` int)
 begin
-  declare server_time datetime default now(); --
-  select now() + interval (offset) hour into server_time from instances where instance = p_instanceid; --
-  select date_format(server_time,'%d-%m-%y'), time_format(server_time, '%T'); --
+  declare server_time datetime default now(); 
+  select now() + interval (offset) hour into server_time from instances where instance = p_instanceid; 
+  select date_format(server_time,'%d-%m-%y'), time_format(server_time, '%T'); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -177,8 +207,8 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getObjectPageCount`(in `p_instanceId` int)
 begin
-  declare itemsPerPage int default 5; -- must match proc_getobjects
-  select floor(count(*) / itemsPerPage) + if((count(*) mod itemsPerPage) > 0, 1, 0) from objects where instance = p_instanceId; --
+  declare itemsPerPage int default 5; 
+  select floor(count(*) / itemsPerPage) + if((count(*) mod itemsPerPage) > 0, 1, 0) from objects where instance = p_instanceId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -197,11 +227,11 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getObjects`(in `p_instanceId` int, in `p_currentPage` int)
 begin
-  set @instance = p_instanceId; --
-  set @page = greatest(((p_currentPage - 1) * 5), 0); --
-  prepare stmt from 'select id,otype,oid,pos,inventory,health,fuel,damage from objects where instance = ? limit ?, 5'; --
-  execute stmt using @instance, @page; --
-  deallocate prepare stmt; --
+  set @instance = p_instanceId; 
+  set @page = greatest(((p_currentPage - 1) * 5), 0); 
+  prepare stmt from 'select id,otype,oid,pos,inventory,health,fuel,damage from objects where instance = ? limit ?, 5'; 
+  execute stmt using @instance, @page; 
+  deallocate prepare stmt; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -220,14 +250,14 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getSchedulerTaskPageCount`(in `p_instanceId` int)
 begin
-  declare itemsPerPage int default 10; -- must match proc_getschedulertasks
+  declare itemsPerPage int default 10; 
   select
     floor(count(*) / itemsPerPage) + if((count(*) mod itemsPerPage) > 0, 1, 0)
   from
     scheduler
     join instances on instances.mvisibility = scheduler.visibility
   where
-    instances.instance = p_instanceId; --
+    instances.instance = p_instanceId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -246,11 +276,11 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getSchedulerTasks`(in `p_instanceId` int, in `p_currentPage` int)
 begin
-  set @instance = p_instanceId; --
-  set @page = greatest(((p_currentPage - 1) * 10), 0); --
-  prepare stmt from 'select message,mtype,looptime,mstart from scheduler s join instances i on i.mvisibility = s.visibility where i.instance = ? limit ?, 10'; --
-  execute stmt using @instance, @page; -- 
-  deallocate prepare stmt; --
+  set @instance = p_instanceId; 
+  set @page = greatest(((p_currentPage - 1) * 10), 0); 
+  prepare stmt from 'select message,mtype,looptime,mstart from scheduler s join instances i on i.mvisibility = s.visibility where i.instance = ? limit ?, 10'; 
+  execute stmt using @instance, @page; 
+  deallocate prepare stmt; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -276,7 +306,7 @@ begin
     inner join profile p on s.unique_id = p.unique_id
   where
     s.id = p_survivorId
-    and s.is_dead = 0; --
+    and s.is_dead = 0; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -298,7 +328,7 @@ begin
   insert into objects
     (uid,otype,health,damage,oid,pos,fuel,instance)
   values
-    (p_uniqueId, p_type, p_health, p_damage, p_owner, p_position, p_fuel, p_instanceId); --
+    (p_uniqueId, p_type, p_health, p_damage, p_owner, p_position, p_fuel, p_instanceId); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -321,12 +351,12 @@ begin
     (unique_id, name)
   values
     (p_uniqueId, p_playerName)
-  on duplicate key update name = p_playerName; --
+  on duplicate key update name = p_playerName; 
   insert into survivor
     (unique_id, start_time)
   values
-    (p_uniqueId, now()); --
-  select last_insert_id(); --
+    (p_uniqueId, now()); 
+  select last_insert_id(); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -345,7 +375,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_killSurvivor`(in `p_survivorId` int)
 begin
-  update survivor set is_dead = 1 where id = p_survivorId; --
+  update survivor set is_dead = 1 where id = p_survivorId; 
   update
     profile
     left join survivor on survivor.unique_id = profile.unique_id
@@ -357,7 +387,7 @@ begin
     total_headshots=total_headshots+headshots,
     total_survival_time=total_survival_time+survival_time
   where
-    survivor.id = p_survivorId; --
+    survivor.id = p_survivorId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -377,6 +407,7 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_loginSurvivor`(in `p_uniqueId` varchar(128), in `p_playerName` varchar(128))
 begin 
   update profile set name = p_playerName where unique_id = p_uniqueId; --
+  update survivor set state = '["","aidlpercmstpsnonwnondnon_player_idlesteady04",36]' where unique_id = p_uniqueId and state like '%_driver"' or state like '%_pilot"'; --
   select
     id, inventory, backpack, floor(time_to_sec(timediff(now(), start_time)) / 60), model, last_ate, last_drank
   from survivor
@@ -401,7 +432,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_loglogin`(in `p_uniqueId` varchar(128), in `p_instanceId` int)
 begin
-  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 1); --
+  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 1); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -420,7 +451,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_loglogout`(in `p_uniqueId` varchar(128), in `p_instanceId` int)
 begin
-  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 2); --
+  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 2); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -444,7 +475,7 @@ begin
     health = p_health,
     pos = if(p_position = '[]', pos, p_position)
   where
-    uid = p_uniqueId; --
+    uid = p_uniqueId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -467,7 +498,7 @@ begin
     health = p_health,
     damage = p_damage
   where
-    id = p_objectId; --
+    id = p_objectId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -489,7 +520,7 @@ begin
   update objects set
     inventory = p_inventory
   where
-    id = p_objectId; --
+    id = p_objectId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -512,7 +543,7 @@ begin
     inventory = p_inventory
   where
     uid not like '%.%'
-    and (convert(uid, unsigned integer) between (convert(p_uniqueId, unsigned integer) - 2) and (convert(p_uniqueId, unsigned integer) + 2)); --
+    and (convert(uid, unsigned integer) between (convert(p_uniqueId, unsigned integer) - 2) and (convert(p_uniqueId, unsigned integer) + 2)); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -535,7 +566,7 @@ begin
     pos = if(p_position = '[]', pos, p_position),
     fuel = p_fuel
   where
-    id = p_objectId; --
+    id = p_objectId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -560,7 +591,7 @@ begin
   set
     p.humanity = if(p_humanity = 0, humanity, p_humanity)
   where
-    s.id = p_survivorId; --
+    s.id = p_survivorId; 
 
   update survivor set
     zombie_kills = zombie_kills + p_zombieKills,
@@ -577,7 +608,7 @@ begin
     backpack = if(p_backpack='[]', backpack, p_backpack),
     inventory = if(p_inventory='[]', inventory, p_inventory)
   where
-    id = p_survivorId; --
+    id = p_survivorId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;

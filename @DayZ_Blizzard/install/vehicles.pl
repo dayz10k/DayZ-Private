@@ -17,7 +17,7 @@ GetOptions(
 	'hostname|host|dbhost|h=s',
 	'username|user|dbuser|u=s',
 	'password|pass|dbpass|p=s',
-	'database|dbname|d=s',
+	'database|name|dbname|d=s',
 	'port|dbport=s',
 	'world|map|w|m=s',
 	'limit|l=s',
@@ -30,11 +30,16 @@ my %db = (
 	'instance' => $args{'instance'} ? $args{'instance'} : '1',
 	'limit' => $args{'limit'} ? $args{'limit'} : '500',
 	'user' => $args{'username'} ? $args{'username'} : 'dayz',
-	'pass' => $args{'password'} ? $args{'password'} : 'dayz',
+	'pass' => $args{'password'} ? $args{'password'} : '123456',
 	'name' => $args{'database'} ? $args{'database'} : 'dayz',
 	'port' => $args{'port'} ? $args{'port'} : '3306',
 	'world' => $args{'world'} ? $args{'world'} : 'chernarus'
 );
+
+if ($args{'help'}) {
+	print "usage: db_spawn_vehicles.pl [--instance <id>] [--world <chernarus|lingor>] [--limit <limit>] [--host <hostname>] [--user <username>] [--pass <password>] [--name <dbname>] [--port <port>]\n";
+	exit;
+}
 
 print "INFO: Connecting to $db{'host'}:$db{'name'} as user $db{'user'}\n";
 print "INFO: Instance name dayz_$db{'instance'}.$db{'world'} \n";

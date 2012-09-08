@@ -1,8 +1,4 @@
--- MySQL dump 10.13  Distrib 5.5.25a, for Win32 (x86)
---
--- Host: localhost    Database: dayz_chernarus
--- ------------------------------------------------------
--- Server version	5.5.25a
+-- Database Dump for Crosire's DayZ Server Controlcenter
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -19,9 +15,9 @@
 -- Current Database: `dayz_chernarus`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dayz_lingor` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dayz_chernarus` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `dayz_lingor`;
+USE `dayz_chernarus`;
 
 --
 -- Table structure for table `instances`
@@ -36,7 +32,7 @@ CREATE TABLE `instances` (
   `offset` int(1) NOT NULL DEFAULT '0',
   `loadout` varchar(1024) NOT NULL DEFAULT '[]' COMMENT 'Starting inventory for every player. Has to be a valid inventory string to work',
   `mvisibility` int(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Sets which messages will be executed by the scheduler',
-  `reserverd` int(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Not yet implemented',
+  `whitelist` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -200,14 +196,16 @@ CREATE TABLE `profile` (
   `unique_id` varchar(128) NOT NULL,
   `name` varchar(64) NOT NULL DEFAULT '',
   `humanity` int(6) NOT NULL DEFAULT '2500',
-  `survival_attempts` int(3) unsigned NOT NULL,
-  `total_survival_time` int(5) unsigned NOT NULL,
-  `total_survivor_kills` int(4) unsigned NOT NULL,
-  `total_bandit_kills` int(4) unsigned NOT NULL,
-  `total_zombie_kills` int(5) unsigned NOT NULL,
-  `total_headshots` int(5) unsigned NOT NULL,
+  `survival_attempts` int(3) unsigned NOT NULL DEFAULT '1',
+  `total_survival_time` int(5) unsigned NOT NULL DEFAULT '0',
+  `total_survivor_kills` int(4) unsigned NOT NULL DEFAULT '0',
+  `total_bandit_kills` int(4) unsigned NOT NULL DEFAULT '0',
+  `total_zombie_kills` int(5) unsigned NOT NULL DEFAULT '0',
+  `total_headshots` int(5) unsigned NOT NULL DEFAULT '0',
+  `is_whitelisted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uq_profile` (`unique_id`)
+  UNIQUE KEY `uq_profile` (`unique_id`),
+  KEY `idx2_profile` (`is_whitelisted`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -244,7 +242,7 @@ CREATE TABLE `scheduler` (
 
 LOCK TABLES `scheduler` WRITE;
 /*!40000 ALTER TABLE `scheduler` DISABLE KEYS */;
-INSERT INTO `scheduler` VALUES (1,'This lingor server is managed through Crosires Private Server Controlcenter! Have fun!','l',0,3,0);
+INSERT INTO `scheduler` VALUES (1,'This server is managed through Crosires Private Server Controlcenter! Have fun!','l',0,3,0);
 /*!40000 ALTER TABLE `scheduler` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +270,74 @@ CREATE TABLE `spawns` (
 
 LOCK TABLES `spawns` WRITE;
 /*!40000 ALTER TABLE `spawns` DISABLE KEYS */;
-INSERT INTO `spawns` VALUES (1,'[0,[12140.168, 12622.802,0]]','UAZ_Unarmed_TK_EP1',1,'chernarus',0.6500),(2,'[0,[6279.4966, 7810.3691,0]]','UAZ_Unarmed_TK_CIV_EP1',2,'chernarus',0.6500),(3,'[0,[6865.2432, 2481.6943,0]]','UAZ_Unarmed_UN_EP1',3,'chernarus',0.6500),(4,'[157,[3693.0386, 5969.1489,0]]','UAZ_RU',4,'chernarus',0.6500),(5,'[100,[13292.147, 11938.206, 0]]','UAZ_Unarmed_TK_CIV_EP1',5,'chernarus',0.6500),(6,'[223,[4817.6572, 2556.5034,0]]','UAZ_INS',6,'chernarus',0.6500),(7,'[-23,[8120.3057, 9305.4912]]','UAZ_Unarmed_TK_EP1',7,'chernarus',0.6500),(8,'[0,[3312.2793, 11270.755,0]]','ATV_US_EP1',8,'chernarus',0.7000),(9,'[50,[3684.0366, 5999.0117,0]]','ATV_US_EP1',9,'chernarus',0.7000),(10,'[202,[11464.035, 11381.071,0]]','ATV_CZ_EP1',10,'chernarus',0.7000),(11,'[-107,[11459.299, 11386.546,0]]','ATV_US_EP1',11,'chernarus',0.7000),(12,'[-25,[8856.8359, 2893.7903,0]]','ATV_CZ_EP1',12,'chernarus',0.7000),(13,'[-7,[12869.565, 4450.4077,0]]','SkodaBlue',13,'chernarus',0.6500),(14,'[223,[6288.416, 7834.3521,0]]','Skoda',14,'chernarus',0.6500),(15,'[-54,[8125.7075, 3166.3708,0]]','SkodaGreen',15,'chernarus',0.6500),(16,'[-76,[8854.9082, 2891.5762,0]]','ATV_US_EP1',16,'chernarus',0.7000),(17,'[-69,[11945.78, 9099.3633,0]]','TT650_Ins',17,'chernarus',0.7000),(18,'[-209,[6592.686, 2906.8245,0]]','TT650_TK_EP1',18,'chernarus',0.7000),(19,'[372,[8762.8516, 11727.877,0]]','TT650_TK_CIV_EP1',19,'chernarus',0.7000),(20,'[52,[8713.4893, 7103.0518,0]]','TT650_TK_CIV_EP1',20,'chernarus',0.7000),(21,'[50,[8040.6777, 7086.5356,0]]','Old_bike_TK_CIV_EP1',21,'chernarus',0.9500),(22,'[-44,[7943.5068, 6988.1763,0]]','Old_bike_TK_CIV_EP1',22,'chernarus',0.9500),(23,'[201,[8070.6958, 3358.7793,0]]','Old_bike_TK_INS_EP1',23,'chernarus',0.9500),(24,'[179,[3474.3989, 2562.4915,0]]','Old_bike_TK_INS_EP1',24,'chernarus',0.9500),(25,'[-124,[1773.9318, 2351.6221,0]]','Old_bike_TK_INS_EP1',25,'chernarus',0.9500),(26,'[0,[3699.9189, 2474.2119,0]]','Old_bike_TK_CIV_EP1',26,'chernarus',0.9500),(27,'[73,[8350.0947, 2480.542,0]]','Old_bike_TK_CIV_EP1',27,'chernarus',0.9500),(28,'[35,[8345.7227, 2482.6855,0]]','Old_bike_TK_INS_EP1',28,'chernarus',0.9500),(29,'[23,[3203.0916, 3988.6379,0]]','Old_bike_TK_CIV_EP1',29,'chernarus',0.9500),(30,'[-169,[2782.7134, 5285.5342,0]]','Old_bike_TK_INS_EP1',30,'chernarus',0.9500),(31,'[-205,[8680.75, 2445.5315,0]]','Old_bike_TK_INS_EP1',31,'chernarus',0.9500),(32,'[0,[12158.999, 3468.7563,0]]','Old_bike_TK_CIV_EP1',32,'chernarus',0.9500),(33,'[-110,[11984.01, 3835.9231,0]]','Old_bike_TK_INS_EP1',33,'chernarus',0.9500),(34,'[-105,[10153.068, 2219.3547,0]]','Old_bike_TK_CIV_EP1',34,'chernarus',0.9500),(35,'[0,[11251.41, 4274.8184, 19.607342]]','UH1H_DZ',35,'chernarus',0.2500),(36,'[-121,[4523.5947, 10782.407,0]]','UH1H_DZ',36,'chernarus',0.2500),(37,'[89,[6914.1348, 11429.448, 30.22456]]','UH1H_DZ',37,'chernarus',0.2500),(38,'[-162,[10510.669, 2294.2346, 10.909807]]','UH1H_DZ',38,'chernarus',0.2500),(39,'[0,[6404.6675, 2767.1914, 10.798054]]','UH1H_DZ',39,'chernarus',0.2500),(40,'[-16,[2045.3989, 7267.4165,0]]','hilux1_civil_3_open',40,'chernarus',0.5500),(41,'[133,[8310.9902, 3348.3579,0]]','hilux1_civil_3_open',41,'chernarus',0.5500),(42,'[124,[11309.963, 6646.3989,0]]','hilux1_civil_3_open',42,'chernarus',0.5500),(43,'[6,[11240.744, 5370.6128,0]]','hilux1_civil_3_open',43,'chernarus',0.5500),(44,'[-130,[3762.5764, 8736.1709,0]]','Ikarus_TK_CIV_EP1',44,'chernarus',0.5500),(45,'[-81,[10628.433, 8037.8188,0]]','Ikarus',45,'chernarus',0.5500),(46,'[-115,[4580.3203, 4515.9282,0]]','Ikarus',46,'chernarus',0.5500),(47,'[-27,[6040.0923, 7806.5439,0]]','Ikarus_TK_CIV_EP1',47,'chernarus',0.5500),(48,'[76,[10314.745, 2147.5374,0]]','Ikarus',48,'chernarus',0.5500),(49,'[59,[6705.8887, 2991.9358,0]]','Ikarus_TK_CIV_EP1',49,'chernarus',0.5500),(50,'[-165,[9681.8213, 8947.2354,0]]','Tractor',50,'chernarus',0.7500),(51,'[-98,[3825.1318, 8941.4873,0]]','Tractor',51,'chernarus',0.7500),(52,'[19,[11246.52, 7534.7954,0]]','Tractor',52,'chernarus',0.7500),(53,'[0,[11066.828, 7915.2275,0]]','S1203_TK_CIV_EP1',53,'chernarus',0.5500),(54,'[-8,[12058.555, 3577.8667,0]]','S1203_TK_CIV_EP1',54,'chernarus',0.5500),(55,'[218,[11940.854, 8872.8389,0]]','S1203_TK_CIV_EP1',55,'chernarus',0.5500),(56,'[-14,[13386.471, 6604.0098,0]]','S1203_TK_CIV_EP1',56,'chernarus',0.5500),(57,'[178,[13276.482, 6098.4463,0]]','V3S_Gue',57,'chernarus',0.5500),(58,'[-22,[1890.9952, 12417.333,0]]','UralCivil',58,'chernarus',0.5500),(59,'[226,[1975.1283, 9150.0195,0]]','car_hatchback',59,'chernarus',0.7500),(60,'[-45,[7429.4849, 5157.8682,0]]','car_hatchback',60,'chernarus',0.7500),(61,'[0,[8317.2676, 2348.6055,0]]','Fishing_Boat',61,'chernarus',0.5500),(62,'[0,[13222.181, 10015.431,0]]','Fishing_Boat',62,'chernarus',0.5500),(63,'[55,[13454.882, 13731.796,0]]','PBX',63,'chernarus',0.5500),(64,'[-115,[14417.589, 12886.104,0]]','Smallboat_1',64,'chernarus',0.5500),(65,'[268,[13098.13, 8250.8828,0]]','Smallboat_1',65,'chernarus',0.5500),(66,'[-155,[9731.1514, 8937.7998,0]]','Volha_2_TK_CIV_EP1',66,'chernarus',0.5500),(67,'[-23,[9715.0352, 6522.8286,0]]','Volha_1_TK_CIV_EP1',67,'chernarus',0.5500),(68,'[-119,[2614.0862, 5079.6357,0]]','Volha_1_TK_CIV_EP1',68,'chernarus',0.5500),(69,'[18,[10827.634, 2701.5688,0]]','Volha_2_TK_CIV_EP1',69,'chernarus',0.5500),(70,'[-138,[5165.7231, 2375.7642,0]]','Volha_1_TK_CIV_EP1',70,'chernarus',0.5500),(71,'[-153,[1740.8503, 3622.6938,0]]','Volha_2_TK_CIV_EP1',71,'chernarus',0.5500),(72,'[266,[9157.8408, 11019.819,0]]','SUV_TK_CIV_EP1',72,'chernarus',0.4500),(73,'[222,[12360.468, 10817.882,0]]','car_sedan',73,'chernarus',0.7500),(129,'[130,[13129.8,11560,0.0706997]]','UAZ_Unarmed_TK_EP1',1303114,'lingor',0.6500),(130,'[3,[7107.41,5825.43,0]]','UAZ_Unarmed_TK_CIV_EP1',1379054,'lingor',0.6500),(131,'[271,[6424,6777.25,0.00143909]]','UAZ_Unarmed_UN_EP1',1391556,'lingor',0.6500),(132,'[5,[4150.78,1426.02,0.0821762]]','UAZ_RU',1418552,'lingor',0.6500),(133,'[87,[2476.24,4105.05,0.00119781]]','UAZ_Unarmed_TK_CIV_EP1',1461138,'lingor',0.6500),(134,'[177,[4073.41,5156.29,0.00143814]]','UAZ_INS',1597984,'lingor',0.6500),(135,'[9,[6457.83,6660.57,0]]','SUV_TK_CIV_EP1',1600270,'lingor',0.4500),(136,'[355,[6888.25,3147.13,0.00132751]]','ATV_US_EP1',1620134,'lingor',0.7000),(137,'[17,[5968.15,6595.98,0.00117016]]','ATV_US_EP1',1624318,'lingor',0.7000),(138,'[186,[3546.66,3740.02,0.00143433]]','ATV_CZ_EP1',1704164,'lingor',0.7000),(139,'[75,[3287.92,6434.28,0.00110245]]','ATV_US_EP1',1817908,'lingor',0.7000),(140,'[51,[5927.38,6616.12,0.00140476]]','ATV_CZ_EP1',2097619,'lingor',0.7000),(141,'[3,[5805.57,4727.47,0.00143814]]','SkodaBlue',2732512,'lingor',0.6500),(142,'[0,[6115.49,5859.39,0]]','Skoda',2819485,'lingor',0.6500),(143,'[208,[1748.81,642.642,14.1062]]','UH1H_DZ',2889931,'lingor',0.2500),(144,'[323,[1199.85,5270.49,10.8326]]','ATV_US_EP1',3032853,'lingor',0.7000),(145,'[267,[4080.74,1130.51,0.00143909]]','TT650_Ins',3094055,'lingor',0.7000),(146,'[-209,[6592.686, 2906.8245,0]]','TT650_TK_EP1',3224021,'lingor',0.7000),(147,'[179,[5802.9,4712.73,0.00143814]]','TT650_TK_CIV_EP1',3281806,'lingor',0.7000),(148,'[97,[4589.57,2616.75,0.00136948]]','TT650_TK_CIV_EP1',4631620,'lingor',0.7000),(149,'[271,[6424,6777.25,0.00143909]]','hilux1_civil_3_open_EP1',4839368,'lingor',0.5500),(150,'[90,[6821.08,2497.89,0.00143909]]','UralCivil2',4885355,'lingor',0.5500),(151,'[310,[1967.18,9147.22,0.00106812]]','LandRover_CZ_EP1',4913990,'lingor',0.5500),(152,'[254,[3933.37,4220.77,0.00143433]]','Old_bike_TK_INS_EP1',4917659,'lingor',0.9500),(153,'[184,[3551.31,3739.72,0.0010376]]','Old_bike_TK_INS_EP1',5004305,'lingor',0.9500),(154,'[163,[5985.63,5351.37,0.00143909]]','hilux1_civil_3_open_EP1',5075087,'lingor',0.5500),(155,'[10,[8819.02,8023.86,0.00143814]]','Old_bike_TK_CIV_EP1',5146500,'lingor',0.9500),(156,'[279,[5796.81,4688.25,0.00143814]]','Old_bike_TK_INS_EP1',5172558,'lingor',0.9500),(157,'[0,[5671.37,796.868,0.00129175]]','Old_bike_TK_CIV_EP1',5222930,'lingor',0.9500),(158,'[0,[969.451,1275.39,0.00255895]]','ATV_CZ_EP1',5468412,'lingor',0.7000),(159,'[9,[6593.81,5728.57,0]]','SUV_TK_CIV_EP1',5499609,'lingor',0.4500),(160,'[94,[621.466,4631.81,0.00143814]]','Volha_2_TK_CIV_EP1',5574573,'lingor',0.5500),(161,'[5,[3360.08,1126.39,0.00143862]]','UH1H_DZ',5591243,'lingor',0.2500),(162,'[18,[3956.76,4229.46,0.00143433]]','UH1H_DZ',5640172,'lingor',0.2500),(163,'[168,[602.249,4686.56,6.81655]]','UH1H_DZ',5688809,'lingor',0.2500),(164,'[89,[6597.37,6767.08,0]]','UH1H_DZ',5769153,'lingor',0.2500),(165,'[274,[6863.03,4451.83,0.00143814]]','UH1H_DZ',5825353,'lingor',0.2500),(166,'[79,[3472.71,1374.62,0.00143909]]','Ikarus_TK_CIV_EP1',6093204,'lingor',0.5500),(167,'[79,[3572.71,1374.62,0.00143909]]','Ikarus',6320860,'lingor',0.5500),(168,'[180,[5775.69,4724.98,0.00143814]]','Ikarus',6492547,'lingor',0.5500),(169,'[209,[835.536,5520.96,7.97942]]','Ikarus_TK_CIV_EP1',6511235,'lingor',0.5500),(170,'[9,[6572.64,5970.13,0]]','Ikarus',6638577,'lingor',0.5500),(171,'[9,[6472.64,5970.13,0]]','Ikarus_TK_CIV_EP1',7016936,'lingor',0.5500),(172,'[272,[2837.28,5328.06,0.373938]]','TT650_TK_CIV_EP1',7235098,'lingor',0.7000),(173,'[89,[7971.34,1091.71,0.00143909]]','Tractor',7311582,'lingor',0.7500),(174,'[317,[2645.8,6945.16,0.00143909]]','Tractor',7339114,'lingor',0.7500),(175,'[285,[4290.23,4935.53,0.00152206]]','S1203_TK_CIV_EP1',7469049,'lingor',0.5500),(176,'[5,[4198.66,4442.61,0.00143814]]','S1203_TK_CIV_EP1',7497356,'lingor',0.5500),(177,'[3,[5796.71,4721.43,0.00143814]]','S1203_TK_CIV_EP1',7535863,'lingor',0.5500),(178,'[167,[13367.5,6601.11,0.0126638]]','S1203_TK_CIV_EP1',7575100,'lingor',0.5500),(179,'[4,[4401.8,1702.02,0.121414]]','V3S_Civ',7632814,'lingor',0.5500),(180,'[137,[3800.27,2307.3,4.6834]]','Fishing_Boat',7636081,'lingor',0.5500),(181,'[137,[3700.27,2307.3,4.6834]]','Fishing_Boat',7931058,'lingor',0.5500),(182,'[291,[5873.05,5326.02,0.00148487]]','PBX',8076073,'lingor',0.5500),(183,'[147,[8433.71,7797.2,2.1895]]','Smallboat_1',8083737,'lingor',0.5500),(184,'[310,[3822.1,2299.23,0.000923157]]','Smallboat_1',8387143,'lingor',0.5500),(185,'[94,[621.466,4631.81,0.00143814]]','Volha_2_TK_CIV_EP1',8560255,'lingor',0.5500),(186,'[272,[6827.53,5927.34,0.00143909]]','Volha_1_TK_CIV_EP1',8611345,'lingor',0.5500),(187,'[356,[8039.13,2916.39,0.00257635]]','Volha_1_TK_CIV_EP1',8625660,'lingor',0.5500),(188,'[274,[3697.02,1404.02,0.00143909]]','Volha_2_TK_CIV_EP1',8875184,'lingor',0.5500),(189,'[260,[8299.95,2358.95,1.28169]]','Volha_1_TK_CIV_EP1',9212090,'lingor',0.5500),(190,'[47,[4149.76,1537.27,0.0821762]]','Volha_2_TK_CIV_EP1',9575283,'lingor',0.5500),(191,'[183,[5784.84,4712.17,0.00143814]]','SUV_TK_CIV_EP1',9642843,'lingor',0.4500),(192,'[222,[12360.468,10817.882,0]]','car_sedan',9752273,'lingor',0.7500),(193,'[273,[8842.5,921.916,0.00130701]]','Fishing_Boat',9791945,'lingor',0.5500),(194,'[249,[7563.33,1693.72,0.00143909]]','UAZ_Unarmed_TK_EP1',9936994,'lingor',0.6500),(195,'[195,[6800.51,2828.05,0.00150663]]','Fishing_Boat',9938094,'lingor',0.5500);
+INSERT INTO `spawns` (`id`, `pos`, `otype`, `uuid`, `world`, `chance`) VALUES
+  ('248', '[137,[3800.27,2307.3,4.6834]]', 'Fishing_Boat', '7636081', 'lingor', '0.55'),
+  ('247', '[4,[4401.8,1702.02,0.121414]]', 'V3S_Civ', '7632814', 'lingor', '0.55'),
+  ('246', '[167,[13367.5,6601.11,0.0126638]]', 'S1203_TK_CIV_EP1', '7575100', 'lingor', '0.55'),
+  ('245', '[3,[5796.71,4721.43,0.00143814]]', 'S1203_TK_CIV_EP1', '7535863', 'lingor', '0.55'),
+  ('244', '[5,[4198.66,4442.61,0.00143814]]', 'S1203_TK_CIV_EP1', '7497356', 'lingor', '0.55'),
+  ('243', '[285,[4290.23,4935.53,0.00152206]]', 'S1203_TK_CIV_EP1', '7469049', 'lingor', '0.55'),
+  ('242', '[317,[2645.8,6945.16,0.00143909]]', 'Tractor', '7339114', 'lingor', '0.75'),
+  ('241', '[89,[7971.34,1091.71,0.00143909]]', 'Tractor', '7311582', 'lingor', '0.75'),
+  ('240', '[272,[2837.28,5328.06,0.373938]]', 'TT650_TK_CIV_EP1', '7235098', 'lingor', '0.7'),
+  ('239', '[9,[6472.64,5970.13,0]]', 'Ikarus_TK_CIV_EP1', '7016936', 'lingor', '0.55'),
+  ('238', '[9,[6572.64,5970.13,0]]', 'Ikarus', '6638577', 'lingor', '0.55'),
+  ('237', '[209,[835.536,5520.96,7.97942]]', 'Ikarus_TK_CIV_EP1', '6511235', 'lingor', '0.55'),
+  ('236', '[180,[5775.69,4724.98,0.00143814]]', 'Ikarus', '6492547', 'lingor', '0.55'),
+  ('235', '[79,[3572.71,1374.62,0.00143909]]', 'Ikarus', '6320860', 'lingor', '0.55'),
+  ('234', '[79,[3472.71,1374.62,0.00143909]]', 'Ikarus_TK_CIV_EP1', '6093204', 'lingor', '0.55'),
+  ('233', '[274,[6863.03,4451.83,0.00143814]]', 'UH1H_DZ', '5825353', 'lingor', '0.25'),
+  ('232', '[89,[6597.37,6767.08,0]]', 'UH1H_DZ', '5769153', 'lingor', '0.25'),
+  ('231', '[168,[602.249,4686.56,6.81655]]', 'UH1H_DZ', '5688809', 'lingor', '0.25'),
+  ('230', '[18,[3956.76,4229.46,0.00143433]]', 'UH1H_DZ', '5640172', 'lingor', '0.25'),
+  ('229', '[5,[3360.08,1126.39,0.00143862]]', 'UH1H_DZ', '5591243', 'lingor', '0.25'),
+  ('228', '[94,[621.466,4631.81,0.00143814]]', 'Volha_2_TK_CIV_EP1', '5574573', 'lingor', '0.55'),
+  ('227', '[9,[6593.81,5728.57,0]]', 'SUV_TK_CIV_EP1', '5499609', 'lingor', '0.45'),
+  ('226', '[0,[969.451,1275.39,0.00255895]]', 'ATV_CZ_EP1', '5468412', 'lingor', '0.7'),
+  ('225', '[0,[5671.37,796.868,0.00129175]]', 'Old_bike_TK_CIV_EP1', '5222930', 'lingor', '0.95'),
+  ('224', '[279,[5796.81,4688.25,0.00143814]]', 'Old_bike_TK_INS_EP1', '5172558', 'lingor', '0.95'),
+  ('223', '[10,[8819.02,8023.86,0.00143814]]', 'Old_bike_TK_CIV_EP1', '5146500', 'lingor', '0.95'),
+  ('222', '[163,[5985.63,5351.37,0.00143909]]', 'hilux1_civil_3_open_EP1', '5075087', 'lingor', '0.55'),
+  ('221', '[184,[3551.31,3739.72,0.0010376]]', 'Old_bike_TK_INS_EP1', '5004305', 'lingor', '0.95'),
+  ('220', '[254,[3933.37,4220.77,0.00143433]]', 'Old_bike_TK_INS_EP1', '4917659', 'lingor', '0.95'),
+  ('219', '[310,[1967.18,9147.22,0.00106812]]', 'LandRover_CZ_EP1', '4913990', 'lingor', '0.55'),
+  ('218', '[90,[6821.08,2497.89,0.00143909]]', 'UralCivil2', '4885355', 'lingor', '0.55'),
+  ('217', '[271,[6424,6777.25,0.00143909]]', 'hilux1_civil_3_open_EP1', '4839368', 'lingor', '0.55'),
+  ('216', '[97,[4589.57,2616.75,0.00136948]]', 'TT650_TK_CIV_EP1', '4631620', 'lingor', '0.7'),
+  ('215', '[179,[5802.9,4712.73,0.00143814]]', 'TT650_TK_CIV_EP1', '3281806', 'lingor', '0.7'),
+  ('214', '[-209,[6592.686, 2906.8245,0]]', 'TT650_TK_EP1', '3224021', 'lingor', '0.7'),
+  ('213', '[267,[4080.74,1130.51,0.00143909]]', 'TT650_Ins', '3094055', 'lingor', '0.7'),
+  ('212', '[323,[1199.85,5270.49,10.8326]]', 'ATV_US_EP1', '3032853', 'lingor', '0.7'),
+  ('211', '[208,[1748.81,642.642,14.1062]]', 'UH1H_DZ', '2889931', 'lingor', '0.25'),
+  ('210', '[0,[6115.49,5859.39,0]]', 'Skoda', '2819485', 'lingor', '0.65'),
+  ('209', '[3,[5805.57,4727.47,0.00143814]]', 'SkodaBlue', '2732512', 'lingor', '0.65'),
+  ('208', '[51,[5927.38,6616.12,0.00140476]]', 'ATV_CZ_EP1', '2097619', 'lingor', '0.7'),
+  ('207', '[75,[3287.92,6434.28,0.00110245]]', 'ATV_US_EP1', '1817908', 'lingor', '0.7'),
+  ('206', '[186,[3546.66,3740.02,0.00143433]]', 'ATV_CZ_EP1', '1704164', 'lingor', '0.7'),
+  ('205', '[17,[5968.15,6595.98,0.00117016]]', 'ATV_US_EP1', '1624318', 'lingor', '0.7'),
+  ('204', '[355,[6888.25,3147.13,0.00132751]]', 'ATV_US_EP1', '1620134', 'lingor', '0.7'),
+  ('203', '[9,[6457.83,6660.57,0]]', 'SUV_TK_CIV_EP1', '1600270', 'lingor', '0.45'),
+  ('202', '[177,[4073.41,5156.29,0.00143814]]', 'UAZ_INS', '1597984', 'lingor', '0.65'),
+  ('201', '[87,[2476.24,4105.05,0.00119781]]', 'UAZ_Unarmed_TK_CIV_EP1', '1461138', 'lingor', '0.65'),
+  ('200', '[5,[4150.78,1426.02,0.0821762]]', 'UAZ_RU', '1418552', 'lingor', '0.65'),
+  ('199', '[271,[6424,6777.25,0.00143909]]', 'UAZ_Unarmed_UN_EP1', '1391556', 'lingor', '0.65'),
+  ('198', '[3,[7107.41,5825.43,0]]', 'UAZ_Unarmed_TK_CIV_EP1', '1379054', 'lingor', '0.65'),
+  ('197', '[130,[13129.8,11560,0.0706997]]', 'UAZ_Unarmed_TK_EP1', '1303114', 'lingor', '0.65'),
+  ('249', '[137,[3700.27,2307.3,4.6834]]', 'Fishing_Boat', '7931058', 'lingor', '0.55'),
+  ('250', '[291,[5873.05,5326.02,0.00148487]]', 'PBX', '8076073', 'lingor', '0.55'),
+  ('251', '[147,[8433.71,7797.2,2.1895]]', 'Smallboat_1', '8083737', 'lingor', '0.55'),
+  ('252', '[310,[3822.1,2299.23,0.000923157]]', 'Smallboat_1', '8387143', 'lingor', '0.55'),
+  ('253', '[94,[621.466,4631.81,0.00143814]]', 'Volha_2_TK_CIV_EP1', '8560255', 'lingor', '0.55'),
+  ('254', '[272,[6827.53,5927.34,0.00143909]]', 'Volha_1_TK_CIV_EP1', '8611345', 'lingor', '0.55'),
+  ('255', '[356,[8039.13,2916.39,0.00257635]]', 'Volha_1_TK_CIV_EP1', '8625660', 'lingor', '0.55'),
+  ('256', '[274,[3697.02,1404.02,0.00143909]]', 'Volha_2_TK_CIV_EP1', '8875184', 'lingor', '0.55'),
+  ('257', '[260,[8299.95,2358.95,1.28169]]', 'Volha_1_TK_CIV_EP1', '9212090', 'lingor', '0.55'),
+  ('258', '[47,[4149.76,1537.27,0.0821762]]', 'Volha_2_TK_CIV_EP1', '9575283', 'lingor', '0.55'),
+  ('259', '[183,[5784.84,4712.17,0.00143814]]', 'SUV_TK_CIV_EP1', '9642843', 'lingor', '0.45'),
+  ('260', '[222,[12360.468,10817.882,0]]', 'car_sedan', '9752273', 'lingor', '0.75'),
+  ('261', '[273,[8842.5,921.916,0.00130701]]', 'Fishing_Boat', '9791945', 'lingor', '0.55'),
+  ('262', '[249,[7563.33,1693.72,0.00143909]]', 'UAZ_Unarmed_TK_EP1', '9936994', 'lingor', '0.65'),
+  ('263', '[195,[6800.51,2828.05,0.00150663]]', 'Fishing_Boat', '9938094', 'lingor', '0.55');
 /*!40000 ALTER TABLE `spawns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,31 +411,33 @@ INSERT INTO `users` VALUES (1,'admin','4f749f2c908b8ead47c20db6da1b04aa','l=i','
 UNLOCK TABLES;
 
 --
--- Table structure for table `whitelist`
---
-
-DROP TABLE IF EXISTS `whitelist`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `whitelist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Allowed UIDs';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `whitelist`
---
-
-LOCK TABLES `whitelist` WRITE;
-/*!40000 ALTER TABLE `whitelist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `whitelist` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping routines for database 'dayz_chernarus'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `proc_checkWhitelist` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = latin1 */ ;
+/*!50003 SET character_set_results = latin1 */ ;
+/*!50003 SET collation_connection  = latin1_swedish_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_checkWhitelist`(in p_instanceId int, in p_uniqueId varchar(128))
+begin
+  select
+    if(i.whitelist = 1, is_whitelisted, 1)
+  from
+    profile p
+    join instances i on i.instance = p_instanceId
+  where
+    p.unique_id = p_uniqueId; --
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `proc_deleteObject` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -383,7 +450,7 @@ UNLOCK TABLES;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_deleteObject`(in `p_uniqueId` varchar(128))
 begin
-  delete from objects where uid = p_uniqueid; --
+  delete from objects where uid = p_uniqueid; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -402,7 +469,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getInstanceLoadout`(in `p_instanceId` int)
 begin
-  select loadout from instances where instance = p_instanceId; --
+  select loadout from instances where instance = p_instanceId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -421,9 +488,9 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getInstanceTime`(in `p_instanceId` int)
 begin
-  declare server_time datetime default now(); --
-  select now() + interval (offset) hour into server_time from instances where instance = p_instanceid; --
-  select date_format(server_time,'%d-%m-%y'), time_format(server_time, '%T'); --
+  declare server_time datetime default now(); 
+  select now() + interval (offset) hour into server_time from instances where instance = p_instanceid; 
+  select date_format(server_time,'%d-%m-%y'), time_format(server_time, '%T'); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -442,8 +509,8 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getObjectPageCount`(in `p_instanceId` int)
 begin
-  declare itemsPerPage int default 5; -- must match proc_getobjects
-  select floor(count(*) / itemsPerPage) + if((count(*) mod itemsPerPage) > 0, 1, 0) from objects where instance = p_instanceId; --
+  declare itemsPerPage int default 5; 
+  select floor(count(*) / itemsPerPage) + if((count(*) mod itemsPerPage) > 0, 1, 0) from objects where instance = p_instanceId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -462,11 +529,11 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getObjects`(in `p_instanceId` int, in `p_currentPage` int)
 begin
-  set @instance = p_instanceId; --
-  set @page = greatest(((p_currentPage - 1) * 5), 0); --
-  prepare stmt from 'select id,otype,oid,pos,inventory,health,fuel,damage from objects where instance = ? limit ?, 5'; --
-  execute stmt using @instance, @page; --
-  deallocate prepare stmt; --
+  set @instance = p_instanceId; 
+  set @page = greatest(((p_currentPage - 1) * 5), 0); 
+  prepare stmt from 'select id,otype,oid,pos,inventory,health,fuel,damage from objects where instance = ? limit ?, 5'; 
+  execute stmt using @instance, @page; 
+  deallocate prepare stmt; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -485,14 +552,14 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getSchedulerTaskPageCount`(in `p_instanceId` int)
 begin
-  declare itemsPerPage int default 10; -- must match proc_getschedulertasks
+  declare itemsPerPage int default 10; 
   select
     floor(count(*) / itemsPerPage) + if((count(*) mod itemsPerPage) > 0, 1, 0)
   from
     scheduler
     join instances on instances.mvisibility = scheduler.visibility
   where
-    instances.instance = p_instanceId; --
+    instances.instance = p_instanceId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -511,11 +578,11 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_getSchedulerTasks`(in `p_instanceId` int, in `p_currentPage` int)
 begin
-  set @instance = p_instanceId; --
-  set @page = greatest(((p_currentPage - 1) * 10), 0); --
-  prepare stmt from 'select message,mtype,looptime,mstart from scheduler s join instances i on i.mvisibility = s.visibility where i.instance = ? limit ?, 10'; --
-  execute stmt using @instance, @page; -- 
-  deallocate prepare stmt; --
+  set @instance = p_instanceId; 
+  set @page = greatest(((p_currentPage - 1) * 10), 0); 
+  prepare stmt from 'select message,mtype,looptime,mstart from scheduler s join instances i on i.mvisibility = s.visibility where i.instance = ? limit ?, 10'; 
+  execute stmt using @instance, @page; 
+  deallocate prepare stmt; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -541,7 +608,7 @@ begin
     inner join profile p on s.unique_id = p.unique_id
   where
     s.id = p_survivorId
-    and s.is_dead = 0; --
+    and s.is_dead = 0; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -563,7 +630,7 @@ begin
   insert into objects
     (uid,otype,health,damage,oid,pos,fuel,instance)
   values
-    (p_uniqueId, p_type, p_health, p_damage, p_owner, p_position, p_fuel, p_instanceId); --
+    (p_uniqueId, p_type, p_health, p_damage, p_owner, p_position, p_fuel, p_instanceId); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -586,12 +653,12 @@ begin
     (unique_id, name)
   values
     (p_uniqueId, p_playerName)
-  on duplicate key update name = p_playerName; --
+  on duplicate key update name = p_playerName; 
   insert into survivor
     (unique_id, start_time)
   values
-    (p_uniqueId, now()); --
-  select last_insert_id(); --
+    (p_uniqueId, now()); 
+  select last_insert_id(); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -610,7 +677,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_killSurvivor`(in `p_survivorId` int)
 begin
-  update survivor set is_dead = 1 where id = p_survivorId; --
+  update survivor set is_dead = 1 where id = p_survivorId; 
   update
     profile
     left join survivor on survivor.unique_id = profile.unique_id
@@ -622,7 +689,7 @@ begin
     total_headshots=total_headshots+headshots,
     total_survival_time=total_survival_time+survival_time
   where
-    survivor.id = p_survivorId; --
+    survivor.id = p_survivorId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -642,6 +709,7 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_loginSurvivor`(in `p_uniqueId` varchar(128), in `p_playerName` varchar(128))
 begin 
   update profile set name = p_playerName where unique_id = p_uniqueId; --
+  update survivor set state = '["","aidlpercmstpsnonwnondnon_player_idlesteady04",36]' where unique_id = p_uniqueId and state like '%_driver"' or state like '%_pilot"'; --
   select
     id, inventory, backpack, floor(time_to_sec(timediff(now(), start_time)) / 60), model, last_ate, last_drank
   from survivor
@@ -666,7 +734,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_loglogin`(in `p_uniqueId` varchar(128), in `p_instanceId` int)
 begin
-  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 1); --
+  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 1); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -685,7 +753,7 @@ DELIMITER ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `proc_loglogout`(in `p_uniqueId` varchar(128), in `p_instanceId` int)
 begin
-  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 2); --
+  insert into log_entry (unique_id, instance_id, log_code_id) values (p_uniqueId, p_instanceId, 2); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -709,7 +777,7 @@ begin
     health = p_health,
     pos = if(p_position = '[]', pos, p_position)
   where
-    uid = p_uniqueId; --
+    uid = p_uniqueId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -732,7 +800,7 @@ begin
     health = p_health,
     damage = p_damage
   where
-    id = p_objectId; --
+    id = p_objectId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -754,7 +822,7 @@ begin
   update objects set
     inventory = p_inventory
   where
-    id = p_objectId; --
+    id = p_objectId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -777,7 +845,7 @@ begin
     inventory = p_inventory
   where
     uid not like '%.%'
-    and (convert(uid, unsigned integer) between (convert(p_uniqueId, unsigned integer) - 2) and (convert(p_uniqueId, unsigned integer) + 2)); --
+    and (convert(uid, unsigned integer) between (convert(p_uniqueId, unsigned integer) - 2) and (convert(p_uniqueId, unsigned integer) + 2)); 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -800,7 +868,7 @@ begin
     pos = if(p_position = '[]', pos, p_position),
     fuel = p_fuel
   where
-    id = p_objectId; --
+    id = p_objectId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -825,7 +893,7 @@ begin
   set
     p.humanity = if(p_humanity = 0, humanity, p_humanity)
   where
-    s.id = p_survivorId; --
+    s.id = p_survivorId; 
 
   update survivor set
     zombie_kills = zombie_kills + p_zombieKills,
@@ -842,7 +910,7 @@ begin
     backpack = if(p_backpack='[]', backpack, p_backpack),
     inventory = if(p_inventory='[]', inventory, p_inventory)
   where
-    id = p_survivorId; --
+    id = p_survivorId; 
 end */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -858,5 +926,3 @@ DELIMITER ;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2012-09-07 12:16:52
