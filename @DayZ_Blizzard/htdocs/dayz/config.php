@@ -8,7 +8,7 @@ $serverip = "127.0.0.1";
 $serverport = 2302;
 $hostname = "127.0.0.1";
 $username = "dayz";
-$password = "123456";
+$password = "dayz";
 $rconpassword = "adminpass";
 $dbName = "dayz";
 
