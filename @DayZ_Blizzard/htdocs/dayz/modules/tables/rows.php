@@ -144,7 +144,7 @@ function row_online_player($row, $row2, $player, $path, $world){
 	$Worldspace = explode(",", $Worldspace);					
 	if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
 	if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
-	$dead = ($row['death'] ? '_dead' : '');
+	$dead = ($row['is_dead'] ? '_dead' : '');
 	$Inventory = $row['inventory'];
 	$Inventory = str_replace("|", ",", $Inventory);
 	$Inventory  = json_decode($Inventory);
@@ -214,8 +214,8 @@ function row_online_player($row, $row2, $player, $path, $world){
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
 		}			
 	}
-	$name = "<a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$player[4]."</a>";
-	$uid = "<a href=\"index.php?view=info&show=1&id=".$row['uid']."&cid=".$row['id']."\">".$row["uid"]."</a>";
+	$name = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row2['id']."\">".$player[4]."</a>";
+	$uid = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row2['id']."\">".$row["uid"]."</a>";
 	
 	// By Crosire
 	$Medical = str_replace("[", "", $row['medical']);

@@ -36,9 +36,9 @@ class Difficulties
 			Armor=1;
 			FriendlyTag=1;
 			EnemyTag=0;
-			HUD=0;
+			HUD=1;
 			HUDPerm=0;
-			HUDWp=0;
+			HUDWp=1;
 			HUDWpPerm=0;
 			WeaponCursor=1;
 			AutoAim=0;
@@ -78,7 +78,7 @@ class Difficulties
 			Tracers=1;
 			AutoSpot=0;
 			UltraAI=0;
-			DeathMessages=0;
+			DeathMessages=1;
 			NetStats=1;
 			VonID=1;
 		};

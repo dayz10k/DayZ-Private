@@ -43,7 +43,7 @@ CREATE TABLE `instances` (
 
 LOCK TABLES `instances` WRITE;
 /*!40000 ALTER TABLE `instances` DISABLE KEYS */;
-INSERT INTO `instances` VALUES (1,1,0,'[]',0,0);
+INSERT INTO `instances` VALUES (1,1,0,'[]',0,0),(2,2,0,'[]',0,0),(3,3,0,'[]',0,0),(4,4,0,'[]',0,0),(5,5,0,'[]',0,0);
 /*!40000 ALTER TABLE `instances` ENABLE KEYS */;
 UNLOCK TABLES;
 

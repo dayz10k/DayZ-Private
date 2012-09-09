@@ -68,7 +68,10 @@
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 				//echo $good."<br />";
-				$query = "SELECT * FROM survivor WHERE unique_id LIKE '%". str_replace(" ", "%' OR unique_id LIKE '%", $good). "%' ORDER BY last_update DESC LIMIT 1"; 				
+				$query3 = "select unique_id from profile where name LIKE '%". str_replace(" ", "%' OR unique_id LIKE '%", $good). "%' ORDER BY id DESC LIMIT 1"; 
+				$res3 = mysql_query($query3) or die(mysql_error()); 
+				$row3 = mysql_fetch_array($res3); 
+				$query = "SELECT * FROM survivor WHERE unique_id = ". $row3[0]. " ORDER BY last_update DESC LIMIT 1";
 				//echo $playername."<br />";
 				$res = null;
 				$res = mysql_query($query) or die(mysql_error());
@@ -85,9 +88,9 @@
 				while ($row=mysql_fetch_array($res)) {
 					$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
 					$res2 = mysql_query($query2) or die(mysql_error());
-					while ($row2=mysql_fetch_array($res2)) {				
-						if ($dbName=="dayz_lingor"){$tablerows .= row_online_player($row, $row2, $players[$i], $path, "lingor");} else {$tablerows .= row_online_player($row, $row, $players[$i], $path, "chernarus");}
-					}
+					$row2 = mysql_fetch_array($res2);				
+					if ($dbName=="dayz_lingor"){$tablerows .= row_online_player($row, $row2, $players[$i], $path, "lingor");} else {$tablerows .= row_online_player($row, $row, $players[$i], $path, "chernarus");}
+				
 				}
 			}
 		}
