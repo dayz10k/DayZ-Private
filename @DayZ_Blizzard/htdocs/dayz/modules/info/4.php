@@ -7,16 +7,9 @@ while ($row=mysql_fetch_array($res)) {
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = str_replace("|", ",", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
-	/* $Inventory = $row['inventory'];
-	$Inventory = str_replace("[", "", $Inventory);
-	$Inventory = str_replace("]", "", $Inventory);
-	$Inventory = str_replace('"', "", $Inventory);
-	$Inventory = str_replace("|", ",", $Inventory);
-	$Inventory = explode(",", $Inventory); */
 	
 	$Backpack  = $row['inventory'];
 	$Backpack = str_replace("|", ",", $Backpack);
-	//$Backpack  = str_replace('"', "", $Backpack );
 	$Backpack  = json_decode($Backpack);
 
 	$owner = "";
@@ -26,7 +19,7 @@ while ($row=mysql_fetch_array($res)) {
 		$query = "SELECT * FROM survivor WHERE id = ".$row['oid']." LIMIT 1"; 
 		$res2	= mysql_query($query) or die(mysql_error());
 		while ($row2=mysql_fetch_array($res2)) {
-			$query3 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
+			$query3 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row2['unique_id'];
 			$res3 = mysql_query($query3) or die(mysql_error());
 			while ($row3=mysql_fetch_array($res3)) {				
 				$owner = $row3['name'];
