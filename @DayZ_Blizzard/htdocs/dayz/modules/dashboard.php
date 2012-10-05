@@ -4,7 +4,7 @@ if (isset($_SESSION['user_id']))
 
 ini_set( "display_errors", 0);
 error_reporting (E_ALL ^ E_NOTICE);
-require_once 'GameQ.php';
+require_once 'gameq.php';
 
 $pagetitle = "Dashboard";
 
@@ -19,10 +19,9 @@ $xml = file_get_contents('/quicklinks.xml', true);
 require_once('xml2array.php');
 $quicklinks = XML2Array::createArray($xml);
 
-// Define your servers,
-// see list.php for all supported games and identifiers.
+// GameQ Server define, fixed by Crosire to allow multiple instances
 $servers = array(
-    'server 1' => array('armedassault2', $serverip)
+    'dayzserver' => array('armedassault2', $serverip, $serverport)
 );
 
 
@@ -33,7 +32,6 @@ $gq->addServers($servers);
 // You can optionally specify some settings
 $gq->setOption('timeout', 200);
 
-
 // You can optionally specify some output filters,
 // these will be applied to the results obtained.
 $gq->setFilter('normalise');
@@ -42,11 +40,11 @@ $gq->setFilter('sortplayers', 'gq_ping');
 // Send requests, and parse the data
 $oresults = $gq->requestData();
 //print_r($oresults);
+
 // Some functions to print the results
 function print_results($oresults) {
 
     foreach ($oresults as $id => $data) {
-
         //printf("<h2>%s</h2>\n", $id);		
         print_table($data);
     }

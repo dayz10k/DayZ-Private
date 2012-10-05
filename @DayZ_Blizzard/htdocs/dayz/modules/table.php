@@ -1,18 +1,16 @@
 <?
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list")!==false))
-{	
+{
 	$pnumber = 0;
 	$tableheader = '';
 	$tablerows = '';
 	$pageNum = 1;
 	$maxPage = 1;
 	$rowsPerPage = 30;
-	$nav  = '';
+	$nav = '';
 	$self = 'index.php?view=table&show='.$show;
 	$paging = '';
-	
-	$serverrunning = false;
-	$delresult = "";
+
 	$formhead = "";
 	$formfoot = "";
 	
@@ -21,30 +19,137 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 	}else{
 		$show = 0;
 	}
+
+	if (isset($_GET["sort"])){
+		$sort = $_GET["sort"];
+	}else{
+		$sort = 0;
+	}
 	
 	switch ($show) {
 		case 0:
 			$pagetitle = "Online players";
 			break;
 		case 1:
-			$query = "SELECT * FROM survivor WHERE is_dead = '0'"; 
+			switch ($sort) {
+				case 0:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0'";
+					break;
+				case 1:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `name`";
+					break;
+				case 2:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `unique_id`";
+					break;
+				case 3:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `pos`";
+					break;
+				case 4:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `medical`";
+					break;
+				case 5:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `inventory`";
+					break;
+				case 6:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `backpack`";
+					break;
+			};
 			$pagetitle = "Alive players";		
 			break;
 		case 2:
-			$query = "SELECT * FROM survivor WHERE is_dead = '1'"; 
+			switch ($sort) {
+				case 0:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]'"; 
+					break;
+				case 1:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `name`";
+					break;
+				case 2:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `unique_id`";
+					break;
+				case 3:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `pos`";
+					break;
+				case 4:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `medical`";
+					break;
+				case 5:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `inventory`";
+					break;
+				case 6:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `backpack`";
+					break;
+			};
 			$pagetitle = "Dead players";	
 			break;
 		case 3:
-			$query = "SELECT * FROM survivor"; 
+			switch ($sort) {
+				case 0:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id"; 
+					break;
+				case 1:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `name`";
+					break;
+				case 2:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `unique_id`";
+					break;
+				case 3:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `pos`";
+					break;
+				case 4:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `medical`";
+					break;
+				case 5:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `inventory`";
+					break;
+				case 6:
+					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `backpack`";
+					break;
+			};
 			$pagetitle = "All players";	
 			break;
 		case 4:
-			$query = "SELECT * FROM objects";
+			switch ($sort) {
+				case 0:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95";
+					break;
+				case 1:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95 ORDER BY `id`";
+					break;
+				case 2:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95 ORDER BY `otype`";
+					break;
+				case 3:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95 ORDER BY `uid`";
+					break;
+				case 4:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95 ORDER BY `damage`";
+					break;
+				case 5:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95 ORDER BY `pos`";
+					break;
+				case 6:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95 ORDER BY `inventory`";
+					break;
+				case 7:
+					$query = "SELECT * FROM `objects` WHERE `damage` < 0.95 ORDER BY `health`";
+					break;
+			};
 			$pagetitle = "Ingame vehicles";	
 			break;
 		case 5:
-			$query = "SELECT * FROM spawns";
-			$pagetitle = "Vehicle spawn locations";	
+			switch ($sort) {
+				case 0:
+					$query = "SELECT * FROM `spawns`";
+					break;
+				case 1:
+					$query = "SELECT * FROM `spawns` ORDER BY `otype`";
+					break;
+				case 2:
+					$query = "SELECT * FROM `spawns` ORDER BY `pos`";
+					break;
+			};
+			$pagetitle = "Vehicle spawns";	
 			break;
 		default:
 			$pagetitle = "Online players";
@@ -73,7 +178,6 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 		<td>
 		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">		
-			<? echo $delresult; ?>
 			<!--  start table-content  -->
 			<div id="table-content">
 				<!--  start message-blue -->

@@ -35,6 +35,17 @@ if ((_playerID == "") or (isNil "_playerID")) exitWith {
 	diag_log ("LOGIN FAILED: Player [" + _playerName + "] has no login ID");
 };
 
+//Whitelist check
+_result = "blisshive" callExtension format ["Q:%1:call proc_checkWhitelist(%2, '%3')", (call fnc_instanceName), dayz_instance, _playerID];
+
+_result = (call compile _result) select 0;
+_result = ({_x == "1"} count _result);
+diag_log ("Player [" + _playerName + "] allowed: " + str(_result) + " ");
+
+if (_result == 0) exitWith {
+	diag_log("LOGIN FAILED: Player [" + _playerName + "] is not in the whitelist");
+};
+
 endLoadingScreen;
 diag_log ("LOGIN ATTEMPT: " + str(_playerID) + " " + _playerName);
 
@@ -61,7 +72,7 @@ _isNew = 		count _primary < 6; //_result select 1;
 _charID = 		_primary select 2;
 _randomSpot = false;
 
-//diag_log ("LOGIN RESULT: " + str(_primary));
+diag_log ("LOGIN RESULT: " + str(_primary));
 
 /* PROCESS */
 _hiveVer = 0;

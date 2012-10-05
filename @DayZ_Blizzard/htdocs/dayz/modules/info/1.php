@@ -1,57 +1,44 @@
 <?
-$cid = '';
-if (isset($_GET['cid'])){
-	$cid = " AND id ='".$_GET['cid']."'";
-}
-$query = "SELECT * FROM survivor WHERE unique_id = ".$_GET["id"].$cid." LIMIT 1"; 
-$res = mysql_query($query) or die(mysql_error());
-$number = mysql_num_rows($res);
-while ($row=mysql_fetch_array($res)) {
+	$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.unique_id = '".$_GET["id"]."' AND survivor.id = '".$_GET["cid"]."' LIMIT 1"; 
+	$res = mysql_query($query) or die(mysql_error());
+	$number = mysql_num_rows($res);
+	
+	while ($row=mysql_fetch_array($res)) {
+		$Worldspace = str_replace("[", "", $row['pos']);
+		$Worldspace = str_replace("]", "", $Worldspace);
+		$Worldspace = explode(",", $Worldspace);
+		$Inventory = $row['inventory'];
+		$Inventory = str_replace("|", ",", $Inventory);
+		$Inventory  = json_decode($Inventory);
+	
+		$Backpack  = $row['backpack'];
+		$Backpack = str_replace("|", ",", $Backpack);
+		$Backpack  = json_decode($Backpack);
+		
+		$model = $row['model'];
+		$binocular = array();
+		$rifle = '<img style="max-width:220px;max-height:92px;" src="'.$path.'images/gear/rifle.png" title="" alt=""/>';
+		$pistol = '<img style="max-width:92px;max-height:92px;" src="'.$path.'images/gear/pistol.png" title="" alt=""/>';
+		$second = '<img style="max-width:220px;max-height:92px;" src="'.$path.'images/gear/second.png" title="" alt=""/>';
+		$heavyammo = array();
+		$heavyammoslots = 0;
+		$smallammo = array();
+		$usableitems = array();
+		
+		$xml = file_get_contents('/items.xml', true);
+		require_once('/modules/xml2array.php');
+		$items_xml = XML2Array::createArray($xml);
+		$Inventory = (array_merge($Inventory[0], $Inventory[1]));
+		$name = $row['name'];
 
-	$Worldspace = str_replace("[", "", $row['pos']);
-	$Worldspace = str_replace("]", "", $Worldspace);
-	$Worldspace = explode(",", $Worldspace);
-	$Inventory = $row['inventory'];
-	$Inventory = str_replace("|", ",", $Inventory);
-	//$Inventory = str_replace('"', "", $Inventory);
-	$Inventory  = json_decode($Inventory);
-	
-	$Backpack  = $row['backpack'];
-	$Backpack = str_replace("|", ",", $Backpack);
-	//$Backpack  = str_replace('"', "", $Backpack );
-	$Backpack  = json_decode($Backpack);
-	$model = $row['model'];
-	
-	$binocular = array();
-	$rifle = '<img style="max-width:220px;max-height:92px;" src="'.$path.'images/gear/rifle.png" title="" alt=""/>';
-	$pistol = '<img style="max-width:92px;max-height:92px;" src="'.$path.'images/gear/pistol.png" title="" alt=""/>';
-	$second = '<img style="max-width:220px;max-height:92px;" src="'.$path.'images/gear/second.png" title="" alt=""/>';
-	$heavyammo = array();
-	$heavyammoslots = 0;
-	$smallammo = array();
-	$usableitems = array();
-
-	//$items_ini = parse_ini_file("/items.ini", true);
-	$xml = file_get_contents('/items.xml', true);
-	require_once('/modules/xml2array.php');
-	$items_xml = XML2Array::createArray($xml);
-	
-	$Inventory = (array_merge($Inventory[0], $Inventory[1]));
-	
-	$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
-	$res2 = mysql_query($query2) or die(mysql_error());
-	while ($row2=mysql_fetch_array($res2)) {				
-		$name = $row2['name'];
-	}
-
-	for ($i=0; $i<count($Inventory); $i++){
-		if(array_key_exists($i,$Inventory)){
-			//$debug .= 'Debug:&nbsp;'.$Inventory[$i].';<br />';
-			$curitem = $Inventory[$i];
-			$icount = "";
-			if (is_array($curitem)){$curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
-			if(array_key_exists('s'.$curitem,$items_xml['items'])){
-				switch($items_xml['items']['s'.$curitem]['Type']){
+		for ($i=0; $i<count($Inventory); $i++){
+			if(array_key_exists($i,$Inventory)){
+				//$debug .= 'Debug:&nbsp;'.$Inventory[$i].';<br />';
+				$curitem = $Inventory[$i];
+				$icount = "";
+				if (is_array($curitem)){$curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds';}
+				if(array_key_exists('s'.$curitem,$items_xml['items'])){
+					switch($items_xml['items']['s'.$curitem]['Type']){
 					case 'binocular':
 						$binocular[] = '<img style="max-width:78px;max-height:78px;" src="'.$path.'images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
 						break;
@@ -65,7 +52,6 @@ while ($row=mysql_fetch_array($res)) {
 						break;
 					case 'heavyammo':
 						$heavyammo[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="'.$path.'images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/>', 'slots' => $items_xml['items']['s'.$curitem]['Slots']);
-						
 						break;
 					case 'smallammo':
 						$smallammo[] = '<img style="max-width:43px;max-height:43px;" src="'.$path.'images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/>';
@@ -75,14 +61,10 @@ while ($row=mysql_fetch_array($res)) {
 						break;
 					default:
 						$s = '';
-				}
-			} else {
-				$debug .= 'Unknown item:&nbsp;'.$curitem.';<br />';
+					}
+				} else {$debug .= 'Unknown item:&nbsp;'.$curitem.';<br />';}
 			}
 		}
-	}	
-
-
 ?>	
 	<div id="page-heading">
 		<h1><? echo "<title>".$name." - ".$sitename."</title>"; ?></h1>
@@ -111,23 +93,15 @@ while ($row=mysql_fetch_array($res)) {
 						<img class="playermodel" src='<? echo $path; ?>images/models/<? echo str_replace('"', '', $model); ?>.png'/>
 						<div id="gps" style="margin-left:46px;margin-top:54px">
 							<div class="gpstext" style="font-size: 22px;width:60px;text-align: left;margin-left:47px;margin-top:13px">
-							<?
-								echo round(($Worldspace[0]/100));
-							?>
+							<?echo round(($Worldspace[0]/100));?>
 							</div>
 							<div class="gpstext" style="font-size: 22px;width:60px;text-align: left;margin-left:47px;margin-top:34px">
-							<?
-								if(array_key_exists(3,$Worldspace)){
-									echo round(($Worldspace[3]/100));
-								} else {
-									echo "0";
-								}
-								
-							?>
+							<?if(array_key_exists(3,$Worldspace)){echo round(($Worldspace[3]/100));} else {echo "0";}?>
 							</div>
 							<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 							<?
-								if ($dbName=="dayz_lingor") {echo sprintf("%03d",round($Worldspace[1]/100)).sprintf("%03d",round($Worldspace[2]/100));} else {echo sprintf("%03d",round($Worldspace[1]/100)).sprintf("%03d",round((154-($Worldspace[2]/100))));}
+							include_once($path."modules\calc.php");
+							echo world_pos($Worldspace, str_replace("dayz_", "", $database_name));
 							?>
 							</div>							
 						</div>
@@ -147,40 +121,24 @@ while ($row=mysql_fetch_array($res)) {
 					<div class="gear_inventory">
 						<div class="gear_slot" style="margin-left:1px;margin-top:48px;width:80px;height:80px;">
 						<?
-							if(array_key_exists(0,$binocular)){
-								echo $binocular[0];
-							} else {
-								echo '<img style="max-width:78px;max-height:78px;" src="'.$path.'images/gear/binocular.png" title="" alt=""/>';
-							}
+							if(array_key_exists(0,$binocular)){echo $binocular[0];} else {echo '<img style="max-width:78px;max-height:78px;" src="'.$path.'images/gear/binocular.png" title="" alt=""/>';}
 						?>
 						</div>
 						<div class="gear_slot" style="margin-left:292px;margin-top:48px;width:80px;height:80px;">
 						<?
-							if(array_key_exists(1,$binocular)){
-								echo $binocular[1];
-							} else {
-								echo '<img style="max-width:78px;max-height:78px;" src="'.$path.'images/gear/binocular.png" title="" alt=""/>';
-							}
+							if(array_key_exists(1,$binocular)){echo $binocular[1];} else {echo '<img style="max-width:78px;max-height:78px;" src="'.$path.'images/gear/binocular.png" title="" alt=""/>';}
 						?>
 						</div>
 						<div class="gear_slot" style="margin-left:0px;margin-top:130px;width:224px;height:96px;">
-							<?
-								echo $rifle;
-							?>
+							<?echo $rifle;?>
 						</div>
 						<div class="gear_slot" style="margin-left:0px;margin-top:228px;width:224px;height:96px;">
 						<?							
-							if(array_key_exists(0, $Backpack)){
-								echo '<img style="max-width:220px; max-height:92px;" src="'.$path.'images/thumbs/'.$Backpack[0].'.png" title="'.$Backpack[0].'" alt="'.$Backpack[0].'"/>';
-							} else {
-								echo $second;
-							}
+							if(array_key_exists(0, $Backpack)){echo '<img style="max-width:220px; max-height:92px;" src="'.$path.'images/thumbs/'.$Backpack[0].'.png" title="'.$Backpack[0].'" alt="'.$Backpack[0].'"/>';} else {echo $second;}
 						?>
 						</div>
 						<div class="gear_slot" style="margin-left:30px;margin-top:326px;width:96px;height:96px;">
-						<?
-							echo $pistol;
-						?>
+							<?echo $pistol;?>
 						</div>
 						<?							
 							$jx = 226;
@@ -190,29 +148,22 @@ while ($row=mysql_fetch_array($res)) {
 							$maxslots = 12;
 							for ($j=0; $j<$maxslots; $j++){
 								if ($jk > 2){ $jk = $jk - 3;$jl++;}
-								
 								//big ammo
 								$hammo = '<img style="max-width:43px;max-height:43px;" src="'.$path.'images/gear/heavyammo.png" title="" alt=""/>';
-								if ($j > 5){
-									$hammo = '<img style="max-width:43px;max-height:43px;" src="'.$path.'images/gear/grenade.png" title="" alt=""/>';
-								}
+								if ($j > 5){$hammo = '<img style="max-width:43px;max-height:43px;" src="'.$path.'images/gear/grenade.png" title="" alt=""/>';}
 								if(array_key_exists($j,$heavyammo)){
 									$hammo = $heavyammo[$j]['image'];									
 									echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$hammo.'</div>';
 									$jk = $jk - 1 + $heavyammo[$j]['slots'];
 									$heavyammoslots = $heavyammoslots + $heavyammo[$j]['slots'];
 								} else {
-									if($heavyammoslots==$maxslots){
-										break;
-									}
+									if($heavyammoslots==$maxslots){break;}
 									$heavyammoslots++;
-									
-									echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$hammo.'
-								</div>';
+									echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$hammo.'</div>';
 								}
 								$jk++;
-								
 							}
+							
 							$jx = 128;
 							$jy = 326;
 							$jk = 0;
@@ -224,10 +175,10 @@ while ($row=mysql_fetch_array($res)) {
 								if(array_key_exists($j,$smallammo)){
 									$sammo = $smallammo[$j];
 								}
-								echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$sammo.'
-								</div>';								
+								echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$sammo.'</div>';								
 								$jk++;
 							}
+							
 							$jx = 30;
 							$jy = 424;
 							$jk = 0;
@@ -239,8 +190,7 @@ while ($row=mysql_fetch_array($res)) {
 								if(array_key_exists($j,$usableitems)){
 									$uitem = $usableitems[$j];
 								}
-								echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$uitem.'
-								</div>';								
+								echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$uitem.'</div>';								
 								$jk++;
 							}
 						?>
@@ -264,7 +214,6 @@ while ($row=mysql_fetch_array($res)) {
 								}
 							}
 
-							
 							$bpitems = array();
 							if(array_key_exists(0, $Backpack[2])){
 								$bpitemscount = count($Backpack[2][0]);							
@@ -312,6 +261,7 @@ while ($row=mysql_fetch_array($res)) {
 							$weapons = count($bpweapons);
 							$magazines = $maxmagazines;
 							$freeslots = $magazines;
+							
 							$jx = 1;
 							$jy = 48;
 							$jk = 0;
@@ -324,12 +274,10 @@ while ($row=mysql_fetch_array($res)) {
 								$jk++;
 							}
 							
-							
 							$jx = 1;
 							$jy = 48 + (98*round($weapons/2));
 							$jk = 0;
 							$jl = 0;
-
 							for ($j=0; $j<$magazines; $j++){
 								if ($jk > 6){ $jk = 0;$jl++;}
 								if ($j<count($backpackitem)){
@@ -348,18 +296,14 @@ while ($row=mysql_fetch_array($res)) {
 							}	 			
 						?>
 						<div class="backpackname">
-						<?
-							echo $BackpackName.'&nbsp;&nbsp;(&nbsp;'.$freeslots.'&nbsp;/&nbsp;'.$maxmagazines.'&nbsp;)';
-						?>
+							<?echo $BackpackName.'&nbsp;&nbsp;(&nbsp;'.$freeslots.'&nbsp;/&nbsp;'.$maxmagazines.'&nbsp;)';?>
 						</div>
 					</div>
 					<!-- Backpack -->
 				</div>			
 			</div>
 			<!--  end table-content  -->
-			<?
-			echo $debug;
-			?>
+			<?echo $debug;?>
 			<div class="clear"></div>
 		 
 		</div>

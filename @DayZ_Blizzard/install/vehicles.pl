@@ -6,6 +6,7 @@ use POSIX;
 use DBI;
 use DBD::mysql;
 use Getopt::Long;
+use List::Util qw(min max);
 
 print "INFO: Started vehicle insertion.\n";
 
@@ -30,8 +31,8 @@ my %db = (
 	'instance' => $args{'instance'} ? $args{'instance'} : '1',
 	'limit' => $args{'limit'} ? $args{'limit'} : '500',
 	'user' => $args{'username'} ? $args{'username'} : 'dayz',
-	'pass' => $args{'password'} ? $args{'password'} : '123456',
-	'name' => $args{'database'} ? $args{'database'} : 'dayz',
+	'pass' => $args{'password'} ? $args{'password'} : 'dayz',
+	'name' => $args{'database'} ? $args{'database'} : 'dayz_chernarus',
 	'port' => $args{'port'} ? $args{'port'} : '3306',
 	'world' => $args{'world'} ? $args{'world'} : 'chernarus'
 );
@@ -108,17 +109,14 @@ if ($args{'cleanup'}) {
 }
 
 # Determine if we are over the vehicle limit
-$sth = $dbh->prepare(<<EndSQL
-SELECT COUNT(*) AS count
+my $vehicleCount = $dbh->selectrow_array(<<EndSQL
+SELECT COUNT(*)
 FROM objects
 WHERE
   instance = ?
   AND otype NOT IN ('TentStorage', 'Wire_cat1', 'Hedgehog_DZ', 'Sandbag1_DZ', 'Hedgehog_DZ', 'TrapBear')
 EndSQL
-) or die "FATAL: SQL Error - " . DBI->errstr . "\n";
-$sth->execute($db{'instance'}) or die "FATAL: Could not count vehicles - " . $sth->errstr . "\n";
-my $row = $sth->fetchrow_hashref;
-my $vehicleCount = $row->{count};
+, undef, $db{'instance'});
 if ($vehicleCount > $db{'limit'}) {
 	die "FATAL: Count of $vehicleCount is greater than limit of $db{'limit'}\n";
 }
@@ -142,8 +140,8 @@ $spawns->execute($db{'instance'}, $db{'world'});
 
 my $insert = $dbh->prepare(<<EndSQL
 INSERT INTO
-  objects (uid, pos, health, damage, otype, instance, created)
-VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP())
+  objects (uid, pos, health, damage, fuel, otype, instance, created)
+VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP())
 EndSQL
 ) or die "FATAL: SQL Error - " . DBI->errstr . "\n";
 
@@ -156,9 +154,25 @@ while (my $vehicle = $spawns->fetchrow_hashref) {
 	}
 
 	# Determine count for this vehicle type
-	$sth = $dbh->prepare("SELECT COUNT(*) FROM objects WHERE otype LIKE ?") or die "FATAL - SQL Error " . DBI->errstr . "\n";
-	$sth->execute($vehicle->{otype});
-	my $count = $sth->fetchrow_hashref;
+	my $className = substr($vehicle->{otype}, 0, index($vehicle->{otype}, '_')) . "%";
+	my $count = $dbh->selectrow_array("SELECT COUNT(*) FROM objects WHERE instance = ? and otype like ?", undef, ($db{'instance'}, $className));
+
+	my $limit = 0;
+	if ($vehicle->{otype} =~ m/Old_bike/) {
+		$limit = 10;
+	} elsif ($vehicle->{otype} =~ m/UAZ|S1203|boat/) {
+		$limit = 4;
+	} elsif ($vehicle->{otype} =~ m/ATV|Skoda|TT650|UH1H|hilux|Ikarus|Tractor|Volha/) {
+		$limit = 3;
+	} elsif ($vehicle->{otype} =~ m/V3S|Ural|PBX|SUV/) {
+		$limit = 1;
+	}
+
+	# Skip this spawn if the vehicle is over its per-type limit
+	if ($limit > 0 && $count >= $limit) {
+		print "INFO: Vehicle $vehicle->{otype} is at its limit of $limit spawns\n";
+		next;
+	}
 
 	# Skip this spawn if the spawn chance was not met
 	if (int(rand(100)) > ($vehicle->{chance} * 100)) {
@@ -166,30 +180,32 @@ while (my $vehicle = $spawns->fetchrow_hashref) {
 	}
 
 	# Generate random damage value
-	my $damage = rand(0.75);
+	my $damage = ($vehicle->{otype} =~ m/Old_bike/) ? 0 : sprintf("%.3f", rand(0.75));
 	if ($damage <= 0.05) {
 		$damage = 0;
 	}
 
 	# Generate random parts damage
 	my $health = '';
-	if($vehicle eq "Old_bike%") {
-	} elsif($vehicle eq "TT650%"||$vehicle eq "%boat%"||$vehicle eq "PBX") {
+	if ($vehicle->{otype} =~ m/Old_bike/) {
+		@parts = ();
+	} elsif ($vehicle->{otype} =~ m/TT650|boat|PBX/) {
 		@parts = ('["motor",1]');
-	} elsif($vehicle eq "UH1H%") {
+	} elsif ($vehicle->{otype} =~ m/UH1H_DZ/) {
 		@parts = ('["motor",1]','["elektronika",1]','["mala vrtule",1]','["velka vrtule",1]');
 	} else {
 		@parts = ('["palivo",1]','["motor",1]','["karoserie",1]','["wheel_1_1_steering",1]','["wheel_1_2_steering",1]','["wheel_2_1_steering",1]','["wheel_2_2_steering",1]');
 	}
 	
-	if (scalar(@parts) > 0) {
-		$health = genDamage(@parts);
-	}
+	$health = genDamage(@parts);
+
+	# Generate random fuel value between 0.2 and 0.8
+	my $fuel = ($vehicle->{otype} =~ m/Old_bike/) ? 0 : sprintf("%.3f", min(max(rand(), 0.2), 0.8));
 
 	# Execute insert
 	$spawnCount++;
-	$insert->execute($vehicle->{uuid}, $vehicle->{pos}, $health, $damage, $vehicle->{otype}, $db{'instance'});
-	print "Called insert with ($vehicle->{uuid}, $vehicle->{pos}, $health, $damage, $vehicle->{otype}, $db{'instance'})\n";
+	$insert->execute($vehicle->{uuid}, $vehicle->{pos}, $health, $damage, $fuel, $vehicle->{otype}, $db{'instance'});
+	print "Called insert with ($vehicle->{uuid}, $vehicle->{pos}, $health, $damage, $fuel, $vehicle->{otype}, $db{'instance'})\n";
 }
 
 $sth->finish();

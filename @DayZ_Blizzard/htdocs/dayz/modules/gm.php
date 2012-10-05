@@ -1,18 +1,16 @@
 <?
 if (isset($_SESSION['user_id']))
 {
+	$world = str_replace("dayz_", "", $database_name);
 ?>
-	<div id="dayz-map" style="width:99%;height:750px;margin:10px auto;border:2px solid #000;"></div>
+	<div id="dayz-map" style="width:99%;height:1050px;margin:10px auto;border:2px solid #000;"></div>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=geometry&sensor=false"></script>
 	<script type="text/javascript">
 	/* <![CDATA[ */
 
-	// Google Maps Demo
-	//////////////////////////////////
-		
-<?
-echo $markers;
-?>
+	<?
+	echo $markers;
+	?>
 
 	function degreesToRadians(deg) {
 		return deg * (Math.PI / 180);
@@ -27,15 +25,27 @@ echo $markers;
 	var infowindow = null;
 	var marker = null;
 
-	var pixelOrigin_ = new google.maps.Point(128, 128);
-	var pixelsPerLonDegree_ = 256 / 360;
-	var pixelsPerLonRadian_ = 256 / (2 * Math.PI);
+	<?
+	if($world=="lingor") {
+	?>
+		// Values by Hardy
+		var pixelOrigin_ = new google.maps.Point(117.5, 74.8); 
+		var pixelsPerLonDegree_ = 235 / 360; 
+		var pixelsPerLonRadian_ = 235 / (2 * Math.PI);
+	<?
+	} elseif($world=="chernarus") {
+	?>
+		// Values by DaTorqueMan
+		var pixelOrigin_ = new google.maps.Point(118, 112.5);
+		var pixelsPerLonDegree_ = 227.5 / 360;
+		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
+	<?
+	};
+	?>
 
 	infowindow = new google.maps.InfoWindow({content: "Loading ..."});
 
-	// DayZMap class
-	//////////////////////////////////
-
+	// Map class
 	Demo.DayZMap = function (container)
 	{
 		// Create map
@@ -45,15 +55,14 @@ echo $markers;
 		var pt2 = new google.maps.Point(5, 0.66); 
 			
 		for (i = 0; i < markers.length; i++)
-		{ 
-
+		{
 			var lng = ((markers[i][2]/64) - pixelOrigin_.x) / pixelsPerLonDegree_;
 			var latRadians = (((markers[i][3])/64) - pixelOrigin_.y) / pixelsPerLonRadian_;
 			var lat = radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) - Math.PI / 2);
-				
+
 			marker = new google.maps.Marker({position: new google.maps.LatLng(lat, lng), map: map, title: markers[i][0], clickable: true, icon: markers[i][5], zIndex:  markers[i][4]});
 			marker.setDraggable(false);
-				
+
 			google.maps.event.addListener(marker, 'click', (function(marker, i)
 			{
 				return function()
@@ -75,24 +84,11 @@ echo $markers;
 		}
 			
 		// Set custom tiles
-		<?
-		if ($dbName=="dayz_lingor") {
-		?>
-			this._map.mapTypes.set('lingor', new Demo.ImgMapType('lingor', '#4E4E4E'));
-			this._map.setMapTypeId('lingor');
-		<?
-		} else {
-		?>
-			this._map.mapTypes.set('cherno', new Demo.ImgMapType('cherno', '#4E4E4E'));
-			this._map.setMapTypeId('cherno');
-		<?
-		}
-		?>
-			};
+		this._map.mapTypes.set(<?echo "'".$world."'";?>, new Demo.ImgMapType(<?echo "'".$world."'";?>, '#4E4E4E'));
+		this._map.setMapTypeId(<?echo "'".$world."'";?>);
+	};
 
 	// ImgMapType class
-	//////////////////////////////////
-
 	Demo.ImgMapType = function (theme, backgroundColor) {this.name = this._theme = theme; this._backgroundColor = backgroundColor;};
 
 	Demo.ImgMapType.prototype.tileSize = new google.maps.Size(256, 256);
@@ -119,9 +115,7 @@ echo $markers;
 		return img;
 	};
 
-        // ZoomButtonControl class
-        //////////////////////////////////
-
+	// ZoomButtonControl class
 	Demo.ZoomButtonControl = function (container, map, level)
 	{
 		var button = document.createElement('IMG');
@@ -132,9 +126,7 @@ echo $markers;
 		google.maps.event.addDomListener(button, 'click', function () {map.setZoom(map.getZoom() + level);});
 	};
 
-        // ImageControl class
-        //////////////////////////////////
-
+	// ImageControl class
 	Demo.ImageControl = function (image, container, map, callback)
 	{
 		var button = document.createElement('IMG');
@@ -146,9 +138,7 @@ echo $markers;
 		google.maps.event.addDomListener(button, 'click', function () {callback();});
 	};
 
-        // ZoomLevelsControl class
-        //////////////////////////////////
-
+    // ZoomLevelsControl class
 	Demo.ZoomLevelsControl = function (container, map)
 	{
 		this._container = container;
@@ -201,9 +191,7 @@ echo $markers;
 		google.maps.event.addDomListener(bar, 'click', function () {self._map.setZoom(zoom);});
 	};
 
-        // TextWindow class
-        //////////////////////////////////
-
+    // TextWindow class
 	Demo.TextWindow = function (map)
 	{
 		this._map = map;

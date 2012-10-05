@@ -25,8 +25,7 @@ class Mission
 		"ca_modules_functions",
 		"ibr_lingor",
 		"chn_crocodile",
-		"warfarebuildings",
-		"rmod"
+		"warfarebuildings"
 	};
 	addOnsAuto[]=
 	{

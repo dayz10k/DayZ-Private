@@ -1,10 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <?php
+
 session_start();
 include ('config.php');
+$exe_server = str_replace('.exe', "_".$serverinstance.".exe", $exe_server);
+$path_server = str_replace('.exe', "_".$serverinstance.".exe", $path_server);
 
-mysql_connect($hostname, $username, $password) or die (mysql_error());
-mysql_select_db($dbName) or die (mysql_error());
+mysql_connect($database_host, $database_user, $database_password) or die (mysql_error());
+mysql_select_db($database_name) or die (mysql_error());
 
 if (isset($_GET['logout']))
 {

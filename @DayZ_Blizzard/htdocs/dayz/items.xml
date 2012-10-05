@@ -100,6 +100,10 @@
         <Type>heavyammo</Type>
         <Slots>1</Slots>
     </s5Rnd_762x51_M24>
+	<s5Rnd_127x99_as50>
+		<Type>heavyammo</Type>
+        <Slots>1</Slots>
+	</s5Rnd_127x99_as50>
     <s5x_22_LR_17_HMR>
         <Type>heavyammo</Type>
         <Slots>1</Slots>
@@ -654,6 +658,10 @@
         <Type>rifle</Type>
         <Slots>10</Slots>
     </sm16a4>
+	<sm16a4_acg>
+	    <Type>rifle</Type>
+        <Slots>10</Slots>
+	</sm16a4_acg>
     <sM16A4_ACG>
         <Type>rifle</Type>
         <Slots>10</Slots>

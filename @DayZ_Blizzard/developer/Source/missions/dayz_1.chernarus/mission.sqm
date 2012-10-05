@@ -10,8 +10,7 @@ class Mission
 		"dayz_equip",
 		"dayz_vehicles",
 		"cacharacters_pmc",
-		"ca_modules_functions",
-		"rmod"
+		"ca_modules_functions"
 	};
 	addOnsAuto[]=
 	{

@@ -1,47 +1,41 @@
 <?
-$query = "SELECT * FROM objects WHERE id = ".$_GET["id"]." LIMIT 1"; 
-$res = mysql_query($query) or die(mysql_error());
-$number = mysql_num_rows($res);
-while ($row=mysql_fetch_array($res)) {
-	$Worldspace = str_replace("[", "", $row['pos']);
-	$Worldspace = str_replace("]", "", $Worldspace);
-	$Worldspace = str_replace("|", ",", $Worldspace);
-	$Worldspace = explode(",", $Worldspace);
+	$query = "SELECT * FROM `objects` WHERE `id` = '".$_GET["id"]."' LIMIT 1"; 
+	$res = mysql_query($query) or die(mysql_error());
+	$number = mysql_num_rows($res);
 	
-	$Backpack  = $row['inventory'];
-	$Backpack = str_replace("|", ",", $Backpack);
-	$Backpack  = json_decode($Backpack);
+	while ($row=mysql_fetch_array($res)) {
+		$Worldspace = str_replace("[", "", $row['pos']);
+		$Worldspace = str_replace("]", "", $Worldspace);
+		$Worldspace = str_replace("|", ",", $Worldspace);
+		$Worldspace = explode(",", $Worldspace);
+		$Backpack  = $row['inventory'];
+		$Backpack = str_replace("|", ",", $Backpack);
+		$Backpack  = json_decode($Backpack);
 
-	$owner = "";
-	$ownerid = "";
-	$owneruid = "";
-	if ($row['oid'] != "0"){
-		$query = "SELECT * FROM survivor WHERE id = ".$row['oid']." LIMIT 1"; 
-		$res2	= mysql_query($query) or die(mysql_error());
-		while ($row2=mysql_fetch_array($res2)) {
-			$query3 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row2['unique_id'];
-			$res3 = mysql_query($query3) or die(mysql_error());
-			while ($row3=mysql_fetch_array($res3)) {				
-				$owner = $row3['name'];
+		$owner = "";
+		$ownerid = "";
+		$owneruid = "";
+		if ($row['oid'] != "0"){
+			$query2 = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.id = '".$row['oid']."' LIMIT 1"; 
+			$res2	= mysql_query($query2) or die(mysql_error());
+			while ($row2=mysql_fetch_array($res2)){
+				$owner = $row2['name'];
+				$ownerid = $row2['id'];
+				$owneruid = $row2['unique_id'];
 			}
-			$ownerid = $row2['id'];
-			$owneruid = $row2['unique_id'];
 		}
-	}
 	
-	$Hitpoints  = $row['health'];
-	//$Hitpoints  ='[["wheel_1_1_steering",0.2],["wheel_2_1_steering",0],["wheel_1_4_steering",1],["wheel_2_4_steering",1],["wheel_1_3_steering",1],["wheel_2_3_steering",1],["wheel_1_2_steering",0],["wheel_2_2_steering",1],["motor",0.1],["karoserie",0.4]]';
-	$Hitpoints = str_replace("|", ",", $Hitpoints);
-	//$Backpack  = str_replace('"', "", $Backpack );
-	$Hitpoints  = json_decode($Hitpoints);
+		$Hitpoints  = $row['health'];
+		//$Hitpoints  ='[["wheel_1_1_steering",0.2],["wheel_2_1_steering",0],["wheel_1_4_steering",1],["wheel_2_4_steering",1],["wheel_1_3_steering",1],["wheel_2_3_steering",1],["wheel_1_2_steering",0],["wheel_2_2_steering",1],["motor",0.1],["karoserie",0.4]]';
+		$Hitpoints = str_replace("|", ",", $Hitpoints);
+		$Hitpoints  = json_decode($Hitpoints);
 	
-	$xml = file_get_contents('/items.xml', true);
-	require_once('/modules/xml2array.php');
-	$items_xml = XML2Array::createArray($xml);
-	
-	$xml = file_get_contents('/vehicles.xml', true);
-	require_once('/modules/xml2array.php');
-	$vehicles_xml = XML2Array::createArray($xml);
+		$xml = file_get_contents('/items.xml', true);
+		require_once('/modules/xml2array.php');
+		$items_xml = XML2Array::createArray($xml);
+		$xml = file_get_contents('/vehicles.xml', true);
+		require_once('/modules/xml2array.php');
+		$vehicles_xml = XML2Array::createArray($xml);
 ?>	
 	<div id="page-heading">
 		<h1><? echo "<title>".$row['otype']." - ".$sitename."</title>"; ?></h1>
@@ -81,7 +75,8 @@ while ($row=mysql_fetch_array($res)) {
 							</div>
 							<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 							<?
-								if ($dbName=="dayz_lingor") {echo sprintf("%03d",round($Worldspace[1]/100)).sprintf("%03d",round($Worldspace[2]/100));} else {echo sprintf("%03d",round($Worldspace[1]/100)).sprintf("%03d",round((154-($Worldspace[2]/100))));}
+								include_once($path."modules\calc.php");
+								echo world_pos($Worldspace, str_replace("dayz_", "", $database_name));
 							?>
 							</div>							
 						</div>

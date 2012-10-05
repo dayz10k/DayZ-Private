@@ -1,16 +1,19 @@
+<!--<meta http-equiv="refresh" content="10">-->
 <?
-	ini_set( "display_errors", 0);
+	//ini_set( "display_errors", 0);
 	error_reporting (E_ALL ^ E_NOTICE);
 
-	$cmd = "Players";	
+	$cmd = "players";	
 	$answer = rcon($serverip,$serverport,$rconpassword,$cmd);
-	
-	if ($answer != ""){
+
+	if ($answer != "") {
 		$k = strrpos($answer, "---");
 		$l = strrpos($answer, "(");
 		$out = substr($answer, $k+4, $l-$k-5);
 		$array = preg_split ('/$\R?^/m', $out);
 		
+		//echo $answer."<br /><br />";
+
 		$players = array();
 		for ($j=0; $j<count($array); $j++){
 			$players[] = "";
@@ -61,13 +64,10 @@
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 
-				$query = "SELECT * FROM survivor WHERE unique_id LIKE '%". str_replace(" ", "%' OR unique_id LIKE '%", $good). "%' ORDER BY last_update DESC LIMIT 1"; 				
-
+				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC LIMIT 1";
 				$res = null;
 				$res = mysql_query($query) or die(mysql_error());
 				$dead = "";
-				$x = 0;
-				$y = 0;
 				$inventory = "";
 				$backpack = "";
 				$ip = $players[$i][1];
@@ -79,34 +79,26 @@
 				while ($row=mysql_fetch_array($res)) {
 					$Worldspace = str_replace("[", "", $row['pos']);
 					$Worldspace = str_replace("]", "", $Worldspace);
-					$Worldspace = explode(",", $Worldspace);					
-					if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
-					if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
+					$Worldspace = explode(",", $Worldspace);
 					$dead = ($row['is_dead'] ? '_dead' : '');
 					$inventory = substr($row['inventory'], 0, 40)."...";
 					$backpack = substr($row['backpack'], 0, 40)."...";
 					$id = $row['id'];
 					$uid = $row['unique_id'];
 					$model = $row['model'];
-
-					$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$uid;
-					$res2 = mysql_query($query2) or die(mysql_error());
-					while ($row2=mysql_fetch_array($res2)) {
-						$name = $row2['name'];
-					}
+					$name = $row['name'];
 					
+					include_once($path."modules\calc.php");
+					$description = "<h2><a href=\"index.php?view=info&show=1&id=".$uid."&cid=".$id."\">".htmlspecialchars($name, ENT_QUOTES)." - ".$uid."</a></h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/models/".str_replace('"', '', $model).".png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>".world_pos2($Worldspace, str_replace("dayz_", "", $database_name))."</td></tr></table>";
+					$markers .= "['".htmlspecialchars($name, ENT_QUOTES)."', '".$description."', ".world_pos_y($Worldspace, str_replace("dayz_", "", $database_name)).", ".world_pos_x($Worldspace, str_replace("dayz_", "", $database_name)).", ".$m++.", '".$path."images/icons/player".$dead.".png'],";
 				}				
-				$description = "<h2><a href=\"index.php?view=info&show=1&id=".$uid."&cid=".$id."\">".htmlspecialchars($name, ENT_QUOTES)." - ".$uid."</a></h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/models/".str_replace('"', '', $model).".png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>left:".round(($y/100))." top:".round(((15360-$x)/100))."</td></tr></table>";
-				$markers .= "['".htmlspecialchars($name, ENT_QUOTES)."', '".$description."',".$y.", ".($x+1024).", ".$m++.", '".$path."images/icons/player".$dead.".png'],";
 			}
 		}
-		$markers .= "['Edge of map', 'Edge of Chernarus', 0.0, 0.0, 1, '".$path."images/thumbs/null.png']];";
+		$markers .= "['Edge of map', 'Edge of map', 0.0, 0.0, 1, '".$path."images/thumbs/null.png']];";
 		include ('modules/gm.php');
 	}
-	// Code by Crosire:
-	else {
-		echo '<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BattlEye did not respond within the specified time.</p>';
+	else
+	{
+		echo "<div id='page-heading'><h2>BattlEye did not respond within the specified time.</h2></div>";
 	}
-
-
 ?>

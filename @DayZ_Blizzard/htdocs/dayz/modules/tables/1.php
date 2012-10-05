@@ -13,28 +13,24 @@
 
 	for($page = 1; $page <= $maxPage; $page++)
 	{
-	   if ($page == $pageNum)
-	   {
-		  $nav .= " $page "; // no need to create a link to current page
-	   }
-	   else
-	   {
-		  $nav .= "$self&page=$page";
-	   }
+		if ($page == $pageNum)
+		{
+			$nav .= " $page "; // no need to create a link to current page
+		}
+		else
+		{
+			$nav .= "$self&page=$page";
+		}
 	}
 
 	$query = $query." LIMIT ".$offset.",".$rowsPerPage;
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 
-	$tableheader = header_player(0);
+	$tableheader = header_player($show);
 		
 	while ($row=mysql_fetch_array($res)) {
-		$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
-		$res2 = mysql_query($query2) or die(mysql_error());
-		while ($row2=mysql_fetch_array($res2)) {
-			if ($dbName=="dayz_lingor"){$tablerows .= row_player($row, $row2, "lingor");} else {$tablerows .= row_player($row, $row2, "chernarus");}
-		}
+		$tablerows .= row_player($row, str_replace("dayz_", "", $database_name));
 	}
 	include ('paging.php');
 ?>

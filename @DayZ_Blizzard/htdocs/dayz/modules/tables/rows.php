@@ -3,7 +3,20 @@
 function header_player($show){
 	return '<tr>
 		<th class="table-header-repeat line-left" width="5%"><a href="">Status</a></th>
-		<th class="table-header-repeat line-left" width="15%"><a href="">Player Name</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=1">Player Name</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=2">Player UID</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=3">Position</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4">Health</a></th>
+		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=5">Inventory preview</a></th>
+		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=6">Backpack preview</a></th>
+		</tr>';
+}
+
+function header_player_online($show){
+	return '<tr>
+		<th class="table-header-repeat line-left" width="5%"><a href="">Kick</a></th>
+		<th class="table-header-repeat line-left" width="5%"><a href="">Ban</a></th>
+		<th class="table-header-repeat line-left" width="20%"><a href="">Player Name</a></th>
 		<th class="table-header-repeat line-left" width="10%"><a href="">Player UID</a></th>
 		<th class="table-header-repeat line-left" width="10%"><a href="">Position</a></th>
 		<th class="table-header-repeat line-left" width="10%"><a href="">Health</a></th>
@@ -15,17 +28,26 @@ function header_player($show){
 function header_vehicle($show, $chbox){
 	return '
 		<tr>'.$chbox.'
-		<th class="table-header-repeat line-left" width="5%"><a href="">ID</a></th>
-		<th class="table-header-repeat line-left" width="18%"><a href="">Classname</a>	</th>
-		<th class="table-header-repeat line-left" width="10%"><a href="">Object UID</a></th>
-		<th class="table-header-repeat line-left" width="7%"><a href="">Damage</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="">Position</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="">Inventory</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="">Hitpoints</a></th>
+		<th class="table-header-repeat line-left" width="5%"><a href="index.php?view=table&show='.$show.'&sort=1">ID</a></th>
+		<th class="table-header-repeat line-left" width="18%"><a href="index.php?view=table&show='.$show.'&sort=2">Classname</a>	</th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=3">Object UID</a></th>
+		<th class="table-header-repeat line-left" width="7%"><a href="index.php?view=table&show='.$show.'&sort=4">Damage</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=5">Position</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=6">Inventory</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=7">Hitpoints</a></th>
 		</tr>';
 }
 
-function row_player($row, $row2, $world){
+function header_vehicle_spawn($show){
+	return '
+		<tr>
+		<th class="table-header-repeat line-left minwidth-1"><a href="index.php?view=table&show='.$show.'&sort=1">Classname</a>	</th>
+		<th class="table-header-repeat line-left minwidth-1"><a href="index.php?view=table&show='.$show.'&sort=0">Object UID</a></th>
+		<th class="table-header-repeat line-left"><a href="index.php?view=table&show='.$show.'&sort=2">Position</a></th>
+		</tr>';
+}
+
+function row_player($row, $world){
 	$Worldspace = str_replace("[", "", $row['pos']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
@@ -102,41 +124,33 @@ function row_player($row, $row2, $world){
 		}			
 	}
 	
-	// By Crosire
+	// Code from here by Crosire
 	$Medical = str_replace("[", "", $row['medical']);
 	$Medical = str_replace("]", "", $Medical);
 	$Medical = explode(",", $Medical);
 	$health = 0;
 	if(array_key_exists(2,$Worldspace)){$health = $Medical[7];}
-	
-	$icon = '<img src="'.$path.'images/icons/player'.($row['death'] ? '_dead' : '').'.png" title="" alt=""/>';
 
-	// By Crosire
-	if($world=="lingor") {
-		$tablerow = "<tr>
-			<td align=\"center\" class=\"gear_preview\">".$icon."</td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row2['name']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['unique_id']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round($x/100))."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
-			<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-			<td align=\"center\" class=\"gear_preview\">".$BackpackPreview. "</td>
+	$name = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['name']."</a>";
+	$uuid = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['unique_id']."</a>";
+	$thealth = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a>";
+	$icon = '<img src="'.$path.'images/icons/player'.($row['is_dead'] ? '_dead' : '').'.png" title="" alt=""/>';
+
+	include_once($path."modules\calc.php");
+	$tablerow = "<tr>
+		<td align=\"center\" class=\"gear_preview\">".$icon."</td>
+		<td align=\"center\" class=\"gear_preview\">".$name."</td>
+		<td align=\"center\" class=\"gear_preview\">".$uuid."</td>
+		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".world_pos($Worldspace, $world)."</a></td>
+		<td align=\"center\" class=\"gear_preview\">".$thealth."</td>
+		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
+		<td align=\"center\" class=\"gear_preview\">".$BackpackPreview. "</td>
 		</tr>";
-	} else {
-			$tablerow = "<tr>
-			<td align=\"center\" class=\"gear_preview\">".$icon."</td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row2['name']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['unique_id']."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round((154-($x/100))))."</a></td>
-			<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
-			<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-			<td align=\"center\" class=\"gear_preview\">".$BackpackPreview. "</td>
-		</tr>";
-	}
-	return $tablerow;	
+	
+	return $tablerow;
 }
 
-function row_online_player($row, $row2, $player, $path, $world){
+function row_online_player($row, $player, $path, $world){
 	$x = 0;
 	$y = 0;
 	$Worldspace = str_replace("[", "", $row['pos']);
@@ -161,10 +175,10 @@ function row_online_player($row, $row2, $player, $path, $world){
 	}
 	$InventoryPreview = "";
 	$limit = 6;
+	$pcount = "";
 	for ($p=0; $p< $limit; $p++){
 		if(array_key_exists($p,$Inventory)){
 			$curitem = $Inventory[$p];
-			$pcount = "";
 			if (is_array($curitem)){$curitem = $Inventory[$p][0]; $pcount = ' - '.$Inventory[$p][1].' rounds'; }
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="'.$path.'images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'"/></div>';
 		} else {
@@ -206,7 +220,8 @@ function row_online_player($row, $row2, $player, $path, $world){
 			$curitem = $Backpack[$p];
 			if (is_array($curitem)){
 				if ($p != 0){
-					$curitem = $Backpack[$p][0]; $pcount = ' - '.$Backpack[$p][1].' rounds';
+					$curitem = $Backpack[$p][0];
+					$pcount = ' - '.$Backpack[$p][1].' rounds';
 				}
 			}
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="'.$path.'images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'"/></div>';
@@ -214,40 +229,32 @@ function row_online_player($row, $row2, $player, $path, $world){
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
 		}			
 	}
-	$name = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row2['id']."\">".$player[4]."</a>";
-	$uid = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row2['id']."\">".$row["uid"]."</a>";
-	
-	// By Crosire
+
+	// Code from here by Crosire
 	$Medical = str_replace("[", "", $row['medical']);
 	$Medical = str_replace("]", "", $Medical);
 	$Medical = explode(",", $Medical);
 	$health = 0;
 	if(array_key_exists(2,$Worldspace)){$health = $Medical[7];}
 	
-	$icon = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="'.$path.'images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
+	$name = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$player[4]."</a>";
+	$uid = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row["unique_id"]."</a>";
+	$thealth = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a>";
+	$iconkick = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="'.$path.'images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
+	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="'.$path.'images/icons/player_ban'.$dead.'.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
+
+	include_once($path."modules\calc.php");
+	$tablerow = "<tr>
+		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconkick."</td>
+		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconban."</td>
+		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$name."</td>
+		<td align=\"center\" class=\"gear_preview\">".$uid."</td>
+		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".world_pos($Worldspace, $world)."</a></td>
+		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
+		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
+		<td align=\"center\" class=\"gear_preview\">".$BackpackPreview."</td>
+		<tr>";
 	
-	// By Crosire
-	if($world=="lingor") {
-		$tablerow = "<tr>
-				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$icon."</td>
-				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$name."</td>
-				<td align=\"center\" class=\"gear_preview\">".$uid."</td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round(($x/100)))."</a></td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
-				<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-				<td align=\"center\" class=\"gear_preview\">".$BackpackPreview."</td>
-				<tr>";
-	} else {
-		$tablerow = "<tr>
-				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$icon."</td>
-				<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$name."</td>
-				<td align=\"center\" class=\"gear_preview\">".$uid."</td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round((154-($x/100))))."</a></td>
-				<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a></td>
-				<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-				<td align=\"center\" class=\"gear_preview\">".$BackpackPreview."</td>
-				<tr>";	
-	}
 	return $tablerow;	
 }
 
@@ -257,12 +264,11 @@ function row_vehicle($row, $chbox, $world) {
 	$Worldspace = str_replace("[", "", $row['pos']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);					
-	if(array_key_exists(2,$Worldspace)){$x = $Worldspace[2];}
-	if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
 	$Inventory  = $row['inventory'];
 	$Inventory = str_replace("|", ",", $Inventory);
 	$Inventory  = json_decode($Inventory);
 	$limit = 6;
+	
 	if(count($Inventory) >0){ 
 		$bpweapons = array();
 		if(array_key_exists(0,$Inventory)){ 
@@ -273,8 +279,7 @@ function row_vehicle($row, $chbox, $world) {
 					}
 			}							
 		}
-
-						
+		
 		$bpitems = array();
 		if(array_key_exists(1,$Inventory)){ 
 			$bpitemscount = count($Inventory[1][0]);
@@ -284,6 +289,7 @@ function row_vehicle($row, $chbox, $world) {
 				}
 			}
 		}
+		
 		$bpacks = array();
 		if(array_key_exists(2,$Inventory)){ 
 			$bpackscount = count($Inventory[2][0]);
@@ -309,7 +315,7 @@ function row_vehicle($row, $chbox, $world) {
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
 		}			
 	}
-	
+
 	$Hitpoints  = $row['health'];
 	$Hitpoints = str_replace("|", ",", $Hitpoints);
 	$Hitpoints  = json_decode($Hitpoints);
@@ -320,28 +326,18 @@ function row_vehicle($row, $chbox, $world) {
 			$HitpointsPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;background-color: rgba(100,'.round((255/100)*(100 - ($curitem[1]*100))).',0,0.8);"><img style="max-width:43px;max-height:43px;" src="'.$path.'images/hits/'.$curitem[0].'.png" title="'.$curitem[0].' - '.round(100 - ($curitem[1]*100)).'%" alt="'.$curitem[0].' - '.round(100 - ($curitem[1]*100)).'%"/></div>';
 		}			
 	}	
-	
-	if ($world=="lingor") {
-		$tablerow = "<tr>".$chbox."
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['otype']."</a></td>			
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['uid']."</a></td>
-			<td align=\"center\" class=\"gear_preview\" style=\"background-color: rgba(100,".round((255/100)*(100 - ($row['damage']*100))).",0,0.8);\">".substr($row['damage'], 0, 6)."</td>
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round(($x/100)))."</a></td>
-			<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-			<td align=\"center\" class=\"gear_preview\">".$HitpointsPreview. "</td>
+
+	include_once($path."modules\calc.php");
+	$tablerow = "<tr>".$chbox."
+		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
+		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['otype']."</a></td>			
+		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['uid']."</a></td>
+		<td align=\"center\" class=\"gear_preview\" style=\"background-color: rgba(100,".round((255/100)*(100 - ($row['damage']*100))).",0,0.8);\">".substr($row['damage'], 0, 6)."</td>
+		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".world_pos($Worldspace, $world)."</a></td>
+		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
+		<td align=\"center\" class=\"gear_preview\">".$HitpointsPreview. "</td>
 		</tr>";
-	} else {
-		$tablerow = "<tr>".$chbox."
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['otype']."</a></td>			
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['uid']."</a></td>
-			<td align=\"center\" class=\"gear_preview\" style=\"background-color: rgba(100,".round((255/100)*(100 - ($row['damage']*100))).",0,0.8);\">".substr($row['damage'], 0, 6)."</td>
-			<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".sprintf("%03d",round($y/100)).sprintf("%03d",round((154-($x/100))))."</a></td>
-			<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-			<td align=\"center\" class=\"gear_preview\">".$HitpointsPreview. "</td>
-		</tr>";
-	}
+
 	return $tablerow;
 }
 

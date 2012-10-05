@@ -1,6 +1,6 @@
 private["_objectID","_object","_updates","_uGear","_key","_result","_position","_speed","_crew","_canDo","_uid","_type","_previous"];
 _object = 	_this select 0;
-_objectID =	_object getVariable ["ObjectID","0"];
+_objectID =	_object getVariable ["ObjectID",0];
 _uid = 		_object call dayz_objectUID;
 _type = 	_this select 1;
 _speed = speed _object;
@@ -33,7 +33,7 @@ switch (_type) do {
 		_previous = str(_object getVariable["lastInventory",[]]);
 		if (str(_inventory) != _previous) then {
 			_object setVariable["lastInventory",_inventory];
-			if (_objectID == "0") then {
+			if (_objectID == 0) then {
 				_key = format["CHILD:309:%1:%2:",_uid,_inventory];
 			} else {
 				_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
@@ -41,17 +41,6 @@ switch (_type) do {
 			diag_log ("HIVE: WRITE: "+ str(_key));
 			_key call server_hiveWrite;
 		};
-		_hitpoints = _object call vehicle_getHitpoints;
-		_array = [];
-		_dam = 1;
-		{
-			_hit = [_object,_x] call object_getHit;
-			_selection = getText (configFile >> "CfgVehicles" >> (typeOf _object) >> "HitPoints" >> _x >> "name");
-			if (_hit > 0) then {_array set [count _array,[_selection,_hit]]};
-		} forEach _hitpoints;
-		_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,_damage];
-		diag_log ("HIVE: WRITE: "+ str(_key));
-		_key call server_hiveWrite;
 	};
 	case "position": {
 		_position = getPosATL _object;
@@ -76,7 +65,7 @@ switch (_type) do {
 		_previous = str(_object getVariable["lastInventory",[]]);
 		if (str(_inventory) != _previous) then {
 			_object setVariable["lastInventory",_inventory];
-			if (_objectID == "0") then {
+			if (_objectID == 0) then {
 				_key = format["CHILD:309:%1:%2:",_uid,_inventory];
 			} else {
 				_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
@@ -86,17 +75,21 @@ switch (_type) do {
 		};
 	};
 	case "damage": {
-		if ((time - _lastUpdate) > 5) then {
-			_hitpoints = _object call vehicle_getHitpoints;
-			_array = [];
-			_dam = 1;
-			{
-				_hit = [_object,_x] call object_getHit;
-				_selection = getText (configFile >> "CfgVehicles" >> (typeOf _object) >> "HitPoints" >> _x >> "name");
-				if (_hit > 0) then {_array set [count _array,[_selection,_hit]]};
-			} forEach _hitpoints;
-			_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,_damage];
-			diag_log ("HIVE: WRITE: "+ str(_key));
+		_hitPoints = _object call vehicle_getHitpoints;
+		_array = [];
+		_dam = 1;
+		_damage = _damage / 2;
+
+		{
+			_hit = [_object, _x] call object_getHit;
+			_selection = getText (configFile >> "CfgVehicles" >> (typeOf _object) >> "HitPoints" >> _x >> "name");
+			if (_hit > 0) then { _array set [count _array, [_selection, _hit]] };
+			_object setHit [_selection, _hit];
+		} forEach _hitPoints;
+
+		if (_lastUpdate == 0 || (time - _lastUpdate) > 1) then {
+			_key = format["CHILD:306:%1:%2:%3:", _objectID, _array, _damage];
+			diag_log("HIVE:WRITE:" + str(_key));
 			_key call server_hiveWrite;
 		};
 	};
@@ -104,13 +97,34 @@ switch (_type) do {
 		_hitpoints = _object call vehicle_getHitpoints;
 		_array = [];
 		_dam = 1;
+
 		{
 			_hit = [_object,_x] call object_getHit;
 			_selection = getText (configFile >> "CfgVehicles" >> (typeOf _object) >> "HitPoints" >> _x >> "name");
-			if (_hit > 0) then {_array set [count _array,[_selection,_hit]]};
+			if (_hit > 0) then {_array set [count _array,[_selection, _hit]]};
 		} forEach _hitpoints;
-		_key = format["CHILD:306:%1:%2:%3:",_objectID,_array,damage _object];
-		diag_log ("HIVE: WRITE: "+ str(_key));
+
+		_key = format["CHILD:306:%1:%2:%3:",_objectID, _array, _damage];
+		diag_log("HIVE:WRITE: " + str(_key));
 		_key call server_hiveWrite;
+	};
+	case "killed": {
+		_hitpoints = _object call vehicle_getHitpoints;
+                _array = [];
+                _dam = 1;
+ 
+                {
+                        _selection = getText (configFile >> "CfgVehicles" >> (typeof _object) >> "HitPoints" >> _x >> "name");
+                        _array set [count _array, [_selection, 1]];
+                } forEach _hitPoints;
+               
+                _key = format["CHILD:306:%1:%2:%3:",_objectID, _array, _dam];
+                diag_log("HIVE:WRITE: "+ str(_key));
+                _key call server_hiveWrite;
+
+		_object removeAllEventHandlers "HandleDamage";
+		_object removeAllEventHandlers "Killed";
+		_object removeAllEventHandlers "GetIn";
+		_object removeAllEventHandlers "GetOut";
 	};
 };

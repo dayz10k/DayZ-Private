@@ -1,0 +1,5 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<configuration>
+	<conf_dbname instance="3" name="dayz_chernarus" />
+	<conf_rcon instance="3" pass="adminpass" />
+</configuration>

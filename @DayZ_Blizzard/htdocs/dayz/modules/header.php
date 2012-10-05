@@ -18,7 +18,7 @@ if (isset($_SESSION['user_id']))
 <script src="js/prototype.js" type="text/javascript"></script>
 <script src="js/scriptaculous.js" type="text/javascript"></script>
 
- Custom jquery scripts 
+Custom jquery scripts
 <script src="js/jquery/custom_jquery.js" type="text/javascript"></script>-->
  
 <!-- Tooltips

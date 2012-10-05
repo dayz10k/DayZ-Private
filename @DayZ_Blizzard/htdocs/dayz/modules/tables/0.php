@@ -1,15 +1,15 @@
 <?
 	//ini_set( "display_errors", 0);
-	//error_reporting (E_ALL ^ E_NOTICE);		<th class="table-header-repeat line-left" width="15%"><a href="">IP Address</a></th>
-		//<th class="table-header-repeat line-left" width="5%"><a href="">Ping</a></th>
+	//error_reporting (E_ALL ^ E_NOTICE);
 
-	$cmd = "Players";
-	
+	//<th class="table-header-repeat line-left" width="15%"><a href="">IP Address</a></th>
+	//<th class="table-header-repeat line-left" width="5%"><a href="">Ping</a></th>
+
+	$cmd = "players";
 	$answer = rcon($serverip,$serverport,$rconpassword,$cmd);
-	$tableheader = header_player(0);
-		
-	
-	if ($answer != ""){
+	$tableheader = header_player_online($show);
+
+	if ($answer != "") {
 		$k = strrpos($answer, "---");
 		$l = strrpos($answer, "(");
 		$out = substr($answer, $k+4, $l-$k-5);
@@ -61,23 +61,17 @@
 				}
 				$playername = trim($new_string);
 
-
 				//echo $playername."<br />";
 				$search = preg_replace("/[^\w\x7F-\xFF\s]/", " ", $playername);
 				$good = trim(preg_replace("/\s(\S{1,2})\s/", " ", preg_replace("[ +]", "  "," $search ")));
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 				//echo $good."<br />";
-				$query3 = "select unique_id from profile where name LIKE '%". str_replace(" ", "%' OR unique_id LIKE '%", $good). "%' ORDER BY id DESC LIMIT 1"; 
-				$res3 = mysql_query($query3) or die(mysql_error()); 
-				$row3 = mysql_fetch_array($res3); 
-				$query = "SELECT * FROM survivor WHERE unique_id = ". $row3[0]. " ORDER BY last_update DESC LIMIT 1";
+				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC LIMIT 1";
 				//echo $playername."<br />";
 				$res = null;
 				$res = mysql_query($query) or die(mysql_error());
 				$dead = "";
-				$x = 0;
-				$y = 0;
 				$InventoryPreview = "";
 				$BackpackPreview = "";
 				$ip = $players[$i][1];
@@ -86,11 +80,7 @@
 				$uid = "";
 				
 				while ($row=mysql_fetch_array($res)) {
-					$query2 = "SELECT `name` FROM `profile` WHERE `unique_id`= ".$row['unique_id'];
-					$res2 = mysql_query($query2) or die(mysql_error());
-					$row2 = mysql_fetch_array($res2);				
-					if ($dbName=="dayz_lingor"){$tablerows .= row_online_player($row, $row2, $players[$i], $path, "lingor");} else {$tablerows .= row_online_player($row, $row, $players[$i], $path, "chernarus");}
-				
+					$tablerows .= row_online_player($row, $players[$i], $path, str_replace("dayz_", "", $database_name));
 				}
 			}
 		}

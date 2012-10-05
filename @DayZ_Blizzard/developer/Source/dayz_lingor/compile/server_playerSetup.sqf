@@ -43,7 +43,7 @@ if (isNull _playerObj or !isPlayer _playerObj) exitWith {
 };
 
 //Wait for HIVE to be free
-//diag_log ("SETUP: RESULT: Successful with " + str(_primary));
+diag_log ("SETUP: RESULT: Successful with " + str(_primary));
 
 _medical =		_primary select 1;
 _stats =		_primary select 2;

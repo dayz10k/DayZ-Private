@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id']))
 			<?
 		}
 		if (isset($_GET["ban"])){
-			$cmd = "Ban ".$_GET["ban"];
+			$cmd = "ban ".$_GET["ban"];
 				
 			$answer = rcon($serverip,$serverport,$rconpassword,$cmd);
 			?>

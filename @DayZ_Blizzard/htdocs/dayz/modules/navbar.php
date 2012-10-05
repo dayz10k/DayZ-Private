@@ -11,9 +11,7 @@ if (isset($_SESSION['user_id']))
 		<div id="nav-right">
 		
 			<div class="nav-divider">&nbsp;</div>
-			<!-- <div class="showhide-account"><img src="images/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
-			<a href="/index.php?view=register" id="logout"><img src="images/shared/nav/nav_myaccount.gif" width="64" height="14" alt="" /></a>
-			<div class="nav-divider">&nbsp;</div>-->
+			<a href="index.php?view=admin" id="logout"><img src="<?echo $path;?>images/shared/nav/nav_myaccount.gif" width="67" height="14" alt="" /></a>
 			<a href="index.php?logout" id="logout"><img src="<?echo $path;?>images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
 			<div class="clear">&nbsp;</div>
 		
@@ -46,14 +44,8 @@ if (isset($_SESSION['user_id']))
 			<div class="table">
 				<ul class="select menutop level1">
 				<li class="li-dashboard root active"><a href="index.php" style="color:#FFF;" class="dashboard item">Dashboard</a></li>
-				<!-- Fully overhauled by Crosire -->
 				<li class="li-users parent root"><a href="index.php?view=control" style="color:#FFF;" class="class:massmail item">Control</a></li>
-				<li class="li-users parent root"><span class=" daddy item"><span>Options</span></span>
-					<ul class="level2 parent-users">
-						<li class="li-mass-mail-users"><a href="index.php?view=admin" class="class:massmail item">Users</a></li>
-					</ul>
-				</li>
-				<li class="li-users parent root"><span class=" daddy item"><span>Entities</span></span>
+				<li class="li-users parent root"><span class=" daddy item"><span>Entities & Info</span></span>
 					<ul class="level2 parent-users">
 						<li class="li-user-manager parent"><a href="#nogo" class="class:user daddy item">Players</a>
 							<ul class="level3 parent-user-manager">
@@ -66,13 +58,16 @@ if (isset($_SESSION['user_id']))
 						<li class="li-groups parent"><a href="#nogo" class="class:groups daddy item">Vehicles</a>
 							<ul class="level3 parent-groups">
 								<li class="li-add-new-group"><a href="index.php?view=table&show=4" class="class:newarticle item">Ingame</a></li>
-								<li class="li-add-new-group"><a href="index.php?view=table&show=5" class="class:newarticle item">Spawn locations</a></li>
+								<li class="li-add-new-group"><a href="index.php?view=table&show=5" class="class:newarticle item">Spawns</a></li>
 							</ul>
-						</li>						
+						</li>
 						<li class="li- separator"><span></span></li>
-						<li class="li-mass-mail-users"><a href="index.php?view=check" class="class:massmail item">Check items</a></li>
+						<li class="li-mass-mail-users"><a href="index.php?view=killfeed" class="class:massmail item">Killfeed</a></li>
+						<li class="li-mass-mail-users"><a href="index.php?view=log" class="class:massmail item">Log</a></li>
+						<li class="li-mass-mail-users"><a href="index.php?view=check" class="class:massmail item">Check</a></li>
 						<li class="li- separator"><span></span></li>
 						<li class="li-mass-mail-users"><a href="index.php?view=search" class="class:massmail item">Search</a></li>
+
 					</ul>
 				</li>
 				<li class="li-users parent root"><span class=" daddy item"><span>Map</span></span>
@@ -88,9 +83,12 @@ if (isset($_SESSION['user_id']))
 						<li class="li-groups parent"><a href="#nogo" class="class:groups daddy item">Vehicles</a>
 							<ul class="level3 parent-groups">
 								<li class="li-add-new-group"><a href="index.php?view=map&show=4" class="class:newarticle item">Ingame</a></li>
-								<li class="li-add-new-group"><a href="index.php?view=map&show=5" class="class:newarticle item">Spawn locations</a></li>
+								<li class="li-add-new-group"><a href="index.php?view=map&show=5" class="class:newarticle item">Spawns</a></li>
+								<li class="li-add-new-group"><a href="index.php?view=map&show=6" class="class:newarticle item">Crashsites</a></li>
 							</ul>
 						</li>
+						<li class="li- separator"><span></span></li>
+						<li class="li-mass-mail-users"><a href="index.php?view=map&show=7" class="class:massmail item">All</a></li>
 					</ul>
 				</li>
 				</ul>

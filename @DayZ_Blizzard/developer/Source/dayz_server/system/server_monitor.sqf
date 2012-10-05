@@ -4,7 +4,7 @@ waitUntil{!isnil "bis_fnc_init"};
 
 dayz_versionNo = getText(configFile >> "CfgMods" >> "DayZ" >> "version");
 dayz_hiveVersionNo = 1;
-diag_log("SERVER VERSION: Bliss v2.5");
+diag_log("SERVER VERSION: Bliss v3.4");
 
 if ((count playableUnits == 0) and !isDedicated) then {
 	isSinglePlayer = true;
@@ -164,7 +164,10 @@ _countr = 0;
 				_position = ([(getPosATL _object),0,100,10,0,500,0] call BIS_fnc_findSafePos);
 				_object setPosATL _position;
 			};
-			_id = _object spawn fnc_vehicleEventHandler;				
+			_object addEventHandler ["HandleDamage", { _this call vehicle_handleDamage }];
+			_object addEventHandler ["Killed", { [_this select 0, "killed"] call server_updateObject }];
+			_object addEventHandler ["GetOut", { _this call vehicle_handleInteract }];
+			_object addEventHandler ["GetIn", { _this call vehicle_handleInteract }];
 		};
 
 		//Monitor the object

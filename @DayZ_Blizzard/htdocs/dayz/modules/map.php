@@ -4,27 +4,35 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"map")
 
 	switch ($show) {
 		case 0:
-			$pagetitle = "Online players";
+			$pagetitle = "Online player locations";
 			break;
 		case 1:
-			$query = "SELECT * FROM survivor WHERE is_dead = 0"; 
-			$pagetitle = "Alive players";		
+			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0'"; 
+			$pagetitle = "Alive player locations";		
 			break;
 		case 2:
-			$query = "SELECT * FROM survivor WHERE is_dead = 1"; 
-			$pagetitle = "Dead players";	
+			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1'"; 
+			$pagetitle = "Dead player locations";	
 			break;
 		case 3:
-			$query = "SELECT * FROM survivor"; 
-			$pagetitle = "All players";	
+			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id"; 
+			$pagetitle = "All player locations";	
 			break;
 		case 4:
-			$query = "SELECT * FROM objects";
-			$pagetitle = "Ingame vehicles";	
+			$query = "SELECT * FROM `objects` WHERE `damage` < 0.95";
+			$pagetitle = "Ingame vehicle locations";	
 			break;
 		case 5:
-			$query = "SELECT * FROM spawns";
+			$query = "SELECT * FROM `spawns`";
 			$pagetitle = "Vehicle spawn locations";	
+			break;
+		case 6:
+			$pagetitle = "Crashsite locations";	
+			break;
+		case 7:
+			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id"; 
+			$query2 = "SELECT * FROM `objects` WHERE `damage` < 0.95";
+			$pagetitle = "All locations";	
 			break;
 		default:
 			$pagetitle = "Online players";

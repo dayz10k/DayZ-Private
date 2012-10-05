@@ -1,12 +1,13 @@
 <?
-$query = "SELECT * FROM spawns WHERE id = ".$_GET["id"]." LIMIT 1"; 
-$res = mysql_query($query) or die(mysql_error());
-$number = mysql_num_rows($res);
-while ($row=mysql_fetch_array($res)) {
-	$Worldspace = str_replace("[", "", $row['pos']);
-	$Worldspace = str_replace("]", "", $Worldspace);
-	$Worldspace = str_replace("|", ",", $Worldspace);
-	$Worldspace = explode(",", $Worldspace);
+	$query = "SELECT * FROM `spawns` WHERE `id` = '".$_GET["id"]."' LIMIT 1"; 
+	$res = mysql_query($query) or die(mysql_error());
+	$number = mysql_num_rows($res);
+	
+	while ($row=mysql_fetch_array($res)) {
+		$Worldspace = str_replace("[", "", $row['pos']);
+		$Worldspace = str_replace("]", "", $Worldspace);
+		$Worldspace = str_replace("|", ",", $Worldspace);
+		$Worldspace = explode(",", $Worldspace);
 ?>	
 	<div id="page-heading">
 		<h1><? echo $row['otype']; ?> - <? echo $row['id']; ?></h1>
@@ -38,7 +39,12 @@ while ($row=mysql_fetch_array($res)) {
 			<tr>
 				<td align="center"><img src='<? echo $path; ?>images/vehicles/<? echo $row['otype']; ?>.png'></td>
 				<td>
-					<h2>Position:</h2><h3><? if ($dbName=="dayz_lingor") {echo "left:".round(($Worldspace[1]/100))." top:".round($Worldspace[2]/100);} else {echo "left:".round(($Worldspace[1]/100))." top:".round((154-($Worldspace[2]/100)));} ?></h3>
+					<h2>Position:</h2><h3>
+						<?
+							include_once($path."modules\calc.php");
+							echo world_pos($Worldspace, str_replace("dayz_", "", $database_name));
+						?>
+					</h3>
 				</td>	
 			</tr>				
 			</table>

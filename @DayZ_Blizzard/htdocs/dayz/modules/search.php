@@ -1,5 +1,5 @@
 <? 
-if (isset($_SESSION['user_id']))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list")!==false))
 {
 	if (isset($_POST['type'])){
 		$pagetitle = "Search for ".$_POST['type'];
@@ -7,11 +7,11 @@ if (isset($_SESSION['user_id']))
 		$pagetitle = "New search";
 	}
 ?>
+
 <div id="page-heading">
 <?
 	echo "<title>".$pagetitle." - ".$sitename."</title>";
 	echo "<h1>".$pagetitle."</h1>";
-
 ?>
 </div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
@@ -47,66 +47,55 @@ if (isset($_SESSION['user_id']))
 				case 'player':
 					$tableheader = header_player(0);
 					echo $tableheader;
-					$playerquery = "SELECT * FROM main WHERE name LIKE '%". str_replace(" ", "%' OR name LIKE '%", $good). "%' ORDER BY lastupdate DESC"; 
+					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC";
 					$result = mysql_query($playerquery) or die(mysql_error());
 					$tablerows = "";
 					while ($row=mysql_fetch_array($result)) {
-						$tablerows .= row_player($row);
+						$tablerows .= row_player($row, str_replace("dayz_", "", $database_name));
 					}
 					echo $tablerows;
 				break;
 				case 'item':
 					$tableheader = header_player(0);
 					echo $tableheader;
-					$query = "SELECT * FROM main WHERE inventory LIKE '%". str_replace(" ", "%' OR backpack LIKE '%", $good). "%'"." ORDER BY lastupdate DESC";
+					$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `inventory` LIKE '%". str_replace(" ", "%' OR `backpack` LIKE '%", $good). "%'"." ORDER BY `last_update` DESC";
 					$result = mysql_query($query) or die(mysql_error());
 					$tablerows = "";
-					while ($row=mysql_fetch_array($result)) {
-						$tablerows .= row_player($row);
-					}
+					while ($row=mysql_fetch_array($result)) {$tablerows .= row_player($row, str_replace("dayz_", "", $database_name));}
 					echo $tablerows;
 					break;
 				case 'vehicle':
 					$chbox = "";
 					$tableheader = header_vehicle(0, $chbox);
 					echo $tableheader;
-					$query = "SELECT * FROM objects WHERE otype LIKE '%". str_replace(" ", "%' OR otype LIKE '%", $good). "%'";
+					$query = "SELECT * FROM `objects` WHERE `otype` LIKE '%". str_replace(" ", "%' OR `otype` LIKE '%", $good). "%'";
 					$res = mysql_query($query) or die(mysql_error());
 					$chbox = "";
-					while ($row=mysql_fetch_array($res)) {
-							$tablerows .= row_vehicle($row, $chbox);
-					}
+					while ($row=mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, str_replace("dayz_", "", $database_name));}
 					echo $tablerows;
 					break;
 				case 'container':
 					$chbox = "";
 					$tableheader = header_vehicle(0, $chbox);
 					echo $tableheader;
-					$query = "SELECT * FROM objects WHERE inventory LIKE '%". str_replace(" ", "%' OR inventory LIKE '%", $good). "%'";
+					$query = "SELECT * FROM `objects` WHERE `inventory` LIKE '%". str_replace(" ", "%' OR `inventory` LIKE '%", $good). "%'";
+					$res = mysql_query($query) or die(mysql_error());
 					$chbox = "";
-					while ($row=mysql_fetch_array($res)) {
-							$tablerows .= row_vehicle($row, $chbox);
-					}
+					while ($row=mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, str_replace("dayz_", "", $database_name));}
 					echo $tablerows;
 					break;
 				default:
 					$tableheader = header_player(0);
 					echo $tableheader;
-					$playerquery = "SELECT * FROM main WHERE name LIKE '%". str_replace(" ", "%' OR name LIKE '%", $good). "%' ORDER BY lastupdate DESC"; 
+					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC";
 					$result = mysql_query($playerquery) or die(mysql_error());
 					$tablerows = "";
-					while ($row=mysql_fetch_array($result)) {
-						$tablerows .= row_player($row);
-					}
+					while ($row=mysql_fetch_array($result)) {$tablerows .= row_player($row, str_replace("dayz_", "", $database_name));}
 					echo $tablerows;
 				};
 			?>
 			</table>
 			<?
-		}
-		else
-		{
-		
 		}
 		?>		
 		<!--  end content-table-inner ............................................END  -->

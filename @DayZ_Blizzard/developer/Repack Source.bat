@@ -1,8 +1,15 @@
 @echo off
-mkdir ..\addons
-mkdir ..\..\MPMissions
-Utils\cpbo.exe -y -p Source\dayz_server ..\addons\dayz_server.pbo
-Utils\cpbo.exe -y -p Source\dayz_lingor ..\addons\dayz_server_lingor.bak
-Utils\cpbo.exe -y -p Source\missions\dayz_1.lingor ..\..\MPMissions\dayz_1.lingor.pbo
-Utils\cpbo.exe -y -p Source\missions\dayz_1.chernarus ..\..\MPMissions\dayz_1.chernarus.pbo
-pause
+echo -------------------------------------------------------------------------------------------
+echo.
+echo Repacking Source ...
+echo.
+echo -------------------------------------------------------------------------------------------
+echo.
+..\perl\bin\perl.exe -w Utils\repack.pl
+echo.
+echo -------------------------------------------------------------------------------------------
+echo.
+echo Done! Press any key to exit ...
+echo.
+echo -------------------------------------------------------------------------------------------
+pause>nul

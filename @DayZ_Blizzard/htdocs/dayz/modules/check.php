@@ -1,62 +1,51 @@
-﻿<?
+<?
 if (isset($_SESSION['user_id']))
 {
-$pagetitle = "Items check";
-
-$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS CHECK','{$_SESSION['login']}',NOW())";
+	$pagetitle = "Items check";
+	$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS CHECK','{$_SESSION['login']}',NOW())";
 	$sql2 = mysql_query($query) or die(mysql_error());
+	
 ?>
-
 <div id="page-heading">
 <?
 	echo "<title>".$pagetitle." - ".$sitename."</title>";
 	echo "<h1>".$pagetitle."</h1>";
-	
+
 	error_reporting (E_ALL ^ E_NOTICE);
-	
-	//$items_ini = parse_ini_file("/items.ini", true);
+
 	$xml = file_get_contents('/items.xml', true);
 	require_once($path.'modules/xml2array.php');
 	$items_xml = XML2Array::createArray($xml);
 	
-	$query = "SELECT * FROM survivor";
+	$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id";
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 	$rows = null;
 	$itemscount = 0;		
 	if ($number == 0) {
-	  echo "<CENTER>Не найдено</CENTER>";
+	  echo "<CENTER>Not found!</CENTER>";
 	} else {
-	  while ($row=mysql_fetch_array($res)) {
+		while ($row=mysql_fetch_array($res)) {
+		
 		$Worldspace = str_replace("[", "", $row['pos']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = str_replace("|", ",", $Worldspace);
 		$Worldspace = explode(",", $Worldspace);
-		
+
 		$Inventory = $row['inventory'];	
 		$Inventory = str_replace("|", ",", $Inventory);
 		$Inventory  = json_decode($Inventory);	
-		
+
 		$Backpack  = $row['backpack'];
 		$Backpack = str_replace("|", ",", $Backpack);
 		$Backpack  = json_decode($Backpack);
-		
-		//$Inventory = $Inventory.",".$Backpack;
-		//$Inventory = str_replace("[", "", $Inventory);
-		//$Inventory = str_replace("]", "", $Inventory);
-		//$Inventory = str_replace('"', "", $Inventory);					
-		//$Inventory = explode(",", $Inventory);	
 
 		$Unknown = null;
 		$Unknown = array();
 		if (is_array($Inventory[0])){
-			if (is_array($Inventory[1])){
-				$Inventory = (array_merge($Inventory[0], $Inventory[1]));
-			}
+			if (is_array($Inventory[1])){$Inventory = (array_merge($Inventory[0], $Inventory[1]));}
 		} else {
-			if (is_array($Inventory[1])){
-				$Inventory = $Inventory[1];
-			}			
+			if (is_array($Inventory[1])){$Inventory = $Inventory[1];}			
 		}		
 		
 		$bpweaponscount = count($Backpack[1][0]);
@@ -65,9 +54,9 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 			for ($mi=0; $mi<$Backpack[1][1][$m]; $mi++){
 				$bpweapons[] = $Backpack[1][0][$m];
 			}
-			//if(array_key_exists(0,$Backpack[1][$m])){
-			//	$bpweapons[] = $Backpack[1][$m][0];
-			//}
+			/*if(array_key_exists(0,$Backpack[1][$m])){
+				$bpweapons[] = $Backpack[1][$m][0];
+			}*/
 		}		
 		$bpitemscount = count($Backpack[2][0]);
 		$bpitems = array();
@@ -75,9 +64,9 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 			for ($mi=0; $mi<$Backpack[2][1][$m]; $mi++){
 				$bpitems[] = $Backpack[2][0][$m];
 			}
-		}		
-		$Backpack = (array_merge($bpweapons, $bpitems));
+		}
 		
+		$Backpack = (array_merge($bpweapons, $bpitems));
 		$Inventory = (array_merge($Inventory, $Backpack));
 							
 		for ($i=0; $i<count($Inventory); $i++){
@@ -89,23 +78,11 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 				}
 			}
 		}
-		
-		//foreach($Inventory as $item => $val)
-		//{						
-			//if (strlen($val) > 5){
-				//echo  $val."; ";
-				//if (!in_array(strtolower($val), $items)) {
-					//echo "has ".$val;
-				//	$Unknown[] = $val;
-				//}
-			//}
-		//}
-		
+
 		if (count($Unknown)>0){
 			$rows .= "<tr>
 				<td>".$row['name']."</td>
-				<td>".$row['uid']."</td>
-				<td>top:".round((154-($Worldspace[2]/100)))." left:".round(($Worldspace[1]/100))."</td>
+				<td>".$row['unique_id']."</td>
 				<td>";
 				foreach($Unknown as $uitem => $uval)
 				{
@@ -114,12 +91,8 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 				}
 			$rows .= "</td></tr>";
 		}
-		
-		
-	  }
+		}
 	}								
-
-			
 ?>
 </div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
@@ -135,7 +108,6 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 		<td>
 		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">	
-
 			<!--  start table-content  -->
 			<div id="table-content">
 			<!--  start message-red -->
@@ -145,27 +117,25 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 				<div id="message-red">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td class="red-left">WARNING! <? echo $itemscount;?> unknown items found!</td>
+					<td class="red-left">Warning! <? echo $itemscount;?> unknown items found!</td>
 					<td class="red-right"><a class="close-red"><img src="<?echo $path;?>images/table/icon_close_red.gif"   alt="" /></a></td>
 				</tr>
 				</table>
 				</div>			
 			<!--  end message-red -->
+			
 			<!--  start product-table ..................................................................................... -->
-
 				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 				<tr>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Player Name</a>	</th>
 					<th class="table-header-repeat line-left minwidth-1"><a href="">Player UID</a></th>
-					<th class="table-header-repeat line-left"><a href="">Position</a></th>
-					<th class="table-header-repeat line-left minwidth-1"><a href="">Unknown items</a></th>
+					<th class="table-header-repeat line-left minwidth-1"><a href="">Unknown</a></th>
 				</tr>
 				<?
 					echo $rows;
 				?>				
 				</table>
 				<!--  end product-table................................... --> 
-
 			<?
 			}
 			else{
@@ -182,12 +152,12 @@ $query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('ITEMS C
 			}
 			?>
 			</div>
-			<!--  end content-table  -->					
+			<!--  end content-table  -->
 			
 			<div class="clear"></div>
-
 		</div>
 		<!--  end content-table-inner ............................................END  -->
+		
 		</td>
 		<td id="tbl-border-right"></td>
 	</tr>
