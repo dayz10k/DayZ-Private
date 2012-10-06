@@ -18,6 +18,8 @@
 GRANT ALL PRIVILEGES ON dayz_chernarus.* TO 'dayz'@'localhost' IDENTIFIED BY 'dayz';
 GRANT ALL PRIVILEGES ON dayz_lingor.* TO 'dayz'@'localhost' IDENTIFIED BY 'dayz';
 
+GRANT TRIGGER ON dayz_chernarus.* TO 'dayz'@'localhost';
+GRANT TRIGGER ON dayz_lingor.* TO 'dayz'@'localhost';
 GRANT SELECT ON mysql.proc TO 'dayz'@'localhost';
 
 -- Dump completed

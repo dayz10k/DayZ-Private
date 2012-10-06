@@ -99,6 +99,32 @@ LOCK TABLES `log_entry` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `log_feed`
+--
+
+DROP TABLE IF EXISTS `log_feed`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log_feed` (
+  `id` int(11) NOT NULL,
+  `unique_id` varchar(128) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `pos` varchar(255) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `code` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `log_feed`
+--
+
+LOCK TABLES `log_kills` WRITE;
+/*!40000 ALTER TABLE `log_kills` DISABLE KEYS */;
+/*!40000 ALTER TABLE `log_kills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `log_tool`
 --
 
@@ -362,6 +388,38 @@ LOCK TABLES `survivor` WRITE;
 /*!40000 ALTER TABLE `survivor` DISABLE KEYS */;
 /*!40000 ALTER TABLE `survivor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping triggers for table `survivor`
+--
+
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`dayz`@`localhost`*/ /*!50003 TRIGGER `dayz_chernarus`.`trigger_feed`
+BEFORE UPDATE
+ON `survivor` FOR EACH ROW
+BEGIN
+-- Definition start
+    IF NEW.survivor_kills > OLD.survivor_kills THEN INSERT INTO log_feed (`id`,`unique_id`,`name`,`pos`,`created`,`code`) VALUES (NEW.id,NEW.unique_id,(select name from profile where unique_id = NEW.unique_id limit 1),NEW.pos,now(),1); 
+END IF; 
+    IF NEW.bandit_kills > OLD.bandit_kills THEN INSERT INTO log_feed (`id`,`unique_id`,`name`,`pos`,`created`,`code`) VALUES (NEW.id,NEW.unique_id,(select name from profile where unique_id = NEW.unique_id limit 1),NEW.pos,now(),2); 
+END IF; 
+  IF NEW.is_dead = 1 AND OLD.is_dead = 0 THEN INSERT INTO log_feed (`id`,`unique_id`,`name`,`pos`,`created`,`code`) VALUES (NEW.id,NEW.unique_id,(select name from profile where unique_id = NEW.unique_id limit 1),NEW.pos,now(),3); 
+END IF; 
+-- Definition end
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `users`
