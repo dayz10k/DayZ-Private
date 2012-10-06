@@ -119,9 +119,9 @@ CREATE TABLE `log_feed` (
 -- Dumping data for table `log_feed`
 --
 
-LOCK TABLES `log_kills` WRITE;
-/*!40000 ALTER TABLE `log_kills` DISABLE KEYS */;
-/*!40000 ALTER TABLE `log_kills` ENABLE KEYS */;
+LOCK TABLES `log_feed` WRITE;
+/*!40000 ALTER TABLE `log_feed` DISABLE KEYS */;
+/*!40000 ALTER TABLE `log_feed` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
