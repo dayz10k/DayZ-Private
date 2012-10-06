@@ -20,7 +20,7 @@ GetOptions(
 my %db = (
 	'host' => $args{'hostname'} ? $args{'hostname'} : 'localhost',
 	'user' => $args{'username'} ? $args{'username'} : 'dayz',
-	'pass' => $args{'password'} ? $args{'password'} : 'dayz',
+	'pass' => $args{'password'} ? $args{'password'} : '',
 	'name' => $args{'database'} ? $args{'database'} : 'dayz_chernarus',
 	'port' => $args{'port'} ? $args{'port'} : '3306'
 );

@@ -4,9 +4,11 @@ echo.
 echo Repacking Source ...
 echo.
 echo -------------------------------------------------------------------------------------------
+
 echo.
 ..\perl\bin\perl.exe -w Utils\repack.pl
 echo.
+
 echo -------------------------------------------------------------------------------------------
 echo.
 echo Done! Press any key to exit ...

@@ -11,5 +11,5 @@ create table if not exists instances (
 	constraint uq_instances unique (instance)
 ) character set utf8 engine=InnoDB;
 
--- Insert default instance
-insert ignore into instances (id, instance, timezone, loadout) values (1, 1, 0, '[]');
+-- Insert default instances
+insert ignore into instances (id, instance, timezone, loadout) values (1, 1, 0, '[]'),(2, 2, 0, '[]'),(3, 3, 0, '[]'),(4, 4, 0, '[]'),(5, 5, 0, '[]'),(6, 6, 0, '[]'),(7, 7, 0, '[]'),(8, 8, 0, '[]'),(9, 9, 0, '[]');
