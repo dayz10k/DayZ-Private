@@ -1,5 +1,0 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<configuration>
-	<conf_dbname instance="2" name="dayz_lingor" />
-	<conf_rcon instance="2" pass="adminpass" />
-</configuration>
