@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <vehicles>
     <sAn2_1_TK_CIV_EP1>
         <Type>Air</Type>
@@ -60,8 +60,8 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sL39_TK_EP1>
-	<sTentStorage>
-        <Type>Ground</Type>
+    <sTentStorage>
+        <Type>Tent</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Tent Storage</Name>
@@ -131,7 +131,7 @@
         <cargo>0</cargo>
     </sSu25_TK_EP1>
     <sUH1H_TK_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>UH-1H</Name>
@@ -140,6 +140,16 @@
         <transportmaxbackpacks>1</transportmaxbackpacks>
         <cargo>5</cargo>
     </sUH1H_TK_EP1>
+	<sUH1H_DZ>
+        <Type>Helicopter</Type>
+        <Side>EAST</Side>
+        <Faction>None</Faction>
+        <Name>UH-1H</Name>
+        <transportmaxweapons>3</transportmaxweapons>
+        <transportmaxmagazines>20</transportmaxmagazines>
+        <transportmaxbackpacks>1</transportmaxbackpacks>
+        <cargo>5</cargo>
+    </sUH1H_DZ>
     <sMi17_Ins>
         <Type>Air</Type>
         <Side>EAST</Side>
@@ -441,7 +451,7 @@
         <cargo>24</cargo>
     </sCH_47F_EP1>
     <sMH6J_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>MH-6J</Name>
@@ -2281,7 +2291,7 @@
         <cargo>1</cargo>
     </shilux1_civil_3_open_EP1>
     <sIkarus_TK_CIV_EP1>
-        <Type>Car</Type>
+        <Type>Bus</Type>
         <Side>CIV</Side>
         <Faction>BIS_TK_CIV</Faction>
         <Name>Bus</Name>
@@ -2351,7 +2361,7 @@
         <cargo>5</cargo>
     </sSUV_TK_CIV_EP1>
     <sTT650_TK_CIV_EP1>
-        <Type>Car</Type>
+        <Type>Motorcycle</Type>
         <Side>CIV</Side>
         <Faction>BIS_TK_CIV</Faction>
         <Name>Motorcycle</Name>
@@ -2501,7 +2511,7 @@
         <cargo>1</cargo>
     </shilux1_civil_3_open>
     <sIkarus>
-        <Type>Car</Type>
+        <Type>Bus</Type>
         <Side>CIV</Side>
         <Faction>CIV</Faction>
         <Name>Bus</Name>
@@ -2581,7 +2591,7 @@
         <cargo>3</cargo>
     </sSkodaRed>
     <stractorOld>
-        <Type>Car</Type>
+        <Type>Farmvehicle</Type>
         <Side>CIV</Side>
         <Faction>CIV</Faction>
         <Name>Tractor</Name>
@@ -2590,8 +2600,18 @@
         <transportmaxbackpacks>2</transportmaxbackpacks>
         <cargo>0</cargo>
     </stractorOld>
+	<sTractor>
+        <Type>Farmvehicle</Type>
+        <Side>CIV</Side>
+        <Faction>CIV</Faction>
+        <Name>Tractor</Name>
+        <transportmaxweapons>10</transportmaxweapons>
+        <transportmaxmagazines>50</transportmaxmagazines>
+        <transportmaxbackpacks>2</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sTractor>
     <sTT650_Civ>
-        <Type>Car</Type>
+        <Type>Motorcycle</Type>
         <Side>CIV</Side>
         <Faction>CIV</Faction>
         <Name>Motorcycle</Name>
@@ -2701,7 +2721,7 @@
         <cargo>5</cargo>
     </sSUV_TK_EP1>
     <sTT650_TK_EP1>
-        <Type>Car</Type>
+        <Type>Motorcycle</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Motorcycle</Name>
@@ -2821,7 +2841,7 @@
         <cargo>3</cargo>
     </sPickup_PK_INS>
     <sTT650_Ins>
-        <Type>Car</Type>
+        <Type>Motorcycle</Type>
         <Side>EAST</Side>
         <Faction>INS</Faction>
         <Name>Motorcycle</Name>
@@ -2911,7 +2931,7 @@
         <cargo>1</cargo>
     </sGRAD_RU>
     <sKamaz>
-        <Type>Car</Type>
+        <Type>Truck</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Utility Truck</Name>
@@ -2991,7 +3011,7 @@
         <cargo>3</cargo>
     </sUral_ZU23_TK_GUE_EP1>
     <sV3S_TK_GUE_EP1>
-        <Type>Car</Type>
+        <Type>Truck</Type>
         <Side>GUER</Side>
         <Faction>BIS_TK_GUE</Faction>
         <Name>V3S</Name>
@@ -3061,7 +3081,7 @@
         <cargo>3</cargo>
     </sPickup_PK_GUE>
     <sTT650_Gue>
-        <Type>Car</Type>
+        <Type>Motorcycle</Type>
         <Side>GUER</Side>
         <Faction>GUE</Faction>
         <Name>Motorcycle</Name>
@@ -3081,7 +3101,7 @@
         <cargo>3</cargo>
     </sUral_ZU23_Gue>
     <sV3S_Gue>
-        <Type>Car</Type>
+        <Type>Truck</Type>
         <Side>GUER</Side>
         <Faction>GUE</Faction>
         <Name>V3S</Name>
@@ -3090,6 +3110,16 @@
         <transportmaxbackpacks>8</transportmaxbackpacks>
         <cargo>13</cargo>
     </sV3S_Gue>
+	<sV3S_Civ>
+        <Type>Truck</Type>
+        <Side>CIV</Side>
+        <Faction>CIV</Faction>
+        <Name>V3S</Name>
+        <transportmaxweapons>50</transportmaxweapons>
+        <transportmaxmagazines>200</transportmaxmagazines>
+        <transportmaxbackpacks>8</transportmaxbackpacks>
+        <cargo>13</cargo>
+    </sV3S_Civ>
     <sSUV_PMC_BAF>
         <Type>Car</Type>
         <Side>GUER</Side>
@@ -3101,7 +3131,7 @@
         <cargo>5</cargo>
     </sSUV_PMC_BAF>
     <sATV_CZ_EP1>
-        <Type>Car</Type>
+        <Type>ATV</Type>
         <Side>WEST</Side>
         <Faction>BIS_CZ</Faction>
         <Name>ATV</Name>
@@ -3141,7 +3171,7 @@
         <cargo>2</cargo>
     </sLandRover_Special_CZ_EP1>
     <sATV_US_EP1>
-        <Type>Car</Type>
+        <Type>ATV</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>ATV</Name>
@@ -4100,4 +4130,74 @@
         <transportmaxbackpacks>8</transportmaxbackpacks>
         <cargo>1</cargo>
     </sWarfareSupplyTruck_USMC>
+    <sWire_cat1>
+        <Type>Wire</Type>
+        <Side>WEST</Side>
+        <Faction>CIV</Faction>
+        <Name>Wire cat</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sWire_cat1>
+	<sHedgehog_DZ>
+        <Type>Hedgehog</Type>
+        <Side>WEST</Side>
+        <Faction>CIV</Faction>
+        <Name>Hedgehog</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sHedgehog_DZ>
+	<sOld_bike_TK_INS_EP1>
+        <Type>Bike</Type>
+        <Side>WEST</Side>
+        <Faction>BIS_TK_INS</Faction>
+        <Name>Old bike</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sOld_bike_TK_INS_EP1>
+	<sOld_bike_TK_CIV_EP1>
+        <Type>Bike</Type>
+        <Side>WEST</Side>
+        <Faction>BIS_TK_CIV</Faction>
+        <Name>Old bike</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sOld_bike_TK_CIV_EP1>
+	<sFishing_Boat>
+        <Type>large Boat</Type>
+        <Side>WEST</Side>
+        <Faction>CIV</Faction>
+        <Name>Fishing boat</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sFishing_Boat>
+	<sSmallboat_1>
+        <Type>medium Boat</Type>
+        <Side>WEST</Side>
+        <Faction>CIV</Faction>
+        <Name>Boat</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sSmallboat_1>
+	<sSmallboat_2>
+        <Type>medium Boat</Type>
+        <Side>WEST</Side>
+        <Faction>CIV</Faction>
+        <Name>Boat</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sSmallboat_2>
 </vehicles>

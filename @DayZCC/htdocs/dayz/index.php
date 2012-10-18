@@ -2,7 +2,13 @@
 <?php
 
 session_start();
+
+defined('DS') ? null : define('DS',DIRECTORY_SEPARATOR);
+$path = "";
+$sitename = "DayZ Controlcenter Administration";
+
 include ('config.php');
+
 $exe_server = str_replace('.exe', "_".$serverinstance.".exe", $exe_server);
 $path_server = str_replace('.exe', "_".$serverinstance.".exe", $path_server);
 $exe_bec = str_replace('.exe', "_".$serverinstance.".exe", $exe_server);

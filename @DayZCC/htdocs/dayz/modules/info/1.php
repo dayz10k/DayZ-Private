@@ -100,7 +100,7 @@
 							</div>
 							<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 							<?
-							include_once($path."modules\calc.php");
+							include_once($path.'modules/calc.php');
 							echo world_pos($Worldspace, $serverworld);
 							?>
 							</div>							

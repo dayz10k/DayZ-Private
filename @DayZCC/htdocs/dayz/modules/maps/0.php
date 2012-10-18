@@ -88,14 +88,14 @@
 					$model = $row['model'];
 					$name = $row['name'];
 					
-					include_once($path."modules\calc.php");
+					include_once($path.'modules/calc.php');
 					$description = "<h2><a href=\"index.php?view=info&show=1&id=".$uid."&cid=".$id."\">".htmlspecialchars($name, ENT_QUOTES)." - ".$uid."</a></h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/models/".str_replace('"', '', $model).".png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>".world_pos2($Worldspace, $serverworld)."</td></tr></table>";
 					$markers .= "['".htmlspecialchars($name, ENT_QUOTES)."', '".$description."', ".world_pos_y($Worldspace, $serverworld).", ".world_pos_x($Worldspace, $serverworld).", ".$m++.", '".$path."images/icons/player".$dead.".png'],";
 				}				
 			}
 		}
 		$markers .= "['Edge of map', 'Edge of map', 0.0, 0.0, 1, '".$path."images/thumbs/null.png']];";
-		include ('modules/gm.php');
+		include ($path.'modules/gm.php');
 	}
 	else
 	{

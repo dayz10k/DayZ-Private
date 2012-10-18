@@ -33,7 +33,7 @@ ________________________________________________________________________________
  - .Net Framework 2 and/or 4 (http://www.microsoft.com/download/en/details.aspx?id=24872)
  - [Microsoft Visual C++ 2008 Redistributable Update (http://www.microsoft.com/en-us/download/details.aspx?id=11895)]
  - [Microsoft Visual C++ 2010 Redistributable (http://www.microsoft.com/en-us/download/details.aspx?id=8328)]
- - [ArmA 2 Combined Operations with OA Beta Patch 96584 (ftp://downloads.bistudio.com/arma2.com/update/beta/ARMA2_OA_Build_96584.zip)]
+ - [ArmA 2 Combined Operations with OA Beta Patch 97771 (ftp://downloads.bistudio.com/arma2.com/update/beta/ARMA2_OA_Build_97771.zip)]
  - DayZ 1.7.2.6 (http://dayzmod.com/?Download)
  - DayZ Lingor if you want to play it: (http://dayzlingor.tk)
 
@@ -43,12 +43,11 @@ ________________________________________________________________________________
 3. Installation:
 ================
 
- If you have steam: Start ArmA 2 once with steam and quit again, repeat the same with OA. Now copy the "Addons" folder in your "ArmA 2" folder into your "ArmA 2 Operation Arrowhead" folder to have Combined Operations. Now start Combined Operations through Steam one time for the keys to generate!
+ If you have steam: Start ArmA 2 once with steam and quit again, repeat the same with OA. Now copy the "Addons" folder in your "ArmA 2" folder into your "ArmA 2 Operation Arrowhead" folder to have Combined Operations. Start Combined Operations through Steam at least one time for the keys to generate!
 
- Make sure no previous server package is installed (please install from a fresh ArmA with recommended patch).
- Start the setup wizard and follow the instruction to install the server to your system.
- After installation you are ready to run the Controlcenter. Please read the next paragraph for
- more detailed information on how to use it before posting any topics to my website! And do not forget to change default passwords!
+ Make sure no previous server package is installed (better use a fresh ArmA with recommended patch).
+ Start the setup wizard and follow the instruction to install the server on your system.
+ After installation you are ready to run the Controlcenter. Please read the next paragraph for more detailed information on how to use it before posting any topics to my website! And do not forget to change default passwords!
 
  Updating is done with the setup wizard too! Just run it again to update files if any are found.
 
@@ -74,14 +73,23 @@ ________________________________________________________________________________
  and select the database "dayz_chernarus" or "dayz_lingor" if you run a lingor server. Now you can see and edit all information (To view the contents of a
  table you have to click on "Browse") ...
 
- - instances:
+ - instance:
    Everything here can be configurated from the Controlcenter, so it's not interesting.
+
+ - instance_vehicles:
+   Contains all ingame vehicles, which can be spawned from the "Vehicles" Tab ("Vehicle Generating Script") found under "Configuration" in the Controlcenter. Changeable options are damage, damaged parts, fuel, inventory and more.
+
+ - instance_deployables:
+   Contains all ingame tents and wires.
 
  - log_code:
    Description for log. Not interesting.
 
  - log_entry:
    Server logging feature.
+
+ - log_feed:
+   Action feed filled by triggers.
 
  - log_tool:
    Action log from the admin tool.
@@ -98,16 +106,7 @@ ________________________________________________________________________________
 
    To display the profile name in the survivor table, run the following sql qery: "SELECT survivor.id as survivor_id, profile.name, profile.unique_id, survivor.inventory, survivor.backpack, survivor.medical, survivor.model FROM survivor LEFT JOIN profile ON profile.unique_id = survivor.unique_id WHERE survivor.is_dead = 0"
 
- - objects:
-   Contains all ingame vehicles, tents and similar, which can be spawned from the "Vehicles" Tab ("Vehicle Generating Script") found under "Configuration" in the Controlcenter. Changeable options are damage, damaged parts, fuel, inventory and more.
-
- - objects_classes:
-   Uninteresting, used by the admin tool.
-
- - scheduler:
-   You can create messages and scripts here, that will be shown or executed ingame.
-
- - spawns:
+ - vehicles:
    All possible spawn locations for vehicles here. They are used by the vehicle generation script, so you can add new vehicle spawn positions and their chance in the table.
 
  - users:
@@ -134,6 +133,7 @@ ________________________________________________________________________________
  - Map:
    Display all the entitys on a map of your current selected mission. New feature is the crash site map.
 
+
  To logout again, press that button on the top right corner.
 
 
@@ -144,6 +144,7 @@ ________________________________________________________________________________
 
  - Admin Tool:
  Username: admin
+
  Password: adminpass (Delete the user and create a new one in "Account")
 
  - Chive/MySQL:
@@ -155,7 +156,7 @@ ________________________________________________________________________________
 
 
  - DayZ Server:
- Administration Password: adminpass
+ Administration Password: (Random)
 
 
 6. Troubleshooting:
@@ -163,23 +164,23 @@ ________________________________________________________________________________
 
  --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- **Problem**:	MySQL Server/Apache don't start, they crash or do nothing.
+ **Problem**:	MySQL Server/Apache won't start, they crash or do nothing.
  **Solution**:	Update the server with "reconfigurate" option in the Set Up Wizard and make sure port 78 is not blocked!
 
  --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  **Problem**:	Server does not appear in online server list.
- **Solution**:	Open these ports: UDP 2300-2400, 47624-47624, 28800-28900; TCP 2300-2400, 47624-47624 and make sure reporting Ip is set to "master.gamespy.com" and your router does not block anything.
+ **Solution**:	Open these ports: UDP 2300-2400, 47624-47624, 28800-28900; TCP 2300-2400, 47624-47624 (in the router too) and make sure reporting Ip is set to "master.gamespy.com".
 
  --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  **Problem**:	Stuck at waiting for host and "Mission read from bank" spam in the server window.
+
  **Solution**:	Make sure you have installed DayZ and Combined Operations (and DayZ Lingor if enabled).
 
  --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  **Problem**:	Stuck at loading (for more then 5 minutes).
- **Solution**:	Make sure the database and a mysql user "dayz" with enough privileges exist!
-
+ **Solution**:	Check the logs and make sure database plus user do exist.
 
  --------------------------------------------------------------------------------------------------------------------------------------------------------------

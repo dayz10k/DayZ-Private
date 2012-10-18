@@ -47,9 +47,9 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 				$event = "Other";
 		}
 		
-		include_once($path."modules\calc.php");
+		include_once($path.'modules/calc.php');
 		$pos = world_pos($Worldspace, $serverworld);
-		/*if(world_pos_x($Worldspace, $serverworld) > 111)
+		/*if(world_pos_x($Worldspace, $serverworld) > 100)
 		{
 			$pos = "<font color=#00FF00>".world_pos($Worldspace, $serverworld)." (Greenzone)</font>";
 		}

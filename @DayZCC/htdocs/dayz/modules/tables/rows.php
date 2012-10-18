@@ -127,7 +127,7 @@ function row_player($row, $world){
 	$thealth = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a>";
 	$icon = '<img src="'.$path.'images/icons/player'.($row['is_dead'] ? '_dead' : '').'.png" title="" alt=""/>';
 
-	include_once($path."modules\calc.php");
+	include_once($path.'modules/calc.php');
 	$tablerow = "<tr>
 		<td align=\"center\" class=\"gear_preview\">".$icon."</td>
 		<td align=\"center\" class=\"gear_preview\">".$name."</td>
@@ -234,7 +234,7 @@ function row_online_player($row, $player, $path, $world){
 	$iconkick = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="'.$path.'images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
 	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="'.$path.'images/icons/player_ban'.$dead.'.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
 
-	include_once($path."modules\calc.php");
+	include_once($path.'modules/calc.php');
 	$tablerow = "<tr>
 		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconkick."</td>
 		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconban."</td>
@@ -318,7 +318,7 @@ function row_vehicle($row, $chbox, $world) {
 		}			
 	}	
 
-	include_once($path."modules\calc.php");
+	include_once($path.'modules/calc.php');
 	$tablerow = "<tr>".$chbox."
 		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
 		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['otype']."</a></td>			
