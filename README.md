@@ -26,6 +26,8 @@ ________________________________________________________________________________
  Hours of work went into this, so a thank you and some support would be nice :) Enjoy!
 
 
+ Licenses can be found in the docs folder.
+
 2. Requirements:
 ================
 
@@ -66,9 +68,9 @@ ________________________________________________________________________________
  - "Information" displays you all the relevant status information and monitors the system performance.
 
 
+
  **Database**
  ------------
-
  To start editing wait until Chive has connected to MySQL sucessfully, login using default MySQL information
  and select the database "dayz_chernarus" or "dayz_lingor" if you run a lingor server. Now you can see and edit all information (To view the contents of a
  table you have to click on "Browse") ...
@@ -115,8 +117,6 @@ ________________________________________________________________________________
 
  **Administration**
  ------------------
-
-
  Wait until the login page is displayed and login using default user and password  found below (can be changed when clicking on the "account" button).
 
 
