@@ -27,9 +27,9 @@ my %db = (
 );
 
 if ($args{'help'}) {print "usage: db_migrate.pl [--host <hostname>] [--user <username>] [--pass <password>] [--name <dbname>] [--port <port>] [--schema <schema>] [--version <version>]\n"; exit;}
-my $version1 = $args{'version'} ? $args{'version'} : "0.22";
-my $version2 = "0.02";
-my $schema1 = 'Bliss';
+my $version1 = $args{'version'} ? $args{'version'} : "0.23";
+my $version2 = "0.03";
+my $schema1 = $args{'schema'} ? $args{'schema'} : 'Bliss';
 my $schema2 = 'DayZCC';
 
 print "Trying to connect to MySQL server on $db{'host'}, database $db{'name'} as $db{'user'}\n";
