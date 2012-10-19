@@ -46,7 +46,7 @@ $pagetitle = "Server control";
 
 				break;
 			case 4:
-				$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$becexe.'" /FO CSV');
+				$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_bec.'" /FO CSV');
 				$becexestatus = explode(",", strtolower($becexestatus));
 				$becexestatus = $becexestatus[0];
 				$becexestatus = str_replace('"', "", $becexestatus);
@@ -68,7 +68,7 @@ $pagetitle = "Server control";
 		
 				break;
 			default:
-				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$serverexe.'" /FO CSV');
+				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_server.'" /FO CSV');
 				$serverexestatus = explode(",", strtolower($serverexestatus));
 				$serverexestatus = $serverexestatus[0];
 				$serverexestatus = str_replace('"', "", $serverexestatus);

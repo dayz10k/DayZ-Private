@@ -11,8 +11,8 @@ include ('config.php');
 
 $exe_server = str_replace('.exe', "_".$serverinstance.".exe", $exe_server);
 $path_server = str_replace('.exe', "_".$serverinstance.".exe", $path_server);
-$exe_bec = str_replace('.exe', "_".$serverinstance.".exe", $exe_server);
-$path_bec = str_replace('.exe', "_".$serverinstance.".exe", $path_server);
+$exe_bec = str_replace('.exe', "_".$serverinstance.".exe", $exe_bec);
+$path_bec = str_replace('.exe', "_".$serverinstance.".exe", $path_bec);
 
 mysql_connect($database_host, $database_user, $database_password) or die (mysql_error());
 mysql_select_db($database_name) or die (mysql_error());
