@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 	$formhead = "";
 	$formfoot = "";
 
-	$query = "SELECT * FROM `log_kills` ORDER BY `created` DESC LIMIT 250";
+	$query = "SELECT * FROM `log_feed` ORDER BY `created` DESC LIMIT 250";
 	$res = mysql_query($query) or die(mysql_error());
 	$pnumber = mysql_num_rows($res);		
 
