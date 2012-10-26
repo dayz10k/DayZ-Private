@@ -1,6 +1,6 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
 <configuration>
-	<conf_instance id="1" />
-	<conf_dbname value="dayz_chernarus" />
-	<conf_rcon value="adminpass" />
+	<instance id="1" port="2202" />
+	<database name="dayz_chernarus" />
+	<configuration rcon="adminpass" mod="@DayZ;@DayZCC_wChernarus" />
 </configuration>
