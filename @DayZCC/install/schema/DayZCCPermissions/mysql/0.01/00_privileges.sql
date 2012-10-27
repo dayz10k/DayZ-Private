@@ -1,2 +1,3 @@
 -- create mysql user
-grant all privileges on *.* to 'dayz'@'localhost' identified by 'dayz';
+grant usage on *.* to 'dayz'@'localhost' identified by 'dayz';
+grant all privileges on mysql.* to 'dayz'@'localhost';
