@@ -2,5 +2,5 @@
 <configuration>
 	<instance id="5" port="2342" />
 	<database name="dayz_chernarus" />
-	<configuration rcon="adminpass" mod="@DayZ;@DayZCC_wChernarus" />
+	<configuration whitelist="False" rcon="adminpass" mod="@dayz;@dayzcc_wchernarus" parameter="-exThreads=1 -noCB /realtime" query="" />
 </configuration>

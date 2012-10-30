@@ -1,6 +1,6 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
 <configuration>
-	<instance id="1" port="2202" />
+	<instance id="1" port="2302" />
 	<database name="dayz_chernarus" />
-	<configuration rcon="adminpass" mod="@DayZ;@DayZCC_wChernarus" />
+	<configuration whitelist="False" rcon="adminpass" mod="@dayz;@dayzcc_wchernarus" parameter="-exThreads=1 -noCB /realtime" query="" />
 </configuration>
