@@ -4,7 +4,7 @@
 	$number = mysql_num_rows($res);
 	
 	while ($row=mysql_fetch_array($res)) {
-		$Worldspace = str_replace("[", "", $row['pos']);
+		$Worldspace = str_replace("[", "", $row['worldspace']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = explode(",", $Worldspace);
 		$Inventory = $row['inventory'];
@@ -68,7 +68,7 @@
 ?>	
 	<div id="page-heading">
 		<h1><? echo "<title>".$name." - ".$sitename."</title>"; ?></h1>
-		<h1><? echo $name; ?> - <? echo $row['unique_id']; ?> - Last save: <? echo $row['last_update']; ?></h1>
+		<h1><? echo $name; ?> - <? echo $row['unique_id']; ?> - Last save: <? echo $row['last_updated']; ?></h1>
 	</div>
 	<!-- end page-heading -->
 
@@ -101,7 +101,7 @@
 							<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 							<?
 							include_once($path.'modules/calc.php');
-							echo world_pos($Worldspace, $serverworld);
+							echo sprintf("%03d",round(world_x($Worldspace[1], $serverworld))).sprintf("%03d",round(world_y($Worldspace[2], $serverworld)));
 							?>
 							</div>							
 						</div>

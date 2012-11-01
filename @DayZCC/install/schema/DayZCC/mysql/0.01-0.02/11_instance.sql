@@ -1,2 +1,1 @@
--- Insert default instances
-insert ignore into instance (id, world_id, tz_offset, inventory) values (2, 1, 0, '[]'),(3, 1, 0, '[]'),(4, 1, 0, '[]'),(5, 1, 0, '[]'),(6, 1, 0, '[]');
+insert ignore into instance (id) values (2),(3),(4),(5),(6);

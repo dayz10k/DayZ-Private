@@ -67,7 +67,7 @@
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 				//echo $good."<br />";
-				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC LIMIT 1";
+				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_updated DESC LIMIT 1";
 				//echo $playername."<br />";
 				$res = null;
 				$res = mysql_query($query) or die(mysql_error());

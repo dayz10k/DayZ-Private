@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- This file contains all revelant version information. -->
 <Version>
-	<Server	 version="3.6" />
-	<DayZ version="1.7.2.6" />
-	<DayZUtes version="1.0" />
-	<DayZCelle version="2.0" />
-	<DayZLingor version="1.0" />
-	<DayZNamalsk version="0.55" />
-	<DayZPanthera version="1.5" />
-	<DayZZargabad version="1.2" />
-	<DayZFallujah version="1.2" />
-	<DayZTakistan version="1.4" />
+  <Server version="4.0" />
+  <DayZ version="1.7.3" />
+  <DayZUtes version="1.0" />
+  <DayZCelle version="2.0" />
+  <DayZLingor version="1.0" />
+  <DayZNamalsk version="0.55" />
+  <DayZPanthera version="1.5" />
+  <DayZZargabad version="1.2" />
+  <DayZFallujah version="1.2" />
+  <DayZTakistan version="1.4" />
 </Version>

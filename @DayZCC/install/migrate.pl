@@ -1,4 +1,6 @@
 #!/usr/bin/perl -w
+# Bliss and Controlcenter schema migration utility 
+# by ayan4m1 and Crosire
 
 use Getopt::Long;
 use File::Basename;
@@ -8,7 +10,7 @@ use DBI;
 
 our %args;
 GetOptions(
-\%args,
+	\%args,
 	'hostname|host|h=s',
 	'username|user|u=s',
 	'password|pass|p=s',
@@ -22,7 +24,7 @@ GetOptions(
 my %db = (
 	'host' => $args{'hostname'} ? $args{'hostname'} : 'localhost',
 	'user' => $args{'username'} ? $args{'username'} : 'dayz',
-	'pass' => $args{'password'} ? $args{'password'} : 'dayz',
+	'pass' => $args{'password'} ? $args{'password'} : '',
 	'name' => $args{'database'} ? $args{'database'} : 'dayz_chernarus',
 	'port' => $args{'port'} ? $args{'port'} : '3306'
 );
@@ -37,8 +39,8 @@ die "> Error: Schema version must be specified for a non-standard schema!\n" if 
 
 my $schema1 = $args{'schema'} ? $args{'schema'} : "Bliss";
 my $schema2 = "DayZCC";
-my $version1 = $args{'version'} ? $args{'version'} : "0.26";
-my $version2 = "0.04";
+my $version1 = $args{'version'} ? $args{'version'} : "0.27";
+my $version2 = "0.03";
 
 print "Trying to connect to MySQL server on $db{'host'}, database $db{'name'} as $db{'user'}\n";
 my $dbh = DBIx::Transaction->connect("dbi:mysql:$db{'name'}:$db{'host'}:$db{'port'}", $db{'user'}, $db{'pass'}) or die "> Error: MySQL Error: ".DBI->errstr."\n";

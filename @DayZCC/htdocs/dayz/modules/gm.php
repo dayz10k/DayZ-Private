@@ -26,27 +26,74 @@ if (isset($_SESSION['user_id']))
 	var marker = null;
 
 	<?
-	if($world=="lingor") {
-	?>
-		// Values by Hardy
-		var pixelOrigin_ = new google.maps.Point(117.5, 74.8); 
-		var pixelsPerLonDegree_ = 235 / 360; 
-		var pixelsPerLonRadian_ = 235 / (2 * Math.PI);
-	<?
-	} elseif($world=="chernarus") {
+	if($world=="chernarus")
+	{
 	?>
 		// Values by DaTorqueMan
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
 		var pixelsPerLonDegree_ = 227.5 / 360;
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
-	} elseif($world=="utes") {
+	}
+	elseif($world=="lingor")
+	{
+	?>
+		// Values by Hardy
+		var pixelOrigin_ = new google.maps.Point(117.5, 74.8); 
+		var pixelsPerLonDegree_ = 235 / 360; 
+		var pixelsPerLonRadian_ = 235 / (2 * Math.PI);
+	<?
+	}
+	elseif($world=="utes")
+	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
 		var pixelsPerLonDegree_ = 227.5 / 360;
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
-	} elseif($world=="panthera2") {
+	}
+	elseif($world=="panthera2")
+	{
+	?>
+		var pixelOrigin_ = new google.maps.Point(118, 112.5);
+		var pixelsPerLonDegree_ = 227.5 / 360;
+		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
+	<?
+	}
+	elseif($world=="takistan")
+	{
+	?>
+		var pixelOrigin_ = new google.maps.Point(118, 112.5);
+		var pixelsPerLonDegree_ = 227.5 / 360;
+		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
+	<?
+	}
+	elseif($world=="fallujah")
+	{
+	?>
+		var pixelOrigin_ = new google.maps.Point(118, 112.5);
+		var pixelsPerLonDegree_ = 227.5 / 360;
+		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
+	<?
+	}
+	elseif($world=="mgb_celle2")
+	{
+	?>
+		var pixelOrigin_ = new google.maps.Point(118, 112.5);
+		var pixelsPerLonDegree_ = 227.5 / 360;
+		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
+	<?
+	}
+	elseif($world=="namalsk")
+	{
+	?>
+		var pixelOrigin_ = new google.maps.Point(118, 112.5);
+		var pixelsPerLonDegree_ = 227.5 / 360;
+		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
+	<?
+	}
+	elseif($world=="zargabad")
+	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
 		var pixelsPerLonDegree_ = 227.5 / 360;

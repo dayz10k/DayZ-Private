@@ -5,20 +5,19 @@
 		
 		for($i=0; $i < $N; $i++)
 		{
-			$query2 = "SELECT * FROM objects WHERE id = ".$aDoor[$i].""; 
+			$query2 = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND id = ".$aDoor[$i].""; 
 			$res2 = mysql_query($query2) or die(mysql_error());
 			while ($row2=mysql_fetch_array($res2)) {
-				$query2 = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$row2['otype']." - ".$row2['uid']."','{$_SESSION['login']}',NOW())";
+				$query2 = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$row2['class_name']." - ".$row2['uid']."','{$_SESSION['login']}',NOW())";
 				$sql2 = mysql_query($query2) or die(mysql_error());
 				$query2 = "DELETE FROM `objects` WHERE id='".$aDoor[$i]."'";
 				$sql2 = mysql_query($query2) or die(mysql_error());
-				$delresult = "Vehicle ".$row2['otype']." - ".$row2['uid']." successfully removed!";
+				$delresult = "Vehicle ".$row2['class_name']." - ".$row2['id']." successfully removed!";
 			}		
 			//echo($aDoor[$i] . " ");
 		}
 		//echo $_GET["deluser"];
 	}
-	
 	
 	error_reporting (E_ALL ^ E_NOTICE);
 	

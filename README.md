@@ -63,10 +63,9 @@ ________________________________________________________________________________
 
  - "Administration" combines an easy to use interface with options to control your server.
 
- - "Database" is the controldesk to your characters and vehicles on the server. Using Chive you can edit all revelant ingame information or backup, restore and reset your whole database.
+ - "Database" is the controldesk to your characters and vehicles on the server. Using Chive you can edit all ingame data or backup, restore and reset your whole database.
 
- - "Information" displays you all the relevant status information and monitors the system performance.
-
+ - "Information" displays you all the relevant application information and lets you change the language.
 
 
  **Database**

@@ -1,34 +1,21 @@
 <?
-	$query = "SELECT * FROM `objects` WHERE `id` = '".$_GET["id"]."' LIMIT 1"; 
+	$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = '".$_GET["id"]."' LIMIT 1"; 
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 	
 	while ($row=mysql_fetch_array($res)) {
-		$Worldspace = str_replace("[", "", $row['pos']);
+		$Worldspace = str_replace("[", "", $row['worldspace']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = str_replace("|", ",", $Worldspace);
 		$Worldspace = explode(",", $Worldspace);
 		$Backpack  = $row['inventory'];
 		$Backpack = str_replace("|", ",", $Backpack);
 		$Backpack  = json_decode($Backpack);
-
-		$owner = "";
-		$ownerid = "";
-		$owneruid = "";
-		if ($row['oid'] != "0"){
-			$query2 = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.id = '".$row['oid']."' LIMIT 1"; 
-			$res2	= mysql_query($query2) or die(mysql_error());
-			while ($row2=mysql_fetch_array($res2)){
-				$owner = $row2['name'];
-				$ownerid = $row2['id'];
-				$owneruid = $row2['unique_id'];
-			}
-		}
 	
-		$Hitpoints  = $row['health'];
+		$Hitpoints  = $row['parts'];
 		//$Hitpoints  ='[["wheel_1_1_steering",0.2],["wheel_2_1_steering",0],["wheel_1_4_steering",1],["wheel_2_4_steering",1],["wheel_1_3_steering",1],["wheel_2_3_steering",1],["wheel_1_2_steering",0],["wheel_2_2_steering",1],["motor",0.1],["karoserie",0.4]]';
 		$Hitpoints = str_replace("|", ",", $Hitpoints);
-		$Hitpoints  = json_decode($Hitpoints);
+		$Hitpoints = json_decode($Hitpoints);
 	
 		$xml = file_get_contents('/items.xml', true);
 		require_once($path.'modules/xml2array.php');
@@ -38,8 +25,8 @@
 		$vehicles_xml = XML2Array::createArray($xml);
 ?>	
 	<div id="page-heading">
-		<h1><? echo "<title>".$row['otype']." - ".$sitename."</title>"; ?></h1>
-		<h1><? echo $row['otype']; ?> - <? echo $row['id']; ?> - Last save: <? echo $row['lastupdate']; ?></h1>
+		<h1><? echo "<title>".$row['class_name']." - ".$sitename."</title>"; ?></h1>
+		<h1><? echo $row['class_name']; ?> - <? echo $row['id']; ?> - Last save: <? echo $row['last_updated']; ?></h1>
 	</div>
 	<!-- end page-heading -->
 
@@ -61,7 +48,7 @@
 			<div id="table-content">
 				<div id="gear_vehicle">
 					<div class="gear_info">
-						<img class="playermodel" src='<? echo $path; ?>images/vehicles/<? echo $row['otype']; ?>.png'/>
+						<img class="playermodel" src='<? echo $path; ?>images/vehicles/<? echo $row['class_name']; ?>.png'/>
 						<div id="gps" style="margin-left:46px;margin-top:54px">
 							<div class="gpstext" style="font-size: 22px;width:60px;text-align: left;margin-left:47px;margin-top:13px">
 							<?
@@ -76,23 +63,15 @@
 							<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 							<?
 								include_once($path."modules\calc.php");
-								echo world_pos($Worldspace, $serverworld);
+								echo sprintf("%03d",round(world_x($Worldspace[1], $serverworld))).sprintf("%03d",round(world_y($Worldspace[2], $serverworld)));
 							?>
 							</div>							
 						</div>
-						<? if($row['oid'] != "0"){?>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-115px">
-							<?echo 'Owner:&nbsp;<a href="index.php?view=info&show=1&id='.$owneruid.'&cid='.$ownerid.'">'.$owner.'</a>';?>
-						</div>
-						<?} ?>
-						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-95px">
 							<?echo 'Damage:&nbsp;'.$row['damage'];?>
 						</div>
-						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-75px">
+						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-95px">
 							<?echo 'Fuel:&nbsp;'.$row['fuel'];?>
-						</div>
-						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-55px">
-							<?echo 'Owner ID:&nbsp;'.$row['oid'];?>
 						</div>
 					</div>
 					<!-- Backpack -->
@@ -106,12 +85,12 @@
 							$freeslots = 0;
 							$freeweaps = 0;
 							$freebacks = 0;
-							$BackpackName = $row['otype'];
-							if(array_key_exists('s'.$row['otype'],$vehicles_xml['vehicles'])){
-								$maxmagazines = $vehicles_xml['vehicles']['s'.$row['otype']]['transportmaxmagazines'];
-								$maxweaps = $vehicles_xml['vehicles']['s'.$row['otype']]['transportmaxweapons'];
-								$maxbacks = $vehicles_xml['vehicles']['s'.$row['otype']]['transportmaxbackpacks'];
-								$BackpackName = $vehicles_xml['vehicles']['s'.$row['otype']]['Name'];
+							$BackpackName = $row['class_name'];
+							if(array_key_exists('s'.$row['class_name'],$vehicles_xml['vehicles'])){
+								$maxmagazines = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxmagazines'];
+								$maxweaps = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxweapons'];
+								$maxbacks = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxbackpacks'];
+								$BackpackName = $vehicles_xml['vehicles']['s'.$row['class_name']]['Name'];
 							}
 							if (count($Backpack) >0){
 							$bpweaponscount = count($Backpack[0][0]);

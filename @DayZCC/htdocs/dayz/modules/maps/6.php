@@ -24,10 +24,14 @@
 			{
 				if (preg_match($sectionpattern, $line, $matches)):
 					$Worldspace = explode(",", $matches[1]);
+					$x = 0;
+					$y = 0;
+					if(array_key_exists(0,$Worldspace)){$x = $Worldspace[0];}
+					if(array_key_exists(1,$Worldspace)){$y = $Worldspace[1];}
 
 					include_once($path.'modules/calc.php');
-					$description = "<h2>Heli crash site</h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/vehicles/Crashsite.png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>".world_pos2_crash($Worldspace, $serverworld)."</td></tr></table>";
-					$markers .= "['Crash site', '".$description."', ".world_pos_y_crash($Worldspace, $serverworld). ", ".world_pos_x_crash($Worldspace, $serverworld).", ".$k++.", '".$path."images/icons/Crashsite.png'],";
+					$description = "<h2>Wreck</h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/vehicles/Crashsite.png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>left: ".round(world_x($x,$serverworld))." top: ".round(world_y($y,$serverworld))."</td></tr></table>";
+					$markers .= "['Crash site', '".$description."', ".$x.", ".$y.", ".$k++.", '".$path."images/icons/Crashsite.png'],";
 				endif;
 			}
 			$s++;

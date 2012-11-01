@@ -64,7 +64,7 @@
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 
-				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC LIMIT 1";
+				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_updated DESC LIMIT 1";
 				$res = null;
 				$res = mysql_query($query) or die(mysql_error());
 				$dead = "";
@@ -77,9 +77,14 @@
 				$uid = "0";
 				
 				while ($row=mysql_fetch_array($res)) {
-					$Worldspace = str_replace("[", "", $row['pos']);
+					$Worldspace = str_replace("[", "", $row['worldspace']);
 					$Worldspace = str_replace("]", "", $Worldspace);
 					$Worldspace = explode(",", $Worldspace);
+					$x = 0;
+					$y = 0;
+					if(array_key_exists(1,$Worldspace)){$x = $Worldspace[1];}
+					if(array_key_exists(2,$Worldspace)){$y = $Worldspace[2];}
+					
 					$dead = ($row['is_dead'] ? '_dead' : '');
 					$inventory = substr($row['inventory'], 0, 40)."...";
 					$backpack = substr($row['backpack'], 0, 40)."...";
@@ -89,8 +94,8 @@
 					$name = $row['name'];
 					
 					include_once($path.'modules/calc.php');
-					$description = "<h2><a href=\"index.php?view=info&show=1&id=".$uid."&cid=".$id."\">".htmlspecialchars($name, ENT_QUOTES)." - ".$uid."</a></h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/models/".str_replace('"', '', $model).".png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>".world_pos2($Worldspace, $serverworld)."</td></tr></table>";
-					$markers .= "['".htmlspecialchars($name, ENT_QUOTES)."', '".$description."', ".world_pos_y($Worldspace, $serverworld).", ".world_pos_x($Worldspace, $serverworld).", ".$m++.", '".$path."images/icons/player".$dead.".png'],";
+					$description = "<h2><a href=\"index.php?view=info&show=1&id=".$uid."&cid=".$id."\">".htmlspecialchars($name, ENT_QUOTES)." - ".$uid."</a></h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/models/".str_replace('"', '', $model).".png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>left: ".round(world_x($x,$serverworld))." top: ".round(world_y($y,$serverworld))."</td></tr></table>";
+					$markers .= "['".htmlspecialchars($name, ENT_QUOTES)."', '".$description."', ".$x.", ".$y.", ".$m++.", '".$path."images/icons/player".$dead.".png'],";
 				}				
 			}
 		}
