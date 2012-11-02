@@ -36,9 +36,7 @@ ________________________________________________________________________________
  - [Microsoft Visual C++ 2008 Redistributable Update (http://www.microsoft.com/en-us/download/details.aspx?id=11895)]
  - [Microsoft Visual C++ 2010 Redistributable (http://www.microsoft.com/en-us/download/details.aspx?id=8328)]
  - [ArmA 2 Combined Operations with OA Beta Patch 97771 (ftp://downloads.bistudio.com/arma2.com/update/beta/ARMA2_OA_Build_97771.zip)]
- - DayZ 1.7.2.6 (http://dayzmod.com/?Download)
- - DayZ Lingor if you want to play it: (http://dayzlingor.tk)
-
+ - DayZ 1.7.3 (http://dayzmod.com/?Download)
 
  The "[...]" requirements can be installed from the setup wizard.
 
