@@ -68,7 +68,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 					$chbox = "";
 					$tableheader = header_vehicle(0, $chbox);
 					echo $tableheader;
-					$query = "SELECT * FROM `objects` WHERE `otype` LIKE '%". str_replace(" ", "%' OR `otype` LIKE '%", $good). "%'";
+					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND `class_name` LIKE '%". str_replace(" ", "%' OR `class_name` LIKE '%", $good). "%'";
 					$res = mysql_query($query) or die(mysql_error());
 					$chbox = "";
 					while ($row=mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, $serverworld);}
@@ -78,7 +78,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 					$chbox = "";
 					$tableheader = header_vehicle(0, $chbox);
 					echo $tableheader;
-					$query = "SELECT * FROM `objects` WHERE `inventory` LIKE '%". str_replace(" ", "%' OR `inventory` LIKE '%", $good). "%'";
+					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.inventory LIKE '%". str_replace(" ", "%' OR instance_vehicle.inventory LIKE '%", $good). "%'";
 					$res = mysql_query($query) or die(mysql_error());
 					$chbox = "";
 					while ($row=mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, $serverworld);}

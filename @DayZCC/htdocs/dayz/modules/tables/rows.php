@@ -33,6 +33,7 @@ function header_vehicle($show, $chbox){
 		<th class="table-header-repeat line-left" width="7%"><a href="index.php?view=table&show='.$show.'&sort=3">Damage</a></th>
 		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4">Position</a></th>
 		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=5">Inventory</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=6">Hitpoints</a></th>
 		</tr>';
 }
 
