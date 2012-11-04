@@ -34,7 +34,7 @@
 5 "task"
 5 "allow" !"this enableSimulation false;this allowDammage false;this disableAI 'FSM';this disableAI 'ANIM';this disableAI 'MOVE';"
 5 "enable" !"this enableSimulation false;this allowDammage false;this disableAI 'FSM';this disableAI 'ANIM';this disableAI 'MOVE';"
-5 "spawn" !"spawn BIS_Effects_AirDestruction" !"spawn BIS_Effects_AirDestructionStage2" !"spawn BIS_Effects_Burn" !"_this spawn fnc_plyrHit"
+5 "spawn" !"spawn BIS_Effects_AirDestruction" !"spawn BIS_Effects_AirDestructionStage2" !"spawn BIS_Effects_Burn" !"_this spawn fnc_plyrHit" !"_this spawn fnc_plyrDeath"
 5 "for"
 1 "this" !"this enableSimulation false;this allowDammage false;this disableAI 'FSM';this disableAI 'ANIM';this disableAI 'MOVE';" !"_v setVehicleInit format [\"[this, %1, %2,false,true]spawn BIS_Effects_Burn\",_int, _t];" !"_v setVehicleInit \"[this] spawn BIS_Effects_AirDestruction\";" !"_this spawn fnc_plyrHit"
 1 "format"
@@ -53,7 +53,7 @@
 5 "rland"
 1 "BIS_Effects" //kicking not needed anymore, monitoring only
 5 "BIS_" !"BIS_Effects"
-5 "box"  !"z_ru_soldier_light" !"z_us_soldier" !"z_us_soldier_light" !"z_ru_soldier" !"CamoWinter_DZN"
+5 "box"
 5 "Mine"
 5 "ARTY_"
 5 "SADARM_"
