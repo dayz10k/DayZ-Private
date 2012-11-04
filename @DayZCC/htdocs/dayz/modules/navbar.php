@@ -58,7 +58,6 @@ if (isset($_SESSION['user_id']))
 						<li class="li-mass-mail-users"><a href="index.php?view=table&show=4" class="class:massmail item">Vehicles</a></li>
 						<li class="li-mass-mail-users"><a href="index.php?view=table&show=5" class="class:massmail item">Deployables</a></li>
 						<li class="li- separator"><span></span></li>
-						<li class="li-mass-mail-users"><a href="index.php?view=feed" class="class:massmail item">Feed</a></li>
 						<li class="li-mass-mail-users"><a href="index.php?view=check" class="class:massmail item">Check</a></li>
 						<li class="li- separator"><span></span></li>
 						<li class="li-mass-mail-users"><a href="index.php?view=search" class="class:massmail item">Search</a></li>
