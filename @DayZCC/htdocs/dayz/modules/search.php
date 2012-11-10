@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 				case 'player':
 					$tableheader = header_player(0);
 					echo $tableheader;
-					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC";
+					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC";
 					$result = mysql_query($playerquery) or die(mysql_error());
 					$tablerows = "";
 					while ($row=mysql_fetch_array($result)) {
@@ -58,7 +58,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 				case 'item':
 					$tableheader = header_player(0);
 					echo $tableheader;
-					$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `inventory` LIKE '%". str_replace(" ", "%' OR `backpack` LIKE '%", $good). "%'"." ORDER BY `last_update` DESC";
+					$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `inventory` LIKE '%". str_replace(" ", "%' OR `backpack` LIKE '%", $good). "%'"." ORDER BY `last_updated` DESC";
 					$result = mysql_query($query) or die(mysql_error());
 					$tablerows = "";
 					while ($row=mysql_fetch_array($result)) {$tablerows .= row_player($row, $serverworld);}
@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 				default:
 					$tableheader = header_player(0);
 					echo $tableheader;
-					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_update DESC";
+					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC";
 					$result = mysql_query($playerquery) or die(mysql_error());
 					$tablerows = "";
 					while ($row=mysql_fetch_array($result)) {$tablerows .= row_player($row, $serverworld);}

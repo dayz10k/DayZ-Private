@@ -10,7 +10,7 @@
 			while ($row2=mysql_fetch_array($res2)) {
 				$query2 = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$row2['class_name']." - ".$row2['uid']."','{$_SESSION['login']}',NOW())";
 				$sql2 = mysql_query($query2) or die(mysql_error());
-				$query2 = "DELETE FROM `objects` WHERE id='".$aDoor[$i]."'";
+				$query2 = "DELETE FROM `instance_vehicle` WHERE id = '".$aDoor[$i]."'";
 				$sql2 = mysql_query($query2) or die(mysql_error());
 				$delresult = "Vehicle ".$row2['class_name']." - ".$row2['id']." successfully removed!";
 			}		
