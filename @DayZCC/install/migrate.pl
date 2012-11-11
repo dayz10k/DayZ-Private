@@ -38,9 +38,9 @@ print "Starting up ...";
 die "> Error: Schema version must be specified for a non-standard schema!\n" if ($args{'schema'} && !defined $args{'version'});
 
 my $schema1 = $args{'schema'} ? $args{'schema'} : "Bliss";
-my $schema2 = "DayZCC";
+my $schema2 = "Controlcenter";
 my $version1 = $args{'version'} ? $args{'version'} : "0.27";
-my $version2 = "0.03";
+my $version2 = "0.04";
 
 print "Trying to connect to MySQL server on $db{'host'}, database $db{'name'} as $db{'user'}\n";
 my $dbh = DBIx::Transaction->connect("dbi:mysql:$db{'name'}:$db{'host'}:$db{'port'}", $db{'user'}, $db{'pass'}) or die "> Error: MySQL Error: ".DBI->errstr."\n";
