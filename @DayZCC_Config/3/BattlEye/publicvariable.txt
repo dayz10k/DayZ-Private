@@ -13,4 +13,4 @@
 5 "rland"
 5 "rsetdir"
 5 "local_sefFuel"
-1 "spawn" !"addMPEventHandler [\"MPHit\", {_this spawn fnc_plyrHit;}];"
+1 "spawn" !="_this spawn fnc_plyrHit;"
