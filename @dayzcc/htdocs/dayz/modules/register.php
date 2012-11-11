@@ -7,10 +7,7 @@ function GenerateSalt($n=3)
 	$key = '';
 	$pattern = '1234567890abcdefghijklmnopqrstuvwxyz.,*_-=+';
 	$counter = strlen($pattern)-1;
-	for($i=0; $i<$n; $i++)
-	{
-		$key .= $pattern{rand(0,$counter)};
-	}
+	for($i=0; $i<$n; $i++) { $key .= $pattern{rand(0,$counter)}; }
 	return $key;
 }
 
@@ -35,7 +32,6 @@ if (empty($_POST))
 		<div id="content-table-inner">
 		
 			<!--  start table-content  -->
-			
 			<div id="table-content">
 				<h2>Enter login, password and privileges for new user</h2>
 				
@@ -118,7 +114,6 @@ if (empty($_POST))
 }
 else
 {
-
 	$login = (isset($_POST['login'])) ? mysql_real_escape_string($_POST['login']) : '';
 	$password = (isset($_POST['password'])) ? mysql_real_escape_string($_POST['password']) : '';
 	$permissions = (isset($_POST['privileges'])) ? mysql_real_escape_string($_POST['privileges']) : '';

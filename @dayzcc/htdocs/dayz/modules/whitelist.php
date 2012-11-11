@@ -6,20 +6,24 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 	// Thanks to deadfred666 for parts of his code!
 	if (ISSET($_POST['action']))
 	{
-		// Add Whitelisted User
+		// Add new Whitelisted User
 		if ($_POST['action'] == "Add") {
 			$totalFields = 0;
 			if (isset($_POST['name'])) { $name = $_POST['name']; $totalFields++; }
 			if (isset($_POST['guid'])) { $guid = $_POST['guid']; $totalFields++; }
 			if ($totalFields == 2) {
-				mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1');") or die(mysql_error());
-				print "<div>$name ($guid) was added to the whitelist!</div>";
+				if (strlen($name) < 2 || strlen($guid) != 32) {
+					echo "<div id='page-heading'><h2>Entered information is too short!</h2></div>";
+				} else {
+					mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1');") or die(mysql_error());
+					print "<div>$name ($guid) was added to the whitelist!</div>";
+				}
 			} else {
-				echo "<div>Error: Requiered Field Missing</div>";
+				echo "<div id='page-heading'><h2>Error: Required field is missing!</h2></div>";
 			}
 		}
 	
-		// Remove Whitelist User
+		// Change status of Whitelist User
 		if ($_POST['action'] == "On" || $_POST['action'] == "Off") {
 			if (isset($_POST['id'])) {
 				$id = $_POST['id'];
