@@ -1,14 +1,16 @@
 <?
+	error_reporting (E_ALL ^ E_NOTICE);
+	
 	if (isset($_POST["vehicle"])) {
 		$aDoor = $_POST["vehicle"];
 		$N = count($aDoor);
 		
 		for($i=0; $i < $N; $i++)
 		{
-			$query2 = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND id = ".$aDoor[$i].""; 
+			$query2 = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = ".$aDoor[$i].""; 
 			$res2 = mysql_query($query2) or die(mysql_error());
 			while ($row2=mysql_fetch_array($res2)) {
-				$query2 = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$row2['class_name']." - ".$row2['uid']."','{$_SESSION['login']}',NOW())";
+				$query2 = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$row2['class_name']." - ".$row2['id']."','{$_SESSION['login']}',NOW())";
 				$sql2 = mysql_query($query2) or die(mysql_error());
 				$query2 = "DELETE FROM `instance_vehicle` WHERE id = '".$aDoor[$i]."'";
 				$sql2 = mysql_query($query2) or die(mysql_error());
@@ -18,8 +20,13 @@
 		}
 		//echo $_GET["deluser"];
 	}
+
 	
-	error_reporting (E_ALL ^ E_NOTICE);
+	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_server.'" /FO CSV');
+	$serverexestatus = explode(",", strtolower($serverexestatus));
+	$serverexestatus = $serverexestatus[0];
+	$serverexestatus = str_replace('"', "", $serverexestatus);
+	if ($serverexestatus == strtolower($exe_server)){$serverrunning = true;} else {$serverrunning = false;}
 	
 	$res = mysql_query($query) or die(mysql_error());
 	$pnumber = mysql_num_rows($res);			
@@ -60,7 +67,7 @@
 	
 	
 	while ($row=mysql_fetch_array($res)) {
-		if (!$serverrunning){$chbox = "<td class=\"gear_preview\"><input name=\"vehicle[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td>";}	
+		if (!$serverrunning){$chbox = "<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input name=\"vehicle[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td>";}	
 		$tablerows .= row_vehicle($row, $chbox, $serverworld);
 	}
 	include ('paging.php');

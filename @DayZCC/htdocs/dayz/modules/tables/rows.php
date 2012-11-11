@@ -303,10 +303,10 @@ function row_vehicle($row, $chbox, $world) {
 
 	include_once($path.'modules/calc.php');
 	$tablerow = "<tr>".$chbox."
-		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
-		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['class_name']."</a></td>			
+		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
+		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['class_name']."</a></td>			
 		<td align=\"center\" class=\"gear_preview\" style=\"background-color: rgba(100,".round((255/100)*(100 - ($row['damage']*100))).",0,0.8);\">".substr($row['damage'], 0, 6)."</td>
-		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".sprintf("%03d",round(world_x($x, $world))).sprintf("%03d",round(world_y($y, $world)))."</a></td>
+		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".sprintf("%03d",round(world_x($x, $world))).sprintf("%03d",round(world_y($y, $world)))."</a></td>
 		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
 		<td align=\"center\" class=\"gear_preview\">".$HitpointsPreview."</td>
 		</tr>";
