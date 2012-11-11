@@ -11,7 +11,7 @@
 		
 		$s = 0;
 		foreach ($lines as $line):
-			if (strpos($line,"SERVER: INITIALIZED!") !== false) {$i = $s;}
+			if (strpos($line,"SERVER VERSION") !== false) {$i = $s;}
 			$s++;
 		endforeach;
 
