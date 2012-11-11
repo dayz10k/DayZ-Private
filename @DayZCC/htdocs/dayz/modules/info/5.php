@@ -77,7 +77,7 @@
 							</div>							
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-115px">
-							<?echo 'Owner:&nbsp;<a href="index.php?view=info&show=1&id='.$owneruid.'&cid='.$ownerid.'">'.$owner.'</a>';?>
+							<?echo 'Owner:&nbsp;<a href="index.php?view=info&show=1&id='.$owneruid.'&cid='.$ownerid.'" style="color:blue">'.$owner.'</a>';?>
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-95px">
 							<?echo 'Owner ID:&nbsp;'.$row['owner_id'];?>

@@ -27,7 +27,7 @@
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 
-	$tableheader = header_player($show);
+	$tableheader = header_player($show, $order);
 		
 	while ($row=mysql_fetch_array($res)) {$tablerows .= row_player($row, $serverworld);}
 	include ('paging.php');

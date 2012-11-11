@@ -1,14 +1,14 @@
 <?
 
-function header_player($show){
+function header_player($show, $order){
 	return '<tr>
 		<th class="table-header-repeat line-left" width="5%"><a href="">Status</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=1">Player Name</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=2">Player UID</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=3">Position</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4">Health</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=5">Inventory preview</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=6">Backpack preview</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.$order.'">Player Name</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.$order.'">Player UID</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.$order.'">Position</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.$order.'">Health</a></th>
+		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.$order.'">Inventory preview</a></th>
+		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.$order.'">Backpack preview</a></th>
 		</tr>';
 }
 
@@ -25,26 +25,26 @@ function header_player_online($show){
 		</tr>';
 }
 
-function header_vehicle($show, $chbox){
+function header_vehicle($show, $chbox, $order){
 	return '
 		<tr>'.$chbox.'
-		<th class="table-header-repeat line-left" width="5%"><a href="index.php?view=table&show='.$show.'&sort=1">ID</a></th>
-		<th class="table-header-repeat line-left" width="18%"><a href="index.php?view=table&show='.$show.'&sort=2">Classname</a></th>
-		<th class="table-header-repeat line-left" width="7%"><a href="index.php?view=table&show='.$show.'&sort=3">Damage</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4">Position</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=5">Inventory</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=6">Hitpoints</a></th>
+		<th class="table-header-repeat line-left" width="5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.$order.'">ID</a></th>
+		<th class="table-header-repeat line-left" width="18%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.$order.'">Classname</a></th>
+		<th class="table-header-repeat line-left" width="7%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.$order.'">Damage</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.$order.'">Position</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.$order.'">Inventory</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.$order.'">Hitpoints</a></th>
 		</tr>';
 }
 
-function header_deployable($show, $chbox){
+function header_deployable($show, $chbox, $order){
 	return '
 		<tr>'.$chbox.'
-		<th class="table-header-repeat line-left" width="5%"><a href="index.php?view=table&show='.$show.'&sort=1">ID</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=2">UID</a></th>
-		<th class="table-header-repeat line-left" width="30%"><a href="index.php?view=table&show='.$show.'&sort=3">Classname</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4">Position</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=5">Inventory</a></th>
+		<th class="table-header-repeat line-left" width="5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.$order.'">ID</a></th>
+		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.$order.'">UID</a></th>
+		<th class="table-header-repeat line-left" width="30%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.$order.'">Classname</a></th>
+		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.$order.'">Position</a></th>
+		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.$order.'">Inventory</a></th>
 		</tr>';
 }
 

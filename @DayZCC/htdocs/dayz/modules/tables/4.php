@@ -63,8 +63,7 @@
 		$formfoot = '<input type="submit" class="submit-login"  /></form>';
 	}
 	
-	$tableheader = header_vehicle($show, $chbox);
-	
+	$tableheader = header_vehicle($show, $chbox, $order);
 	
 	while ($row=mysql_fetch_array($res)) {
 		if (!$serverrunning){$chbox = "<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input name=\"vehicle[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td>";}	

@@ -1,6 +1,10 @@
 <?
-	$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = '".$_GET["id"]."' LIMIT 1"; 
-	$res = mysql_query($query) or die(mysql_error());
+	if (isset($_GET["action"])) {
+		if ($_GET["action"] == "repair") {mysql_query("UPDATE `instance_vehicle` SET parts='[]', damage='0' WHERE id = '".$_GET["id"]."'");}
+		if ($_GET["action"] == "refuel") {mysql_query("UPDATE `instance_vehicle` SET fuel='1' WHERE id = '".$_GET["id"]."'");}
+	}
+	
+	$res = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = '".$_GET["id"]."' LIMIT 1") or die(mysql_error());
 	$number = mysql_num_rows($res);
 	
 	while ($row=mysql_fetch_array($res)) {
@@ -68,10 +72,10 @@
 							</div>							
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-115px">
-							<?echo 'Damage:&nbsp;'.$row['damage'];?>
+							<?echo 'Damage:&nbsp;<a href="index.php?view=info&show=4&id='.$_GET["id"].'&action=repair" style="color:blue">'.$row['damage'].'</a>';?>
 						</div>
 						<div class="statstext" style="width:180px;margin-left:205px;margin-top:-95px">
-							<?echo 'Fuel:&nbsp;'.$row['fuel'];?>
+							<?echo 'Fuel:&nbsp;<a href="index.php?view=info&show=4&id='.$_GET["id"].'&action=refuel" style="color:blue">'.$row['fuel'].'</a>';?>
 						</div>
 					</div>
 					<!-- Backpack -->
@@ -240,6 +244,7 @@
 			</div>
 			<!--  end table-content  -->
 	
+			<form action="index.php?view=table&show=8" method="post"><input type="submit" class="submit-login" /></form>
 			<div class="clear"></div>
 		 
 		</div>

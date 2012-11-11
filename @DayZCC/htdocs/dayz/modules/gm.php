@@ -29,8 +29,8 @@ if (isset($_SESSION['user_id']))
 	if($world=="chernarus")
 	{
 	?>
-		// Values by DaTorqueMan
-		var pixelOrigin_ = new google.maps.Point(118, 112.5);
+		// Values by DaTorqueMan and SilverShot
+		var pixelOrigin_ = new google.maps.Point(117, 96.5);
 		var pixelsPerLonDegree_ = 227.5 / 360;
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?

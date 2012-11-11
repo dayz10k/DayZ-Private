@@ -6,8 +6,8 @@
 	//<th class="table-header-repeat line-left" width="5%"><a href="">Ping</a></th>
 
 	$cmd = "players";
-	$answer = rcon($serverip,$serverport,$rconpassword,$cmd);
-	$tableheader = header_player_online($show);
+	$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
+	$tableheader = header_player_online($show, $order);
 
 	if ($answer != "") {
 		$k = strrpos($answer, "---");

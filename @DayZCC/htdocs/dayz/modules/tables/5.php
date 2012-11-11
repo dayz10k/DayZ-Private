@@ -57,7 +57,7 @@
 		$formfoot = '<input type="submit" class="submit-login"  /></form>';
 	}
 	
-	$tableheader = header_deployable($show, $chbox);
+	$tableheader = header_deployable($show, $chbox, $order);
 	
 	while ($row=mysql_fetch_array($res)) {
 		if (!$serverrunning){$chbox = "<td class=\"gear_preview\"><input name=\"deployable[]\" value=\"".$row['unique_id']."\" type=\"checkbox\"/></td>";}	
