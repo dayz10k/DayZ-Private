@@ -7,7 +7,7 @@
 
 	$cmd = "players";
 	$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
-	$tableheader = header_player_online($show, $order);
+	$tableheader = header_player_online($show);
 
 	if ($answer != "") {
 		$k = strrpos($answer, "---");
