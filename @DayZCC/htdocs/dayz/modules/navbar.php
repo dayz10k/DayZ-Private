@@ -53,6 +53,7 @@ if (isset($_SESSION['user_id']))
 								<li class="li-add-new-user"><a href="index.php?view=table&show=1" class="class:newarticle item">Alive</a></li>
 								<li class="li-add-new-user"><a href="index.php?view=table&show=2" class="class:newarticle item">Dead</a></li>
 								<li class="li-add-new-user"><a href="index.php?view=table&show=3" class="class:newarticle item">All</a></li>
+								<li class="li-add-new-user"><a href="index.php?view=whitelist" class="class:newarticle item">Whitelist</a></li>
 							</ul>
 						</li>
 						<li class="li-mass-mail-users"><a href="index.php?view=table&show=4" class="class:massmail item">Vehicles</a></li>
