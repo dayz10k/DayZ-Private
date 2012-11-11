@@ -26,6 +26,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 		$sort = 0;
 	}
 	
+	// Thanks to SilverShot and ChemicalBliss for the order code
 	if(isset($_GET['order']))
 	{
 		$order = $_GET['order'];

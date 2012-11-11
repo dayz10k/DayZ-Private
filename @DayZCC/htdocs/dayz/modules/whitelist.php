@@ -3,6 +3,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 {
 	$pagetitle = "Whitelist";
 	
+	// Thanks to deadfred666 for parts of his code!
 	if (ISSET($_POST['action']))
 	{
 		// Add Whitelisted User

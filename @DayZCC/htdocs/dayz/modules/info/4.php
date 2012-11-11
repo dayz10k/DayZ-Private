@@ -1,4 +1,5 @@
 <?
+	// Thanks to SilverShot and ChemicalBliss for their initial idea about the repair and refuel feature
 	if (isset($_GET["action"])) {
 		if ($_GET["action"] == "repair") {mysql_query("UPDATE `instance_vehicle` SET parts='[]', damage='0' WHERE id = '".$_GET["id"]."'");}
 		if ($_GET["action"] == "refuel") {mysql_query("UPDATE `instance_vehicle` SET fuel='1' WHERE id = '".$_GET["id"]."'");}
