@@ -1,8 +1,9 @@
 DayZ Server Controlcenter by Crosire
 ====================================
 
+
 Contents:
-=========
+---------
 
 1. Introduction
 2. Requirements
@@ -12,26 +13,29 @@ Contents:
 6. Troubleshooting
 
 
+
 1. Introduction:
-================
+----------------
 
  Thanks for downloading my Server Controlcenter. Hours of work went into this, so a thank you and some support would be nice :) Enjoy!
  
  
+
 2. Requirements:
-================
+----------------
 
  - .Net Framework 2 and/or 4 (http://www.microsoft.com/download/en/details.aspx?id=24872)
  - [Microsoft Visual C++ 2008 Redistributable Update (http://www.microsoft.com/en-us/download/details.aspx?id=11895)]
  - [Microsoft Visual C++ 2010 Redistributable (http://www.microsoft.com/en-us/download/details.aspx?id=8328)]
  - [ArmA 2 Combined Operations with recommended Beta Patch (http://www.arma2.com/beta-patch.php)]
- - DayZ 1.7.3 (http://dayzmod.com/?Download)
+ - DayZ (http://dayzmod.com/?Download)
 
  The "[...]" requirements can be installed right from the setup wizard.
 
+
  
 3. Installation:
-================
+----------------
 
  If you have steam: Start ArmA 2 OA once with steam and quit again (even if you can't play because of no VGA). Now copy the "Addons" folder in your "ArmA 2" folder into your "ArmA 2 Operation Arrowhead" folder to have Combined Operations. Start Combined Operations through Steam at least one time again for the keys to generate!
 
@@ -40,8 +44,9 @@ Contents:
  After installation you are ready to run the Controlcenter. Please read the next paragraph for more detailed information on how to use it before posting any topics on the web and do not forget to change default passwords!
 
  
+
 4. The Controlcenter:
-=====================
+---------------------
 
  These three options are available after installation:
 
@@ -54,19 +59,23 @@ Contents:
  - "Information" displays you all the relevant application information and lets you change the language.
 
 
+
  **Database**
- ------------
+
  To start editing wait until Chive has connected to MySQL sucessfully, login using default MySQL information
  and select the dayz database ("dayz_chernarus" for example). Enter a table to edit its contents (click on "Browse") and edit them like you want.
 
  - instance:
    Everything here can be configurated from the Controlcenter, so it's not interesting.
 
- - instance_vehicles:
+ - instance_vehicle:
    Contains all ingame vehicles, which can be spawned from the "Vehicles" Tab ("Vehicle Generating Script") found under "Configuration" in the Controlcenter. Changeable options are damage, damaged parts, fuel, inventory and more.
 
- - instance_deployables:
+ - instance_deployable:
    Contains all ingame tents and sandbags.
+   
+ - instance_building:
+   Contains all extra buildings that are spawned on serverstartup.
 
  - log_code:
    Description for log. Not interesting.
@@ -74,6 +83,9 @@ Contents:
  - log_entry:
    Server logging.
 
+ - log_whitelist:
+   Logs player connections.
+   
  - log_tool:
    Action log from the admin tool.
 
@@ -83,23 +95,20 @@ Contents:
  - survivor:
    Player data is saved here. Every new character gets a new id. To match the character to a player just compare the unique_id with the profile table! You can change inventory, health and everything character related here.
 
-   Position Line: [direction|[X|Y|Z]]
-
-   Medical Line:  [dead|unconscious|infected|injured|pain|cardiac arrest|low blood|blood count|[wounds]|[leg fractures|arm fractures]|time unconscious|[X|X]]
-
-   To display the profile name in the survivor table, run the following sql qery: "SELECT survivor.id as survivor_id, profile.name, profile.unique_id, survivor.inventory, survivor.backpack, survivor.medical, survivor.model FROM survivor LEFT JOIN profile ON profile.unique_id = survivor.unique_id WHERE survivor.is_dead = 0"
-
  - vehicle, world_vehicle:
    All possible spawn locations for vehicles here. They are used by the vehicle generation script, so you can add new vehicle spawn positions and their chance in the table.
+   
+ - building, world_vehicle:
+   Same like vehiecles, just for buildings.
 
  - users:
    Contains users from the admin tool, their hashed passwords and permissions.
 
 
- **Administration**
- ------------------
- Wait until the login page is displayed and login using default user and password  found below (can be changed when clicking on the "account" button).
 
+ **Administration**
+ 
+ Wait until the login page is displayed and login using default user and password found below (can be changed when clicking on the "account" button).
 
  - Dashbord:
    Overview of your server: which mods are running, how many players are allowed and online and the ability
@@ -109,17 +118,19 @@ Contents:
    Allows you to start and stop your server and BattlEye Extended Controls!
 
  - Entitys & Info:
-   Lists of ingame vehicles, spawn locations or player information.
+   Lists of ingame vehicles, spawn locations or player information. Allows you to manage the whitelist and check for banned items.
 
  - Map:
-   Display all the entitys on a map of your current selected mission. New feature is the crash site map.
+   Display all the entitys on a map of your current selected mission. New feature is the wreck map, which will parse logs and display where those are located.
 
-
+ 
  To logout again, press the button on the top right corner.
 
 
+
+
 5. Default Login information:
-=============================
+-----------------------------
 
 (It is highly recommended to change these!)
 
@@ -129,17 +140,14 @@ Contents:
 
  - Chive/MySQL:
  Username: dayz
- Password: dayz (Change this on the local tab in the Controlcenter)
+ Password: dayz (Change this on the local tab)
 
  - BattlEye Rcon:
- Password: adminpass (Change this on the configuration tab in the Controlcenter)
-
- - DayZ Server:
- Administration Password: (Random)
+ Password: adminpass (Change this on the configuration tab)
 
 
 6. Troubleshooting:
-===================
+-------------------
 
  --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
