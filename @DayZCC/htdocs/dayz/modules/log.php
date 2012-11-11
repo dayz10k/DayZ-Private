@@ -4,7 +4,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 	$pagetitle = "Server Log";
 	$logtext = "";
 	
-	$handle = fopen($path_logserver, "r");
+	$handle = fopen($pathlogserver, "r");
 	while (!feof($handle)) {$logtext .= fgets($handle);}
 	fclose ($handle);
 

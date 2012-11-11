@@ -22,11 +22,11 @@
 	}
 
 	
-	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_server.'" /FO CSV');
+	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
 	$serverexestatus = explode(",", strtolower($serverexestatus));
 	$serverexestatus = $serverexestatus[0];
 	$serverexestatus = str_replace('"', "", $serverexestatus);
-	if ($serverexestatus == strtolower($exe_server)){$serverrunning = true;} else {$serverrunning = false;}
+	if ($serverexestatus == strtolower($exeserver)){$serverrunning = true;} else {$serverrunning = false;}
 	
 	$res = mysql_query($query) or die(mysql_error());
 	$pnumber = mysql_num_rows($res);			

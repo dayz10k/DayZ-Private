@@ -9,8 +9,8 @@ $pagetitle = "Server control";
 	echo "<title>".$pagetitle." - ".$sitename."</title>";
 	echo "<h1>".$pagetitle."</h1>";
 
-	$commandString_server = "start \"\" /d \"".$path_arma."\" /b ".'"'.$path_server.'"'.$exe_server_string;
-	$commandString_bec = "start \"\" /d \"".$path_bec."\" ".'"'.$path_bec.'\\'.$exe_bec.'"'.$exe_bec_string;
+	$commandString_server = "start \"\" /d \"".$patharma."\" /b ".'"'.$pathserver.'"'.$exeserver_string;
+	$commandString_bec = "start \"\" /d \"".$pathbec."\" ".'"'.$pathbec.'\\'.$exebec.'"'.$exebec_string;
 
 	$serverrunning = false;
 	$becrunning = false;
@@ -25,12 +25,12 @@ $pagetitle = "Server control";
 		
 				break;
 			case 1:
-				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_server.'" /FO CSV');
+				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
 				$serverexestatus = explode(",", strtolower($serverexestatus));
 				$serverexestatus = $serverexestatus[0];
 				$serverexestatus = str_replace('"', "", $serverexestatus);
 				
-				if ($serverexestatus == strtolower($exe_server)){
+				if ($serverexestatus == strtolower($exeserver)){
 					$output = exec('taskkill /IM '.$serverexestatus);
 					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())";
 					$sql2 = mysql_query($query) or die(mysql_error());
@@ -46,12 +46,12 @@ $pagetitle = "Server control";
 
 				break;
 			case 4:
-				$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_bec.'" /FO CSV');
+				$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV');
 				$becexestatus = explode(",", strtolower($becexestatus));
 				$becexestatus = $becexestatus[0];
 				$becexestatus = str_replace('"', "", $becexestatus);
 				
-				if ($becexestatus == strtolower($exe_bec)){
+				if ($becexestatus == strtolower($exebec)){
 					$output = exec('taskkill /IM '.$becexestatus);
 					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP BEC','{$_SESSION['login']}',NOW())";
 					$sql2 = mysql_query($query) or die(mysql_error());
@@ -68,12 +68,12 @@ $pagetitle = "Server control";
 		
 				break;
 			default:
-				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_server.'" /FO CSV');
+				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
 				$serverexestatus = explode(",", strtolower($serverexestatus));
 				$serverexestatus = $serverexestatus[0];
 				$serverexestatus = str_replace('"', "", $serverexestatus);
 				
-				if ($serverexestatus == strtolower($exe_server)){
+				if ($serverexestatus == strtolower($exeserver)){
 					$output = exec('taskkill /IM '.$serverexestatus);
 					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())";
 					$sql2 = mysql_query($query) or die(mysql_error());
@@ -84,18 +84,18 @@ $pagetitle = "Server control";
 		}
 	}
 
-	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_server.'" /FO CSV');
+	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
 	$serverexestatus = explode(",", strtolower($serverexestatus));
 	$serverexestatus = $serverexestatus[0];
 	$serverexestatus = str_replace('"', "", $serverexestatus);
 	
-	$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exe_bec.'" /FO CSV');
+	$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV');
 	$becexestatus = explode(",", strtolower($becexestatus));
 	$becexestatus = $becexestatus[0];
 	$becexestatus = str_replace('"', "", $becexestatus);
 	
-	if ($serverexestatus == strtolower($exe_server)){$serverrunning = true;} else {$serverrunning = false;}
-	if ($becexestatus == strtolower($exe_bec)){$becrunning = true;} else {$becrunning = false;}
+	if ($serverexestatus == strtolower($exeserver)){$serverrunning = true;} else {$serverrunning = false;}
+	if ($becexestatus == strtolower($exebec)){$becrunning = true;} else {$becrunning = false;}
 ?>
 </div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">

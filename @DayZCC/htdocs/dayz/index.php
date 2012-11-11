@@ -9,13 +9,13 @@ $sitename = "DayZ Controlcenter Administration";
 
 include ('config.php');
 
-$exe_server = str_replace('.exe', "_".$serverinstance.".exe", $exe_server);
-$path_server = str_replace('.exe', "_".$serverinstance.".exe", $path_server);
-$exe_bec = str_replace('.exe', "_".$serverinstance.".exe", $exe_bec);
-$path_bec = str_replace('.exe', "_".$serverinstance.".exe", $path_bec);
+$exeserver = str_replace('.exe', "_".$serverinstance.".exe", $exeserver);
+$pathserver = str_replace('.exe', "_".$serverinstance.".exe", $pathserver);
+$exebec = str_replace('.exe', "_".$serverinstance.".exe", $exebec);
+$pathbec = str_replace('.exe', "_".$serverinstance.".exe", $pathbec);
 
-mysql_connect($database_host, $database_user, $database_password) or die (mysql_error());
-mysql_select_db($database_name) or die (mysql_error());
+mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die (mysql_error());
+mysql_select_db($dbname) or die (mysql_error());
 
 if (isset($_GET['logout']))
 {

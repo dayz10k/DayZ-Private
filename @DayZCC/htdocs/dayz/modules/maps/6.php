@@ -2,9 +2,9 @@
 	// Thanks to user WarZ for parts of his code and TorZar for giving me ideas on howto solve a problem!
 	error_reporting(E_ALL ^ E_NOTICE);
 
-	if (file_exists($path_logrpt))
+	if (file_exists($pathlogrpt))
 	{
-		$lines = file($path_logrpt);
+		$lines = file($pathlogrpt);
 		$markers = "var markers = [";
 		$k = 0;
 		$i = 0;
