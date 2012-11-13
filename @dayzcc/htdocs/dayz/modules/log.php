@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list")!==false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"control") !== false))
 {
 	$pagetitle = "Server Log";
 	$logtext = "";

@@ -1,5 +1,5 @@
 <?
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list")!==false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"whitelist") !== false))
 {
 	// Thanks to deadfred666 for parts of his code!
 	if (ISSET($_POST['action']))
