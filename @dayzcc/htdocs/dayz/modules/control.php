@@ -1,6 +1,7 @@
 <? 
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"control")!==false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"control") !== false))
 {
+
 $pagetitle = "Server control";
 
 ?>
@@ -11,79 +12,7 @@ $pagetitle = "Server control";
 
 	$commandString_server = "start \"\" /d \"".$patharma."\" /b ".'"'.$pathserver.'"'.$exeserver_string;
 	$commandString_bec = "start \"\" /d \"".$pathbec."\" ".'"'.$pathbec.'\\'.$exebec.'"'.$exebec_string;
-
-	$serverrunning = false;
-	$becrunning = false;
 	
-	if (isset($_GET['action'])){
-		switch($_GET['action']){
-			case 0:
-				pclose(popen($commandString_server, 'r'));
-				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{$_SESSION['login']}',NOW())";
-				$sql2 = mysql_query($query) or die(mysql_error());
-				sleep(8);
-		
-				break;
-			case 1:
-				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
-				$serverexestatus = explode(",", strtolower($serverexestatus));
-				$serverexestatus = $serverexestatus[0];
-				$serverexestatus = str_replace('"', "", $serverexestatus);
-				
-				if ($serverexestatus == strtolower($exeserver)){
-					$output = exec('taskkill /IM '.$serverexestatus);
-					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())";
-					$sql2 = mysql_query($query) or die(mysql_error());
-				}
-				sleep(8);
-
-				break;
-			case 3:
-				pclose(popen($commandString_bec, 'r'));
-				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START BEC','{$_SESSION['login']}',NOW())";
-				$sql2 = mysql_query($query) or die(mysql_error());
-				sleep(8);
-
-				break;
-			case 4:
-				$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV');
-				$becexestatus = explode(",", strtolower($becexestatus));
-				$becexestatus = $becexestatus[0];
-				$becexestatus = str_replace('"', "", $becexestatus);
-				
-				if ($becexestatus == strtolower($exebec)){
-					$output = exec('taskkill /IM '.$becexestatus);
-					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP BEC','{$_SESSION['login']}',NOW())";
-					$sql2 = mysql_query($query) or die(mysql_error());
-				}
-				sleep(8);
-
-				break;
-			case 5:
-				$cmd = "#restart";
-				$answer = rcon($serverip,$serverport,$rconpassword,$cmd);
-				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('RESTART SERVER','{$_SESSION['login']}',NOW())";
-				$sql2 = mysql_query($query) or die(mysql_error());
-				sleep(1);
-		
-				break;
-			default:
-				$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
-				$serverexestatus = explode(",", strtolower($serverexestatus));
-				$serverexestatus = $serverexestatus[0];
-				$serverexestatus = str_replace('"', "", $serverexestatus);
-				
-				if ($serverexestatus == strtolower($exeserver)){
-					$output = exec('taskkill /IM '.$serverexestatus);
-					$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())";
-					$sql2 = mysql_query($query) or die(mysql_error());
-
-				}
-				sleep(8);
-
-		}
-	}
-
 	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
 	$serverexestatus = explode(",", strtolower($serverexestatus));
 	$serverexestatus = $serverexestatus[0];
@@ -94,8 +23,62 @@ $pagetitle = "Server control";
 	$becexestatus = $becexestatus[0];
 	$becexestatus = str_replace('"', "", $becexestatus);
 	
-	if ($serverexestatus == strtolower($exeserver)){$serverrunning = true;} else {$serverrunning = false;}
-	if ($becexestatus == strtolower($exebec)){$becrunning = true;} else {$becrunning = false;}
+	$serverrunning = false; if ($serverexestatus == strtolower($exeserver)) {$serverrunning = true;} else {$serverrunning = false;}
+	$becrunning = false; if ($becexestatus == strtolower($exebec)) {$becrunning = true;} else {$becrunning = false;}
+	
+	if (isset($_GET['action'])){
+		switch($_GET['action']){
+			case 0:
+				pclose(popen($commandString_server, 'r'));
+				mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{$_SESSION['login']}',NOW())") or die(mysql_error());
+				sleep(8);
+				break;
+			case 1:
+				if ($serverrunning){
+					$output = exec('taskkill /IM '.$serverexestatus);
+					mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())") or die(mysql_error());
+				}
+				sleep(8);
+				break;
+			case 3:
+				pclose(popen($commandString_bec, 'r'));
+				mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START BEC','{$_SESSION['login']}',NOW())") or die(mysql_error());
+				sleep(8);
+				break;
+			case 4:
+				if ($becrunning){
+					$output = exec('taskkill /IM '.$becexestatus);
+					mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP BEC','{$_SESSION['login']}',NOW())") or die(mysql_error());
+				}
+				sleep(8);
+				break;
+			case 5:
+				$cmd = "#restart";
+				$answer = rcon($serverip,$serverport,$rconpassword,$cmd);
+				mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('RESTART SERVER','{$_SESSION['login']}',NOW())") or die(mysql_error());
+				sleep(1);
+				break;
+			default:
+				if ($serverrunning){
+					$output = exec('taskkill /IM '.$serverexestatus);
+					mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('STOP SERVER','{$_SESSION['login']}',NOW())") or die(mysql_error());
+				}
+				sleep(8);
+		}
+	}
+	
+	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
+	$serverexestatus = explode(",", strtolower($serverexestatus));
+	$serverexestatus = $serverexestatus[0];
+	$serverexestatus = str_replace('"', "", $serverexestatus);
+	
+	$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV');
+	$becexestatus = explode(",", strtolower($becexestatus));
+	$becexestatus = $becexestatus[0];
+	$becexestatus = str_replace('"', "", $becexestatus);
+	
+	$serverrunning = false; if ($serverexestatus == strtolower($exeserver)) {$serverrunning = true;} else {$serverrunning = false;}
+	$becrunning = false; if ($becexestatus == strtolower($exebec)) {$becrunning = true;} else {$becrunning = false;}
 ?>
 </div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
@@ -109,15 +92,9 @@ $pagetitle = "Server control";
 	<tr>
 		<td id="tbl-border-left"></td>
 		<td>
-		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">	
-
-			<!--  start table-content  -->
 			<div id="table-content">
-			<?
-			if ($serverrunning){
-			?>
-				<!--  start message-green -->
+			<? if ($serverrunning){ ?>
 				<div id="message-green">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
@@ -126,8 +103,6 @@ $pagetitle = "Server control";
 				</tr>
 				</table>
 				</div>
-				<!--  end message-green -->
-				<!--  start step-holder -->
 				<div id="step-holder">	
 					<div class="step-no"><a href="index.php?view=control&action=5"><img src="<?echo $path;?>images/start.png"/></div>
 					<div class="step-dark-left">Restart</div>
@@ -137,12 +112,9 @@ $pagetitle = "Server control";
 					<div class="step-dark-round">&nbsp;</div>
 					<div class="clear"></div>
 				</div>
-				<!--  end step-holder -->
-				
+
 				<!--  Code by Crosire -->
-				<? if ($becrunning){
-				?>
-					<!--  bec message-green -->
+				<? if ($becrunning){ ?>
 					<div id="message-green">
 					<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
@@ -151,8 +123,6 @@ $pagetitle = "Server control";
 					</tr>
 					</table>
 					</div>
-					<!--  end message-green -->
-					<!--  bec stop step-holder -->
 					<div id="step-holder">	
 						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
 						<div class="step-light-left">Start</div>
@@ -162,10 +132,7 @@ $pagetitle = "Server control";
 						<div class="step-dark-round">&nbsp;</div>
 						<div class="clear"></div>
 					</div>
-					<!--  end step-holder -->
-				<? } else {
-				?>
-					<!--  bec message-yellow -->
+				<? } else { ?>
 					<div id="message-yellow">
 					<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
@@ -174,8 +141,6 @@ $pagetitle = "Server control";
 					</tr>
 					</table>
 					</div>
-					<!--  end message-yellow -->
-					<!--  bec start step-holder -->
 					<div id="step-holder">	
 						<div class="step-no"><a href="index.php?view=control&action=3"><img src="<?echo $path;?>images/start.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=3">Start</a></div>
@@ -185,44 +150,30 @@ $pagetitle = "Server control";
 						<div class="step-light-round">&nbsp;</div>
 						<div class="clear"></div>
 					</div>
-					<!--  end step-holder -->
-				<?
-				}
-				?>
-			<? } else {
-			?>
-				<!--  start message-red -->
-				<div id="message-red">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="red-left">Server is stopped.</td>
-					<td class="red-right"><a class="close-red"><img src="<?echo $path;?>images/table/icon_close_red.gif"   alt="" /></a></td>
-				</tr>
-				</table>
-				</div>
-				<!--  end message-red -->
-				<!--  start step-holder -->
-				<div id="step-holder">	
-					<div class="step-no"><a href="index.php?view=control&action=0"><img src="<?echo $path;?>images/start.png"/></a></div>
-					<div class="step-dark-left"><a href="index.php?view=control&action=0">Start</a></div>
-					<div class="step-dark-right">&nbsp;</div>
-					<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
-					<div class="step-light-left">Stop</div>
-					<div class="step-light-round">&nbsp;</div>
-					<div class="clear"></div>
-				</div>
-				<!--  end step-holder -->
-				<?
-			}
-			?>
-			
+				<? }
+				} else { ?>
+					<div id="message-red">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="red-left">Server is stopped.</td>
+						<td class="red-right"><a class="close-red"><img src="<?echo $path;?>images/table/icon_close_red.gif"   alt="" /></a></td>
+					</tr>
+					</table>
+					</div>
+					<div id="step-holder">	
+						<div class="step-no"><a href="index.php?view=control&action=0"><img src="<?echo $path;?>images/start.png"/></a></div>
+						<div class="step-dark-left"><a href="index.php?view=control&action=0">Start</a></div>
+						<div class="step-dark-right">&nbsp;</div>
+						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
+						<div class="step-light-left">Stop</div>
+						<div class="step-light-round">&nbsp;</div>
+						<div class="clear"></div>
+					</div>
+				<? } ?>
+				
 			</div>
-			<!--  end content-table  -->					
-			
 			<div class="clear"></div>
-
 		</div>
-		<!--  end content-table-inner ............................................END  -->
 		</td>
 		<td id="tbl-border-right"></td>
 	</tr>

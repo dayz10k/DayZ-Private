@@ -1,7 +1,6 @@
 <?
 if (isset($_SESSION['user_id']))
 {	
-	//if (isset($_GET["url"])){
 		if (isset($_GET["kick"])){
 			$cmd = "kick ".$_GET["kick"];
 				
@@ -36,15 +35,11 @@ if (isset($_SESSION['user_id']))
 			</script>
 			<?
 		}
-	//}
 	?>
 	<script type="text/javascript">
 		window.location = 'index.php';
 	</script>
 	<?
-
-	
-	
 }
 else
 {

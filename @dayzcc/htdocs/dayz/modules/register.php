@@ -1,7 +1,6 @@
 <?php
-if (isset($_SESSION['user_id']))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user") !== false))
 {
-
 function GenerateSalt($n=3)
 {
 	$key = '';
@@ -14,6 +13,7 @@ function GenerateSalt($n=3)
 if (empty($_POST))
 {
 	?>
+	
 	<div id="page-heading">
 		<h1>Registration</h1>
 	</div>
@@ -28,12 +28,9 @@ if (empty($_POST))
 	<tr>
 		<td id="tbl-border-left"></td>
 		<td>
-		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">
-		
-			<!--  start table-content  -->
 			<div id="table-content">
-				<h2>Enter login, password and privileges for new user</h2>
+				<h2>Enter login, password and select permissions for new user</h2>
 				
 				<form id="regform" action="index.php?view=register">
 				
@@ -49,9 +46,9 @@ if (empty($_POST))
 						<td></td>
 					</tr>
 					<tr>
-						<th valign="top">Privileges:</th>
-						<td><input type="text" class="inp-form" name="privileges" /></td>
-						<td>&nbsp;&nbsp;(Possible permissions: map, list, user, control")</td>
+						<th valign="top">Permissions:</th>
+						<td><input type="text" class="inp-form" name="permission" /></td>
+						<td>&nbsp;&nbsp;(control, list, map, user, whitelist)</td>
 						<td></td>
 					</tr>
 					<tr>
@@ -62,22 +59,23 @@ if (empty($_POST))
 						<td></td>
 					</tr>
 					</table>
-				</form>		
+				</form>
+				
 			</div>
 			<div id="result"></div>
-			<!--  end table-content  -->
+
 			<script>
-				  /* attach a submit handler to the form */
-				  $("#regform").submit(function(event) {
+				/* attach a submit handler to the form */
+				$("#regform").submit(function(event) {
 
 					/* stop form from submitting normally */
 					event.preventDefault(); 
-						
+
 					/* get some values from elements on the page: */
 					var $form = $( this ),
 						term = $form.find( 'input[name="login"]' ).val(),
 						term2 = $form.find( 'input[name="password"]' ).val(),
-						term3 = $form.find( 'input[name="privileges"]' ).val(),
+						term3 = $form.find( 'input[name="permission"]' ).val(),
 						url = $form.attr( 'action' );
 						
 					var d = document.getElementById('content-table-inner');
@@ -89,18 +87,17 @@ if (empty($_POST))
 					d.removeChild(olddiv);
 
 					/* Send the data using post and put the results in a div */
-					$.post( url, { login: term, password: term2, privileges: term3 },
-					  function( data ) {
-						  var content = $( data ).find( '#content' );
-						  $( "#result" ).empty().append( content );
-					  }
-					);
-				  });
+					$.post( url, { login: term, password: term2, permission: term3 },
+					function( data ) {
+						var content = $( data ).find( '#content' );
+						$( "#result" ).empty().append( content );
+					}
+				);
+				});
 			</script>
+			
 			<div class="clear"></div>
-		 
 		</div>
-		<!--  end content-table-inner ............................................END  -->
 		</td>
 		<td id="tbl-border-right"></td>
 	</tr>
@@ -110,13 +107,14 @@ if (empty($_POST))
 		<th class="sized bottomright"></th>
 	</tr>
 	</table>
+	
 <?php
 }
 else
 {
 	$login = (isset($_POST['login'])) ? mysql_real_escape_string($_POST['login']) : '';
 	$password = (isset($_POST['password'])) ? mysql_real_escape_string($_POST['password']) : '';
-	$permissions = (isset($_POST['privileges'])) ? mysql_real_escape_string($_POST['privileges']) : '';
+	$permission = (isset($_POST['permission'])) ? mysql_real_escape_string($_POST['permission']) : '';
 
 	$error = false;
 	$errort = '';
@@ -131,10 +129,9 @@ else
 		$error = true;
 		$errort .= 'Password must be at least 6 characters.<br />';
 	}
-
-	$query = "SELECT `id` FROM `users` WHERE `login`='{$login}' LIMIT 1";
-	$sql = mysql_query($query) or die(mysql_error());
-	if (mysql_num_rows($sql)==1)
+	
+	$rescheck = mysql_query("SELECT `id` FROM `users` WHERE `login` = '{$login}' LIMIT 1") or die(mysql_error());
+	if (mysql_num_rows($rescheck) == 1)
 	{
 		$error = true;
 		$errort .= 'Login already used.<br />';
@@ -143,50 +140,44 @@ else
 	if (!$error)
 	{
 		$salt = GenerateSalt();
-		$hashed_password = md5(md5($password) . $salt);
+		$hashed_password = md5(md5($password).$salt);
 		
-		$query = "INSERT INTO `users` SET
-						`login`='{$login}',
-						`password`='{$hashed_password}',
-						`salt`='{$salt}',
-						`permissions`='{$permissions}'";
-		$sql = mysql_query($query) or die(mysql_error());
-
-		$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('REGISTER USER: {$login}','{$_SESSION['login']}',NOW())";
-		$sql2 = mysql_query($query) or die(mysql_error());
+		mysql_query("INSERT INTO `users` SET `login` = '{$login}', `password` = '{$hashed_password}', `salt` = '{$salt}', `permissions` = '{$permission}'") or die(mysql_error());
+		mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('REGISTER USER: {$login}','{$_SESSION['login']}',NOW())") or die(mysql_error());
+		
 		?>
-		<!--  start message-green -->
+
 		<div id="msg">
 			<div id="message-green">
 			<table border="0" width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="green-left">New user is succesfully registered!</td>
-				<td class="green-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif" alt="" /></a></td>
+				<td class="green-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-green"><img src="<? echo $path; ?>images/table/icon_close_green.gif" alt="" /></a></td>
 			</tr>
 			</table>
 			</div>
 		</div>
-		<!--  end message-green -->
+
 		<?
 	}
 	else
 	{
 		?>
+		
 		<div id="msg">
 			<div id="message-red">
 			<table border="0" width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="red-left">Error in registration process!</td>
-				<td class="red-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-red"><img src="<?echo $path;?>images/table/icon_close_red.gif" alt="" /></a></td>
+				<td class="red-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-red"><img src="<? echo $path; ?>images/table/icon_close_red.gif" alt="" /></a></td>
 			</tr>
 			</table>
 			</div>
 			<? print $errort;?>
 		</div>
-		<?
 		
+		<?
 	}
-
 }
 }
 else

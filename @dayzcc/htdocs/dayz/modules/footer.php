@@ -3,21 +3,13 @@ if (isset($_SESSION['user_id']))
 {
 ?>
 </div>
-<!--  end content -->
 </div>
-<!--  end content-outer........................................................END -->
-
-<div class="clear">&nbsp;</div>
-<!-- start footer -->         
+<div class="clear">&nbsp;</div>     
 <div id="footer">
-	<!--  start footer-left -->
 	<div id="footer-left">
 	DayZ Administration panel &copy; Copyright 2006-2012 <a href="http://lead-games.com">Lead Games</a> and <a href="http://dayzcc.com">Crosire</a>. All rights reserved.</div>
-	<!--  end footer-left -->
 	<div class="clear">&nbsp;</div>
 </div>
-<!-- end footer -->
- 
 </body>
 </html>
 <?php

@@ -1,8 +1,6 @@
 <?
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list")!==false))
 {
-	$pagetitle = "Whitelist";
-	
 	// Thanks to deadfred666 for parts of his code!
 	if (ISSET($_POST['action']))
 	{
@@ -16,7 +14,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 					echo "<div id='page-heading'><h2>Entered information is too short!</h2></div>";
 				} else {
 					mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1');") or die(mysql_error());
-					print "<div>$name ($guid) was added to the whitelist!</div>";
+					print "<div id='page-heading'><h2>$name ($guid) was added to the whitelist!</h2></div>";
 				}
 			} else {
 				echo "<div id='page-heading'><h2>Error: Required field is missing!</h2></div>";
@@ -51,13 +49,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 			<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><a href=\"\">".$row['guid']."</a></td>
 			</tr></form>";
 	}
-
-	$formhead = "";
-	$formfoot = "";
 ?>
 
 <div id="page-heading">
 <?
+	$pagetitle = "Whitelist";
 	echo "<title>".$pagetitle." - ".$sitename."</title>";
 	echo "<h1>".$pagetitle."</h1>";
 ?>
@@ -73,43 +69,32 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 	<tr>
 		<td id="tbl-border-left"></td>
 		<td>
-		<!--  start content-table-inner ...................................................................... START -->
-		<div id="content-table-inner">		
-			<!--  start table-content  -->
+		<div id="content-table-inner">
 			<div id="table-content">
-				
-				<!--  start product-table ..................................................................................... -->
-				<? echo $formhead;?>	
-					<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
-						<thead>
+				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+					<thead>
+						<tr>
+							<th class="table-header-repeat line-left"><a href="">Action</a></th>
+							<th class="table-header-repeat line-left"><a href="">Enabled</a></th>
+							<th class="table-header-repeat line-left"><a href="">Name</a></th>
+							<th class="table-header-repeat line-left"><a href="">GUID</a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<form method="POST">
 							<tr>
-								<th class="table-header-repeat line-left"><a href="">Action</a></th>
-								<th class="table-header-repeat line-left"><a href="">Enabled</a></th>
-								<th class="table-header-repeat line-left"><a href="">Name</a></th>
-								<th class="table-header-repeat line-left"><a href="">GUID</a></th>
+								<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="submit" name="action" value="Add" style="width: 60px"></td>
+								<td align="center" class="gear_preview" style="vertical-align:middle;"></td>
+								<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="name" style="width: 300px"></td>
+								<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="guid" style="width: 300px"></td>
 							</tr>
-						</thead>
-						<tbody>
-							<form method="POST">
-								<tr>
-									<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="submit" name="action" value="Add" style="width: 60px"></td>
-									<td align="center" class="gear_preview" style="vertical-align:middle;"></td>
-									<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="name" style="width: 300px"></td>
-									<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="guid" style="width: 300px"></td>
-								</tr>
-							</form>
-							<? echo $tablerows; ?>
-						</tbody>
-					</table>
-				<? echo $formfoot;?>	
-				<!--  end product-table................................... --> 
+						</form>
+						<? echo $tablerows; ?>
+					</tbody>
+				</table>
 			</div>
-			<!--  end content-table  -->
-	
 			<div class="clear"></div>
-
 		</div>
-		<!--  end content-table-inner ............................................END  -->
 		</td>
 		<td id="tbl-border-right"></td>
 	</tr>

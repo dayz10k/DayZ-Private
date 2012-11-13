@@ -1,5 +1,5 @@
 <?
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list")!==false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "list")!==false))
 {
 	$pnumber = 0;
 	$tableheader = '';
@@ -201,45 +201,34 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 	<tr>
 		<td id="tbl-border-left"></td>
 		<td>
-		<!--  start content-table-inner ...................................................................... START -->
-		<div id="content-table-inner">		
-			<!--  start table-content  -->
+		<div id="content-table-inner">
 			<div id="table-content">
 				<!--  start message-blue -->
 				<div id="message-blue">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="blue-left"><? echo $pagetitle.": ".$pnumber; ?>. </td>
-					<td class="blue-right"><a class="close-blue"><img src="<? echo $path; ?>images/table/icon_close_blue.gif"   alt="" /></a></td>
-				</tr>
-				</table>
+					<table border="0" width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td class="blue-left"><? echo $pagetitle.": ".$pnumber; ?>. </td>
+						<td class="blue-right"><a class="close-blue"><img src="<? echo $path; ?>images/table/icon_close_blue.gif"   alt="" /></a></td>
+					</tr>
+					</table>
 				</div>
 				<!--  end message-blue -->
 				
-				<!--  start paging..................................................... -->
 				<? echo $paging; ?>				
-				<!--  end paging................ -->
 				<br/>
 				<br/>
-				<!--  start product-table ..................................................................................... -->
 				<? echo $formhead;?>	
 					<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
 						<? echo $tableheader; ?>
 						<? echo $tablerows; ?>				
 					</table>
 				<? echo $formfoot;?>	
-				<!--  end product-table................................... --> 
 			</div>
-			<!--  end content-table  -->
-				
-			<!--  start paging..................................................... -->
+
 			<? echo $paging; ?>				
-			<!--  end paging................ -->
 	
 			<div class="clear"></div>
-
 		</div>
-		<!--  end content-table-inner ............................................END  -->
 		</td>
 		<td id="tbl-border-right"></td>
 	</tr>

@@ -1,56 +1,51 @@
 <?php
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user")!==false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user") !== false))
 {
 	$pagetitle = "Manage users";
 	$delresult = "";
+	
 	if (isset($_POST["user"])){
 		$aDoor = $_POST["user"];
 		$N = count($aDoor);
+		
 		for($i=0; $i < $N; $i++)
 		{
-			$query = "SELECT * FROM users WHERE id = ".$aDoor[$i].""; 
-			$res2 = mysql_query($query) or die(mysql_error());
-			while ($row2=mysql_fetch_array($res2)) {
-				$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE USER: ".$row2['login']."','{$_SESSION['login']}',NOW())";
-				$sql2 = mysql_query($query) or die(mysql_error());
-				$query = "DELETE FROM `users` WHERE id='".$aDoor[$i]."'";
-				$sql2 = mysql_query($query) or die(mysql_error());
+			$resdel = mysql_query("SELECT * FROM users WHERE id = ".$aDoor[$i]."") or die(mysql_error());
+			
+			while ($rowdel = mysql_fetch_array($resdel)) {
+				mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE USER: ".$rowdel['login']."','{$_SESSION['login']}',NOW())") or die(mysql_error());
+				mysql_query("DELETE FROM `users` WHERE id='".$aDoor[$i]."'") or die(mysql_error());
+				
 				$delresult .= '<div id="message-green">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
-					<td class="green-left">User '.$row2['login'].' successfully removed!</td>
+					<td class="green-left">User '.$rowdel['login'].' successfully removed!</td>
 					<td class="green-right"><a class="close-green"><img src="'.$path.'images/table/icon_close_green.gif" alt="" /></a></td>
 				</tr>
 				</table>
 				</div>';
 			}		
-			//echo($aDoor[$i] . " ");
+			//echo($aDoor[$i]);
 		}
 		//echo $_GET["deluser"];
 	}
 	
-	$query = "SELECT * FROM users ORDER BY id ASC"; 
-	$res = mysql_query($query) or die(mysql_error());
+	$res = mysql_query("SELECT * FROM users ORDER BY id ASC") or die(mysql_error());
 	$number = mysql_num_rows($res);
-	
-	$users="";
-	while ($row=mysql_fetch_array($res)) {
-		$users .= "<tr><td><input name=\"user[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td><td>".$row['id']."</td><td>".$row['login']."</td><td>".$row['permissions']."</td><td>".$row['lastlogin']."</td></tr>";
-	}
-	
-	$query = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('MANAGE USERS','{$_SESSION['login']}',NOW())";
-	$sql2 = mysql_query($query) or die(mysql_error());
+	$users = "" ;
+	while ($row=mysql_fetch_array($res)) { $users .= "<tr><td align=\"center\"><input name=\"user[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td><td>".$row['id']."</td><td>".$row['login']."</td><td>".$row['permissions']."</td><td>".$row['lastlogin']."</td></tr>";}
 
+	mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('MANAGE USERS','{$_SESSION['login']}',NOW())") or die(mysql_error());
 ?>
 	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
 			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="<?echo $path;?>images/table/action_delete.gif" alt="" /></a><br />
-			<? include ('/modules/register.php'); ?>
+			<? include ($path.'/modules/register.php'); ?>
 	</div>
+
 	<div id="page-heading">
 		<h1><? echo $pagetitle; ?></h1>
 		<h1><? echo "<title>".$pagetitle." - ".$sitename."</title>"; ?></h1>
 	</div>
-	<!-- end page-heading -->
 
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
@@ -63,7 +58,6 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user"
 	<tr>
 		<td id="tbl-border-left"></td>
 		<td>
-		<!--  start content-table-inner ...................................................................... START -->
 		<div id="content-table-inner">
 			<? echo $delresult; ?>
 			<div id="related-activities">
@@ -92,7 +86,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user"
 					<th class="table-header-repeat line-left"><a href="">Delete</a></th>
 					<th class="table-header-repeat line-left" width="5%"><a href="">Id</a>	</th>
 					<th class="table-header-repeat line-left minwidth-1" width="30%"><a href="">Username</a></th>
-					<th class="table-header-repeat line-left minwidth-1" width="45%"><a href="">Privileges</a></th>
+					<th class="table-header-repeat line-left minwidth-1" width="45%"><a href="">Permissions</a></th>
 					<th class="table-header-repeat line-left minwidth-1" width="20%"><a href="">Last access</a></th>
 				</tr>
 				<? echo $users; ?>				
@@ -100,12 +94,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user"
 				<input type="submit" class="submit-login"  />
 				</div>
 			</form>
-			<!--  end table-content  -->
-	
 			<div class="clear"></div>
-		 
 		</div>
-		<!--  end content-table-inner ............................................END  -->
 		</td>
 		<td id="tbl-border-right"></td>
 	</tr>

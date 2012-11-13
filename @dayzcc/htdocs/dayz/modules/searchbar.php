@@ -2,8 +2,6 @@
 if (isset($_SESSION['user_id']))
 {
 ?>
-<!--  start top-search -->
-
 	<form action="index.php?view=search" method="post">
 		<table border="0" cellpadding="0" cellspacing="0">
 		<tr>
@@ -22,8 +20,6 @@ if (isset($_SESSION['user_id']))
 		</tr>
 		</table>
 	</form>
-
-<!--  end top-search -->
 <?
 }
 else

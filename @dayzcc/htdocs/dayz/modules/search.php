@@ -26,10 +26,9 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 		<td id="tbl-border-left"></td>
 		<td>
 		<div id="content-table-inner">	
-		<!--  start content-table-inner ...................................................................... START -->
+		<? include ('searchbar.php'); ?>
+		<br/>
 		<?
-		include ('searchbar.php');
-		?><br/><?
 		if (!empty($_POST))
 		{
 			//echo $_POST['search']."<br />".$_POST['type'];
@@ -39,10 +38,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 			$good = trim(preg_replace("/\s(\S{1,2})\s/", " ", preg_replace("[ +]", "  "," $search ")));
 			$good = preg_replace("[ +]", " ", $good);
 			$logic = "OR";		
-			
-			?>
-			<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
-			<?
+		?>
+		
+		<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+		
+		<?
 			switch ($_POST['type']) {
 				case 'player':
 					$tableheader = header_player(0);
@@ -93,12 +93,14 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list"
 					while ($row=mysql_fetch_array($result)) {$tablerows .= row_player($row, $serverworld);}
 					echo $tablerows;
 				};
-			?>
-			</table>
-			<?
+		?>
+		
+		</table>
+		
+		<?
 		}
 		?>		
-		<!--  end content-table-inner ............................................END  -->
+		
 		</div>
 		</td>
 		<td id="tbl-border-right"></td>
