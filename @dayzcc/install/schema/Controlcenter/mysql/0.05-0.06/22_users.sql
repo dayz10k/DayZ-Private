@@ -1,0 +1,1 @@
+update users set permissions = replace(permissions,',list',',table');

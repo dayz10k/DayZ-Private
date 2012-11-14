@@ -49,7 +49,7 @@ if (isset($_SESSION['user_id']))
 				<? } ?>
 				<li class="li-users parent root"><span class=" daddy item"><span>Entities & Info</span></span>
 					<ul class="level2 parent-users">
-						<? if (strpos($_SESSION['user_permissions'], "list") !== false) {?>
+						<? if (strpos($_SESSION['user_permissions'], "table") !== false) {?>
 						<li class="li-user-manager parent"><a href="#nogo" class="class:user daddy item">Players</a>
 							<ul class="level3 parent-user-manager">
 								<li class="li-add-new-user"><a href="index.php?view=table&show=0" class="class:newarticle item">Online</a></li>
@@ -65,7 +65,7 @@ if (isset($_SESSION['user_id']))
 						<? } ?>
 						<? if (strpos($_SESSION['user_permissions'], "whitelist") !== false) {?>
 						<li class="li-mass-mail-users"><a href="index.php?view=whitelist" class="class:massmail item">Whitelist</a></li>
-						<? } if (strpos($_SESSION['user_permissions'], "list") !== false) { ?>
+						<? } if (strpos($_SESSION['user_permissions'], "table") !== false) { ?>
 						<li class="li- separator"><span></span></li>
 						<li class="li-mass-mail-users"><a href="index.php?view=search" class="class:massmail item">Search</a></li>
 						<? } ?>

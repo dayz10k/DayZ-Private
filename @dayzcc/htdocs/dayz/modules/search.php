@@ -1,5 +1,5 @@
 <? 
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"list") !== false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"table") !== false))
 {
 	if (isset($_POST['type'])){
 		$pagetitle = "Search for ".$_POST['type'];
