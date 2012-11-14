@@ -48,7 +48,7 @@ if (empty($_POST))
 					<tr>
 						<th valign="top">Permissions:</th>
 						<td><input type="text" class="inp-form" name="permission" /></td>
-						<td>&nbsp;&nbsp;(control, list, map, user, whitelist)</td>
+						<td>&nbsp;&nbsp;(control, table, map, user, whitelist)</td>
 						<td></td>
 					</tr>
 					<tr>
