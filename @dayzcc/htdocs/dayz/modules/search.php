@@ -45,7 +45,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"table
 		<?
 			switch ($_POST['type']) {
 				case 'player':
-					$tableheader = header_player(0);
+					$tableheader = header_player(0, 0);
 					echo $tableheader;
 					$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC") or die(mysql_error());
 					$tablerows = "";
@@ -79,7 +79,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"table
 					echo $tablerows;
 					break;
 				default:
-					$tableheader = header_player(0, 0;
+					$tableheader = header_player(0, 0);
 					echo $tableheader;
 					$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC") or die(mysql_error());
 					$tablerows = "";
