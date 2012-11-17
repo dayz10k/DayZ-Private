@@ -47,50 +47,43 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"table
 				case 'player':
 					$tableheader = header_player(0);
 					echo $tableheader;
-					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC";
-					$result = mysql_query($playerquery) or die(mysql_error());
+					$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC") or die(mysql_error());
 					$tablerows = "";
-					while ($row=mysql_fetch_array($result)) {
-						$tablerows .= row_player($row, $serverworld);
-					}
+					while ($row = mysql_fetch_array($res)) {$tablerows .= row_player($row, $serverworld);}
 					echo $tablerows;
-				break;
+					break;
 				case 'item':
-					$tableheader = header_player(0);
+					$tableheader = header_player(0, 0);
 					echo $tableheader;
-					$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `inventory` LIKE '%". str_replace(" ", "%' OR `backpack` LIKE '%", $good). "%'"." ORDER BY `last_updated` DESC";
-					$result = mysql_query($query) or die(mysql_error());
+					$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `inventory` LIKE '%". str_replace(" ", "%' OR `backpack` LIKE '%", $good). "%'"." ORDER BY `last_updated` DESC") or die(mysql_error());
 					$tablerows = "";
-					while ($row=mysql_fetch_array($result)) {$tablerows .= row_player($row, $serverworld);}
+					while ($row = mysql_fetch_array($res)) {$tablerows .= row_player($row, $serverworld);}
 					echo $tablerows;
 					break;
 				case 'vehicle':
 					$chbox = "";
-					$tableheader = header_vehicle(0, $chbox);
+					$tableheader = header_vehicle(0, $chbox, 0);
 					echo $tableheader;
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND `class_name` LIKE '%". str_replace(" ", "%' OR `class_name` LIKE '%", $good). "%'";
-					$res = mysql_query($query) or die(mysql_error());
+					$res = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND `class_name` LIKE '%". str_replace(" ", "%' OR `class_name` LIKE '%", $good). "%'") or die(mysql_error());
 					$chbox = "";
-					while ($row=mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, $serverworld);}
+					while ($row = mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, $serverworld);}
 					echo $tablerows;
 					break;
 				case 'container':
 					$chbox = "";
-					$tableheader = header_vehicle(0, $chbox);
+					$tableheader = header_vehicle(0, $chbox, 0);
 					echo $tableheader;
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.inventory LIKE '%". str_replace(" ", "%' OR instance_vehicle.inventory LIKE '%", $good). "%'";
-					$res = mysql_query($query) or die(mysql_error());
+					$res = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.inventory LIKE '%". str_replace(" ", "%' OR instance_vehicle.inventory LIKE '%", $good). "%'") or die(mysql_error());
 					$chbox = "";
-					while ($row=mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, $serverworld);}
+					while ($row = mysql_fetch_array($res)) {$tablerows .= row_vehicle($row, $chbox, $serverworld);}
 					echo $tablerows;
 					break;
 				default:
-					$tableheader = header_player(0);
+					$tableheader = header_player(0, 0;
 					echo $tableheader;
-					$playerquery = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC";
-					$result = mysql_query($playerquery) or die(mysql_error());
+					$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY `last_updated` DESC") or die(mysql_error());
 					$tablerows = "";
-					while ($row=mysql_fetch_array($result)) {$tablerows .= row_player($row, $serverworld);}
+					while ($row = mysql_fetch_array($res)) {$tablerows .= row_player($row, $serverworld);}
 					echo $tablerows;
 				};
 		?>

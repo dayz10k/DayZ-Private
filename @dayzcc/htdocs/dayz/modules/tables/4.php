@@ -7,7 +7,8 @@
 		
 		for($i=0; $i < $N; $i++)
 		{
-			while ($rowdel = mysql_fetch_array(mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = ".$aDoor[$i]."") or die(mysql_error()))) {
+			$resdel = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = ".$aDoor[$i]."") or die(mysql_error());
+			while ($rowdel = mysql_fetch_array($resdel)) {
 				mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$rowdel['class_name']." - ".$rowdel['id']."','{$_SESSION['login']}',NOW())") or die(mysql_error());
 				mysql_query("DELETE FROM `instance_vehicle` WHERE id = '".$aDoor[$i]."'") or die(mysql_error());
 				
