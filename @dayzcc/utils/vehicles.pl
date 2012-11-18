@@ -225,4 +225,4 @@ $spawns->finish();
 $insert->finish();
 $dbh->disconnect();
 
-exit 1 if $spawnCount = 0;
+exit 1 if $spawnCount == 0;
