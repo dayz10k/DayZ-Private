@@ -8,18 +8,14 @@ if (isset($_SESSION['user_id']))
 	$pagetitle = "Dashboard";
 
 	$logs = "";
-	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 100") or die(mysql_error());
-	while ($row=mysql_fetch_array($res)) {
-		$logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13);
-	}
+	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 100;") or die(mysql_error());
+	while ($row = mysql_fetch_array($res)) {$logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13);}
 	$xml = file_get_contents('/quicklinks.xml', true);
 	require_once('xml2array.php');
 	$quicklinks = XML2Array::createArray($xml);
 
 	// GameQ Server define, fixed by Crosire to allow multiple instances
-	$servers = array(
-		'dayzserver' => array('armedassault2', $serverip, $serverport)
-	);
+	$servers = array('dayzserver' => array('armedassault2', $serverip, $serverport));
 
 	// Call the class, and add your servers.
 	$gq = new GameQ();
@@ -39,15 +35,12 @@ if (isset($_SESSION['user_id']))
 
 	// Some functions to print the results
 	function print_results($oresults) {
-		foreach ($oresults as $id => $data) {
-			//printf("<h2>%s</h2>\n", $id);		
-			print_table($data);
-		}
+		foreach ($oresults as $id => $data) {print_table($data);}
 	}
 
 	function print_table($data) {  
 		if (!$data['gq_online']) {
-			printf("<p>The server did not respond within the specified time.</p>\n");
+			printf("<p>Gamespy did not respond within the specified time.</p>\n");
 			return;
 		}			
 		?>

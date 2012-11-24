@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user") !== false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user") !== false))
 {
 	$pagetitle = "Manage users";
 	$delresult = "";
@@ -32,14 +32,14 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user"
 	
 	$res = mysql_query("SELECT * FROM users ORDER BY id ASC") or die(mysql_error());
 	$number = mysql_num_rows($res);
-	$users = "" ;
-	while ($row=mysql_fetch_array($res)) { $users .= "<tr><td align=\"center\"><input name=\"user[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td><td>".$row['id']."</td><td>".$row['login']."</td><td>".$row['permissions']."</td><td>".$row['lastlogin']."</td></tr>";}
+	$users = "";
+	while ($row = mysql_fetch_array($res)) { $users .= "<tr><td align=\"center\"><input name=\"user[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td><td>".$row['id']."</td><td>".$row['login']."</td><td>".$row['permissions']."</td><td>".$row['lastlogin']."</td></tr>";}
 
-	mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('MANAGE USERS','{$_SESSION['login']}',NOW())") or die(mysql_error());
+	mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('MANAGE USERS', '{$_SESSION['login']}', NOW())") or die(mysql_error());
 ?>
 	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="<?echo $path;?>images/table/action_delete.gif" alt="" /></a><br />
-			<? include ($path.'/modules/register.php'); ?>
+			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="<? echo $path; ?>images/table/action_delete.gif" alt="" /></a><br />
+			<? include_once ($path.'/modules/register.php'); ?>
 	</div>
 
 	<div id="page-heading">
@@ -49,11 +49,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user"
 
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
-		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="<? echo $path; ?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 		<th class="topleft"></th>
 		<td id="tbl-border-top">&nbsp;</td>
 		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="<? echo $path; ?>images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
 		<td id="tbl-border-left"></td>
@@ -62,16 +62,15 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"user"
 			<? echo $delresult; ?>
 			<div id="related-activities">
 				<div id="related-act-top">
-					<img width="271" height="43" alt="" src="<?echo $path;?>images/forms/header_related_act.gif">
+					<img width="271" height="43" alt="" src="<? echo $path; ?>images/forms/header_related_act.gif">
 				</div>
 				<div id="related-act-bottom">
 					<div id="related-act-inner">
 						<div class="left"><a href="#" onclick="ShowModalPopup('dvPopup'); return false;">
-							<img width="21" height="21" alt="" src="<?echo $path;?>images/forms/icon_plus.gif"></a>
+							<img width="21" height="21" alt="" src="<? echo $path; ?>images/forms/icon_plus.gif"></a>
 						</div>
 						<div class="right">
 							<h5><a href="#" onclick="ShowModalPopup('dvPopup'); return false;">Add user</a></h5>
-							Add new user
 						</div>
 						<div class="clear"></div>
 					</div>

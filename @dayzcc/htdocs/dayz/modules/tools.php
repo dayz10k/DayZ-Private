@@ -1,0 +1,115 @@
+<?php
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tools") !== false))
+{
+	$pagetitle = "Database Tools";
+
+	// Thanks to Torzar for parts of his code!
+?>
+
+<div id="dvPopup_vehicle" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
+	<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="<? echo $path; ?>images/table/action_delete.gif" alt="" /></a><br />
+	<? include_once ($path.'/modules/tools/parseVehicles.php'); ?>
+</div>
+<div id="dvPopup_building" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
+	<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="<? echo $path; ?>images/table/action_delete.gif" alt="" /></a><br />
+	<? include_once ($path.'/modules/tools/parseBuildings.php'); ?>
+</div>
+
+<div id="page-heading">
+	<h1><? echo $pagetitle; ?></h1>
+	<h1><? echo "<title>".$pagetitle." - ".$sitename."</title>"; ?></h1>
+</div>
+	
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+	<tr>
+		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th class="topleft"></th>
+		<td id="tbl-border-top">&nbsp;</td>
+		<th class="topright"></th>
+		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+	</tr>
+	<tr>
+		<td id="tbl-border-left"></td>
+		<td>
+			<div id="content-table-inner">
+				<h3>This set of tools parses saved mission files created in the 3D editor. You can easily import vehicles and buildings into your database this way. Read the instructions before you start!</h3>
+
+				<br />
+
+				<h2>1. CREATE VEHICLES:</h2>
+				<p>Adds all vehicles to 'instance_vehicle' and 'vehicle' tables to be spawned in on next restart.</p>
+				<br />
+				<strong><a href="#" onclick="ShowModalPopup('dvPopup_vehicle'); return false;">START NOW!</a>
+				<font color="red"> (Note: Create a fresh mission with only vehicles!)</font></strong>
+
+				<br />
+				<br />
+
+				<h2>2. CREATE BUILDINGS:</h2>
+				<p>Adds all buildings to 'instance_building' and 'building' tables to be spawned in on next restart.</p>
+				<br />
+				<strong><a href="#" onclick="ShowModalPopup('dvPopup_building'); return false;">START NOW!</a>
+				<font color="red"> (Note: Create a fresh mission with only buildings!)</font></strong>
+
+				<br />
+				<br />
+				<br />
+
+				<h3>INSTRUCTIONS:</h3>
+
+				<p>Missions can be edited/created from launching DayZ with or without rMod:</p>
+				<br />
+				<p>1. At the main menu press ALT + E.</p>
+				<br />
+				<p>2. Once you are in the 3D editor do the following:</p>
+				<li>Place "Center (F10)" anywhere on map [Just hit OK].</li>
+				<li>Place "Group (F2)" anywhere on map [Just hit OK].</li>
+				<li>Place "Unit (F1)" anywhere on map [Just hit OK].</li>
+				<li>Your mission can be saved now!</li>
+				<br />
+				<p>3. Find anywhere you like on the map and RIGHT CLICK -> "default camera" (takes you to 3d).</p>
+				<br />
+				<p>4. Upper-Right Menu select "Vehicle (F5), double click the ground, select the vehicle/building to place, hit ok.</p>
+				<br />
+				<p>5. Left click and hold yellow circle for object and drag to place. Hold SHIFT while holding left mouse button to rotate. Hold ALT while holding left mouse to raise or lower object.</p>
+				<br />
+				<p>6. Hover over the object and hit DELETE to remove.</p>
+				<br />
+				<p>7. Save your progress:
+				<li>Save your vehicles as "User mission"</li>
+				<li>Save your buildings as "User mission"</li>
+				<br />
+				<p>8. Copy files to working directory:</p>
+				<br />
+				<strong><font color="green">FOR VEHICLES:</font></strong>
+				<br />
+				Copy file from: "Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
+				Paste ot to: "@dayzcc\htdocs\dayz\vehicles.sqf"
+				<br />
+				<br />
+				<strong><font color="green">FOR BUILDINGS:</font></strong>
+				<br />
+				Copy file from: "Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
+				Paste it to: "@dayzcc\htdocs\dayz\buildings.sqf"
+				<br />
+				<br />
+
+				<strong>These tools were written by Torzar and Crosire.</strong>
+			</div>
+		</td>
+		<td id="tbl-border-right"></td>
+	</tr>
+	<tr>
+		<th class="sized bottomleft"></th>
+		<td id="tbl-border-bottom">&nbsp;</td>
+		<th class="sized bottomright"></th>
+	</tr>
+</table>
+<div class="clear">&nbsp;</div>
+<?
+}
+else
+{
+	header('Location: index.php');
+}
+?>

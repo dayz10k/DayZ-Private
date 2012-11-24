@@ -4140,7 +4140,7 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sWire_cat1>
-	<sHedgehog_DZ>
+    <sHedgehog_DZ>
         <Type>Hedgehog</Type>
         <Side>WEST</Side>
         <Faction>CIV</Faction>
@@ -4150,7 +4150,7 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sHedgehog_DZ>
-	<sOld_bike_TK_INS_EP1>
+    <sOld_bike_TK_INS_EP1>
         <Type>Bike</Type>
         <Side>WEST</Side>
         <Faction>BIS_TK_INS</Faction>
@@ -4160,7 +4160,7 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sOld_bike_TK_INS_EP1>
-	<sOld_bike_TK_CIV_EP1>
+    <sOld_bike_TK_CIV_EP1>
         <Type>Bike</Type>
         <Side>WEST</Side>
         <Faction>BIS_TK_CIV</Faction>
@@ -4170,8 +4170,8 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sOld_bike_TK_CIV_EP1>
-	<sFishing_Boat>
-        <Type>large Boat</Type>
+    <sFishing_Boat>
+        <Type>lBoat</Type>
         <Side>WEST</Side>
         <Faction>CIV</Faction>
         <Name>Fishing boat</Name>
@@ -4180,8 +4180,8 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sFishing_Boat>
-	<sSmallboat_1>
-        <Type>medium Boat</Type>
+    <sSmallboat_1>
+        <Type>mBoat</Type>
         <Side>WEST</Side>
         <Faction>CIV</Faction>
         <Name>Boat</Name>
@@ -4190,8 +4190,8 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sSmallboat_1>
-	<sSmallboat_2>
-        <Type>medium Boat</Type>
+    <sSmallboat_2>
+        <Type>mBoat</Type>
         <Side>WEST</Side>
         <Faction>CIV</Faction>
         <Name>Boat</Name>
@@ -4200,4 +4200,24 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sSmallboat_2>
+    <sPBX>
+        <Type>pbx</Type>
+        <Side>WEST</Side>
+        <Faction>CIV</Faction>
+        <Name>PBX</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sPBX>
+    <sRHIB>
+		<Type>pbx</Type>
+        <Side>WEST</Side>
+        <Faction>CIV</Faction>
+        <Name>RHIB</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sRHIB>
 </vehicles>

@@ -3,7 +3,7 @@
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 	
-	while ($row=mysql_fetch_array($res)) {
+	while ($row = mysql_fetch_array($res)) {
 		$Worldspace = str_replace("[", "", $row['worldspace']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = str_replace("|", ",", $Worldspace);
@@ -35,7 +35,7 @@
 ?>	
 	<div id="page-heading">
 		<h1><? echo "<title>".$row['class_name']." - ".$sitename."</title>"; ?></h1>
-		<h1><? echo $row['class_name']; ?> - <? echo $row['id']; ?> - Last save: <? echo $row['last_updated']; ?></h1>
+		<h1><? echo $row['class_name']; ?> - <? echo $row['id']; ?> - Last save: <? echo $row['last_updated']; ?> - Position: <? echo $row['worldspace']; ?></h1>
 	</div>
 	<!-- end page-heading -->
 

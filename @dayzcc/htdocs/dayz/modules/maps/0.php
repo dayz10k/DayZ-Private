@@ -9,30 +9,22 @@
 	if ($answer != "") {
 		$k = strrpos($answer, "---");
 		$l = strrpos($answer, "(");
-		$out = substr($answer, $k+4, $l-$k-5);
+		$out = substr($answer, $k + 4, $l - $k - 5);
 		$array = preg_split ('/$\R?^/m', $out);
 		
 		//echo $answer."<br /><br />";
 
 		$players = array();
-		for ($j=0; $j<count($array); $j++){
-			$players[] = "";
-		}
-		for ($i=0; $i < count($array); $i++)
+		for ($j = 0; $j < count($array); $j++){$players[] = "";}
+		for ($i = 0; $i < count($array); $i++)
 		{
 			$m = 0;
-			for ($j=0; $j<5; $j++){
-				$players[$i][] = "";
-			}
+			for ($j = 0; $j < 5; $j++){$players[$i][] = "";}
 			$pout = preg_replace('/\s+/', ' ', $array[$i]);
-			for ($j=0; $j<strlen($pout); $j++){
+			for ($j = 0; $j < strlen($pout); $j++){
 				$char = substr($pout, $j, 1);
 				if($m < 4){
-					if($char != " "){
-						$players[$i][$m] .= $char;
-					}else{
-						$m++;
-					}
+					if($char != " "){$players[$i][$m] .= $char;} else {$m++;}
 				} else {
 					$players[$i][$m] .= $char;
 				}
@@ -41,11 +33,11 @@
 		
 		$pnumber = count($players);
 
-		$markers= "var markers = [";
+		$markers = "var markers = [";
 		$m = 0;
-		for ($i=0; $i<count($players); $i++){
+		for ($i = 0; $i<count($players); $i++){
 
-			if(strlen($players[$i][4])>1){
+			if(strlen($players[$i][4]) > 1){
 				$k = strrpos($players[$i][4], " (Lobby)");
 				$playername = str_replace(" (Lobby)", "", $players[$i][4]);
 				
@@ -53,9 +45,9 @@
 				$chars = str_split($playername);
 				$new_string = '';
 				foreach($chars as $char) {
-					if($char=='[') $paren_num++;
-					else if($char==']') $paren_num--;
-					else if($paren_num==0) $new_string .= $char;
+					if ($char == '[') $paren_num++;
+					elseif ($char == ']') $paren_num--;
+					elseif ($paren_num == 0) $new_string .= $char;
 				}
 				$playername = trim($new_string);
 
@@ -64,7 +56,7 @@
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 
-				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_updated DESC LIMIT 1";
+				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_updated DESC LIMIT 1;";
 				$res = null;
 				$res = mysql_query($query) or die(mysql_error());
 				$dead = "";
@@ -76,7 +68,7 @@
 				$id = "0";
 				$uid = "0";
 				
-				while ($row=mysql_fetch_array($res)) {
+				while ($row = mysql_fetch_array($res)) {
 					$Worldspace = str_replace("[", "", $row['worldspace']);
 					$Worldspace = str_replace("]", "", $Worldspace);
 					$Worldspace = explode(",", $Worldspace);

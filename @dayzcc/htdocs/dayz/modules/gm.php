@@ -26,16 +26,16 @@ if (isset($_SESSION['user_id']))
 	var marker = null;
 
 	<?
-	if($world=="chernarus")
+	if (strpos($world, "chernarus") !== false)
 	{
 	?>
 		// Values by DaTorqueMan and SilverShot
-		var pixelOrigin_ = new google.maps.Point(117, 96.5);
+		var pixelOrigin_ = new google.maps.Point(118.15, 96.3);
 		var pixelsPerLonDegree_ = 227.5 / 360;
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
 	}
-	elseif($world=="lingor")
+	elseif (strpos($world, "lingor") !== false)
 	{
 	?>
 		// Values by Hardy
@@ -44,7 +44,7 @@ if (isset($_SESSION['user_id']))
 		var pixelsPerLonRadian_ = 235 / (2 * Math.PI);
 	<?
 	}
-	elseif($world=="utes")
+	elseif (strpos($world, "utes") !== false)
 	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
@@ -52,7 +52,7 @@ if (isset($_SESSION['user_id']))
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
 	}
-	elseif($world=="panthera2")
+	elseif (strpos($world, "panthera") !== false)
 	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
@@ -60,7 +60,7 @@ if (isset($_SESSION['user_id']))
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
 	}
-	elseif($world=="takistan")
+	elseif (strpos($world, "takistan") !== false)
 	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
@@ -68,7 +68,7 @@ if (isset($_SESSION['user_id']))
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
 	}
-	elseif($world=="fallujah")
+	elseif (strpos($world, "fallujah") !== false)
 	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
@@ -76,7 +76,7 @@ if (isset($_SESSION['user_id']))
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
 	}
-	elseif($world=="mgb_celle2")
+	elseif (strpos($world, "celle") !== false)
 	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
@@ -84,7 +84,7 @@ if (isset($_SESSION['user_id']))
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
 	}
-	elseif($world=="namalsk")
+	elseif (strpos($world, "namalsk") !== false)
 	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);
@@ -92,7 +92,7 @@ if (isset($_SESSION['user_id']))
 		var pixelsPerLonRadian_ = 227.5 / (2 * Math.PI); 
 	<?
 	}
-	elseif($world=="zargabad")
+	elseif (strpos($world, "zargabad") !== false)
 	{
 	?>
 		var pixelOrigin_ = new google.maps.Point(118, 112.5);

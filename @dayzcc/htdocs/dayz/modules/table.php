@@ -1,5 +1,5 @@
 <?
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"table") !== false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "table") !== false))
 {
 	$pnumber = 0;
 	$tableheader = '';
@@ -51,128 +51,118 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"table
 			$pagetitle = "Online players";
 			break;
 		case 1:
+			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS survivor WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0'";
 			switch ($sort) {
-				case 0:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0'";
-					break;
 				case 1:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `name` $ordered";
+					$query = $query." ORDER BY survivor.name $ordered";
 					break;
 				case 2:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `unique_id` $ordered";
+					$query = $query." ORDER BY survivor.unique_id` $ordered";
 					break;
 				case 3:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `worldspace` $ordered";
+					$query = $query." ORDER BY survivor.worldspace $ordered";
 					break;
 				case 4:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `medical` $ordered";
+					$query = $query." ORDER BY survivor.medical $ordered";
 					break;
 				case 5:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `inventory` $ordered";
+					$query = $query." ORDER BY survivor.inventory $ordered";
 					break;
 				case 6:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0' ORDER BY `backpack` $ordered";
+					$query = $query." ORDER BY survivor.backpack $ordered";
 					break;
 			};
 			$pagetitle = "Alive players";		
 			break;
 		case 2:
+			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS survivor WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]'";
 			switch ($sort) {
-				case 0:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]'"; 
-					break;
 				case 1:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `name` $ordered";
+					$query = $query." ORDER BY survivor.name $ordered";
 					break;
 				case 2:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `unique_id` $ordered";
+					$query = $query." ORDER BY survivor.unique_id $ordered";
 					break;
 				case 3:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `worldspace` $ordered";
+					$query = $query." ORDER BY survivor.worldspace $ordered";
 					break;
 				case 4:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `medical` $ordered";
+					$query = $query." ORDER BY survivor.medical $ordered";
 					break;
 				case 5:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `inventory` $ordered";
+					$query = $query." ORDER BY survivor.inventory $ordered";
 					break;
 				case 6:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]' ORDER BY `backpack` $ordered";
+					$query = $query." ORDER BY survivor.backpack $ordered";
 					break;
 			};
 			$pagetitle = "Dead players";	
 			break;
 		case 3:
+			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS survivor WHERE profile.unique_id = survivor.unique_id";
 			switch ($sort) {
-				case 0:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id"; 
-					break;
 				case 1:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `name` $ordered";
+					$query = $query." ORDER BY survivor.name $ordered";
 					break;
 				case 2:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `unique_id` $ordered";
+					$query = $query." ORDER BY survivor.unique_id $ordered";
 					break;
 				case 3:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `worldspace` $ordered";
+					$query = $query." ORDER BY survivor.worldspace $ordered";
 					break;
 				case 4:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `medical` $ordered";
+					$query = $query." ORDER BY survivor.medical $ordered";
 					break;
 				case 5:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `inventory` $ordered";
+					$query = $query." ORDER BY survivor.inventory $ordered";
 					break;
 				case 6:
-					$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id ORDER BY `backpack` $ordered";
+					$query = $query." ORDER BY survivor.backpack $ordered";
 					break;
 			};
 			$pagetitle = "All players";	
 			break;
 		case 4:
+			$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND instance_vehicle.damage < '0.95'";
 			switch ($sort) {
-				case 0:
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND `damage` < 0.95";
-					break;
 				case 1:
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND `damage` < 0.95 ORDER BY `id` $ordered";
+					$query = $query." ORDER BY `id` $ordered";
 					break;
 				case 2:
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND `damage` < 0.95 ORDER BY `class_name` $ordered";
+					$query = $query." ORDER BY `class_name` $ordered";
 					break;
 				case 3:
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND `damage` < 0.95 ORDER BY `damage` $ordered";
+					$query = $query." ORDER BY `damage` $ordered";
 					break;
 				case 4:
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND `damage` < 0.95 ORDER BY `worldspace` $ordered";
+					$query = $query." ORDER BY `worldspace` $ordered";
 					break;
 				case 5:
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND `damage` < 0.95 ORDER BY `inventory` $ordered";
+					$query = $query." ORDER BY `inventory` $ordered";
 					break;
 				case 6:
-					$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND `damage` < 0.95 ORDER BY `parts` $ordered";
+					$query = $query." ORDER BY `parts` $ordered";
 					break;
 			};
 			$pagetitle = "Ingame vehicles";	
 			break;
 		case 5:
+			$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."'";
 			switch ($sort) {
-				case 0:
-					$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."'";
-					break;
 				case 1:
-					$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."' ORDER BY instance_deployable.id $ordered";
+					$query = $query." ORDER BY instance_deployable.id $ordered";
 					break;
 				case 2:
-					$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."' ORDER BY `unique_id` $ordered";
+					$query = $query." ORDER BY `unique_id` $ordered";
 					break;
 				case 3:
-					$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."' ORDER BY `class_name` $ordered";
+					$query = $query." ORDER BY `class_name` $ordered";
 					break;
 				case 4:
-					$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."' ORDER BY `worldspace` $ordered";
+					$query = $query." ORDER BY `worldspace` $ordered";
 					break;
 				case 5:
-					$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."' ORDER BY `inventory` $ordered";
+					$query = $query." ORDER BY `inventory` $ordered";
 					break;
 			};
 			$pagetitle = "Ingame deployables";

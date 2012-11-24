@@ -3,7 +3,7 @@
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 	
-	while ($row=mysql_fetch_array($res)) {
+	while ($row = mysql_fetch_array($res)) {
 		$Worldspace = str_replace("[", "", $row['worldspace']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = explode(",", $Worldspace);
@@ -33,7 +33,6 @@
 
 		for ($i=0; $i<count($Inventory); $i++){
 			if(array_key_exists($i,$Inventory)){
-				//$debug .= 'Debug:&nbsp;'.$Inventory[$i].';<br />';
 				$curitem = $Inventory[$i];
 				$icount = "";
 				if (is_array($curitem)){$curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds';}
@@ -68,7 +67,7 @@
 ?>	
 	<div id="page-heading">
 		<h1><? echo "<title>".$name." - ".$sitename."</title>"; ?></h1>
-		<h1><? echo $name; ?> - <? echo $row['unique_id']; ?> - Last save: <? echo $row['last_updated']; ?></h1>
+		<h1><? echo $name; ?> - <? echo $row['unique_id']; ?> - Last save: <? echo $row['last_updated']; ?> - Position: <? echo $row['worldspace']; ?></h1>
 	</div>
 	<!-- end page-heading -->
 

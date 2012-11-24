@@ -1,5 +1,5 @@
 <? 
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"control") !== false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "control") !== false))
 {
 ?>
 	<h2>Say to global chat:</h2>
