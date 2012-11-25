@@ -1,4 +1,4 @@
-startLoadingScreen ["","DayZ_loadingScreen"];
+startLoadingScreen ["", "DayZ_loadingScreen"];
 enableSaving [false, false];
 
 dayZ_instance = 1;
@@ -17,6 +17,9 @@ progressLoadingScreen 1.0;
 
 "filmic" setToneMappingParams [0.153, 0.357, 0.231, 0.1573, 0.011, 3.750, 6, 4]; setToneMapping "Filmic";
 
+player setVariable ["BIS_noCoreConversations", true];
+enableRadio false;
+
 if (isServer) then {
 	hiveInUse = true;
 	_serverMonitor = [] execVM "\z\addons\dayz_server\system\server_monitor.sqf";
@@ -24,7 +27,7 @@ if (isServer) then {
 
 if (!isDedicated) then {
 	0 fadeSound 0;
-	0 cutText [(localize "STR_AUTHENTICATING"), "BLACK FADED",60];
+	0 cutText [(localize "STR_AUTHENTICATING"), "BLACK FADED", 60];
 	_id = player addEventHandler ["Respawn", {_id = [] spawn player_death;}];
 	_playerMonitor = [] execVM "\z\addons\dayz_code\system\player_monitor.sqf";
 
@@ -46,7 +49,7 @@ if (!isDedicated) then {
 	{
 		waitUntil {(!isNull Player) and (alive Player) and (player == player)};
 		_uid = (getPlayerUID vehicle player);
-		_isAdmin = (serverCommandAvailable"#kick");
+		_isAdmin = (serverCommandAvailable "#kick");
 
 		if (_isAdmin) then // && ((_uid) in ADMINS)
 		{
@@ -54,8 +57,14 @@ if (!isDedicated) then {
 			(findDisplay 46) displayAddEventHandler ["keyDown", "_this call fnc_keyDown"];
 
 			#ifdef DEBUG
-				diag_log format["DEBUG: GCAM keyevent loaded for admin: %1", _uid];
+				diag_log format ["DEBUG: GCAM keyevent loaded for admin: %1", _uid];
 			#endif
+			
+			waituntil {!(serverCommandAvailable "#kick")};
+		}
+		else
+		{
+			waituntil {serverCommandAvailable "#kick"};
 		};
 	};
 #endif
