@@ -1,14 +1,13 @@
-<?php
+<?
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user") !== false))
 {
-function GenerateSalt($n=3)
-{
-	$key = '';
-	$pattern = '1234567890abcdefghijklmnopqrstuvwxyz.,*_-=+';
-	$counter = strlen($pattern)-1;
-	for($i=0; $i<$n; $i++) { $key .= $pattern{rand(0,$counter)}; }
-	return $key;
-}
+	function GenerateSalt($n = 3) {
+		$key = '';
+		$pattern = '1234567890abcdefghijklmnopqrstuvwxyz.,*_-=+';
+		$counter = strlen($pattern)-1;
+		for ($i = 0; $i < $n; $i++) { $key .= $pattern{rand(0, $counter)}; }
+		return $key;
+	}
 
 if (empty($_POST))
 {
@@ -19,11 +18,11 @@ if (empty($_POST))
 	</div>
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
-		<th rowspan="3" class="sized"><img src="<? echo $path; ?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 		<th class="topleft"></th>
 		<td id="tbl-border-top">&nbsp;</td>
 		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="<? echo $path; ?>images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
 		<td id="tbl-border-left"></td>
@@ -31,9 +30,7 @@ if (empty($_POST))
 		<div id="content-table-inner">
 			<div id="table-content">
 				<h2>Enter login, password and select permissions for new user</h2>
-				
 				<form id="regform" action="index.php?view=register">
-				
 					<table border="0" cellpadding="0" cellspacing="0"  id="id-form">
 					<tr>
 						<th valign="top">Login:</th>
@@ -60,8 +57,8 @@ if (empty($_POST))
 					</tr>
 					</table>
 				</form>
-				
 			</div>
+			
 			<div id="result"></div>
 
 			<script>
@@ -108,7 +105,7 @@ if (empty($_POST))
 	</tr>
 	</table>
 	
-<?php
+<?
 }
 else
 {
@@ -152,7 +149,7 @@ else
 			<table border="0" width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="green-left">New user is succesfully registered!</td>
-				<td class="green-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-green"><img src="<? echo $path; ?>images/table/icon_close_green.gif" alt="" /></a></td>
+				<td class="green-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-green"><img src="images/table/icon_close_green.gif" alt="" /></a></td>
 			</tr>
 			</table>
 			</div>
@@ -169,7 +166,7 @@ else
 			<table border="0" width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<td class="red-left">Error in registration process!</td>
-				<td class="red-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-red"><img src="<? echo $path; ?>images/table/icon_close_red.gif" alt="" /></a></td>
+				<td class="red-right"><a href="#" onclick="window.location.href = 'index.php?view=admin';" class="close-red"><img src="images/table/icon_close_red.gif" alt="" /></a></td>
 			</tr>
 			</table>
 			</div>

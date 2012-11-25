@@ -8,6 +8,7 @@
 	{
 		$pageNum = $_GET['page'];
 	}
+	
 	$offset = ($pageNum - 1) * $rowsPerPage;
 	$maxPage = ceil($pnumber/$rowsPerPage);			
 
@@ -29,6 +30,6 @@
 
 	$tableheader = header_player($show, $order);
 		
-	while ($row=mysql_fetch_array($res)) {$tablerows .= row_player($row, $serverworld);}
+	while ($row = mysql_fetch_array($res)) {$tablerows .= row_player($row, $serverworld);}
 	include ('paging.php');
 ?>

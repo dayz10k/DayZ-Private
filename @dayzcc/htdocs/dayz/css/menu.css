@@ -1,32 +1,38 @@
 /* CORE */
 .mc-nav {
-float: left;
-font-weight: bold;
-color: #fff;
-font-family: Tahoma;
-font-size: 15px;
-padding: 2px 20px 0 20px;
-height: 38px;
-position: relative;
-width: 600px;
-min-width: 600px;
-z-index: 500;
+	float: left;
+	font-weight: bold;
+	color: #fff;
+	font-family: Tahoma;
+	font-size: 15px;
+	padding: 2px 20px 0 20px;
+	height: 38px;
+	position: relative;
+	width: 600px;
+	min-width: 600px;
+	z-index: 500;
 }
 
 .menutop .root > .item {font-weight:bold;cursor:pointer;}
-.menutop,.menutop * {margin:0;padding:0;}
+.menutop,
+.menutop * {margin:0;padding:0;}
 .menutop {float:left;position:relative;}
 .menutop li {list-style:none;position:relative;width:100%;height:25px;float:none;}
 .menutop li a.item {cursor:pointer;}
 .menutop li span.item {cursor:default;outline:none;}
 .menutop li .item {display:block;float:left;display:block;margin:0;height:25px;line-height:25px;}
 .menutop li li .item, 
-.menutop li .item, .menutop li.active li .item {display:block;margin:0;text-decoration:none;float:none;}
-.menutop li .fusion-submenu-wrapper, .menutop li ul {float: none;left: -999em;position: absolute;z-index: 1500;}
-.menutop li:hover li ul, .menutop li.sfHover li ul {top: -999em;}
-.menutop li:hover ul, .menutop li.sfHover ul {top: 0;}
+.menutop li .item,
+.menutop li.active li .item {display:block;margin:0;text-decoration:none;float:none;}
+.menutop li .fusion-submenu-wrapper,
+.menutop li ul {float: none;left: -999em;position: absolute;z-index: 1500;}
+.menutop li:hover li ul,
+.menutop li.sfHover li ul {top: -999em;}
+.menutop li:hover ul,
+.menutop li.sfHover ul {top: 0;}
 .menutop li li {position:relative;float:none;}
-.menutop ul, .menutop ul ul {padding-bottom:6px;}
+.menutop ul,
+.menutop ul ul {padding-bottom:6px;}
 .menutop ul ul {padding-top:6px;}
 
 /* Drop Downs */
@@ -45,8 +51,10 @@ z-index: 500;
 .menutop .level2 {background:#666}
 .menutop .level2 li > .item {background:#666;}
 .menutop .level2 li:hover > .daddy, .menutop .level2 li > .daddy {background-image:url(../images/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
-/*.menutop .level2 .f-menuparent-itemfocus .item, */.menutop .level2 li:hover .item {background:#4D4D4D;}
-/*.menutop .level2 .f-menuparent-itemfocus .daddy,*/ .menutop .level2 li:hover .daddy {background-image:url(../images/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
+/*.menutop .level2 .f-menuparent-itemfocus .item, */
+.menutop .level2 li:hover .item {background:#4D4D4D;}
+/*.menutop .level2 .f-menuparent-itemfocus .daddy,*/
+.menutop .level2 li:hover .daddy {background-image:url(../images/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
 
 /* Level 3 */
 .menutop .level3 {background:#4D4D4D}
@@ -54,7 +62,8 @@ z-index: 500;
 .menutop .level3 li:hover > .daddy, .menutop .level3 li > .daddy {background-image:url(../images/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
 
 /* regular hover */
-.menutop li:hover .daddy:hover, .menutop ul li.active:hover > .daddy:hover {background-image:url(../images/right-arrow.png);background-repeat: no-repeat;background-position: 100% 50%;}
+.menutop li:hover .daddy:hover,
+.menutop ul li.active:hover > .daddy:hover {background-image:url(../images/right-arrow.png);background-repeat: no-repeat;background-position: 100% 50%;}
 
 /* seperator */
 .menutop li.separator {background-color: #666;height:10px;padding:7px 0 0; }
@@ -67,8 +76,11 @@ z-index: 500;
 
 /* disabled */
 .menutop.disabled .item span {opacity:0.8;}
-.menutop.disabled li.root > .daddy, .menutop.disabled li.root:hover > .daddy, .menutop.disabled li.root:hover > .daddy:hover {background-image: url(../images/down-bullet.png); background-position: 100% 60%; background-repeat: no-repeat;}
-.menutop.disabled li.root.active > .daddy, .menutop.disabled li.root.active:hover > .daddy {background-image:url(../images/down-bullet.png);background-position: 100% 60%;}
+.menutop.disabled li.root > .daddy,
+.menutop.disabled li.root:hover > .daddy,
+.menutop.disabled li.root:hover > .daddy:hover {background-image: url(../images/down-bullet.png); background-position: 100% 60%; background-repeat: no-repeat;}
+.menutop.disabled li.root.active > .daddy,
+.menutop.disabled li.root.active:hover > .daddy {background-image:url(../images/down-bullet.png);background-position: 100% 60%;}
 
 /* Root Items */
 .menutop li.root {width:auto;float:left;height:27px;} 
@@ -79,7 +91,7 @@ z-index: 500;
 
 .menutop li.parent.active:hover > .item {background-color:#666;}
 .menutop li.root.active > .daddy, .menutop li.root.active:hover > .daddy {background-image:url(../images/down-arrow.png);background-position: 100% 60%;}
-.menutop span.default {background:url(../images/bullet-star.png) 100% 100% no-repeat;display:inline-block;width:16px;height:16px;color:transparent;}
+.menutop span.default {background:url(../images/down-bullet.png) 100% 100% no-repeat;display:inline-block;width:16px;height:16px;color:transparent;}
 
 /* No JS */
 .menutop li:hover > .fusion-submenu-wrapper, .menutop li:hover > ul {left:170px;top:0;}
@@ -95,15 +107,54 @@ z-index: 500;
 .fusion-js-subs {display: none;margin: 0;overflow: hidden;padding: 0;position: absolute;}
 
 /* hover background */
-.mc-button a:hover, input#upload-submit:hover, #editor-xtd-buttons a:hover, .button2-left a:hover,#mc-login #form-login .button:hover, #mc-status li:hover, #mc-status li.action:hover, #mc-status li.standard:hover,#mc-status li:hover .mc-dropdown li:hover,.mc-toolbar a:hover,#help.mc-toolbar a:hover, .mc-toolbar .special a:hover,body #toolbar .mc-dropdown li:hover, .mc-dropdown li:hover,#mc-submenu a:hover, .pane-sliders .panel h3:hover,.mc-pagination-container .pages:hover, .mc-pagination .page-button a:hover,#mc-cpanel .pane-sliders .panel h3.title:hover  {background:#88B719;}
-.menutop li:hover .item:hover, .menutop li.active .item:hover,.mc-update-check a:hover,button:hover, input[type="button"]:hover, input[type="submit"]:hover {background-color:#88B719;}
+.mc-button a:hover,
+input#upload-submit:hover,
+#editor-xtd-buttons a:hover,
+.button2-left a:hover,
+#mc-login #form-login .button:hover,
+#mc-status li:hover,
+#mc-status li.action:hover,
+#mc-status li.standard:hover,
+#mc-status li:hover .mc-dropdown li:hover,
+.mc-toolbar a:hover,
+#help.mc-toolbar a:hover,
+.mc-toolbar .special a:hover,
+body #toolbar .mc-dropdown li:hover,
+.mc-dropdown li:hover,
+#mc-submenu a:hover,
+.pane-sliders .panel h3:hover,
+.mc-pagination-container .pages:hover,
+.mc-pagination .page-button a:hover,
+#mc-cpanel .pane-sliders .panel h3.title:hover  {background:#88B719;}
+.menutop li:hover .item:hover,
+.menutop li.active .item:hover,
+.mc-update-check a:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {background-color:#88B719;}
 
 /* hover text */
-#mc-status li select, .pane-sliders .panel h3:hover, .pane-sliders .panel h3:hover a, .menutop li:hover .item:hover, .menutop li.active .item:hover,#mc-header .menutop a:hover, #mc-submenu li:hover a, #mc-status li.action a:hover,#mc-header .menutop li:hover li:hover a:hover, #mc-status li:hover li:hover a,#toolbar li:hover a, .mc-toolbar a:hover,body #toolbar li:hover li:hover a,.mc-pagination-container .pages:hover a,.mc-pagination-container .pages:hover span, .mc-pagination .page-button a:hover {color:#FFFFFF;}
+#mc-status li select,
+.pane-sliders .panel h3:hover,
+.pane-sliders .panel h3:hover a,
+.menutop li:hover .item:hover,
+.menutop li.active .item:hover,
+#mc-header .menutop a:hover,
+#mc-submenu li:hover a,
+#mc-status li.action a:hover,
+#mc-header .menutop li:hover li:hover a:hover,
+#mc-status li:hover li:hover a,
+#toolbar li:hover a,
+.mc-toolbar a:hover,
+body #toolbar li:hover li:hover a,
+.mc-pagination-container .pages:hover a,
+.mc-pagination-container .pages:hover span,
+.mc-pagination .page-button a:hover {color:#FFFFFF;}
 
 /* tabs */
 .mc-form-tabs {list-style:none;margin:0 15px;padding:0;overflow:hidden;margin-top:30px;}
 .mc-form-tabs li {float:left;margin-right:2px;}
 .mc-form-tabs a {display:block;float:left;padding:4px 20px;background:#999;color:#fff;text-decoration:none;cursor:pointer;}
 .mc-form-tabs a.active {background:#4F9BD8;color:#FFFFFF;}
-.mc-form-tabs a:hover, .mc-form-tabs a.active:hover {background:#88B719;color:#FFFFFF;}
+.mc-form-tabs a:hover,
+.mc-form-tabs a.active:hover {background:#88B719;color:#FFFFFF;}

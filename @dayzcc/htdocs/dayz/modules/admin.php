@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td class="green-left">User '.$rowdel['login'].' successfully removed!</td>
-					<td class="green-right"><a class="close-green"><img src="'.$path.'images/table/icon_close_green.gif" alt="" /></a></td>
+					<td class="green-right"><a class="close-green"><img src="'.'images/table/icon_close_green.gif" alt="" /></a></td>
 				</tr>
 				</table>
 				</div>';
@@ -38,8 +38,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 	mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('MANAGE USERS', '{$_SESSION['login']}', NOW())") or die(mysql_error());
 ?>
 	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="<? echo $path; ?>images/table/action_delete.gif" alt="" /></a><br />
-			<? include_once ($path.'/modules/register.php'); ?>
+			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+			<? include_once ('/modules/register.php'); ?>
 	</div>
 
 	<div id="page-heading">
@@ -49,11 +49,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
-		<th rowspan="3" class="sized"><img src="<? echo $path; ?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 		<th class="topleft"></th>
 		<td id="tbl-border-top">&nbsp;</td>
 		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="<? echo $path; ?>images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
 		<td id="tbl-border-left"></td>
@@ -62,12 +62,12 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			<? echo $delresult; ?>
 			<div id="related-activities">
 				<div id="related-act-top">
-					<img width="271" height="43" alt="" src="<? echo $path; ?>images/forms/header_related_act.gif">
+					<img width="271" height="43" alt="" src="images/forms/header_related_act.gif">
 				</div>
 				<div id="related-act-bottom">
 					<div id="related-act-inner">
 						<div class="left"><a href="#" onclick="ShowModalPopup('dvPopup'); return false;">
-							<img width="21" height="21" alt="" src="<? echo $path; ?>images/forms/icon_plus.gif"></a>
+							<img width="21" height="21" alt="" src="images/forms/icon_plus.gif"></a>
 						</div>
 						<div class="right">
 							<h5><a href="#" onclick="ShowModalPopup('dvPopup'); return false;">Add user</a></h5>

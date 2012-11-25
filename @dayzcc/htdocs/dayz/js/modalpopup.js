@@ -1,32 +1,26 @@
-/*
-Cross-browser Modal Popup using Javascript (JQuery)
-*/
+/* Cross-browser Modal Popup using Javascript (JQuery) */
+/* http://codeissue.com/articles/a04daf3210c8b0a/cross-browser-modal-popup-using-javascript-jquery */
 
-//Modal popup background ID. 
-//This value should be unique so that it does not conflict with other IDs in the page.
-var _ModalPopupBackgroundID = 'backgroundPopup_XYZ_20110418_Custom';
+// Modal popup background ID. This value should be unique so that it does not conflict with other IDs in the page.
+var _ModalPopupBackgroundID = 'backgroundPopup';
 
 function ShowModalPopup(modalPopupID) {
-
-    //Setting modal popup window
-
-    //Boolean to detect IE6.
+    // Boolean to detect IE6.
     var isIE6 = (navigator.appVersion.toLowerCase().indexOf('msie 6') > 0);
-
+	
+	// Setting modal popup window
     var popupID = "#" + modalPopupID;
 
-    //Get popup window margin top and left
+    // Get popup window margin top and left
     var popupMarginTop = $(popupID).height() / 2;
     var popupMarginLeft = $(popupID).width() / 2;
 
-    //Set popup window left and z-index
-    //z-index of modal popup window should be higher than z-index of modal background
+    // Set popup window left and zindex (should be higher than zindex of modal background)
     $(popupID).css({
         'left': '50%',
         'z-index': 9999
     });
 
-    //Special case for IE6 because it does not understand position: fixed
     if (isIE6) {
         $(popupID).css({
             'top': $(document).scrollTop(),
@@ -46,13 +40,13 @@ function ShowModalPopup(modalPopupID) {
         });
     }
 
-    //Automatically adding modal background to the page.
+    // Automatically adding modal background to the page.
     var backgroundSelector = $('<div id="' + _ModalPopupBackgroundID + '" ></div>');
 
-    //Add modal background to the body of the page.
+    // Add modal background to the body of the page.
     backgroundSelector.appendTo('body');
 
-    //Set CSS for modal background. Set z-index of background lower than popup window.
+    // Set CSS for modal background. Set z-index of background lower than popup window.
     backgroundSelector.css({
         'width': $(document).width(),
         'height': $(document).height(),
@@ -68,9 +62,9 @@ function ShowModalPopup(modalPopupID) {
 }
 
 function HideModalPopup(modalPopupID) {
-    //Hide modal popup window
+    // Hide modal popup window
     $("#" + modalPopupID).css('display', 'none');
 
-    //Remove modal background from DOM.
+    // Remove modal background
     $("#" + _ModalPopupBackgroundID).remove();
 }

@@ -83,11 +83,11 @@ $pagetitle = "Server control";
 </div>
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
-		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 		<th class="topleft"></th>
 		<td id="tbl-border-top">&nbsp;</td>
 		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
 		<td id="tbl-border-left"></td>
@@ -99,15 +99,15 @@ $pagetitle = "Server control";
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tr>
 					<td class="green-left">Server is running.</td>
-					<td class="green-right"><a class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
+					<td class="green-right"><a class="close-green"><img src="images/table/icon_close_green.gif"   alt="" /></a></td>
 				</tr>
 				</table>
 				</div>
 				<div id="step-holder">	
-					<div class="step-no"><a href="index.php?view=control&action=5"><img src="<?echo $path;?>images/start.png"/></div>
+					<div class="step-no"><a href="index.php?view=control&action=5"><img src="images/start.png"/></div>
 					<div class="step-dark-left">Restart</div>
 					<div class="step-dark-right">&nbsp;</div>
-					<div class="step-no"><a href="index.php?view=control&action=1"><img src="<?echo $path;?>images/stop.png"/></a></div>
+					<div class="step-no"><a href="index.php?view=control&action=1"><img src="images/stop.png"/></a></div>
 					<div class="step-dark-left"><a href="index.php?view=control&action=1">Stop</a></div>
 					<div class="step-dark-round">&nbsp;</div>
 					<div class="clear"></div>
@@ -119,15 +119,15 @@ $pagetitle = "Server control";
 					<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="green-left">BattlEye Extended Controls is running.</td>
-						<td class="green-right"><a class="close-green"><img src="<?echo $path;?>images/table/icon_close_green.gif"   alt="" /></a></td>
+						<td class="green-right"><a class="close-green"><img src="images/table/icon_close_green.gif"   alt="" /></a></td>
 					</tr>
 					</table>
 					</div>
 					<div id="step-holder">	
-						<div class="step-no-off"><img src="<?echo $path;?>images/start.png"/></div>
+						<div class="step-no-off"><img src="images/start.png"/></div>
 						<div class="step-light-left">Start</div>
 						<div class="step-light-right">&nbsp;</div>
-						<div class="step-no"><a href="index.php?view=control&action=4"><img src="<?echo $path;?>images/stop.png"/></a></div>
+						<div class="step-no"><a href="index.php?view=control&action=4"><img src="images/stop.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=4">Stop</a></div>
 						<div class="step-dark-round">&nbsp;</div>
 						<div class="clear"></div>
@@ -137,15 +137,15 @@ $pagetitle = "Server control";
 					<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="yellow-left">BattlEye Extended Controls is not running.</td>
-						<td class="yellow-right"><a class="close-yellow"><img src="<?echo $path;?>images/table/icon_close_yellow.gif"   alt="" /></a></td>
+						<td class="yellow-right"><a class="close-yellow"><img src="images/table/icon_close_yellow.gif"   alt="" /></a></td>
 					</tr>
 					</table>
 					</div>
 					<div id="step-holder">	
-						<div class="step-no"><a href="index.php?view=control&action=3"><img src="<?echo $path;?>images/start.png"/></a></div>
+						<div class="step-no"><a href="index.php?view=control&action=3"><img src="images/start.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=3">Start</a></div>
 						<div class="step-dark-right">&nbsp;</div>
-						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
+						<div class="step-no-off"><img src="images/stop.png"/></div>
 						<div class="step-light-left">Stop</div>
 						<div class="step-light-round">&nbsp;</div>
 						<div class="clear"></div>
@@ -156,15 +156,15 @@ $pagetitle = "Server control";
 					<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="red-left">Server is stopped.</td>
-						<td class="red-right"><a class="close-red"><img src="<?echo $path;?>images/table/icon_close_red.gif"   alt="" /></a></td>
+						<td class="red-right"><a class="close-red"><img src="images/table/icon_close_red.gif"   alt="" /></a></td>
 					</tr>
 					</table>
 					</div>
 					<div id="step-holder">	
-						<div class="step-no"><a href="index.php?view=control&action=0"><img src="<?echo $path;?>images/start.png"/></a></div>
+						<div class="step-no"><a href="index.php?view=control&action=0"><img src="images/start.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=0">Start</a></div>
 						<div class="step-dark-right">&nbsp;</div>
-						<div class="step-no-off"><img src="<?echo $path;?>images/stop.png"/></div>
+						<div class="step-no-off"><img src="images/stop.png"/></div>
 						<div class="step-light-left">Stop</div>
 						<div class="step-light-round">&nbsp;</div>
 						<div class="clear"></div>

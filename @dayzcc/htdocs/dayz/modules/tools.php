@@ -3,16 +3,17 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 {
 	$pagetitle = "Database Tools";
 
-	// Thanks to Torzar for parts of his code!
+	// Thanks to TorZar for parts of his code!
 ?>
 
 <div id="dvPopup_vehicle" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-	<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="<? echo $path; ?>images/table/action_delete.gif" alt="" /></a><br />
-	<? include_once ($path.'/modules/tools/parseVehicles.php'); ?>
+	<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+	<? include_once ('/tools/parseVehicles.php'); ?>
 </div>
+
 <div id="dvPopup_building" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-	<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="<? echo $path; ?>images/table/action_delete.gif" alt="" /></a><br />
-	<? include_once ($path.'/modules/tools/parseBuildings.php'); ?>
+	<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+	<? include_once ('/tools/parseBuildings.php'); ?>
 </div>
 
 <div id="page-heading">
@@ -22,11 +23,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 	
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
-		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 		<th class="topleft"></th>
 		<td id="tbl-border-top">&nbsp;</td>
 		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="<?echo $path;?>images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
 		<td id="tbl-border-left"></td>
@@ -83,18 +84,18 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 				<br />
 				<strong><font color="green">FOR VEHICLES:</font></strong>
 				<br />
-				Copy file from: "Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
-				Paste ot to: "@dayzcc\htdocs\dayz\vehicles.sqf"
+				Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
+				Paste ot to: "~\@dayzcc\htdocs\dayz\vehicles.sqf"
 				<br />
 				<br />
 				<strong><font color="green">FOR BUILDINGS:</font></strong>
 				<br />
-				Copy file from: "Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
-				Paste it to: "@dayzcc\htdocs\dayz\buildings.sqf"
+				Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
+				Paste it to: "~\@dayzcc\htdocs\dayz\buildings.sqf"
 				<br />
 				<br />
 
-				<strong>These tools were written by Torzar and Crosire.</strong>
+				<strong>These tools were written by TorZar and Crosire.</strong>
 			</div>
 		</td>
 		<td id="tbl-border-right"></td>

@@ -4201,7 +4201,7 @@
         <cargo>0</cargo>
     </sSmallboat_2>
     <sPBX>
-        <Type>pbx</Type>
+        <Type>PBX</Type>
         <Side>WEST</Side>
         <Faction>CIV</Faction>
         <Name>PBX</Name>
@@ -4211,7 +4211,7 @@
         <cargo>0</cargo>
     </sPBX>
     <sRHIB>
-		<Type>pbx</Type>
+		<Type>PBX</Type>
         <Side>WEST</Side>
         <Faction>CIV</Faction>
         <Name>RHIB</Name>

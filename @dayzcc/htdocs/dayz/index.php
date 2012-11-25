@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<?php
 
+<?php
 session_start();
 
 defined('DS') ? null : define('DS',DIRECTORY_SEPARATOR);
-$path = "";
 $sitename = "DayZ Controlcenter Administration";
 
 include ('config.php');
@@ -35,6 +34,8 @@ if (isset($_SESSION['user_id']))
 {
 	include ('modules/rcon.php');
 	include ('modules/tables/rows.php');
+	include ('modules/maps/markers.php');
+	
 	function slashes(&$el)
 	{
 		if (is_array($el))
@@ -52,11 +53,11 @@ if (isset($_SESSION['user_id']))
 
 	if (isset($_GET["show"])){
 		$show = $_GET["show"];
-	}else{
+	} else {
 		$show = 0;
 	}
 
-	// Start: page-header 
+	// Start page-header 
 	include ('modules/header.php');
 	// End page-header
 
@@ -83,6 +84,6 @@ if (isset($_SESSION['user_id']))
 }
 else
 {
-	include ($path.'modules/login.php');
+	include ('modules/login.php');
 }
 ?>

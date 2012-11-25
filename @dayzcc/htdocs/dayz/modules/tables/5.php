@@ -1,26 +1,24 @@
 <?
+	error_reporting (E_ALL ^ E_NOTICE);
+
 	if (isset($_POST["deployable"])) {
 		$aDoor = $_POST["deployable"];
 		$N = count($aDoor);
 		
-		for($i=0; $i < $N; $i++)
+		for ($i = 0; $i < $N; $i++)
 		{
-			$query2 = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.unique_id = ".$aDoor[$i].""; 
-			$res2 = mysql_query($query2) or die(mysql_error());
-			while ($row2=mysql_fetch_array($res2)) {
-				$query2 = "INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$row2['class_name']." - ".$row2['unique_id']."','{$_SESSION['login']}',NOW())";
-				$sql2 = mysql_query($query2) or die(mysql_error());
-				$query2 = "DELETE FROM `instance_deployable` WHERE unique_id ='".$aDoor[$i]."'";
-				$sql2 = mysql_query($query2) or die(mysql_error());
-				$delresult = "Deployable ".$row2['class_name']." - ".$row2['unique_id']." successfully removed!";
-			}		
-			//echo($aDoor[$i] . " ");
+			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$aDoor[$i]."', '{$_SESSION['login']}', NOW())");
+			mysql_query("DELETE FROM `instance_deployable` WHERE unique_id = '".$aDoor[$i]."'") or die(mysql_error());
+			$delresult = "Deployable ".$aDoor[$i]." successfully removed!";
+			//echo($aDoor[$i]);
 		}
-		//echo $_GET["deluser"];
 	}
 	
-	
-	error_reporting (E_ALL ^ E_NOTICE);
+	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
+	$serverexestatus = explode(",", strtolower($serverexestatus));
+	$serverexestatus = $serverexestatus[0];
+	$serverexestatus = str_replace('"', "", $serverexestatus);
+	if ($serverexestatus == strtolower($exeserver)) {$serverrunning = true;} else {$serverrunning = false;}
 	
 	$res = mysql_query($query) or die(mysql_error());
 	$pnumber = mysql_num_rows($res);			
@@ -29,6 +27,7 @@
 	{
 		$pageNum = $_GET['page'];
 	}
+	
 	$offset = ($pageNum - 1) * $rowsPerPage;
 	$maxPage = ceil($pnumber/$rowsPerPage);			
 
@@ -36,16 +35,15 @@
 	{
 	   if ($page == $pageNum)
 	   {
-		  $nav .= " $page "; // no need to create a link to current page
+		  $nav .= " $page ";
 	   }
 	   else
 	   {
 		  $nav .= "$self&page=$page";
 	   }
 	}
-
-			
-	$query = $query." LIMIT ".$offset.",".$rowsPerPage;
+	
+	$query = $query." LIMIT ".$offset.",".$rowsPerPage.";";
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
 	
@@ -59,9 +57,10 @@
 	
 	$tableheader = header_deployable($show, $chbox, $order);
 	
-	while ($row=mysql_fetch_array($res)) {
-		if (!$serverrunning){$chbox = "<td class=\"gear_preview\"><input name=\"deployable[]\" value=\"".$row['unique_id']."\" type=\"checkbox\"/></td>";}	
+	while ($row = mysql_fetch_array($res)) {
+		if (!$serverrunning) {$chbox = "<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input name=\"deployable[]\" value=\"".$row['unique_id']."\" type=\"checkbox\"/></td>";}	
 		$tablerows .= row_deployable($row, $chbox, $serverworld);
 	}
+	
 	include ('paging.php');
 ?>

@@ -5,25 +5,20 @@
 		$aDoor = $_POST["vehicle"];
 		$N = count($aDoor);
 		
-		for($i=0; $i < $N; $i++)
+		for ($i = 0; $i < $N; $i++)
 		{
-			$resdel = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` AS `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = ".$aDoor[$i]."") or die(mysql_error());
-			while ($rowdel = mysql_fetch_array($resdel)) {
-				mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$rowdel['class_name']." - ".$rowdel['id']."','{$_SESSION['login']}',NOW())") or die(mysql_error());
-				mysql_query("DELETE FROM `instance_vehicle` WHERE id = '".$aDoor[$i]."'") or die(mysql_error());
-				
-				$delresult = "Vehicle ".$rowdel['class_name']." - ".$rowdel['id']." successfully removed!";
-			}		
-			//echo($aDoor[$i] . " ");
+			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$rowdel['id']."', '{$_SESSION['login']}', NOW())");
+			mysql_query("DELETE FROM `instance_vehicle` WHERE id = '".$aDoor[$i]."'") or die(mysql_error());
+			$delresult = "Vehicle ".$aDoor[$i]." successfully removed!";
+			//echo($aDoor[$i]);
 		}
-		//echo $_GET["deluser"];
 	}
 
 	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
 	$serverexestatus = explode(",", strtolower($serverexestatus));
 	$serverexestatus = $serverexestatus[0];
 	$serverexestatus = str_replace('"', "", $serverexestatus);
-	if ($serverexestatus == strtolower($exeserver)){$serverrunning = true;} else {$serverrunning = false;}
+	if ($serverexestatus == strtolower($exeserver)) {$serverrunning = true;} else {$serverrunning = false;}
 	
 	$res = mysql_query($query) or die(mysql_error());
 	$pnumber = mysql_num_rows($res);			
@@ -47,11 +42,11 @@
 		  $nav .= "$self&page=$page";
 	   }
 	}
-
-			
-	$query = $query." LIMIT ".$offset.",".$rowsPerPage;
+	
+	$query = $query." LIMIT ".$offset.",".$rowsPerPage.";";
 	$res = mysql_query($query) or die(mysql_error());
 	$number = mysql_num_rows($res);
+	
 	$chbox = "";
 	
 	if (!$serverrunning){ 

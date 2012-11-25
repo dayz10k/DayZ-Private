@@ -1,10 +1,11 @@
 <!--<meta http-equiv="refresh" content="10">-->
+
 <?
 	//ini_set( "display_errors", 0);
 	error_reporting (E_ALL ^ E_NOTICE);
 
 	$cmd = "players";	
-	$answer = rcon($serverip,$serverport,$rconpassword,$cmd);
+	$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
 
 	if ($answer != "") {
 		$k = strrpos($answer, "---");
@@ -33,8 +34,8 @@
 		
 		$pnumber = count($players);
 
-		$markers = "var markers = [";
-		$m = 0;
+		$markers = "";
+
 		for ($i = 0; $i<count($players); $i++){
 
 			if(strlen($players[$i][4]) > 1){
@@ -56,43 +57,16 @@
 				$good = trim(preg_replace("/\([^\)]+\)/", "", $good));
 				$good = preg_replace("[ +]", " ", $good);
 
-				$query = "SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_updated DESC LIMIT 1;";
-				$res = null;
-				$res = mysql_query($query) or die(mysql_error());
-				$dead = "";
-				$inventory = "";
-				$backpack = "";
+				$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '%". str_replace(" ", "%' OR `name` LIKE '%", $good). "%' ORDER BY last_updated DESC LIMIT 1;") or die(mysql_error());
 				$ip = $players[$i][1];
 				$ping = $players[$i][2];
 				$name = $players[$i][4];
-				$id = "0";
-				$uid = "0";
 				
-				while ($row = mysql_fetch_array($res)) {
-					$Worldspace = str_replace("[", "", $row['worldspace']);
-					$Worldspace = str_replace("]", "", $Worldspace);
-					$Worldspace = explode(",", $Worldspace);
-					$x = 0;
-					$y = 0;
-					if(array_key_exists(1,$Worldspace)){$x = $Worldspace[1];}
-					if(array_key_exists(2,$Worldspace)){$y = $Worldspace[2];}
-					
-					$dead = ($row['is_dead'] ? '_dead' : '');
-					$inventory = substr($row['inventory'], 0, 40)."...";
-					$backpack = substr($row['backpack'], 0, 40)."...";
-					$id = $row['id'];
-					$uid = $row['unique_id'];
-					$model = $row['model'];
-					$name = $row['name'];
-					
-					include_once($path.'modules/calc.php');
-					$description = "<h2><a href=\"index.php?view=info&show=1&id=".$uid."&cid=".$id."\">".htmlspecialchars($name, ENT_QUOTES)." - ".$uid."</a></h2><table><tr><td><img style=\"max-width: 100px;\" src=\"".$path."images/models/".str_replace('"', '', $model).".png\"></td><td>&nbsp;</td><td style=\"vertical-align:top; \"><h2>Position:</h2>left: ".round(world_x($x,$serverworld))." top: ".round(world_y($y,$serverworld))."</td></tr></table>";
-					$markers .= "['".htmlspecialchars($name, ENT_QUOTES)."', '".$description."', ".$x.", ".$y.", ".$m++.", '".$path."images/icons/player".$dead.".png'],";
-				}				
+				$markers = markers_player($res, $serverworld);			
 			}
 		}
-		$markers .= "['Edge of map', 'Edge of map', 0.0, 0.0, 1, '".$path."images/thumbs/null.png']];";
-		include ($path.'modules/gm.php');
+
+		include ('modules/leaf.php');
 	}
 	else
 	{
