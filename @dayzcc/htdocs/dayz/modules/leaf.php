@@ -2,6 +2,18 @@
 if (isset($_SESSION['user_id']))
 {
 ?>
+	<head>
+		<script src="js/map/chernarus.js"></script>
+		<script src="js/map/namalsk.js"></script>
+		<script src="js/map/lingor.js"></script>
+		<script src="js/map/panthera.js"></script>
+		<script src="js/map/takistan.js"></script>
+		<script src="js/map/fallujah.js"></script>
+		<script src="js/map/zargabad.js"></script>
+		<script src="js/map/celle.js"></script>
+		<script src="js/map/utes.js"></script>
+	</head>
+	
 	<div id="map" style="width:99%;height:1050px;margin:10px auto;border:2px solid #000;"></div>
 	
 	<script>
