@@ -3,7 +3,7 @@ var map, crsUtes;
 function InitUtes() {
 	var tilesUrl = '',
 		tilesAttrib = '&copy; Crosire',
-		tiles = new L.TileLayer(tilesUrl, {noWrap: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:8,y:7},4:{x:16,y:14},5:{x:32,y:27},6:{x:64,y:54}}});
+		tiles = new L.TileLayer(tilesUrl, {noWrap: true, continuousWorld: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:8,y:7},4:{x:16,y:14},5:{x:32,y:27},6:{x:64,y:54}}});
 		
 	var b = 1 / 14.524823, c = L.latLng([1.920978, 0.284574]);
 	crsUtes = L.Util.extend({}, L.CRS, {

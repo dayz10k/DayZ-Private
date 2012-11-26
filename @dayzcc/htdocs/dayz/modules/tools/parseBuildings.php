@@ -42,7 +42,7 @@ if (isset($_SESSION['user_id']))
 
 			<?
 			
-			$resultIDQuery = mysql_query("SELECT `id` FROM building;");
+			$resultIDQuery = mysql_query("SELECT `id` FROM `building`;") or die(mysql_error());
 			while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) {$userDataIDs[] = $row[0];}
 			$id = max($userDataIDs) + 1;
 				
@@ -86,7 +86,7 @@ if (isset($_SESSION['user_id']))
 					while ($row = mysql_fetch_array($resultCheckQuery)) {if ($row['worldspace'] == $pos) {$exists = true;}}
 					
 					if (!$exists) {
-						$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;");
+						$resultClassNameQuery = mysql_query("SELECT * FROM `building`;") or die(mysql_error());
 						$userDataClassNameQuery;
 						$userDataVehicleIDs;
 						while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {$userDataClassNameQuery[] = $row['class_name'];}
@@ -100,17 +100,17 @@ if (isset($_SESSION['user_id']))
 						if($matchFound == 0)
 						{
 							//echo "Inserting new Class Name";
-							mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]');");
+							mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]');") or die(mysql_error());
 						}
 					
 						//$timeset = date_default_timezone_get(America/Indiana/Petersburg);
-						$time = date("y-m-d H:i:s", time ());
+						$time = date("y-m-d H:i:s", time());
 						
 						$resultIDQuery = mysql_query("SELECT * FROM `building` WHERE `class_name` = '$strings[1]';");
 						$userDataIDQuery = mysql_fetch_array($resultIDQuery, MYSQL_ASSOC);
-						$vbuilding_id = $userDataIDQuery['id'];
+						$building_id = $userDataIDQuery['id'];
 						
-						mysql_query("INSERT INTO `instance_building` (`building_id`, `instance_id`, `worldspace`, `created`) VALUES ('$building_id', '$serverinstance', '$pos', '$time');");
+						mysql_query("INSERT INTO `instance_building` (`building_id`, `instance_id`, `worldspace`, `created`) VALUES ('$building_id', '$serverinstance', '$pos', '$time');") or die(mysql_error());
 						
 						$vehiclecount++;
 						$id++;

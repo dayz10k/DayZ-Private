@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id']))
 
 			<?
 			
-			$resultIDQuery = mysql_query("SELECT `id` FROM `world_vehicle`;");
+			$resultIDQuery = mysql_query("SELECT `id` FROM `world_vehicle`;") or die(mysql_error());
 			while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) {$userDataIDs[] = $row[0];}
 			$id = max($userDataIDs) + 1;
 				
@@ -83,11 +83,11 @@ if (isset($_SESSION['user_id']))
 					
 					// Insert to database
 				
-					$resultCheckQuery = mysql_query("SELECT * FROM `instance_vehicle`;");
+					$resultCheckQuery = mysql_query("SELECT * FROM `instance_vehicle`;") or die(mysql_error());
 					while ($row = mysql_fetch_array($resultCheckQuery)) {if ($row['worldspace'] == $pos) {$exists = true;}}
 
 					if (!$exists) {
-						$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;");
+						$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;") or die(mysql_error());
 						$userDataClassNameQuery;
 						$userDataVehicleIDs;
 						while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {$userDataClassNameQuery[] = $row['class_name'];}
@@ -101,10 +101,10 @@ if (isset($_SESSION['user_id']))
 						if($matchFound == 0)
 						{
 							//echo "Inserting new Class Name";
-							mysql_query("INSERT INTO `vehicle` (`class_name`, `damage_min`, `damage_max`, `fuel_min`, `fuel_max`, `limit_min`, `limit_max`, `parts`) VALUES ('$strings[1]', '0.100', '0.700', '0.200', '0.800', '0', '100', 'motor');");
+							mysql_query("INSERT INTO `vehicle` (`class_name`, `damage_min`, `damage_max`, `fuel_min`, `fuel_max`, `limit_min`, `limit_max`, `parts`) VALUES ('$strings[1]', '0.100', '0.700', '0.200', '0.800', '0', '100', 'motor');") or die(mysql_error());
 						}
 					
-						$time = date("y-m-d H:i:s", time ());
+						$time = date("y-m-d H:i:s", time());
 						
 						$resultIDQuery = mysql_query("SELECT * FROM `vehicle` WHERE `class_name` = '$strings[1]';");
 						$userDataIDQuery = mysql_fetch_array($resultIDQuery, MYSQL_ASSOC);
@@ -113,8 +113,8 @@ if (isset($_SESSION['user_id']))
 						$userDataWorldQuery = mysql_fetch_array($resultWorldQuery, MYSQL_ASSOC);
 						$world_id = $userDataWorldQuery['id'];
 						
-						mysql_query("INSERT INTO `world_vehicle` (`id`, `vehicle_id`, `world_id`, `worldspace`, `chance`) VALUES ('$id', '$vehicle_id', '$world_id', '$pos', '0');");
-						mysql_query("INSERT INTO `instance_vehicle` (`world_vehicle_id`, `instance_id`, `worldspace`, `inventory`, `parts`, `fuel`, `damage`, `last_updated`, `created`) VALUES ('$id', '$serverinstance', '$pos', '[]', '[]', '1', '0', '$time', '$time');");
+						mysql_query("INSERT INTO `world_vehicle` (`id`, `vehicle_id`, `world_id`, `worldspace`, `chance`) VALUES ('$id', '$vehicle_id', '$world_id', '$pos', '0');") or die(mysql_error());
+						mysql_query("INSERT INTO `instance_vehicle` (`world_vehicle_id`, `instance_id`, `worldspace`, `inventory`, `parts`, `fuel`, `damage`, `last_updated`, `created`) VALUES ('$id', '$serverinstance', '$pos', '[]', '[]', '1', '0', '$time', '$time');") or die(mysql_error());
 					
 						$vehiclecount++;
 						$id++;

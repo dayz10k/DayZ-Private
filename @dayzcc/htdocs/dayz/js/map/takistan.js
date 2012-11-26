@@ -3,7 +3,7 @@ var map, crsTakistan;
 function InitTakistan() {
 	var tilesUrl = 'http://static.dayzdb.com/tiles/takistan/{z}/{x}_{y}.png',
 		tilesAttrib = '&copy; Crosire, Takistan map data from <a href="http://dayzdb.com/map">DayZDB</a>',
-		tiles = new L.TileLayer(tilesUrl, {noWrap: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:8,y:7},4:{x:15,y:14},5:{x:29,y:27},6:{x:57,y:54}}});
+		tiles = new L.TileLayer(tilesUrl, {noWrap: true, continuousWorld: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:8,y:7},4:{x:15,y:14},5:{x:29,y:27},6:{x:57,y:54}}});
 		
 	var b = [0.769897 / 12.8, 0.769897 / 12.8], c = L.latLng([13.4071032, 0.9750912]);
 	crsTakistan = L.Util.extend({}, L.CRS, {

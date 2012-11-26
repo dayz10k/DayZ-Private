@@ -3,7 +3,7 @@ var map, crsPanthera;
 function InitPanthera() {
 	var tilesUrl = 'http://static.dayzdb.com/tiles/panthera/{z}/{x}_{y}.png',
 		tilesAttrib = '&copy; Crosire, Panthera map data from <a href="http://dayzdb.com/map">DayZDB</a>',
-		tiles = new L.TileLayer(tilesUrl, {noWrap: true, attribution: tilesAttrib, tileLimits: {2:{x:3,y:3},3:{x:6,y:6},4:{x:11,y:11},5:{x:22,y:22},6:{x:44,y:44}}});
+		tiles = new L.TileLayer(tilesUrl, {noWrap: true, continuousWorld: true, attribution: tilesAttrib, tileLimits: {2:{x:3,y:3},3:{x:6,y:6},4:{x:11,y:11},5:{x:22,y:22},6:{x:44,y:44}}});
 		
 	var b = [0.769897 / 12.8, 0.769897 / 12.8], c = L.latLng([13.4071032, 0.9750912]);
 	crsPanthera = L.Util.extend({}, L.CRS, {

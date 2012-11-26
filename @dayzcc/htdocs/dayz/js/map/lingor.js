@@ -3,7 +3,7 @@ var map, crsLingor;
 function InitLingor() {
 	var tilesUrl = 'http://static.dayzdb.com/tiles/lingor/{z}/{x}_{y}.png',
 		tilesAttrib = '&copy; Crosire, Lingor map data from <a href="http://dayzdb.com/map">DayZDB</a>',
-		tiles = new L.TileLayer(tilesUrl, {noWrap: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:7,y:7},4:{x:14,y:14},5:{x:28,y:28},6:{x:56,y:56}}, minZoom: 2, maxZoom: 6});
+		tiles = new L.TileLayer(tilesUrl, {noWrap: true, continuousWorld: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:7,y:7},4:{x:14,y:14},5:{x:28,y:28},6:{x:56,y:56}}, minZoom: 2, maxZoom: 6});
 
 	var b = [0.625 / 10.240943, 0.625 / 10.240943], c = L.latLng([10.240943, 0]);
 	crsLingor = L.Util.extend({}, L.CRS, {
