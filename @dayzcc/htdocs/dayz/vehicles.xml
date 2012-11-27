@@ -2640,16 +2640,6 @@
         <transportmaxbackpacks>8</transportmaxbackpacks>
         <cargo>14</cargo>
     </sUralCivil2>
-    <sV3S_Civ>
-        <Type>Car</Type>
-        <Side>CIV</Side>
-        <Faction>CIV</Faction>
-        <Name>V3S</Name>
-        <transportmaxweapons>50</transportmaxweapons>
-        <transportmaxmagazines>200</transportmaxmagazines>
-        <transportmaxbackpacks>8</transportmaxbackpacks>
-        <cargo>13</cargo>
-    </sV3S_Civ>
     <sVWGolf>
         <Type>Car</Type>
         <Side>CIV</Side>
