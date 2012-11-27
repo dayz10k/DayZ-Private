@@ -17,7 +17,7 @@ if (isset($_SESSION['user_id']))
 	$vehiclecount = 0;
 
 	?>
-	
+
 	<div id="page-heading">
 		<h1>Create vehicles</h1>
 	</div>
@@ -42,8 +42,8 @@ if (isset($_SESSION['user_id']))
 			</tr>
 
 			<?
-			
-			$resultIDQuery = mysql_query("SELECT `id` FROM `world_vehicle`;") or die(mysql_error());
+
+			$resultIDQuery = mysql_query("SELECT `id` FROM `world_vehicle`;") or echo mysql_error();
 			while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) {$userDataIDs[] = $row[0];}
 			$id = max($userDataIDs) + 1;
 				
@@ -61,64 +61,57 @@ if (isset($_SESSION['user_id']))
 					$secondOpenBracket = strpos($rows[$i], "[", $firstOpenBracket + strlen("]"));
 					$firstCloseBracket = strpos($rows[$i], "]");
 				
-					if (strpos($rows[$i+2],'_this setDir') !== false)
+					if (strpos($rows[$i + 2], '_this setDir') !== false)
 					{
-						$firstSpace = strpos($rows[$i+2], " ");
-						$secondSpace = strpos($rows[$i+2], " ", $firstSpace + strlen(" "));
-						$thirdSpace = strpos($rows[$i+2], " ", $secondSpace + strlen(" "));
-						$forthSpace = strpos($rows[$i+2], " ", $thirdSpace + strlen(" "));
-						$period = strpos($rows[$i+2], ".");
-						$direction = substr($rows[$i+2], $forthSpace+1, $period-$forthSpace-1);
+						$firstSpace = strpos($rows[$i + 2], " ");
+						$secondSpace = strpos($rows[$i + 2], " ", $firstSpace + strlen(" "));
+						$thirdSpace = strpos($rows[$i + 2], " ", $secondSpace + strlen(" "));
+						$forthSpace = strpos($rows[$i + 2], " ", $thirdSpace + strlen(" "));
+						$period = strpos($rows[$i + 2], ".");
+						$direction = substr($rows[$i + 2], $forthSpace + 1, $period - $forthSpace - 1);
 					}
 				
-					$pos = "[$direction," . substr($rows[$i],$secondOpenBracket, $firstCloseBracket-$secondOpenBracket+1) . "]";
+					$pos = "[$direction,".substr($rows[$i], $secondOpenBracket, $firstCloseBracket - $secondOpenBracket + 1)."]";
 					$pos = str_replace(array(' '), '', $pos);
 					$newPos = explode(",", $pos);
 					
 					if (count($newPos) == 3)
 					{
-						$pos = "[$direction," . substr($rows[$i],$secondOpenBracket, $firstCloseBracket-$secondOpenBracket) . ",0]]";
+						$pos = "[$direction,".substr($rows[$i], $secondOpenBracket, $firstCloseBracket - $secondOpenBracket).",0]]";
 						$pos = str_replace(array(' '), '', $pos);
 					}
-					
+
 					// Insert to database
-				
-					$resultCheckQuery = mysql_query("SELECT * FROM `instance_vehicle`;") or die(mysql_error());
+
+					$resultCheckQuery = mysql_query("SELECT * FROM `instance_vehicle`;");
 					while ($row = mysql_fetch_array($resultCheckQuery)) {if ($row['worldspace'] == $pos) {$exists = true;}}
 
 					if (!$exists) {
-						$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;") or die(mysql_error());
-						$userDataClassNameQuery;
-						$userDataVehicleIDs;
-						while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {$userDataClassNameQuery[] = $row['class_name'];}
-						$matchFound = 0;
-						
-						for($j = 0; $j < count($userDataClassNameQuery) - 1; $j++)
-						{
-							if ($strings[1] == $userDataClassNameQuery[$j]) {$matchFound = 1;}
-						}
+						$matchFound = false;
+						$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;");
+						while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {if ($strings[1] == $row['class_name']) {$matchFound = true;}}
 
-						if($matchFound == 0)
+						if(!$matchFound)
 						{
 							//echo "Inserting new Class Name";
 							mysql_query("INSERT INTO `vehicle` (`class_name`, `damage_min`, `damage_max`, `fuel_min`, `fuel_max`, `limit_min`, `limit_max`, `parts`) VALUES ('$strings[1]', '0.100', '0.700', '0.200', '0.800', '0', '100', 'motor');") or die(mysql_error());
 						}
-					
+
 						$time = date("y-m-d H:i:s", time());
 						
-						$resultIDQuery = mysql_query("SELECT * FROM `vehicle` WHERE `class_name` = '$strings[1]';");
+						$resultIDQuery = mysql_query("SELECT * FROM `vehicle` WHERE `class_name` = '$strings[1]';") or echo mysql_error();
 						$userDataIDQuery = mysql_fetch_array($resultIDQuery, MYSQL_ASSOC);
 						$vehicle_id = $userDataIDQuery['id'];
 						$resultWorldQuery = mysql_query("SELECT `id` FROM `world` WHERE `name` = '$serverworld'");
 						$userDataWorldQuery = mysql_fetch_array($resultWorldQuery, MYSQL_ASSOC);
 						$world_id = $userDataWorldQuery['id'];
 						
-						mysql_query("INSERT INTO `world_vehicle` (`id`, `vehicle_id`, `world_id`, `worldspace`, `chance`) VALUES ('$id', '$vehicle_id', '$world_id', '$pos', '0');") or die(mysql_error());
-						mysql_query("INSERT INTO `instance_vehicle` (`world_vehicle_id`, `instance_id`, `worldspace`, `inventory`, `parts`, `fuel`, `damage`, `last_updated`, `created`) VALUES ('$id', '$serverinstance', '$pos', '[]', '[]', '1', '0', '$time', '$time');") or die(mysql_error());
-					
+						mysql_query("INSERT INTO `world_vehicle` (`id`, `vehicle_id`, `world_id`, `worldspace`, `chance`) VALUES ('$id', '$vehicle_id', '$world_id', '$pos', '0');") or echo mysql_error();
+						mysql_query("INSERT INTO `instance_vehicle` (`world_vehicle_id`, `instance_id`, `worldspace`, `inventory`, `parts`, `fuel`, `damage`, `last_updated`, `created`) VALUES ('$id', '$serverinstance', '$pos', '[]', '[]', '1', '0', '$time', '$time');") or echo mysql_error();
+
 						$vehiclecount++;
 						$id++;
-					
+
 						?>
 						
 						<tr>
@@ -126,7 +119,7 @@ if (isset($_SESSION['user_id']))
 							<td><? echo $pos ?></td>
 							<td><? echo $vehicle_id ?></td>
 						</tr>
-						
+
 						<?
 					}
 				}
@@ -140,7 +133,7 @@ if (isset($_SESSION['user_id']))
 			<br />
 
 			<strong><? echo $vehiclecount; ?></strong> new vehicles added!
-	
+
 	</div>
 		</td>
 		<td id="tbl-border-right"></td>

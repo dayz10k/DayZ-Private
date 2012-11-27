@@ -13,7 +13,7 @@ if (isset($_SESSION['user_id']))
  
 	$missionfile = file_get_contents("buildings.sqf");
 	$rows = explode("\n", $missionfile); array_shift($rows);
-	$vehiclecount = 0;
+	$buildingcount = 0;
 	
 	?>
 
@@ -41,10 +41,6 @@ if (isset($_SESSION['user_id']))
 			</tr>
 
 			<?
-			
-			$resultIDQuery = mysql_query("SELECT `id` FROM `building`;") or die(mysql_error());
-			while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) {$userDataIDs[] = $row[0];}
-			$id = max($userDataIDs) + 1;
 				
 			for($i = 0; $i < count($rows); $i++)
 			{
@@ -53,24 +49,24 @@ if (isset($_SESSION['user_id']))
 				
 				if (strpos($rows[$i], '_this = createVehicle [') !== false)
 				{
-					// Get values
+					// Get building values
 					
-					$strings = explode("\"",$rows[$i]);
+					$strings = explode("\"", $rows[$i]);
 					$firstOpenBracket = strpos($rows[$i], "[");
 					$secondOpenBracket = strpos($rows[$i], "[", $firstOpenBracket + strlen("]"));
 					$firstCloseBracket = strpos($rows[$i], "]");
 				
-					if (strpos($rows[$i+2], '_this setDir') !== false)
+					if (strpos($rows[$i + 2], '_this setDir') !== false)
 					{
-						$firstSpace = strpos($rows[$i+2], " ");
-						$secondSpace = strpos($rows[$i+2], " ", $firstSpace + strlen(" "));
-						$thirdSpace = strpos($rows[$i+2], " ", $secondSpace + strlen(" "));
-						$forthSpace = strpos($rows[$i+2], " ", $thirdSpace + strlen(" "));
-						$period = strpos($rows[$i+2], ".");
-						$direction = substr($rows[$i+2], $forthSpace + 1, $period - $forthSpace - 1);
+						$firstSpace = strpos($rows[$i + 2], " ");
+						$secondSpace = strpos($rows[$i + 2], " ", $firstSpace + strlen(" "));
+						$thirdSpace = strpos($rows[$i + 2], " ", $secondSpace + strlen(" "));
+						$forthSpace = strpos($rows[$i + 2], " ", $thirdSpace + strlen(" "));
+						$period = strpos($rows[$i + 2], ".");
+						$direction = substr($rows[$i + 2], $forthSpace + 1, $period - $forthSpace - 1);
 					}
 				
-					$pos = "[$direction,".substr($rows[$i], $secondOpenBracket, $firstCloseBracket - $secondOpenBracket+1)."]";
+					$pos = "[$direction,".substr($rows[$i], $secondOpenBracket, $firstCloseBracket - $secondOpenBracket + 1)."]";
 					$pos = str_replace(array(' '), '', $pos);
 					$newPos = explode(",",$pos);
 					
@@ -86,34 +82,25 @@ if (isset($_SESSION['user_id']))
 					while ($row = mysql_fetch_array($resultCheckQuery)) {if ($row['worldspace'] == $pos) {$exists = true;}}
 					
 					if (!$exists) {
-						$resultClassNameQuery = mysql_query("SELECT * FROM `building`;") or die(mysql_error());
-						$userDataClassNameQuery;
-						$userDataVehicleIDs;
-						while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {$userDataClassNameQuery[] = $row['class_name'];}
-						$matchFound = 0;
-						
-						for($j = 0; $j < count($userDataClassNameQuery) - 1; $j++)
-						{
-							if ($strings[1] == $userDataClassNameQuery[$j]) {$matchFound = 1;}
-						}
-					
-						if($matchFound == 0)
+						$matchFound = false;
+						$resultClassNameQuery = mysql_query("SELECT * FROM `building`;") or echo mysql_error();
+						while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {if ($strings[1] == $row['class_name']) {$matchFound = true;}}
+
+						if(!$matchFound)
 						{
 							//echo "Inserting new Class Name";
-							mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]');") or die(mysql_error());
+							mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]');") or echo mysql_error();
 						}
-					
-						//$timeset = date_default_timezone_get(America/Indiana/Petersburg);
+
 						$time = date("y-m-d H:i:s", time());
-						
+
 						$resultIDQuery = mysql_query("SELECT * FROM `building` WHERE `class_name` = '$strings[1]';");
 						$userDataIDQuery = mysql_fetch_array($resultIDQuery, MYSQL_ASSOC);
 						$building_id = $userDataIDQuery['id'];
 						
 						mysql_query("INSERT INTO `instance_building` (`building_id`, `instance_id`, `worldspace`, `created`) VALUES ('$building_id', '$serverinstance', '$pos', '$time');") or die(mysql_error());
 						
-						$vehiclecount++;
-						$id++;
+						$buildingcount++;
 					?>
 						
 					<tr>
@@ -134,7 +121,7 @@ if (isset($_SESSION['user_id']))
 			<br />
 			<br />
 
-			<strong><? echo $vehiclecount; ?></strong> new buildings added!
+			<strong><? echo $buildingcount; ?></strong> new buildings added!
 
 	</div>
 		</td>
@@ -146,7 +133,7 @@ if (isset($_SESSION['user_id']))
 		<th class="sized bottomright"></th>
 	</tr>
 	</table>
-	
+
 	<?
 	}
 	else

@@ -38,19 +38,19 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 				<br />
 
 				<h2>1. CREATE VEHICLES:</h2>
-				<p>Adds all vehicles to 'instance_vehicle' and 'vehicle' tables to be spawned in on next restart.</p>
+				<p>Adds all vehicles to 'instance_vehicle' and 'vehicle' tables to be spawned in on next restart.
+				<font color="red"> Note: Create a fresh mission with only vehicles!</font></p>
 				<br />
-				<strong><a href="#" onclick="ShowModalPopup('dvPopup_vehicle'); return false;">START NOW!</a>
-				<font color="red"> (Note: Create a fresh mission with only vehicles!)</font></strong>
+				<strong><a href="#" onclick="ShowModalPopup('dvPopup_vehicle'); return false;">View Results!</a></strong>
 
 				<br />
 				<br />
 
 				<h2>2. CREATE BUILDINGS:</h2>
-				<p>Adds all buildings to 'instance_building' and 'building' tables to be spawned in on next restart.</p>
+				<p>Adds all buildings to 'instance_building' and 'building' tables to be spawned in on next restart.
+				<font color="red"> Note: Create a fresh mission with only buildings!</font></p>
 				<br />
-				<strong><a href="#" onclick="ShowModalPopup('dvPopup_building'); return false;">START NOW!</a>
-				<font color="red"> (Note: Create a fresh mission with only buildings!)</font></strong>
+				<strong><a href="#" onclick="ShowModalPopup('dvPopup_building'); return false;">View Results!</a></strong>
 
 				<br />
 				<br />
@@ -58,40 +58,36 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 
 				<h3>INSTRUCTIONS:</h3>
 
-				<p>Missions can be edited/created from launching DayZ with or without rMod:</p>
-				<br />
-				<p>1. At the main menu press ALT + E.</p>
-				<br />
+				<p>Missions can be edited/created from launching DayZ with or without rMod:</p><br />
+				<p>1. At the main menu press ALT + E.</p><br />
 				<p>2. Once you are in the 3D editor do the following:</p>
-				<li>Place "Center (F10)" anywhere on map [Just hit OK].</li>
-				<li>Place "Group (F2)" anywhere on map [Just hit OK].</li>
-				<li>Place "Unit (F1)" anywhere on map [Just hit OK].</li>
-				<li>Your mission can be saved now!</li>
+				<ul>
+					<li>Place "Center (F10)" anywhere on map [Just hit OK].</li>
+					<li>Place "Group (F2)" anywhere on map [Just hit OK].</li>
+					<li>Place "Unit (F1)" anywhere on map [Just hit OK].</li>
+					<li>Your mission can be saved now!</li>
+				</ul>
 				<br />
-				<p>3. Find anywhere you like on the map and RIGHT CLICK -> "default camera" (takes you to 3d).</p>
+				<p>3. Find anywhere you like on the map and RIGHT CLICK -> "default camera" (takes you to 3d).</p><br />
+				<p>4. Upper-Right Menu select "Vehicle (F5), double click the ground, select the vehicle/building to place, hit ok.</p><br />
+				<p>5. Left click and hold yellow circle for object and drag to place. Hold SHIFT while holding left mouse button to rotate. Hold ALT while holding left mouse to raise or lower object.</p><br />
+				<p>6. Hover over the object and hit DELETE to remove.</p><br />
+				<p>7. Save your progress:</p>
+				<ul>
+					<li>Save your vehicles as "User mission"</li>
+					<li>Save your buildings as "User mission"</li>
+				</ul>
 				<br />
-				<p>4. Upper-Right Menu select "Vehicle (F5), double click the ground, select the vehicle/building to place, hit ok.</p>
+				<p>8. Copy files to working directory:</p><br />
+				<p><strong><font color="green">FOR VEHICLES:</font></strong></p>
+				<p>Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
+				<p>Paste it to: "~\@dayzcc\htdocs\dayz\vehicles.sqf"</p>
 				<br />
-				<p>5. Left click and hold yellow circle for object and drag to place. Hold SHIFT while holding left mouse button to rotate. Hold ALT while holding left mouse to raise or lower object.</p>
+				<p><strong><font color="green">FOR BUILDINGS:</font></strong></p>
+				<p>Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
+				<p>Paste it to: "~\@dayzcc\htdocs\dayz\buildings.sqf"</p>
 				<br />
-				<p>6. Hover over the object and hit DELETE to remove.</p>
-				<br />
-				<p>7. Save your progress:
-				<li>Save your vehicles as "User mission"</li>
-				<li>Save your buildings as "User mission"</li>
-				<br />
-				<p>8. Copy files to working directory:</p>
-				<br />
-				<strong><font color="green">FOR VEHICLES:</font></strong>
-				<br />
-				Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
-				Paste ot to: "~\@dayzcc\htdocs\dayz\vehicles.sqf"
-				<br />
-				<br />
-				<strong><font color="green">FOR BUILDINGS:</font></strong>
-				<br />
-				Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"<br />
-				Paste it to: "~\@dayzcc\htdocs\dayz\buildings.sqf"
+				<p>9. Reload this page to execute the database tools and see the results above.</p>
 				<br />
 				<br />
 

@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id']))
 	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
 	<script src="js/flexcroll.js" type="text/javascript"></script>
 	<script src="js/modalpopup.js" type="text/javascript"></script>
-	<script src="js/map.js"></script>
+	<script src="js/map.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="page-top-outer">    
