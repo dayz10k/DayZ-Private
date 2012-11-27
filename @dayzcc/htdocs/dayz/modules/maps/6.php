@@ -6,12 +6,15 @@
 	{
 		$lines = file($pathlogrpt);
 		$markers = "";
+		$start = 0;
 		$i = 0;
 		
 		foreach ($lines as $line) {
-			if (strpos($line, "SERVER: VERSION:") !== false) {$lines = array_slice($lines, $i);}
+			if (strpos($line, "SERVER: VERSION:") !== false) {$start = $i;}
 			$i++;
 		}
+		
+		$lines = array_slice($lines, $start);
 
 		foreach ($lines as $line) {
 			$matches = array();
