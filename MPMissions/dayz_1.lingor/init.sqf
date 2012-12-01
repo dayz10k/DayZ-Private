@@ -31,31 +31,13 @@ if (!isDedicated) then {  	// If mission is loaded by a player execute the playe
 	_id = player addEventHandler ["Respawn", {_id = [] spawn player_death;}];
 	_playerMonitor = [] execVM "\z\addons\dayz_code\system\player_monitor.sqf";
 
-	// Create burn effect for each helicopter wreck
-	{
-		nul = [_x, 2, time, false, false] spawn BIS_Effects_Burn;
-	} forEach allMissionObjects "UH1Wreck_DZ";
-};
+	#include "gcam\gcam_config.hpp"
+	#include "gcam\gcam_functions.sqf"
 
-#include "gcam\gcam_config.hpp"
-#include "gcam\gcam_functions.sqf"
-
-#ifdef GCAM
-	#ifdef DEBUG
-		diag_log ("DEBUG: INITIALIZING GCAM");
-	#endif
-	
-	waitUntil {(!isNull Player) and (alive Player) and (player == player)};
-	_uid = (getPlayerUID vehicle player);
-	_isAdmin = (serverCommandAvailable "#kick");
-
-	if (_isAdmin) then // && ((_uid) in ADMINS)
-	{
+	#ifdef GCAM
+		waitUntil {(!isNull Player) and (alive Player) and (player == player)};
 		waituntil {!(IsNull (findDisplay 46))};
-		(findDisplay 46) displayAddEventHandler ["keyDown", "_this call fnc_keyDown"];
 
-		#ifdef DEBUG
-			diag_log format ["GCAM keyevent loaded for admin: %1", _uid];
-		#endif
-	};
-#endif
+		if (serverCommandAvailable "#kick") then { (findDisplay 46) displayAddEventHandler ["keyDown", "_this call fnc_keyDown"]; };
+	#endif
+};

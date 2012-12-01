@@ -13,40 +13,12 @@
 // When GCamKill = true, GCam quits immediately.
 //
 //=================================================================================
-// KEYBINDS
-//
-// - Common Operation -
-// W,A,S,D,Q,Z,2,X                 : Camera Move
-// Mouse Move                      : Camera Turn
-// Mouse Drag (list opend)         : Camera Turn
-// Mouse Wheel                     : Camera Zoom
-// Mouse L Click                   : Switch Screen Centered Unit
-// Mouse R Click                   : Zoom Default
-// Cursor Up/Down (list closed)    : Switch Unit in Group
-// Cursor Left/Right (list closed) : Switch Group
-// L                               : Unit List and Search Map
-// N                               : Night / Thermal Vision
-// B                               : Toggle Behind Mode
-// F                               : Toggle Follow Mode
-// C                               : Toggle Focus Mode
-// T                               : Toggle Firing and Ejection Trigger
-// V                               : Change Camera View Mode
-// Space                           : Quit
-//
-// - Search Map Operation -
-// Mouse L Click                   : Scan and Show Nearby Groups
-// Mouse L Click (on marker)       : Switch Unit
-//
-//=================================================================================
 
 // Edited for DayZ by Crosire and Pwnoz0r, VR-Shiva
 
 #include "gcam_config.hpp"
 
-_isAdmin=(serverCommandAvailable"#kick");
-_uid = (getPlayerUID vehicle player);
-
-if ((_isAdmin)) then // && ((_uid) in ADMINS)
+if (serverCommandAvailable "#kick") then
 {
 
 #ifdef DEBUG
@@ -55,26 +27,26 @@ if ((_isAdmin)) then // && ((_uid) in ADMINS)
 
 _helptext =
 "- GCam Controls -
-
-W, A, S, D, Q, Z, 2, X : Camera Move
-Mouse Move, Drag (list opend) : Camera Turn
+W, A, S, D : Camera Move
+Q, Z, 2, X : Camera Move
+Mouse Drag : Camera Turn
 Mouse Wheel : Camera Zoom
 Mouse L Click : Switch Screen Centered Unit
 Mouse R Click : Zoom Default
-Cursor Up/Down (list closed) : Switch Unit in Group
-Cursor Left/Right (list closed) : Switch Group
+Up / Down : Switch Unit in Group
+Left / Right : Switch Group
 L : Unit List and Search Map
 N : Night / Thermal Vision
 B : Toggle Behind Mode
 F : Toggle Follow Mode
 C : Toggle Focus Mode
-T : Toggle Firing and Ejection Trigger
-V : Change Camera View Mode
+T : Toggle Firing Trigger
+V : Change View Mode
 Space : Quit
 
 - Search Map -
 Mouse L Click : Scan and Show Nearby Groups
-Mouse L Click (on marker) : Switch Unit";
+Mouse L Click on Marker : Switch Unit";
 
 if (isNil "GCamKill") then { GCamKill = false };
 
@@ -327,9 +299,7 @@ _cm_cftn = 0.0;
 _vm = 0;
 
 _i = 0;
-
 _lostchk = objNull;
-
 
 _OpenList =
 {
@@ -475,8 +445,6 @@ _OpenList =
 	ctrlSetFocus (findDisplay 5100 displayCtrl 100);
 };
 
-
-
 _CloseList =
 {
 	_li = false;
@@ -495,8 +463,6 @@ _CloseList =
 	GCam_KU set [1,-1];
 	GCam_OC = [controlNull,0.0,0.0,false];
 };
-
-
 
 _ChangeModeFollow =
 {
@@ -580,7 +546,6 @@ _ChangeModeFollow =
 	};
 };
 
-
 _ChangeModeBehind =
 {
 	_be = !(_be);
@@ -628,7 +593,6 @@ _ChangeModeBehind =
 	};
 };
 
-
 _ChangeModeFocus =
 {
 	_fc = !(_fc);
@@ -670,7 +634,6 @@ _ChangeModeFocus =
 	};
 };
 
-
 _ChangeModeTrigger =
 {
 	_trg = !(_trg);
@@ -693,7 +656,6 @@ _ChangeModeTrigger =
 		_o removeEventHandler ["GetOut", _tr_ehidx2];
 	};
 };
-
 
 _SetFiredHandler =
 {
@@ -727,7 +689,6 @@ _SetFiredHandler =
 		}
 	];
 };
-
 
 _SelectObjects =
 {
@@ -849,7 +810,6 @@ _SelectObjects =
 	_ol;
 };
 
-
 _SelectCycleUnits =
 {
 	_cy_ol_g = [];
@@ -878,7 +838,6 @@ _SelectCycleUnits =
 		};
 	} foreach units(group _o);
 };
-
 
 _SelectCycleLeaders =
 {
@@ -984,7 +943,6 @@ _ListObjects =
 	} forEach _ol;
 };
 
-
 _CreateCameraMarker =
 {
 	createMarkerLocal["gcam_c", [_cp select 0, _cp select 1]];
@@ -994,7 +952,6 @@ _CreateCameraMarker =
 	"gcam_c" setMarkerSizeLocal [0.27, 0.27];
 	"gcam_c" setMarkerDirLocal (-(_dr) + 90.0);
 };
-
 
 _CreateGroupMarker =
 {
@@ -1032,7 +989,6 @@ _CreateGroupMarker =
 		};
 	} forEach _ma_gu;
 };
-
 
 _CreateGroupMarker2 =
 {
@@ -1074,7 +1030,6 @@ _CreateGroupMarker2 =
 	} forEach _ma_ol;
 };
 
-
 _CreateMapScanArea =
 {
 	[GCam_MCP, _w] spawn
@@ -1093,7 +1048,6 @@ _CreateMapScanArea =
 		deleteMarkerLocal "gcam_e";
 	};
 };
-
 
 _ClickSwitch =
 {
@@ -1179,8 +1133,6 @@ _ClickSwitch =
 	GCam_MD set [1, -1];
 	GCam_MU set [1, -1];
 };
-
-
 
 _SmoothMove =
 {
@@ -1715,7 +1667,6 @@ _SmoothMove =
 	_ku = -1;
 };
 
-
 _ChaseMissile =
 {
 	GCam_KD set [1,-1];
@@ -2129,8 +2080,6 @@ _ChaseMissile =
 	GCam_KU set [1, -1];
 };
 
-
-
 _SwitchAdjustDistance =
 {
 	switch (true) do
@@ -2191,7 +2140,6 @@ _SwitchAdjustDistance =
 		_cp_r = [ cos(_re_camobjdir) * _fo_cods, sin(_re_camobjdir) * _fo_cods, _fo_cods_z ];
 	};
 };
-
 
 _ResetCamera =
 {
@@ -2357,7 +2305,6 @@ _ResetCamera =
 	ctrlSetFocus (findDisplay 5100 displayCtrl 100);
 };
 
-
 sleep _w;
 
 _ehid_keydown = (findDisplay 46) displayAddEventHandler ["KeyDown", "GCam_KD = _this"];
@@ -2381,7 +2328,6 @@ _cp_r = [ cos(_dr+180) * INITCAMDISY, sin(_dr+180) * INITCAMDISY, INITCAMDISZ ];
 _op = getPosASL _o;
 _cp = [ (_op select 0) + (_cp_r select 0), (_op select 1) + (_cp_r select 1), (_op select 2) + (_cp_r select 2)];
 
-
 _c = "camera" camCreate [0.0,0.0,0.0];
 _c setPosASL [_cp select 0, _cp select 1, _cp select 2];
 _c camSetTarget [ (_cp select 0) + (cos _dr) * (cos _dv) * 100000.0, (_cp select 1) + (sin _dr) * (cos _dv) * 100000.0, (_cp select 2) + (sin _dv) * 100000.0];
@@ -2393,9 +2339,6 @@ sleep _w;
 showCinemaBorder false;
 
 call _ResetCamera;
-
-
-
 
 while {_l} do
 {

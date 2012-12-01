@@ -31,32 +31,19 @@ if (!isDedicated) then {  	// If mission is loaded by a player execute the playe
 		0 cutText [(localize "STR_AUTHENTICATING"), "BLACK FADED", 60];
 		_id = player addEventHandler ["Respawn", {_id = [] spawn player_death;}];
 		_playerMonitor = [] execVM "\nst\ns_dayz\code\system\player_monitor.sqf";
+		
+		#include "gcam\gcam_config.hpp"
+		#include "gcam\gcam_functions.sqf"
+
+		#ifdef GCAM
+			waitUntil {(!isNull Player) and (alive Player) and (player == player)};
+			waituntil {!(IsNull (findDisplay 46))};
+
+			if (serverCommandAvailable "#kick") then { (findDisplay 46) displayAddEventHandler ["keyDown", "_this call fnc_keyDown"]; };
+		#endif
 	} else {
 		endLoadingScreen;
 		0 fadeSound 0;
 		0 cutText ["You are running an incorrect version of DayZ: Namalsk, please download newest version from http://www.nightstalkers.cz/", "BLACK"];
 	};
 };
-
-#include "gcam\gcam_config.hpp"
-#include "gcam\gcam_functions.sqf"
-
-#ifdef GCAM
-	#ifdef DEBUG
-		diag_log ("DEBUG: INITIALIZING GCAM");
-	#endif
-
-	waitUntil {(!isNull Player) and (alive Player) and (player == player)};
-	_uid = (getPlayerUID vehicle player);
-	_isAdmin = (serverCommandAvailable "#kick");
-
-	if (_isAdmin) then // && ((_uid) in ADMINS)
-	{
-		waituntil {!(IsNull (findDisplay 46))};
-		(findDisplay 46) displayAddEventHandler ["keyDown", "_this call fnc_keyDown"];
-
-		#ifdef DEBUG
-			diag_log format ["GCAM keyevent loaded for admin: %1", _uid];
-		#endif
-	};
-#endif

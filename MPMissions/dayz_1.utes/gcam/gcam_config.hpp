@@ -155,7 +155,7 @@
 // Initial Camera Mode Enable/Disable Statement
 #define INITFOLLOWMODE true
 #define INITBEHINDMODE true
-#define INITFOCUSMODE true
+#define INITFOCUSMODE false
 
 // Initial Camera Position
 #define INITCAMDISY 7.5
