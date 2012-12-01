@@ -5,7 +5,7 @@ function InitPanthera() {
 		tilesAttrib = '&copy; Crosire, Panthera map data from <a href="http://dayzdb.com/map">DayZDB</a>',
 		tiles = new L.TileLayer(tilesUrl, {noWrap: true, continuousWorld: true, attribution: tilesAttrib, tileLimits: {2:{x:3,y:3},3:{x:6,y:6},4:{x:11,y:11},5:{x:22,y:22},6:{x:44,y:44}}});
 		
-	var b = [0.769897 / 12.8, 0.769897 / 12.8], c = L.latLng([13.4071032, 0.9750912]);
+	var b = [0.06667731502557828, 0.06667134162937072], c = L.latLng([0, 0]);
 	crsPanthera = L.Util.extend({}, L.CRS, {
 		latLngToPoint: function(e, d) {var a = this.projection.project(L.latLng([e.lat + c.lat, e.lng + c.lng])), b = this.scale(d); return a = this.transformation._transform(a, b)},
 		pointToLatLng: function(b, d) {var a = this.scale(d); a = this.projection.unproject(this.transformation.untransform(b, a)); a.lat -= c.lat; a.lng -= c.lng; return a},

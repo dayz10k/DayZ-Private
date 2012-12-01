@@ -1,11 +1,13 @@
-<?
-	// Thanks to user WarZ for parts of his code!
+<?php
 	error_reporting(E_ALL ^ E_NOTICE);
 
-	if (file_exists($pathlogrpt))
+	$pathlog = str_replace('.exe', '.rpt', $pathserver);
+
+	// Thanks to user WarZ for parts of his code!
+	if (file_exists($pathlog))
 	{
-		$lines = file($pathlogrpt);
-		$markers = "";
+		$lines = file($pathlog);
+		$markers = '';
 		$start = 0;
 		$i = 0;
 		
@@ -25,13 +27,13 @@
 				$x = 0; if (array_key_exists(0, $Worldspace)) {$x = $Worldspace[0];}
 				$y = 0; if (array_key_exists(1, $Worldspace)) {$y = $Worldspace[1];}
 
-				include_once('modules/calc.php');
-				$description = "<h2>Wreck</h2><table><tr><td><img style='width: 100px;' src='images/vehicles/Crashsite.png'></td><td>&nbsp;&nbsp;&nbsp;</td><td style='vertical-align:top;'><h2>Position:</h2>Left: ".round(world_x($x, $serverworld))."<br />Top: ".round(world_y($y, $serverworld))."</td></tr></table>";
-				$markers .= 'L.marker([fromGpsToCoord('.(world_y($y, $serverworld)).'), fromGpsToCoord('.(world_x($x, $serverworld)).')], {icon: Wreck, title: "Wreck"}).addTo(map).bindPopup("'.$description.'"); ';
+				require_once('/modules/calc.php');
+				$description = '<h2>Wreck</h2><table><tr><td><img style="width: 100px;" src="images/vehicles/Crashsite.png"></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $serverworld)).'<br />Top: '.round(world_y($y, $serverworld)).'</td></tr></table>';
+				$markers .= "L.marker([".(world_y($y, $serverworld) / 10).", ".(world_x($x, $serverworld) / 10)."], {icon: Wreck, title: 'Wreck'}).addTo(map).bindPopup('".$description."'); ";
 			}
 		}
 
-		include('modules/leaf.php');
+		include ('/modules/leaf.php');
 	}
 	else
 	{

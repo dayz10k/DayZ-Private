@@ -1,47 +1,49 @@
-<?
-
+<?php
 function world_x($x, $world){
-	if ($world == "chernarus") {
-		return ($x/100);
-	} else if ($world == "lingor") {
-		return ($x/100);
-	} else if ($world == "utes") {
-		return ($x/100);
-	} else if ($world == "panthera2") {
-		return ($x/100);
-	} else if ($world == "takistan") {
-		return ($x/100);
-	} else if ($world == "fallujah") {
-		return ($x/100);
-	} else if ($world == "namalsk") {
-		return ($x/100);
-	} else if ($world == "mbg_celle2") {
-		return ($x/100);
-	} else if ($world == "zargabad") {
-		return ($x/100);
+	if (strpos($world, "chernarus") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "lingor") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "utes") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "panthera") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "takistan") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "fallujah") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "namalsk") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "celle") !== false) {
+		return ($x / 100);
+	} elseif (strpos($world, "zargabad") !== false) {
+		return ($x / 100);
+	} else {
+		return $x;
 	}
 }
 
 function world_y($y, $world){
-	if ($world == "chernarus") {
-		return (154-($y/100));
-	} else if ($world == "lingor") {
-		return ($y/100);
-	} else if ($world == "utes") {
-		return ($y/100);
-	} else if ($world == "panthera2") {
-		return ($y/100);
-	} else if ($world == "takistan") {
-		return ($y/100);
-	} else if ($world == "fallujah") {
-		return ($y/100);
-	} else if ($world == "namalsk") {
-		return ($y/100);
-	} else if ($world == "mbg_celle2") {
-		return ($y/100);
-	} else if ($world == "zargabad") {
-		return ($y/100);
+	if (strpos($world, "chernarus") !== false) {
+		return ((15360 - $y) / 100);
+	} elseif (strpos($world, "lingor") !== false) {
+		return ($y / 100);
+	} elseif (strpos($world, "utes") !== false) {
+		return ($y / 100);
+	} elseif (strpos($world, "panthera") !== false) {
+		return ((10240 - $y) / 100);
+	} elseif (strpos($world, "takistan") !== false) {
+		return ($y / 100);
+	} elseif (strpos($world, "fallujah") !== false) {
+		return ($y / 100);
+	} elseif (strpos($world, "namalsk") !== false) {
+		return ((12800 - $y) / 100);
+	} elseif (strpos($world, "celle") !== false) {
+		return ($y / 100);
+	} elseif (strpos($world, "zargabad") !== false) {
+		return ($y / 100);
+	} else {
+		return $y;
 	}
 }
-
 ?>

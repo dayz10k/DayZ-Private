@@ -1,3 +1,3 @@
-<?
-	include('1.php');
+<?php
+	include ('1.php');
 ?>
