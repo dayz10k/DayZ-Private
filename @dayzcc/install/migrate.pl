@@ -39,7 +39,7 @@ die "> Error: Schema version must be specified for a non-standard schema!\n" if 
 
 my $schema1 = $args{'schema'} ? $args{'schema'} : "Bliss";
 my $schema2 = "Controlcenter";
-my $version1 = $args{'version'} ? $args{'version'} : "0.30";
+my $version1 = $args{'version'} ? $args{'version'} : "0.32";
 my $version2 = "0.07";
 
 print "Trying to connect to MySQL server on $db{'host'}, database $db{'name'} as $db{'user'}\n";
