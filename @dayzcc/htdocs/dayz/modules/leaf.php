@@ -9,9 +9,6 @@ if (isset($_SESSION['user_id']))
 		<script src="js/map/panthera.js"></script>
 		<script src="js/map/takistan.js"></script>
 		<script src="js/map/fallujah.js"></script>
-		<script src="js/map/zargabad.js"></script>
-		<script src="js/map/celle.js"></script>
-		<script src="js/map/utes.js"></script>
 	</head>
 	
 	<div id="map" style="width:99%;height:1050px;margin:10px auto;border:2px solid #000;"></div>
@@ -35,6 +32,8 @@ if (isset($_SESSION['user_id']))
 		InitNamalsk();
 	<?php } elseif (strpos($serverworld, "zargabad") !== false) { ?>
 		InitZargabad();
+	<?php } elseif (strpos($serverworld, "tavi") !== false) { ?>
+		InitTaviana();
 	<?php }; ?>
 	
 	var Icon = L.Icon.extend({options: {iconSize: [32, 37], iconAnchor: [16, 35]}});
