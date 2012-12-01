@@ -1,4 +1,4 @@
-<?
+<?php
 	error_reporting (E_ALL ^ E_NOTICE);
 
 	if (isset($_POST["deployable"])) {
@@ -7,7 +7,7 @@
 		
 		for ($i = 0; $i < $N; $i++)
 		{
-			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE: ".$aDoor[$i]."', '{$_SESSION['login']}', NOW())");
+			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE DEPLOYABLE: ".$aDoor[$i]."', '{$_SESSION['login']}', NOW())");
 			mysql_query("DELETE FROM `instance_deployable` WHERE unique_id = '".$aDoor[$i]."'") or die(mysql_error());
 			$delresult = "Deployable ".$aDoor[$i]." successfully removed!";
 			//echo($aDoor[$i]);
@@ -29,9 +29,9 @@
 	}
 	
 	$offset = ($pageNum - 1) * $rowsPerPage;
-	$maxPage = ceil($pnumber/$rowsPerPage);			
+	$maxPage = ceil($pnumber / $rowsPerPage);			
 
-	for($page = 1; $page <= $maxPage; $page++)
+	for ($page = 1; $page <= $maxPage; $page++)
 	{
 	   if ($page == $pageNum)
 	   {

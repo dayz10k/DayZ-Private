@@ -25,6 +25,7 @@ if (!empty($_POST))
 			$_SESSION['user_id'] = $row['id'];
 			$_SESSION['login'] = $login;
 			$time = 86400;
+			
 			$sql = mysql_query("SELECT `permissions` FROM `users` WHERE `login` = '{$login}' LIMIT 1") or die(mysql_error());
 			$row = mysql_fetch_assoc($sql);
 			$_SESSION['user_permissions'] = $row['permissions'];
@@ -35,8 +36,8 @@ if (!empty($_POST))
 				setcookie('password', $password, time() + $time, "/");
 			}
 
-			mysql_query("UPDATE `users` SET `lastlogin` = NOW() WHERE `login` = '{$login}' LIMIT 1") or die(mysql_error());
-			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('LOGIN', '{$login}', NOW())") or die(mysql_error());
+			mysql_query("UPDATE `users` SET `lastlogin` = NOW() WHERE `login` = '{$login}' LIMIT 1");
+			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('LOGIN', '{$login}', NOW())");
 			
 			header('Location: index.php');
 			exit;
@@ -56,7 +57,7 @@ if (!empty($_POST))
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Login - <? echo $sitename; ?></title>
+	<title>Login - <?php echo $sitename; ?></title>
 	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
 	<script src="js/pngFix.js" type="text/javascript"></script>
 	<script type="text/javascript"> $(document).ready(function(){$(document).pngFix( );}); </script>

@@ -1,7 +1,7 @@
-<?
+<?php
 if (isset($_SESSION['user_id']))
 {
-?>
+	?>
 	<head>
 		<script src="js/map/chernarus.js"></script>
 		<script src="js/map/namalsk.js"></script>
@@ -17,27 +17,27 @@ if (isset($_SESSION['user_id']))
 	<div id="map" style="width:99%;height:1050px;margin:10px auto;border:2px solid #000;"></div>
 	
 	<script>
-	<? if (strpos($serverworld, "chernarus") !== false) { ?>
+	<?php if (strpos($serverworld, "chernarus") !== false) { ?>
 		InitChernarus();
-	<? } elseif (strpos($serverworld, "lingor") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "lingor") !== false) { ?>
 		InitLingor();
-	<? } elseif (strpos($serverworld, "utes") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "utes") !== false) { ?>
 		InitUtes();
-	<? } elseif (strpos($serverworld, "panthera") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "panthera") !== false) { ?>
 		InitPanthera();
-	<? } elseif (strpos($serverworld, "takistan") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "takistan") !== false) { ?>
 		InitTakistan();
-	<? } elseif (strpos($serverworld, "fallujah") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "fallujah") !== false) { ?>
 		InitFallujah();
-	<? } elseif (strpos($serverworld, "celle") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "celle") !== false) { ?>
 		InitCelle();
-	<? } elseif (strpos($serverworld, "namalsk") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "namalsk") !== false) { ?>
 		InitNamalsk();
-	<? } elseif (strpos($serverworld, "zargabad") !== false) { ?>
+	<?php } elseif (strpos($serverworld, "zargabad") !== false) { ?>
 		InitZargabad();
-	<? }; ?>
+	<?php }; ?>
 	
-	var Icon = L.Icon.extend({options: {iconSize: [32, 37]}});
+	var Icon = L.Icon.extend({options: {iconSize: [32, 37], iconAnchor: [16, 35]}});
 	
 	var Car = new Icon({iconUrl: 'images/icons/Car.png'}),
 		Bus = new Icon({iconUrl: 'images/icons/Bus.png'}),
@@ -59,9 +59,10 @@ if (isset($_SESSION['user_id']))
 		Player = new Icon({iconUrl: 'images/icons/player.png'}),
 		PlayerDead = new Icon({iconUrl: 'images/icons/player_dead.png'});
 	
-	<? echo $markers; ?>
+	<?php echo $markers; ?>
 	</script>
-<?
+
+<?php
 }
 else
 {

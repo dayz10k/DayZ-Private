@@ -2,6 +2,7 @@
 if (isset($_SESSION['user_id']))
 {
 ?>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;" />
@@ -22,14 +23,10 @@ if (isset($_SESSION['user_id']))
 				<a href=""><img src="images/logo.png" width="150px" height="72px" alt="" /></a>
 			</div>
 			<!-- end logo -->
-			
-			<!-- start watch -->
 
-			<!-- end watch -->
-			
 			<!--  start top-search -->
 			<div id="top-search">
-				<? include ('searchbar.php'); ?>
+				<?php include ('/modules/searchbar.php'); ?>
 			</div>
 			<!--  end top-search -->
 			<div class="clear"></div>
@@ -37,13 +34,11 @@ if (isset($_SESSION['user_id']))
 	</div>
 	<div class="clear">&nbsp;</div>
 	<!-- start navbar -->
-	<? include ('navbar.php'); ?>
+	<?php include ('/modules/navbar.php'); ?>
 	<!-- end navbar -->
 	<div class="clear"></div>
-	
-	<div id="content-outer">
-		<div id="content">
-<?
+
+<?php
 }
 else
 {

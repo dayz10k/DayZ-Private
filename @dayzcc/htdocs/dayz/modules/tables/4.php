@@ -1,4 +1,4 @@
-<?
+<?php
 	error_reporting (E_ALL ^ E_NOTICE);
 	
 	if (isset($_POST["vehicle"])) {
@@ -29,9 +29,9 @@
 	}
 	
 	$offset = ($pageNum - 1) * $rowsPerPage;
-	$maxPage = ceil($pnumber/$rowsPerPage);			
+	$maxPage = ceil($pnumber / $rowsPerPage);			
 
-	for($page = 1; $page <= $maxPage; $page++)
+	for ($page = 1; $page <= $maxPage; $page++)
 	{
 	   if ($page == $pageNum)
 	   {

@@ -1,6 +1,8 @@
-<?
+<?php
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whitelist") !== false))
 {
+	$pagetitle = "Whitelist";
+
 	// Thanks to deadfred666 for parts of his code!
 	if (ISSET($_POST['action']))
 	{
@@ -49,63 +51,62 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 			<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><a href=\"\">".$row['guid']."</a></td>
 			</tr></form>";
 	}
-?>
+	?>
 
-<div id="page-heading">
-<?
-	$pagetitle = "Whitelist";
-	echo "<title>".$pagetitle." - ".$sitename."</title>";
-	echo "<h1>".$pagetitle."</h1>";
-?>
-</div>
-<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
-	<tr>
-		<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-		<th class="topleft"></th>
-		<td id="tbl-border-top">&nbsp;</td>
-		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
-	</tr>
-	<tr>
-		<td id="tbl-border-left"></td>
-		<td>
-		<div id="content-table-inner">
-			<div id="table-content">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
-					<thead>
-						<tr>
-							<th class="table-header-repeat line-left"><a href="">Action</a></th>
-							<th class="table-header-repeat line-left"><a href="">Enabled</a></th>
-							<th class="table-header-repeat line-left"><a href="">Name</a></th>
-							<th class="table-header-repeat line-left"><a href="">GUID</a></th>
-						</tr>
-					</thead>
-					<tbody>
-						<form method="POST">
+	<div id="page-heading">
+		<title><?php echo $pagetitle." - ".$sitename; ?></title>
+		<h1><?php echo "<h1>".$pagetitle; ?></h1>
+	</div>
+	
+	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+		<tr>
+			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th class="topleft"></th>
+			<td id="tbl-border-top">&nbsp;</td>
+			<th class="topright"></th>
+			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		</tr>
+		<tr>
+			<td id="tbl-border-left"></td>
+			<td>
+			<div id="content-table-inner">
+				<div id="table-content">
+					<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+						<thead>
 							<tr>
-								<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="submit" name="action" value="Add" style="width: 60px"></td>
-								<td align="center" class="gear_preview" style="vertical-align:middle;"></td>
-								<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="name" style="width: 300px"></td>
-								<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="guid" style="width: 300px"></td>
+								<th class="table-header-repeat line-left"><a href="">Action</a></th>
+								<th class="table-header-repeat line-left"><a href="">Enabled</a></th>
+								<th class="table-header-repeat line-left"><a href="">Name</a></th>
+								<th class="table-header-repeat line-left"><a href="">GUID</a></th>
 							</tr>
-						</form>
-						<? echo $tablerows; ?>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<form method="POST">
+								<tr>
+									<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="submit" name="action" value="Add" style="width: 60px"></td>
+									<td align="center" class="gear_preview" style="vertical-align:middle;"></td>
+									<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="name" style="width: 300px"></td>
+									<td align="center" class="gear_preview" style="vertical-align:middle;"><input type="text" name="guid" style="width: 300px"></td>
+								</tr>
+							</form>
+							<?php echo $tablerows; ?>
+						</tbody>
+					</table>
+				</div>
+				<div class="clear"></div>
 			</div>
-			<div class="clear"></div>
-		</div>
-		</td>
-		<td id="tbl-border-right"></td>
-	</tr>
-	<tr>
-		<th class="sized bottomleft"></th>
-		<td id="tbl-border-bottom">&nbsp;</td>
-		<th class="sized bottomright"></th>
-	</tr>
+			</td>
+			<td id="tbl-border-right"></td>
+		</tr>
+		<tr>
+			<th class="sized bottomleft"></th>
+			<td id="tbl-border-bottom">&nbsp;</td>
+			<th class="sized bottomright"></th>
+		</tr>
 	</table>
 	<div class="clear">&nbsp;</div>
-<?
+
+<?php
 }
 else
 {

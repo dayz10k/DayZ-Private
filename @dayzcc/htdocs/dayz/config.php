@@ -19,8 +19,6 @@ $exebec_string = " -f config.cfg";
 
 $patharma = "";
 $pathbec = "";
-$pathlogserver = "";
-$pathlogrpt = "";
 $pathserver = "";
 
 ?>
