@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vehicles>
+	<sAn2_DZ>
+		<Type>Plane</Type>
+        <Side>CIV</Side>
+        <Faction>CIV</Faction>
+        <Name>An-2</Name>
+        <transportmaxweapons>3</transportmaxweapons>
+        <transportmaxmagazines>20</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>15</cargo>
+	</sAn2_DZ>
     <sAn2_1_TK_CIV_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>CIV</Side>
         <Faction>BIS_TK_CIV</Faction>
         <Name>An-2 (Aeroshrot)</Name>
@@ -11,7 +21,7 @@
         <cargo>15</cargo>
     </sAn2_1_TK_CIV_EP1>
     <sAn2_2_TK_CIV_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>CIV</Side>
         <Faction>BIS_TK_CIV</Faction>
         <Name>An-2 (TakAir)</Name>
@@ -21,7 +31,7 @@
         <cargo>15</cargo>
     </sAn2_2_TK_CIV_EP1>
     <sMi17_Civilian>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>CIV</Side>
         <Faction>CIV</Faction>
         <Name>Mi-17 (Civilian)</Name>
@@ -31,7 +41,7 @@
         <cargo>16</cargo>
     </sMi17_Civilian>
     <sParachuteC>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>CIV</Side>
         <Faction>CIV</Faction>
         <Name>Parachute</Name>
@@ -41,7 +51,7 @@
         <cargo>0</cargo>
     </sParachuteC>
     <sAn2_TK_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>An-2</Name>
@@ -51,7 +61,7 @@
         <cargo>15</cargo>
     </sAn2_TK_EP1>
     <sL39_TK_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>L-39ZA</Name>
@@ -71,7 +81,7 @@
         <cargo>0</cargo>
     </sTentStorage>
     <sMi17_TK_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Mi-8</Name>
@@ -81,7 +91,7 @@
         <cargo>16</cargo>
     </sMi17_TK_EP1>
     <sMi24_D_TK_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Mi-24D</Name>
@@ -91,7 +101,7 @@
         <cargo>8</cargo>
     </sMi24_D_TK_EP1>
     <sParachute_TK_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Parachute</Name>
@@ -101,7 +111,7 @@
         <cargo>0</cargo>
     </sParachute_TK_EP1>
     <sParachuteBigEast_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Cargo parachute (Large)</Name>
@@ -111,7 +121,7 @@
         <cargo>0</cargo>
     </sParachuteBigEast_EP1>
     <sParachuteMediumEast_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Cargo parachute</Name>
@@ -121,7 +131,7 @@
         <cargo>0</cargo>
     </sParachuteMediumEast_EP1>
     <sSu25_TK_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>EAST</Side>
         <Faction>BIS_TK</Faction>
         <Name>Su-25</Name>
@@ -151,7 +161,7 @@
         <cargo>5</cargo>
     </sUH1H_DZ>
     <sMi17_Ins>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>INS</Faction>
         <Name>Mi-8MT</Name>
@@ -161,7 +171,7 @@
         <cargo>16</cargo>
     </sMi17_Ins>
     <sSu25_Ins>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>EAST</Side>
         <Faction>INS</Faction>
         <Name>Su-25</Name>
@@ -171,7 +181,7 @@
         <cargo>0</cargo>
     </sSu25_Ins>
     <sKa52>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Ka-52</Name>
@@ -181,7 +191,7 @@
         <cargo>0</cargo>
     </sKa52>
     <sKa52Black>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Ka-52 (black)</Name>
@@ -201,7 +211,7 @@
         <cargo>16</cargo>
     </sMi17_rockets_RU>
     <sMi24_P>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Mi-24P</Name>
@@ -211,7 +221,7 @@
         <cargo>8</cargo>
     </sMi24_P>
     <sMi24_V>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Mi-24V</Name>
@@ -221,7 +231,7 @@
         <cargo>8</cargo>
     </sMi24_V>
     <sParachuteBigEast>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Cargo parachute (Large)</Name>
@@ -231,7 +241,7 @@
         <cargo>0</cargo>
     </sParachuteBigEast>
     <sParachuteEast>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Parachute</Name>
@@ -241,7 +251,7 @@
         <cargo>0</cargo>
     </sParachuteEast>
     <sParachuteMediumEast>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Cargo parachute</Name>
@@ -251,7 +261,7 @@
         <cargo>0</cargo>
     </sParachuteMediumEast>
     <sPchela1T>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Pchela-1T</Name>
@@ -261,7 +271,7 @@
         <cargo>0</cargo>
     </sPchela1T>
     <sSu34>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Su-34</Name>
@@ -271,7 +281,7 @@
         <cargo>0</cargo>
     </sSu34>
     <sSu39>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>EAST</Side>
         <Faction>RU</Faction>
         <Name>Su-25</Name>
@@ -281,7 +291,7 @@
         <cargo>0</cargo>
     </sSu39>
     <sParachute_TK_GUE_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>GUER</Side>
         <Faction>BIS_TK_GUE</Faction>
         <Name>Parachute</Name>
@@ -291,7 +301,7 @@
         <cargo>0</cargo>
     </sParachute_TK_GUE_EP1>
     <sUH1H_TK_GUE_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>GUER</Side>
         <Faction>BIS_TK_GUE</Faction>
         <Name>UH-1H</Name>
@@ -301,7 +311,7 @@
         <cargo>5</cargo>
     </sUH1H_TK_GUE_EP1>
     <sMi17_UN_CDF_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>GUER</Side>
         <Faction>BIS_UN</Faction>
         <Name>Mi-8</Name>
@@ -311,7 +321,7 @@
         <cargo>16</cargo>
     </sMi17_UN_CDF_EP1>
     <sParachuteG>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>GUER</Side>
         <Faction>GUE</Faction>
         <Name>Parachute</Name>
@@ -331,7 +341,7 @@
         <cargo>0</cargo>
     </sCruiseMissile1>
     <sAW159_Lynx_BAF>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Wildcat AH11</Name>
@@ -341,7 +351,7 @@
         <cargo>8</cargo>
     </sAW159_Lynx_BAF>
     <sBAF_Apache_AH1_D>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Apache AH1</Name>
@@ -351,7 +361,7 @@
         <cargo>0</cargo>
     </sBAF_Apache_AH1_D>
     <sBAF_Merlin_HC3_D>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Merlin HC3</Name>
@@ -361,7 +371,7 @@
         <cargo>17</cargo>
     </sBAF_Merlin_HC3_D>
     <sCH_47F_BAF>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Chinook HC4</Name>
@@ -371,7 +381,7 @@
         <cargo>24</cargo>
     </sCH_47F_BAF>
     <sMi171Sh_CZ_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_CZ</Faction>
         <Name>Mi-171Sh</Name>
@@ -391,7 +401,7 @@
         <cargo>16</cargo>
     </sMi171Sh_rockets_CZ_EP1>
     <sA10_US_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>A-10</Name>
@@ -401,7 +411,7 @@
         <cargo>0</cargo>
     </sA10_US_EP1>
     <sAH64D_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>AH-64D</Name>
@@ -411,7 +421,7 @@
         <cargo>0</cargo>
     </sAH64D_EP1>
     <sAH6J_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>AH-6J</Name>
@@ -421,7 +431,7 @@
         <cargo>1</cargo>
     </sAH6J_EP1>
     <sAH6X_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>AH-6X</Name>
@@ -431,7 +441,7 @@
         <cargo>1</cargo>
     </sAH6X_EP1>
     <sC130J_US_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>C-130J</Name>
@@ -441,7 +451,7 @@
         <cargo>25</cargo>
     </sC130J_US_EP1>
     <sCH_47F_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>CH-47F</Name>
@@ -461,7 +471,7 @@
         <cargo>5</cargo>
     </sMH6J_EP1>
     <sMQ9PredatorB_US_EP1>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>MQ-9</Name>
@@ -471,7 +481,7 @@
         <cargo>0</cargo>
     </sMQ9PredatorB_US_EP1>
     <sParachute_US_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>Parachute</Name>
@@ -481,7 +491,7 @@
         <cargo>0</cargo>
     </sParachute_US_EP1>
     <sParachuteBigWest_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>Cargo parachute (Large)</Name>
@@ -491,7 +501,7 @@
         <cargo>0</cargo>
     </sParachuteBigWest_EP1>
     <sParachuteMediumWest_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>Cargo parachute</Name>
@@ -501,7 +511,7 @@
         <cargo>0</cargo>
     </sParachuteMediumWest_EP1>
     <sUH60M_EP1>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>BIS_US</Faction>
         <Name>UH-60M</Name>
@@ -511,7 +521,7 @@
         <cargo>13</cargo>
     </sUH60M_EP1>
     <sMi17_CDF>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>CDF</Faction>
         <Name>Mi-17</Name>
@@ -521,7 +531,7 @@
         <cargo>16</cargo>
     </sMi17_CDF>
     <sMi24_D>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>CDF</Faction>
         <Name>Mi-24D</Name>
@@ -531,7 +541,7 @@
         <cargo>8</cargo>
     </sMi24_D>
     <sSu25_CDF>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>CDF</Faction>
         <Name>Su-25</Name>
@@ -541,7 +551,7 @@
         <cargo>0</cargo>
     </sSu25_CDF>
     <sSteerable_Parachute_EP1>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>Default</Faction>
         <Name>Steerable parachute</Name>
@@ -551,7 +561,7 @@
         <cargo>0</cargo>
     </sSteerable_Parachute_EP1>
     <sA10>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>A-10</Name>
@@ -561,7 +571,7 @@
         <cargo>0</cargo>
     </sA10>
     <sAH1Z>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>AH-1Z</Name>
@@ -571,7 +581,7 @@
         <cargo>0</cargo>
     </sAH1Z>
     <sAH64D>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>AH-64D</Name>
@@ -581,7 +591,7 @@
         <cargo>0</cargo>
     </sAH64D>
     <sAH64D_Sidewinders>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>AH-64D</Name>
@@ -591,7 +601,7 @@
         <cargo>0</cargo>
     </sAH64D_Sidewinders>
     <sAV8B>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>AV-8B (LGB)</Name>
@@ -601,7 +611,7 @@
         <cargo>0</cargo>
     </sAV8B>
     <sAV8B2>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>AV-8B</Name>
@@ -611,7 +621,7 @@
         <cargo>0</cargo>
     </sAV8B2>
     <sC130J>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>C-130J</Name>
@@ -631,7 +641,7 @@
         <cargo>0</cargo>
     </sCruiseMissile2>
     <sF35B>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>F-35B</Name>
@@ -641,7 +651,7 @@
         <cargo>0</cargo>
     </sF35B>
     <sMH60S>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>MH-60S</Name>
@@ -651,7 +661,7 @@
         <cargo>13</cargo>
     </sMH60S>
     <sMQ9PredatorB>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>MQ-9</Name>
@@ -661,7 +671,7 @@
         <cargo>0</cargo>
     </sMQ9PredatorB>
     <sMQ9PredatorB_campaign>
-        <Type>Air</Type>
+        <Type>Plane</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>MQ-9</Name>
@@ -671,7 +681,7 @@
         <cargo>0</cargo>
     </sMQ9PredatorB_campaign>
     <sMV22>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>MV-22</Name>
@@ -681,7 +691,7 @@
         <cargo>24</cargo>
     </sMV22>
     <sParachute>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>Parachute</Name>
@@ -691,7 +701,7 @@
         <cargo>0</cargo>
     </sParachute>
     <sParachuteBigWest>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>Cargo parachute (Large)</Name>
@@ -701,7 +711,7 @@
         <cargo>0</cargo>
     </sParachuteBigWest>
     <sParachuteMediumWest>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>Cargo parachute</Name>
@@ -711,7 +721,7 @@
         <cargo>0</cargo>
     </sParachuteMediumWest>
     <sParachuteWest>
-        <Type>Air</Type>
+        <Type>Parachute</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>Parachute</Name>
@@ -721,7 +731,7 @@
         <cargo>0</cargo>
     </sParachuteWest>
     <sUH1Y>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>UH-1Y</Name>
@@ -731,7 +741,7 @@
         <cargo>7</cargo>
     </sUH1Y>
     <sUH1Y_cutscene>
-        <Type>Air</Type>
+        <Type>Helicopter</Type>
         <Side>WEST</Side>
         <Faction>USMC</Faction>
         <Name>UH-1Y</Name>
@@ -3451,7 +3461,7 @@
         <cargo>0</cargo>
     </sTowingTractor>
     <sBAF_ATV_D>
-        <Type>CarD</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>ATV</Name>
@@ -3461,7 +3471,7 @@
         <cargo>1</cargo>
     </sBAF_ATV_D>
     <sBAF_Jackal2_GMG_D>
-        <Type>CarD</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Jackal 2 MWMIK (GMG)</Name>
@@ -3471,7 +3481,7 @@
         <cargo>2</cargo>
     </sBAF_Jackal2_GMG_D>
     <sBAF_Jackal2_L2A1_D>
-        <Type>CarD</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Jackal 2 MWMIK (HMG)</Name>
@@ -3481,7 +3491,7 @@
         <cargo>2</cargo>
     </sBAF_Jackal2_L2A1_D>
     <sBAF_Offroad_D>
-        <Type>CarD</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Offroad</Name>
@@ -3491,7 +3501,7 @@
         <cargo>7</cargo>
     </sBAF_Offroad_D>
     <sBAF_ATV_W>
-        <Type>CarW</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>ATV</Name>
@@ -3501,7 +3511,7 @@
         <cargo>1</cargo>
     </sBAF_ATV_W>
     <sBAF_Jackal2_GMG_W>
-        <Type>CarW</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Jackal 2 MWMIK (GMG)</Name>
@@ -3511,7 +3521,7 @@
         <cargo>2</cargo>
     </sBAF_Jackal2_GMG_W>
     <sBAF_Jackal2_L2A1_W>
-        <Type>CarW</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Jackal 2 MWMIK (HMG)</Name>
@@ -3521,7 +3531,7 @@
         <cargo>2</cargo>
     </sBAF_Jackal2_L2A1_W>
     <sBAF_Offroad_W>
-        <Type>CarW</Type>
+        <Type>Car</Type>
         <Side>WEST</Side>
         <Faction>BIS_BAF</Faction>
         <Name>Offroad</Name>
@@ -4123,7 +4133,7 @@
     <sWire_cat1>
         <Type>Wire</Type>
         <Side>WEST</Side>
-        <Faction>CIV</Faction>
+        <Faction>None</Faction>
         <Name>Wire cat</Name>
         <transportmaxweapons>0</transportmaxweapons>
         <transportmaxmagazines>0</transportmaxmagazines>
@@ -4133,7 +4143,7 @@
     <sHedgehog_DZ>
         <Type>Hedgehog</Type>
         <Side>WEST</Side>
-        <Faction>CIV</Faction>
+        <Faction>None</Faction>
         <Name>Hedgehog</Name>
         <transportmaxweapons>0</transportmaxweapons>
         <transportmaxmagazines>0</transportmaxmagazines>
