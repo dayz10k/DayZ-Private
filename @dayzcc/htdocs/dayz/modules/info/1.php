@@ -13,7 +13,7 @@
 		$model = $row['model'];
 		$name = $row['name'];
 
-		if (is_array($Inventory)) {$Inventory = (array_merge($Inventory[0], $Inventory[1]));} else {$Inventory = array();}
+		if (is_array($Inventory)) {if (array_key_exists(1, $Inventory)) {$Inventory = (array_merge($Inventory[0], $Inventory[1]));}} else {$Inventory = array();}
 		
 		$xml = file_get_contents('/items.xml', true);
 		require_once('/modules/xml2array.php');
