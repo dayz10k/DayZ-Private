@@ -1,4 +1,4 @@
-// GCam 2.0 Function by Pwnoz0r, VS_Shiva and Crosire
+// Keydown Function by Pwnoz0r, VS_Shiva and Crosire
 
 fnc_keyDown = 
 {

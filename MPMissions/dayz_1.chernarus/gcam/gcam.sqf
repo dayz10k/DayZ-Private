@@ -2,6 +2,7 @@
 // GCam 2.0
 //
 // Battle observation / Unit action pursuit camera script by Gigan
+// Slightly edited by Crosire
 //
 // Execute GCam
 // handle = [ Unit ] execVM "gcam\gcam.sqf";
@@ -13,8 +14,6 @@
 // When GCamKill = true, GCam quits immediately.
 //
 //=================================================================================
-
-// Edited for DayZ by Crosire and Pwnoz0r, VR-Shiva
 
 #include "gcam_config.hpp"
 
