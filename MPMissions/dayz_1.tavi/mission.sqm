@@ -4597,7 +4597,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=2;
+		items=8;
 		class Item0
 		{
 			position[]={12885.595,49,12428.9};
@@ -4608,6 +4608,42 @@ class Mission
 		{
 			position[]={13197.925,609.10962,16652.975};
 			name="respawn_west";
+			type="Empty";
+		};
+		class Item2
+		{
+			position[]={10847.396,14151.847,7.724762e-005};
+			name="spawn0";
+			type="Empty";
+		};
+		class Item3
+		{
+			position[]={16199.206,15868.852,-9.9897385e-005};
+			name="spawn1";
+			type="Empty";
+		};
+		class Item4
+		{
+			position[]={10501.839,6146.1279,1.9073486e-005};
+			name="spawn2";
+			type="Empty";
+		};
+		class Item5
+		{
+			position[]={11512.064,2022.1742,3.1471252e-005};
+			name="spawn3";
+			type="Empty";
+		};
+		class Item6
+		{
+			position[]={2008.2257, 6441.8765, 2.3841858e-005};
+			name="spawn4";
+			type="Empty";
+		};
+		class Item7
+		{
+			position[]={18422.752, 5029.6719, 3.0517578e-005};
+			name="spawn5";
 			type="Empty";
 		};
 	};
