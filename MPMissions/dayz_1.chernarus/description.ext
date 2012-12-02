@@ -2,7 +2,7 @@
 
 respawn = "BASE";
 respawndelay = 5;
-onLoadMission= "DayZ Chernarus";
+onLoadMission = "DayZ Chernarus";
 OnLoadIntro = "Welcome to Chernarus";
 OnLoadIntroTime = False;
 OnLoadMissionTime = False;
