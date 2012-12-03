@@ -16,7 +16,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			$delresult .= '<div id="message-green">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0"><tr>
 				<td class="green-left">User '.$deluser[$i].' successfully removed!</td>
-				<td class="green-right"><a class="close-green"><img src="'.'images/table/icon_close_green.gif" alt="" /></a></td>
+				<td class="green-right"><a class="close-green"><img src="images/table/icon_close_green.gif" alt="" /></a></td>
 				</tr></table>
 				</div>';
 
