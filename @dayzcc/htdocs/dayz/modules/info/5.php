@@ -1,5 +1,5 @@
 <?php
-	$res = mysql_query("SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND id = '".$_GET["id"]."' LIMIT 1") or die(mysql_error());
+	$res = mysql_query("SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.id = '".$_GET["id"]."' LIMIT 1") or die(mysql_error());
 	$number = mysql_num_rows($res);
 	
 	while ($row = mysql_fetch_array($res)) {
