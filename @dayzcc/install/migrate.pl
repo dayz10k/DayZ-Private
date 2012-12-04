@@ -13,16 +13,16 @@ GetOptions(
 	\%args,
 	'hostname|host|h=s',
 	'username|user|u=s',
-	'password|pass|p=s',
+	'password|pass|dbpass|p=s',
 	'database|name|dbname|d=s',
-	'port=s',
+	'port|dbport=s',
 	'schema|s=s',
 	'version|v=s',
 	'help'
 );
 
 my %db = (
-	'host' => $args{'hostname'} ? $args{'hostname'} : 'localhost',
+	'host' => $args{'hostname'} ? $args{'hostname'} : '127.0.0.1',
 	'user' => $args{'username'} ? $args{'username'} : 'dayz',
 	'pass' => $args{'password'} ? $args{'password'} : '',
 	'name' => $args{'database'} ? $args{'database'} : 'dayz_chernarus',

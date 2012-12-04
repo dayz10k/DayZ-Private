@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
-# Bliss vehicle spawn script
-# by ayan4m1 and Crosire
+# Vehicle spawn script by ayan4m1
+# Slightly modified by Crosire
 
 use warnings;
 
@@ -25,21 +25,21 @@ GetOptions(
 );
 
 my %db = (
-	'host' => $args{'hostname'} ? $args{'hostname'} : 'localhost',
-	'instance' => $args{'instance'} ? $args{'instance'} : '1',
-	'limit' => $args{'limit'} ? $args{'limit'} : '500',
+	'host' => $args{'hostname'} ? $args{'hostname'} : '127.0.0.1',
 	'user' => $args{'username'} ? $args{'username'} : 'root',
 	'pass' => $args{'password'} ? $args{'password'} : '',
 	'name' => $args{'database'} ? $args{'database'} : 'dayz_chernarus',
 	'port' => $args{'port'} ? $args{'port'} : '3306',
+	'instance' => $args{'instance'} ? $args{'instance'} : '1',
+	'limit' => $args{'limit'} ? $args{'limit'} : '100',
 );
 
 if ($args{'help'}) {
-	print "usage: vehicles.pl [--instance <id>] [--limit <limit>] [--host <hostname>] [--user <username>] [--pass <password>] [--name <dbname>] [--port <port>] [--cleanup tents|bounds|all]\n";
+	print "Usage: vehicles.pl [--instance <id>] [--limit <limit>] [--host <hostname>] [--user <username>] [--pass <password>] [--name <dbname>] [--port <port>] [--cleanup tents|deployables|bounds|all]\n";
 	exit;
 }
 
-print "Connecting to $db{'host'}:$db{'name'} as user $db{'user'}\n";
+print "Connecting to '$db{'host'}':'$db{'name'}' as user $db{'user'}\n";
 
 # Connect to MySQL
 my $dbh = DBI->connect(
@@ -52,7 +52,7 @@ print "\n";
 
 my ($world_id, $world_name) = $dbh->selectrow_array("select w.id, w.name from instance i join world w on i.world_id = w.id where i.id = ?", undef, ($db{'instance'}));
 die "Error: Exception: Invalid instance ID\n" unless (defined $world_id && defined $world_name);
-print "Instance name dayz_$db{'instance'}.$world_name\n";
+print "Instance name is 'dayz_$db{'instance'}.$world_name'\n";
 
 my $cleanup = ($args{'cleanup'}) ? $args{'cleanup'} : 'none';
 
@@ -67,7 +67,9 @@ where
 EndSQL
 	) or die "> Error: MySQL Exception: ".DBI->errstr."\n";
 	$sth->execute($db{'instance'}) or die "> Error: Exception: ".$sth->errstr."\n";
+}
 
+if ($cleanup eq 'deployables' || $cleanup eq 'all') {
 	print "Cleaning up old deployables\n";
 	$sth = $dbh->prepare(<<EndSQL
 delete from
@@ -82,6 +84,7 @@ EndSQL
 	) or die "> Error: MySQL Exception: ".DBI->errstr."\n";
 	$sth->execute() or die "> Error: Exception: ".$sth->errstr."\n";
 }
+
 
 if ($cleanup eq 'tents' || $cleanup eq 'all') {
 	print "Cleaning up tents with dead owners older than four days\n";
@@ -208,7 +211,7 @@ while (my $vehicle = $spawns->fetchrow_hashref) {
 
 	# If over the per-type limit, skip this spawn
 	my $count = $dbh->selectrow_array("select count(iv.id) from instance_vehicle iv join world_vehicle wv on iv.world_vehicle_id = wv.id where iv.instance_id = ? and wv.vehicle_id = ?", undef, ($db{'instance'}, $vehicle->{vehicle_id}));
-	next unless ($count <= $vehicle->{limit_max});
+	next unless ($count < $vehicle->{limit_max});
 
 	# Generate parts damage
 	my $health = "[" . join(',', map { (sprintf(rand(), "%.3f") > 0.85) ? "[\"$_\",1]" : () } split(/,/, $vehicle->{parts})) . "]";
