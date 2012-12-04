@@ -50,7 +50,7 @@
 	$chbox = "";
 	
 	if (!$serverrunning){ 
-		$chbox = "<th class=\"table-header-repeat line-left\"><a href=\"\">Delete</a></th>";
+		$chbox = '<th class="table-header-repeat line-left"><a href="">Delete</a></th>';
 		$formhead = '<form action="index.php?view=table&show=4" method="post">';
 		$formfoot = '<input type="submit" class="submit-login" /></form>';
 	}
@@ -58,7 +58,7 @@
 	$tableheader = header_vehicle($show, $chbox, $order);
 	
 	while ($row = mysql_fetch_array($res)) {
-		if (!$serverrunning) {$chbox = "<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input name=\"vehicle[]\" value=\"".$row['id']."\" type=\"checkbox\"/></td>";}	else {$chbox = "";}
+		if (!$serverrunning) {$chbox = '<td align="center" class="gear_preview" style="vertical-align:middle;"><input name="vehicle[]" value="'.$row['id'].'" type="checkbox"/></td>';}	else {$chbox = '';}
 		$tablerows .= row_vehicle($row, $chbox, $serverworld);
 	}
 	
