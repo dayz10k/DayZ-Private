@@ -57,7 +57,10 @@
 								<?php
 									if ($row['owner_id'] != "0") {
 										$resowner = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.id = '".$row['owner_id']."' LIMIT 1");
-
+										$owner = '';
+										$ownerid = '';
+										$owneruid = '';
+										
 										while ($rowowner = mysql_fetch_array($resowner)) {
 											$owner = $rowowner['name'];
 											$ownerid = $rowowner['id'];
