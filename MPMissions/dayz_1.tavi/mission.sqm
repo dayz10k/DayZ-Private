@@ -4597,7 +4597,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=8;
+		items=11;
 		class Item0
 		{
 			position[]={12885.595,49,12428.9};
@@ -4612,38 +4612,56 @@ class Mission
 		};
 		class Item2
 		{
-			position[]={10847.396,14151.847,7.724762e-005};
+			position[]={4094.6243,35.091324,7946.4219};
 			name="spawn0";
 			type="Empty";
 		};
 		class Item3
 		{
-			position[]={16199.206,15868.852,-9.9897385e-005};
+			position[]={11819.298,10.853747,1489.975};
 			name="spawn1";
 			type="Empty";
 		};
 		class Item4
 		{
-			position[]={10501.839,6146.1279,1.9073486e-005};
+			position[]={13478.239,21.422312,19524.605};
 			name="spawn2";
 			type="Empty";
 		};
 		class Item5
 		{
-			position[]={11512.064,2022.1742,3.1471252e-005};
+			position[]={17424.031,11.667448,12460.845};
 			name="spawn3";
 			type="Empty";
 		};
 		class Item6
 		{
-			position[]={2008.2257, 6441.8765, 2.3841858e-005};
+			position[]={10735.372,24.483391,6238.1377};
 			name="spawn4";
 			type="Empty";
 		};
 		class Item7
 		{
-			position[]={18422.752, 5029.6719, 3.0517578e-005};
+			position[]={8229.7588,6.5968256,2924.2554};
 			name="spawn5";
+			type="Empty";
+		};
+		class Item8
+		{
+			position[]={10392.189,5.007,16820.051};
+			name="spawn6";
+			type="Empty";
+		};
+		class Item9
+		{
+			position[]={18436.324,25.244852,5041.7466};
+			name="spawn7";
+			type="Empty";
+		};
+		class Item10
+		{
+			position[]={16079.367,52.875801,6253.4883};
+			name="spawn8";
 			type="Empty";
 		};
 	};
