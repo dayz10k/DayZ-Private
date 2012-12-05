@@ -430,6 +430,16 @@
         <transportmaxbackpacks>1</transportmaxbackpacks>
         <cargo>1</cargo>
     </sAH6J_EP1>
+	<sAH6X_DZ>
+		<Type>Helicopter</Type>
+        <Side>WEST</Side>
+        <Faction>BIS_US</Faction>
+        <Name>AH-6X</Name>
+        <transportmaxweapons>3</transportmaxweapons>
+        <transportmaxmagazines>20</transportmaxmagazines>
+        <transportmaxbackpacks>5</transportmaxbackpacks>
+        <cargo>1</cargo>
+	</sAH6X_DZ>
     <sAH6X_EP1>
         <Type>Helicopter</Type>
         <Side>WEST</Side>
@@ -4150,6 +4160,16 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sHedgehog_DZ>
+	<sSandbag1_DZ>
+        <Type>Sandbag</Type>
+        <Side>WEST</Side>
+        <Faction>None</Faction>
+        <Name>Sandbag</Name>
+        <transportmaxweapons>0</transportmaxweapons>
+        <transportmaxmagazines>0</transportmaxmagazines>
+        <transportmaxbackpacks>0</transportmaxbackpacks>
+        <cargo>0</cargo>
+    </sSandbag1_DZ>
     <sOld_bike_TK_INS_EP1>
         <Type>Bike</Type>
         <Side>WEST</Side>
@@ -4220,4 +4240,14 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sRHIB>
+	<sMi17_DZ>
+        <Type>Helicopter</Type>
+        <Side>WEST</Side>
+        <Faction>CDF</Faction>
+        <Name>Mi-17</Name>
+        <transportmaxweapons>3</transportmaxweapons>
+        <transportmaxmagazines>20</transportmaxmagazines>
+        <transportmaxbackpacks>10</transportmaxbackpacks>
+        <cargo>16</cargo>
+    </sMi17_DZ>
 </vehicles>
