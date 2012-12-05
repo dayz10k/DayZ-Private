@@ -22,14 +22,20 @@
 			$matches = array();
 			$sectionpattern = "/((?<=\sat\s\[)[0-9]{0,20}+\.+[0-9]{0,10}+\,+[0-9]{0,20}+\.+[0-9]{0,10})/x"; // Only helicopter crashsites: "/((?<=[a-z]{10}\s[a-z]{2}\s\[)[0-9]{0,20}+\.+[0-9]{0,10}+\,+[0-9]{0,20}+\.+[0-9]{0,10})/x"
 	
-			if (preg_match($sectionpattern, $line, $matches) && !(strpos($line, "Misc_cargo_cont_net") !== false)) {
+			if (preg_match($sectionpattern, $line, $matches)) {
 				$Worldspace = explode(",", $matches[1]);
 				$x = 0; if (array_key_exists(0, $Worldspace)) {$x = $Worldspace[0];}
 				$y = 0; if (array_key_exists(1, $Worldspace)) {$y = $Worldspace[1];}
 
 				require_once('/modules/calc.php');
-				$description = '<h2>Wreck</h2><table><tr><td><img style="width: 100px;" src="images/vehicles/Crashsite.png"></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $serverworld)).'<br />Top: '.round(world_y($y, $serverworld)).'</td></tr></table>';
-				$markers .= "L.marker([".(world_y($y, $serverworld) / 10).", ".(world_x($x, $serverworld) / 10)."], {icon: Wreck, title: 'Wreck'}).addTo(map).bindPopup('".$description."'); ";
+
+				if (strpos($line, "Misc_cargo_cont_net") !== false) {
+					$description = '<h2>Care</h2><table><tr><td><img style="width: 100px;" src="images/vehicles/Care.png"></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $serverworld)).'<br />Top: '.round(world_y($y, $serverworld)).'</td></tr></table>';
+					$markers .= "L.marker([".(world_y($y, $serverworld) / 10).", ".(world_x($x, $serverworld) / 10)."], {icon: Care, title: 'Care'}).addTo(map).bindPopup('".$description."'); ";
+				} else {
+					$description = '<h2>Wreck</h2><table><tr><td><img style="width: 100px;" src="images/vehicles/Crashsite.png"></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $serverworld)).'<br />Top: '.round(world_y($y, $serverworld)).'</td></tr></table>';
+					$markers .= "L.marker([".(world_y($y, $serverworld) / 10).", ".(world_x($x, $serverworld) / 10)."], {icon: Wreck, title: 'Wreck'}).addTo(map).bindPopup('".$description."'); ";
+				}
 			}
 		}
 

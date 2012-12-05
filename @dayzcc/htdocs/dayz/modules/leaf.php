@@ -43,6 +43,7 @@ if (isset($_SESSION['user_id']))
 		ATV = new Icon({iconUrl: 'images/icons/ATV.png'}),
 		Bike = new Icon({iconUrl: 'images/icons/Bike.png'}),
 		Wreck = new Icon({iconUrl: 'images/icons/Wreck.png'}),
+		Care = new Icon({iconUrl: 'images/icons/Care.png'}),
 		Farmvehicle = new Icon({iconUrl: 'images/icons/Farmvehicle.png'}),
 		Helicopter = new Icon({iconUrl: 'images/icons/Helicopter.png'}),
 		lBoat = new Icon({iconUrl: 'images/icons/lBoat.png'}),
@@ -55,6 +56,7 @@ if (isset($_SESSION['user_id']))
 		Wire = new Icon({iconUrl: 'images/icons/Wire.png'}),
 		Tent = new Icon({iconUrl: 'images/icons/Tent.png'}),
 		Hedgehog = new Icon({iconUrl: 'images/icons/Hedgehog.png'}),
+		Sandbag = new Icon({iconUrl: 'images/icons/Sandbag.png'}),
 		Player = new Icon({iconUrl: 'images/icons/player.png'}),
 		PlayerDead = new Icon({iconUrl: 'images/icons/player_dead.png'});
 	
