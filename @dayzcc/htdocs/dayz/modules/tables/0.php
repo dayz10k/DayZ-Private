@@ -9,16 +9,16 @@
 		$k = strrpos($answer, "---");
 		$l = strrpos($answer, "(");
 		$out = substr($answer, $k + 4, $l - $k - 5);
-		$pnumber = substr($answer, $l + 1, 1);
-		$array = preg_split ('/$\R?^/m', $out);
+		$pnumber = str_replace(' ', '', substr($answer, $l + 1, 2));
+		$parray = preg_split('/$\R?^/m', $out);
 		
 		$players = array();
-		for ($j = 0; $j < count($array); $j++) {$players[] = "";}
-		for ($i = 0; $i < count($array); $i++)
+		for ($j = 0; $j < count($parray); $j++) {$players[] = "";}
+		for ($i = 0; $i < count($parray); $i++)
 		{
 			$m = 0;
 			$players[$i][] = "";
-			$pout = preg_replace('/\s+/', ' ', $array[$i]);
+			$pout = preg_replace('/\s+/', ' ', $parray[$i]);
 			for ($j = 0; $j < strlen($pout); $j++) {
 				$char = substr($pout, $j, 1);
 				if($m < 4) {
@@ -31,7 +31,6 @@
 
 		for ($i = 0; $i < count($players); $i++) {
 			if (strlen($players[$i][4]) > 1) {
-				$k = strrpos($players[$i][4], " (Lobby)");
 				$playername = str_replace(" (Lobby)", "", $players[$i][4]);
 				$paren_num = 0;
 				$chars = str_split($playername);
@@ -44,14 +43,13 @@
 				}
 				
 				$playername = trim($new_string);
-				$search = preg_replace("/[^\w\x7F-\xFF\s]/", " ", $playername);
+				$search = preg_replace("/[^\w\x7F-\xFF\s\.\:\$\!]/", " ", $playername);
 				$playername = trim(preg_replace("/\s(\S{1,2})\s/", " ", preg_replace("[ +]", "  "," $search ")));
 				$playername = trim(preg_replace("/\([^\)]+\)/", "", $playername));
 				$playername = preg_replace("[ +]", " ", $playername);
 
 				$ip = $players[$i][1];
 				$ping = $players[$i][2];
-				$name = $players[$i][4];
 				
 				$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '".$playername."' ORDER BY `last_updated` DESC LIMIT 1;") or die(mysql_error());
 
