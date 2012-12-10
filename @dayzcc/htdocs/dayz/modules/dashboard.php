@@ -31,7 +31,7 @@ if (isset($_SESSION['user_id']))
 			if (!$data['gq_online']) {printf("<p>Gamespy did not respond within the specified time.</p>\n"); return;}			
 			?>
 				<h2><?php echo $data['gq_hostname']; ?></h2>
-				<h2>Address:</h2><h3><?php echo $data['gq_address'].":".$data['gq_port']; ?></h3>
+				<h2>Address:</h2><h3><?php echo gethostbyname(trim(`hostname`)).":".$data['gq_port']; ?></h3>
 				<h2>Mods:</h2><h3><?php echo $data['gq_mod']; ?></h3>
 				<h2>Max players:</h2><h3><?php echo $data['gq_maxplayers']; ?></h3>
 				<h2>Online players:</h2><h3><?php echo $data['gq_numplayers']; ?></h3>	
