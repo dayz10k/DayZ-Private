@@ -45,11 +45,6 @@
 				}
 				
 				$playername = trim($new_string);
-				$search = preg_replace("/[^\w\x7F-\xFF\s\.\:\$\!]/", " ", $playername);
-				$playername = trim(preg_replace("/\s(\S{1,2})\s/", " ", preg_replace("[ +]", "  ", " $search ")));
-				$playername = trim(preg_replace("/\([^\)]+\)/", "", $playername));
-				$playername = preg_replace("[ +]", " ", $playername);
-
 				$ip = $players[$i][1];
 				$ping = $players[$i][2];
 				
