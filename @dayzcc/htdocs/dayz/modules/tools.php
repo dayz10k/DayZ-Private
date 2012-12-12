@@ -4,17 +4,25 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 	$pagetitle = "Database Tools";
 
 	// Thanks to TorZar for parts of his code!
-	?>
+	
+	if (isset($_GET['vehicle'])) { ?>
 
-	<div id="dvPopup_vehicle" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-		<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
-		<?php include_once ('/tools/parseVehicles.php'); ?>
-	</div>
+		<div id="dvPopup_vehicle" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
+			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+			<?php include_once ('/tools/parseVehicles.php'); ?>
+		</div>
+		<script>ShowModalPopup('dvPopup_vehicle');</script>
+		
+	<?php }
+	if (isset($_GET['building'])) { ?>
 
-	<div id="dvPopup_building" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-		<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
-		<?php include_once ('/tools/parseBuildings.php'); ?>
-	</div>
+		<div id="dvPopup_building" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
+			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+			<?php include_once ('/tools/parseBuildings.php'); ?>
+		</div>
+		<script>ShowModalPopup('dvPopup_building');</script>
+		
+	<?php } ?>
 
 	<div id="page-heading">
 		<title><?php echo $pagetitle." - ".$sitename; ?></title>
@@ -41,7 +49,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<p>Adds all vehicles to 'instance_vehicle' and 'vehicle' tables to be spawned in on next restart.
 					<font color="red"> Note: Create a fresh mission with only vehicles!</font></p>
 					<br />
-					<strong><a href="#" onclick="ShowModalPopup('dvPopup_vehicle'); return false;">View Results!</a></strong>
+					<strong><a href="index.php?view=tools&vehicle">Import</a></strong>
 
 					<br />
 					<br />
@@ -50,7 +58,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<p>Adds all buildings to 'instance_building' and 'building' tables to be spawned in on next restart.
 					<font color="red"> Note: Create a fresh mission with only buildings!</font></p>
 					<br />
-					<strong><a href="#" onclick="ShowModalPopup('dvPopup_building'); return false;">View Results!</a></strong>
+					<strong><a href="index.php?view=tools&building">Import</a></strong>
 
 					<br />
 					<br />
@@ -59,7 +67,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<h3>INSTRUCTIONS:</h3>
 
 					<p>Missions can be edited/created from launching DayZ with or without rMod:</p><br />
-					<p>1. At the main menu press ALT + E.</p><br />
+					<p>1. At the main menu press ALT + E. Select your world [World]</p><br />
 					<p>2. Once you are in the 3D editor do the following:</p>
 					<ul>
 						<li>Place "Center (F10)" anywhere on map [Just hit OK].</li>
@@ -74,8 +82,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<p>6. Hover over the object and hit DELETE to remove.</p><br />
 					<p>7. Save your progress:</p>
 					<ul>
-						<li>Save your vehicles as "User mission"</li>
-						<li>Save your buildings as "User mission"</li>
+						<li>Save your vehicles as "User mission" under name [Your Mission Name]</li>
+						<li>Save your buildings as "User mission" under name [Your Mission Name]</li>
 					</ul>
 					<br />
 					<p>8. Copy files to working directory:</p><br />

@@ -2,12 +2,12 @@
 if (isset($_SESSION['user_id']))
 {
 
-/* 3D Editor Mission File Parser
- *
- * This will take your mission file and add any new buildings to your building table
- * Written by: Planek and Crosire
- *
- */
+	/* 3D Editor Mission File Parser
+	 *
+	 * This will take your mission file and add any new buildings to your building table
+	 * Written by: Planek and Crosire
+	 *
+	 */
 
 	if (file_exists("buildings.sqf")) {
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -33,11 +33,10 @@ if (isset($_SESSION['user_id']))
 			<td id="tbl-border-left"></td>
 			<td>
 				<div id="content-table-inner">
-					<table border=1px>
+					<table border="1" width="100%" cellpadding="0" cellspacing="0" id="building-table">
 					<tr>
-						<th>Class Name</th>
-						<th>Position</th>
-						<th>Vehicle ID</th>
+						<th width="50%">Class Name</th>
+						<th width="45%">Position</th>
 					</tr>
 
 					<?php
@@ -81,15 +80,18 @@ if (isset($_SESSION['user_id']))
 							$resultCheckQuery = mysql_query("SELECT * FROM `instance_building`;");
 							while ($row = mysql_fetch_array($resultCheckQuery)) {if ($row['worldspace'] == $pos) {$exists = true;}}
 							
-							if (!$exists) {
+							if (!$exists)
+							{
+								$error = false;
+								
 								$matchFound = false;
 								$resultClassNameQuery = mysql_query("SELECT * FROM `building`;");
 								while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {if ($strings[1] == $row['class_name']) {$matchFound = true;}}
 
-								if(!$matchFound)
+								if (!$matchFound)
 								{
 									//echo "Inserting new Class Name";
-									mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]');");
+									if (!mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]');")) { echo mysql_error(); }
 								}
 
 								$time = date("y-m-d H:i:s", time());
@@ -98,18 +100,18 @@ if (isset($_SESSION['user_id']))
 								$userDataIDQuery = mysql_fetch_array($resultIDQuery, MYSQL_ASSOC);
 								$building_id = $userDataIDQuery['id'];
 								
-								mysql_query("INSERT INTO `instance_building` (`building_id`, `instance_id`, `worldspace`, `created`) VALUES ('$building_id', '$serverinstance', '$pos', '$time');");
+								if (!mysql_query("INSERT INTO `instance_building` (`building_id`, `instance_id`, `worldspace`, `created`) VALUES ('$building_id', '$serverinstance', '$pos', '$time');")) { echo mysql_error()."<br />"; $error = true; }
 								
 								$buildingcount++;
-							?>
 								
+							if (!$error) { ?>
+							
 							<tr>
-								<td><?php echo $strings[1] ?></td>
-								<td><?php echo $pos ?></td>
-								<td><?php echo $vehicle_id ?></td>
+								<td align="center" style="vertical-align:middle;"><?php echo $strings[1] ?></td>
+								<td align="center" style="vertical-align:middle;"><?php echo $pos ?></td>
 							</tr>
 							
-							<?php
+							<?php }
 							}
 						}
 					}

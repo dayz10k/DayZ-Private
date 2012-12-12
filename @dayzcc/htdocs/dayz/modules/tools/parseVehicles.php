@@ -2,13 +2,13 @@
 if (isset($_SESSION['user_id']))
 {
 
-/* 3D Editor Mission File Parser
- *
- * This will take your mission file and add any new vehicles to your vehicle table and all spawn points
- * to your world_vehicle table
- * Written by: Planek and Crosire
- *
- */
+	/* 3D Editor Mission File Parser
+	 *
+	 * This will take your mission file and add any new vehicles to your vehicle table and all spawn points
+	 * to your world_vehicle table
+	 * Written by: Planek and Crosire
+	 *
+	 */
  
 	if (file_exists("vehicles.sqf")) {
 		error_reporting (E_ALL ^ E_NOTICE);
@@ -34,11 +34,10 @@ if (isset($_SESSION['user_id']))
 			<td id="tbl-border-left"></td>
 			<td>
 				<div id="content-table-inner">
-					<table border=1px>
+					<table border="1" width="100%" cellpadding="0" cellspacing="0" id="vehicle-table">
 					<tr>
-						<th>Class Name</th>
-						<th>Position</th>
-						<th>Vehicle ID</th>
+						<th width="50%">Class Name</th>
+						<th width="45%">Position</th>
 					</tr>
 
 					<?php
@@ -86,41 +85,46 @@ if (isset($_SESSION['user_id']))
 							$resultCheckQuery = mysql_query("SELECT * FROM `instance_vehicle`;");
 							while ($row = mysql_fetch_array($resultCheckQuery)) {if ($row['worldspace'] == $pos) {$exists = true;}}
 
-							if (!$exists) {
+							if (!$exists)
+							{
+								$error = false;
 								$matchFound = false;
 								$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;");
-								while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) {if ($strings[1] == $row['class_name']) {$matchFound = true;}}
+								while ($row = mysql_fetch_assoc($resultClassNameQuery)) {if ($strings[1] == $row['class_name']) {$matchFound = true;}}
 
-								if(!$matchFound)
+								if (!$matchFound)
 								{
 									//echo "Inserting new Class Name";
-									mysql_query("INSERT INTO `vehicle` (`class_name`, `damage_min`, `damage_max`, `fuel_min`, `fuel_max`, `limit_min`, `limit_max`, `parts`) VALUES ('$strings[1]', '0.100', '0.700', '0.200', '0.800', '0', '100', 'motor');");
+									if (!mysql_query("INSERT INTO `vehicle` (`class_name`, `damage_min`, `damage_max`, `fuel_min`, `fuel_max`, `limit_min`, `limit_max`, `parts`) VALUES ('$strings[1]', '0.100', '0.700', '0.200', '0.800', '0', '100', 'motor');")) { echo mysql_error(); }
 								}
 
 								$time = date("y-m-d H:i:s", time());
 								
 								$resultIDQuery = mysql_query("SELECT * FROM `vehicle` WHERE `class_name` = '$strings[1]';");
-								$userDataIDQuery = mysql_fetch_array($resultIDQuery, MYSQL_ASSOC);
+								$userDataIDQuery = mysql_fetch_assoc($resultIDQuery);
 								$vehicle_id = $userDataIDQuery['id'];
 								$resultWorldQuery = mysql_query("SELECT `world_id` FROM `instance` WHERE `id` = '$serverinstance'");
-								$userDataWorldQuery = mysql_fetch_array($resultWorldQuery, MYSQL_ASSOC);
-								$world_id = $userDataWorldQuery['id'];
+								$userDataWorldQuery = mysql_fetch_assoc($resultWorldQuery);
+								$world_id = $userDataWorldQuery['world_id'];
 								
-								mysql_query("INSERT INTO `world_vehicle` (`id`, `vehicle_id`, `world_id`, `worldspace`, `chance`) VALUES ('$id', '$vehicle_id', '$world_id', '$pos', '0');");
-								mysql_query("INSERT INTO `instance_vehicle` (`world_vehicle_id`, `instance_id`, `worldspace`, `inventory`, `parts`, `fuel`, `damage`, `last_updated`, `created`) VALUES ('$id', '$serverinstance', '$pos', '[]', '[]', '1', '0', '$time', '$time');");
+								if (!mysql_query("INSERT INTO `world_vehicle` (`id`, `vehicle_id`, `world_id`, `worldspace`, `chance`) VALUES ('$id', '$vehicle_id', '$world_id', '$pos', '0');")) { echo mysql_error()."<br />"; $error = true; }
+								if (!mysql_query("INSERT INTO `instance_vehicle` (`world_vehicle_id`, `instance_id`, `worldspace`, `inventory`, `parts`, `fuel`, `damage`, `last_updated`, `created`) VALUES ('$id', '$serverinstance', '$pos', '[]', '[]', '1', '0', '$time', '$time');")) { echo mysql_error()."<br />"; $error = true; }
 
+								$resultVIDQuery = mysql_query("SELECT `id` FROM `instance_vehicle` WHERE `worldspace` = '$pos' AND `world_vehicle_id` = '$id' AND `instance_id` = '$serverinstance';");
+								$userDataVIDQuery = mysql_fetch_assoc($resultVIDQuery);
+								$vid = $userDataVIDQuery['id'];
+								
 								$vehiclecount++;
 								$id++;
 
-								?>
+								if (!$error) { ?>
 								
 								<tr>
-									<td><?php echo $strings[1] ?></td>
-									<td><?php echo $pos ?></td>
-									<td><?php echo $vehicle_id ?></td>
+									<td align="center" style="vertical-align:middle;"><a href="index.php?view=info&show=4&id=<?php echo $vid; ?>"><?php echo $strings[1] ?></a></td>
+									<td align="center" style="vertical-align:middle;"><a href="index.php?view=info&show=4&id=<?php echo $vid; ?>"><?php echo $pos ?></a></td>
 								</tr>
 
-							<?php
+							<?php }
 							}
 						}
 					}
