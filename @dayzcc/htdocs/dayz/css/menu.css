@@ -42,7 +42,7 @@
 .menutop li .item {text-decoration:none;display:block;padding:0 15px;text-decoration:none;}
 .menutop li.root > .item {margin-right:2px;}
 .menutop li:hover > .item {background-color:#666;}
-.menutop li:hover > .daddy:hover {background-image:url(../images/down-arrow.png);background-position: 100% 60%;}
+.menutop li:hover > .daddy:hover {background-image:url(../images/forms/down-arrow.png);background-position: 100% 60%;}
 .menutop li.parent:hover a {color:#fff;}
 #mc-header .menutop li.parent:hover li a,
 #mc-header .menutop > li.parent:hover > span > span {color:#fff;}
@@ -50,20 +50,20 @@
 /* Level 2 */
 .menutop .level2 {background:#666}
 .menutop .level2 li > .item {background:#666;}
-.menutop .level2 li:hover > .daddy, .menutop .level2 li > .daddy {background-image:url(../images/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
+.menutop .level2 li:hover > .daddy, .menutop .level2 li > .daddy {background-image:url(../images/forms/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
 /*.menutop .level2 .f-menuparent-itemfocus .item, */
 .menutop .level2 li:hover .item {background:#4D4D4D;}
 /*.menutop .level2 .f-menuparent-itemfocus .daddy,*/
-.menutop .level2 li:hover .daddy {background-image:url(../images/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
+.menutop .level2 li:hover .daddy {background-image:url(../images/forms/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
 
 /* Level 3 */
 .menutop .level3 {background:#4D4D4D}
 .menutop .level3 li > .item {background:#4D4D4D;}
-.menutop .level3 li:hover > .daddy, .menutop .level3 li > .daddy {background-image:url(../images/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
+.menutop .level3 li:hover > .daddy, .menutop .level3 li > .daddy {background-image:url(../images/forms/right-arrow.png);background-position:100% 50%;background-repeat:no-repeat;}
 
 /* regular hover */
 .menutop li:hover .daddy:hover,
-.menutop ul li.active:hover > .daddy:hover {background-image:url(../images/right-arrow.png);background-repeat: no-repeat;background-position: 100% 50%;}
+.menutop ul li.active:hover > .daddy:hover {background-image:url(../images/forms/right-arrow.png);background-repeat: no-repeat;background-position: 100% 50%;}
 
 /* seperator */
 .menutop li.separator {background-color: #666;height:10px;padding:7px 0 0; }
@@ -78,20 +78,20 @@
 .menutop.disabled .item span {opacity:0.8;}
 .menutop.disabled li.root > .daddy,
 .menutop.disabled li.root:hover > .daddy,
-.menutop.disabled li.root:hover > .daddy:hover {background-image: url(../images/down-bullet.png); background-position: 100% 60%; background-repeat: no-repeat;}
+.menutop.disabled li.root:hover > .daddy:hover {background-image: url(../images/forms/down-bullet.png); background-position: 100% 60%; background-repeat: no-repeat;}
 .menutop.disabled li.root.active > .daddy,
-.menutop.disabled li.root.active:hover > .daddy {background-image:url(../images/down-bullet.png);background-position: 100% 60%;}
+.menutop.disabled li.root.active:hover > .daddy {background-image:url(../images/forms/down-bullet.png);background-position: 100% 60%;}
 
 /* Root Items */
 .menutop li.root {width:auto;float:left;height:27px;} 
 .menutop li.root > .item {float:left;width: auto;height:27px;line-height:29px;}
-.menutop li.root > .daddy, .menutop li.root:hover > .daddy, .menutop li.root:hover > .daddy:hover {background-image: url(../images/down-arrow.png); background-position: 100% 60%; background-repeat: no-repeat;}
+.menutop li.root > .daddy, .menutop li.root:hover > .daddy, .menutop li.root:hover > .daddy:hover {background-image: url(../images/forms/down-arrow.png); background-position: 100% 60%; background-repeat: no-repeat;}
 
 /* Active Items */
 
 .menutop li.parent.active:hover > .item {background-color:#666;}
-.menutop li.root.active > .daddy, .menutop li.root.active:hover > .daddy {background-image:url(../images/down-arrow.png);background-position: 100% 60%;}
-.menutop span.default {background:url(../images/down-bullet.png) 100% 100% no-repeat;display:inline-block;width:16px;height:16px;color:transparent;}
+.menutop li.root.active > .daddy, .menutop li.root.active:hover > .daddy {background-image:url(../images/forms/down-arrow.png);background-position: 100% 60%;}
+.menutop span.default {background:url(../images/forms/down-bullet.png) 100% 100% no-repeat;display:inline-block;width:16px;height:16px;color:transparent;}
 
 /* No JS */
 .menutop li:hover > .fusion-submenu-wrapper, .menutop li:hover > ul {left:170px;top:0;}

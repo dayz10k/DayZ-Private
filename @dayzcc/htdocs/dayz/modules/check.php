@@ -3,13 +3,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 {
 	$pagetitle = "Items check";
 	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('ITEMS CHECK', '{$_SESSION['login']}', NOW())") or die(mysql_error());
-	?>
-
-	<div id="page-heading">
-	<?php
-		echo "<title>".$pagetitle." - ".$sitename."</title>";
-		echo "<h1>".$pagetitle."</h1>";
-
+	
+	
 		error_reporting (E_ALL ^ E_NOTICE);
 
 		$xml = file_get_contents('/items.xml', true);
@@ -22,7 +17,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 		$itemscount = 0;
 		
 		if ($number == 0) {
-		  echo "<CENTER>Not found!</CENTER>";
+		  echo "<center>Not found!</center>";
 		} else {
 			while ($row = mysql_fetch_array($res)) {
 				$Worldspace = str_replace("[", "", $row['pos']);
@@ -75,8 +70,13 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 					$rows .= "</td></tr>";
 				}
 			}
-		}								
+		}
+
 	?>
+
+	<div id="page-heading">
+		<title><?php echo $pagetitle." - ".$sitename; ?></title>
+		<h1><?php echo $pagetitle; ?></h1>
 	</div>
 
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">

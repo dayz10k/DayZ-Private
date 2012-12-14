@@ -87,10 +87,10 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 					</table>
 					</div>
 					<div id="step-holder">	
-						<div class="step-no"><a href="index.php?view=control&action=5"><img src="images/start.png"/></div>
+						<div class="step-no"><a href="index.php?view=control&action=5"><img src="images/icons/start.png"/></div>
 						<div class="step-dark-left">Restart</div>
 						<div class="step-dark-right">&nbsp;</div>
-						<div class="step-no"><a href="index.php?view=control&action=1"><img src="images/stop.png"/></a></div>
+						<div class="step-no"><a href="index.php?view=control&action=1"><img src="images/icons/stop.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=1">Stop</a></div>
 						<div class="step-dark-round">&nbsp;</div>
 						<div class="clear"></div>
@@ -108,7 +108,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 							<div class="step-no-off"><img src="images/start.png"/></div>
 							<div class="step-light-left">Start</div>
 							<div class="step-light-right">&nbsp;</div>
-							<div class="step-no"><a href="index.php?view=control&action=4"><img src="images/stop.png"/></a></div>
+							<div class="step-no"><a href="index.php?view=control&action=4"><img src="images/icons/stop.png"/></a></div>
 							<div class="step-dark-left"><a href="index.php?view=control&action=4">Stop</a></div>
 							<div class="step-dark-round">&nbsp;</div>
 							<div class="clear"></div>
@@ -123,7 +123,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						</table>
 					</div>
 					<div id="step-holder">	
-						<div class="step-no"><a href="index.php?view=control&action=3"><img src="images/start.png"/></a></div>
+						<div class="step-no"><a href="index.php?view=control&action=3"><img src="images/icons/start.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=3">Start</a></div>
 						<div class="step-dark-right">&nbsp;</div>
 						<div class="step-no-off"><img src="images/stop.png"/></div>
@@ -142,7 +142,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						</table>
 					</div>
 					<div id="step-holder">	
-						<div class="step-no"><a href="index.php?view=control&action=0"><img src="images/start.png"/></a></div>
+						<div class="step-no"><a href="index.php?view=control&action=0"><img src="images/icons/start.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=0">Start</a></div>
 						<div class="step-dark-right">&nbsp;</div>
 						<div class="step-no-off"><img src="images/stop.png"/></div>

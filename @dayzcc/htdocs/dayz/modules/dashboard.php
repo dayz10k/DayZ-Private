@@ -59,8 +59,11 @@ if (isset($_SESSION['user_id']))
 			<div id="content-table-inner">	
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="50%">	
+						<td width="40%">	
 							<?php print_results($oresults); ?>
+						</td>
+						<td width="10%">
+							<?php include_once ("watch.php"); ?>
 						</td>
 						<td width="50%">
 							<?php include ('say.php'); ?>

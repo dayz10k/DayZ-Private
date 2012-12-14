@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id']))
 		<div id="page-top">
 			<!-- start logo -->
 			<div id="logo">
-				<a href=""><img src="images/logo.png" width="150px" height="72px" alt="" /></a>
+				<a href=""><img src="images/login/logo.png" width="150px" height="72px" alt="" /></a>
 			</div>
 			<!-- end logo -->
 

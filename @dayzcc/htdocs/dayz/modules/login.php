@@ -65,7 +65,7 @@ if (!empty($_POST))
 <body id="login-bg"> 
 	<div id="login-holder">
 		<div id="logo-login">
-			<a href="/"><img src="images/logo.png" width="451px" height="218px" alt="" /></a>
+			<a href="/"><img src="images/login/logo.png" width="451px" height="218px" alt="" /></a>
 		</div>
 		<div class="clear"></div>
 		<form action="index.php" method="post">

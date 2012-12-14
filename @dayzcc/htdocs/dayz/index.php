@@ -4,7 +4,7 @@
 session_start();
 
 defined('DS') ? null : define('DS',DIRECTORY_SEPARATOR);
-$sitename = "DayZ CC Administration";
+$sitename = "DayZ Controlcenter Administration";
 
 include ('config.php');
 
@@ -32,7 +32,7 @@ if (isset($_SESSION['user_id']))
 	
 	function slashes(&$el)
 	{
-		if (is_array($el)) {foreach($el as $k => $v) {slashes($el[$k]);}} else {$el = stripslashes($el);}
+		if (is_array($el)) { foreach($el as $k => $v) { slashes($el[$k]); } } else { $el = stripslashes($el); }
 	}
 
 	if (ini_get('magic_quotes_gpc'))
@@ -81,6 +81,6 @@ if (isset($_SESSION['user_id']))
 }
 else
 {
-	include ('modules/login.php');
+	include ('/modules/login.php');
 }
 ?>

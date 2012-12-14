@@ -4,5 +4,5 @@
 	<PARAM NAME="bgcolor" VALUE="#FFFFFF">
 	<PARAM NAME="wmode" VALUE="transparent">
 	<PARAM NAME="menu" VALUE="false">
-	<EMBED SRC="flash/clock.swf" WIDTH="192px" HEIGHT="192px" flashVars="timeOffset=-4" QUALITY="high" WMODE="transparent" MENU="false"></EMBED>
+	<EMBED SRC="flash/clock.swf" WIDTH="100px" HEIGHT="100px" flashVars="timeOffset=-4" QUALITY="high" WMODE="transparent" MENU="false"></EMBED>
 </OBJECT>

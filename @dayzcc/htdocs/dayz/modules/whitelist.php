@@ -16,7 +16,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 					echo "<div id='page-heading'><h2>Entered information is too short!</h2></div>";
 				} else {
 					mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1');") or die(mysql_error());
-					print "<div id='page-heading'><h2>$name ($guid) was added to the whitelist!</h2></div>";
+					echo "<div id='page-heading'><h2>".$name." (".$guid.") was added to the whitelist!</h2></div>";
 				}
 			} else {
 				echo "<div id='page-heading'><h2>Error: Required field is missing!</h2></div>";
@@ -46,7 +46,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 		
 		$tablerows .= "<form action=\"\" method=\"POST\"><tr>
 			<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input type=\"hidden\" name=\"id\" value=\"".$row['id']."\"><input type=\"submit\" name=\"action\" value=\"".$button."\" style=\"width: 60px\"></td>
-			<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input type=\"hidden\" name=\"status\" value=\"".$row['is_whitelisted']."\"><img src=\"images/".$icon."\"></td>
+			<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input type=\"hidden\" name=\"status\" value=\"".$row['is_whitelisted']."\"><img src=\"images/icons/".$icon."\"></td>
 			<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><a href=\"\">".$row['name']."</a></td>
 			<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><a href=\"\">".$row['guid']."</a></td>
 			</tr></form>";
