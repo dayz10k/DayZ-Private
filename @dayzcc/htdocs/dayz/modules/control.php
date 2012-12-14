@@ -126,7 +126,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						<div class="step-no"><a href="index.php?view=control&action=3"><img src="images/icons/start.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=3">Start</a></div>
 						<div class="step-dark-right">&nbsp;</div>
-						<div class="step-no-off"><img src="images/stop.png"/></div>
+						<div class="step-no-off"><img src="images/icons/stop.png"/></div>
 						<div class="step-light-left">Stop</div>
 						<div class="step-light-round">&nbsp;</div>
 						<div class="clear"></div>
@@ -145,7 +145,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						<div class="step-no"><a href="index.php?view=control&action=0"><img src="images/icons/start.png"/></a></div>
 						<div class="step-dark-left"><a href="index.php?view=control&action=0">Start</a></div>
 						<div class="step-dark-right">&nbsp;</div>
-						<div class="step-no-off"><img src="images/stop.png"/></div>
+						<div class="step-no-off"><img src="images/icons/stop.png"/></div>
 						<div class="step-light-left">Stop</div>
 						<div class="step-light-round">&nbsp;</div>
 						<div class="clear"></div>
