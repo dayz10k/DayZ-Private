@@ -95,7 +95,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<p>Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
 					<p>Paste it to: "~\@dayzcc\htdocs\dayz\buildings.sqf"</p>
 					<br />
-					<p>9. Reload this page to execute the database tools and see the results above.</p>
+					<p>9. Press the "Import" buttons above to add the vehicles.</p>
 					<br />
 					<br />
 
