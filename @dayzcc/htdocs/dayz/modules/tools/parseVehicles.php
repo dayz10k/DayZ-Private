@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id']))
 		<tr>
 			<td id="tbl-border-left"></td>
 			<td>
-				<div id="content-table-inner">
+				<div id="content-table-inner" style="height: 300px; overflow-y: scroll">
 					<table border="1" width="100%" cellpadding="0" cellspacing="0" id="vehicle-table">
 					<tr>
 						<th width="50%">Class Name</th>
