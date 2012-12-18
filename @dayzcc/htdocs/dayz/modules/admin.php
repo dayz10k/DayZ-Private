@@ -37,7 +37,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 
 	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
 		<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
-		<?php include_once('/modules/register.php'); ?>
+		<?php include_once ('/modules/register.php'); ?>
 	</div>
 
 	<div id="page-heading">

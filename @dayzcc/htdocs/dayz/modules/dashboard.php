@@ -63,10 +63,10 @@ if (isset($_SESSION['user_id']))
 							<?php print_results($oresults); ?>
 						</td>
 						<td width="10%">
-							<?php include_once ("watch.php"); ?>
+							<?php include_once ("/modules/watch.php"); ?>
 						</td>
 						<td width="50%">
-							<?php include ('say.php'); ?>
+							<?php include ('/modules/say.php'); ?>
 						</td>
 					</tr>
 				</table>

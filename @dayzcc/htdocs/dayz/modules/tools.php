@@ -8,8 +8,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 	if (isset($_GET['vehicle'])) { ?>
 
 		<div id="dvPopup_vehicle" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
-			<?php include_once ('/tools/parseVehicles.php'); ?>
+			<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+			<?php include_once ('/modules/tools/parseVehicles.php'); ?>
 		</div>
 		<script>ShowModalPopup('dvPopup_vehicle');</script>
 		
@@ -17,8 +17,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 	if (isset($_GET['building'])) { ?>
 
 		<div id="dvPopup_building" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-			<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
-			<?php include_once ('/tools/parseBuildings.php'); ?>
+			<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+			<?php include_once ('/modules/tools/parseBuildings.php'); ?>
 		</div>
 		<script>ShowModalPopup('dvPopup_building');</script>
 		

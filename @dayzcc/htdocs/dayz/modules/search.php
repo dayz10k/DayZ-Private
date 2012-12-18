@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			<td id="tbl-border-left"></td>
 			<td>
 				<div id="content-table-inner">	
-					<?php include ('searchbar.php'); ?>
+					<?php include ('/modules/searchbar.php'); ?>
 					<br/><?php
 					if (!empty($_POST))
 					{

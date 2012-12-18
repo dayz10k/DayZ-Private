@@ -31,23 +31,11 @@
 
 		for ($i = 0; $i < count($players); $i++) {
 			if (strlen($players[$i][4]) > 1) {
-				$playername = str_replace(" (Lobby)", "", $players[$i][4]);
-				$paren_num = 0;
-				$chars = str_split($playername);
-				$new_string = '';
-				
-				foreach($chars as $char) {
-					if ($char == '[') $paren_num++;
-					elseif($char == ']') $paren_num--;
-					elseif($paren_num == 0) $new_string .= $char;
-				}
-				
-				$playername = trim($new_string);
+				$playername = trim(str_replace(" (Lobby)", "", $players[$i][4]));
 				$ip = $players[$i][1];
 				$ping = $players[$i][2];
-				
-				$res = mysql_query("SELECT * FROM (SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id) AS T WHERE `name` LIKE '".$playername."' ORDER BY `last_updated` DESC LIMIT 1;") or die(mysql_error());
-
+	
+				$res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '".$playername."' ORDER BY survivor.last_updated DESC LIMIT 1;") or die(mysql_error());
 				while ($row = mysql_fetch_array($res)) {$tablerows .= row_online_player($row, $players[$i], $serverworld);}
 			}
 		}

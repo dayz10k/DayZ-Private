@@ -42,7 +42,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "map"
 	</div>
 
 <?php
-	include ('/maps/'.$show.'.php');
+	include ('/modules/maps/'.$show.'.php');
 }
 else
 {
