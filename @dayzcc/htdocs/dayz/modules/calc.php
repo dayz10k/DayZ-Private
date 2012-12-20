@@ -18,8 +18,10 @@ function world_x($x, $world){
 		return ($x / 100);
 	} elseif (strpos($world, "zargabad") !== false) {
 		return ($x / 100);
+	} elseif (strpos($world, "tavi") !== false) {
+		return ($x / 100);
 	} else {
-		return $x;
+		return ($x / 100);
 	}
 }
 
@@ -42,8 +44,10 @@ function world_y($y, $world){
 		return ($y / 100);
 	} elseif (strpos($world, "zargabad") !== false) {
 		return ($y / 100);
+	} elseif (strpos($world, "tavi") !== false) {
+		return ($y / 100);
 	} else {
-		return $y;
+		return ($y / 100);
 	}
 }
 ?>
