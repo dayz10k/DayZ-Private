@@ -15,9 +15,12 @@
 
 // Spawn helicopter crashes
 #define SpawnHelis true
+#define SpawnHelisCount 5
 // Spawn other wrecks
 #define SpawnWrecks true
+#define SpawnWrecksCount 18
 // Spawn care packages
 #define SpawnCare true
+#define SpawnCareCount 4
 
 //=================================================================================
