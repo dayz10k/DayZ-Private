@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 
 					<h2>1. CREATE VEHICLES:</h2>
 					<p>Adds all vehicles to 'instance_vehicle' and 'vehicle' tables to be spawned in on next restart.
-					<font color="red"> Note: Create a fresh mission with only vehicles!</font></p>
+					<font color="red"> Note: Create a fresh mission with only vehicles! Follow the instructions below ...</font></p>
 					<br />
 					<strong><a href="index.php?view=tools&vehicle">Import</a></strong>
 
@@ -56,7 +56,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 
 					<h2>2. CREATE BUILDINGS:</h2>
 					<p>Adds all buildings to 'instance_building' and 'building' tables to be spawned in on next restart.
-					<font color="red"> Note: Create a fresh mission with only buildings!</font></p>
+					<font color="red"> Note: Create a fresh mission with only buildings! Follow the instructions below ...</font></p>
 					<br />
 					<strong><a href="index.php?view=tools&building">Import</a></strong>
 
@@ -89,13 +89,13 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<p>8. Copy files to working directory:</p><br />
 					<p><strong><font color="green">FOR VEHICLES:</font></strong></p>
 					<p>Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
-					<p>Paste it to: "~\@dayzcc\htdocs\dayz\vehicles.sqf"</p>
+					<p>Paste it to: "~\@dayzcc\htdocs\dayz\mission.sqf" and rename it to "vehicles.sqf"</p>
 					<br />
 					<p><strong><font color="green">FOR BUILDINGS:</font></strong></p>
 					<p>Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
-					<p>Paste it to: "~\@dayzcc\htdocs\dayz\buildings.sqf"</p>
+					<p>Paste it to: "~\@dayzcc\htdocs\dayz\mission.sqf" and rename it to "buildings.sqf"</p>
 					<br />
-					<p>9. Press the "Import" buttons above to add the vehicles.</p>
+					<p>9. Press the "Import" buttons above to add the vehicles and/or buildings.</p>
 					<br />
 					<br />
 
