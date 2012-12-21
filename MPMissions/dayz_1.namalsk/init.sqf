@@ -6,8 +6,9 @@ hiveInUse = true;
 initialized = false;
 dayz_previousID = 0;
 
-dzn_ns_bloodsucker = true;	// Spawn bloodsuckers
-ns_blowout = true;			// Spawn random EVR discharges
+dzn_ns_bloodsucker = true;		// Spawn bloodsuckers
+dzn_ns_bloodsucker_den = 40;	// Spawn chance of bloodsuckers
+ns_blowout = true;				// Spawn random EVR discharges
 ns_blowout_dayz = true;
 dayzNam_buildingLoot = "CfgBuildingLootNamalsk"; // CfgBuildingLootNamalskNOER7, CfgBuildingLootNamalskNOSniper, CfgBuildingLootNamalsk
 
