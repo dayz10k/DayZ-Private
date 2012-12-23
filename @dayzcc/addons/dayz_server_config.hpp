@@ -8,6 +8,8 @@
 // Enable custom inventory
 #define CheckCustInv true
 
+// Enable gender selection screen
+#define GenderSelect true
 // Enable kill messages
 #define KillMsgs true
 // Enable hit messages
