@@ -53,6 +53,8 @@ if (isset($_SESSION['user_id']))
 		Motorcycle = new Icon({iconUrl: 'images/icons/Motorcycle.png'}),
 		PBX = new Icon({iconUrl: 'images/icons/PBX.png'}),
 		Truck = new Icon({iconUrl: 'images/icons/Truck.png'}),
+		Plane = new Icon({iconUrl: 'images/icons/Plane.png'}),
+		Support = new Icon({iconUrl: 'images/icons/Truck.png'}),
 		Trap = new Icon({iconUrl: 'images/icons/Trap.png'}),
 		Wire = new Icon({iconUrl: 'images/icons/Wire.png'}),
 		Tent = new Icon({iconUrl: 'images/icons/Tent.png'}),
