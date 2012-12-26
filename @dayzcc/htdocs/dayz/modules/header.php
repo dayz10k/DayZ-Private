@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']))
-{
+{ 
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id']))
 		<div id="page-top">
 			<!-- start logo -->
 			<div id="logo">
-				<a href=""><img src="images/login/logo.png" width="150px" height="72px" alt="" /></a>
+				<a href=""><img src="images/forms/logo.png" width="150px" height="72px" alt="" /></a>
 			</div>
 			<!-- end logo -->
 
@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id']))
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

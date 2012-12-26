@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']))
-{
+{ 
 
 	/* 3D Editor Mission File Parser
 	 *
@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id']))
 	 *
 	 */
  
-	if (file_exists("vehicles.sqf")) {
+	if (file_exists("vehicles.sqf")) { 
 		error_reporting (E_ALL ^ E_NOTICE);
 		
 		$missionfile = file_get_contents("vehicles.sqf");
@@ -24,11 +24,11 @@ if (isset($_SESSION['user_id']))
 		</div>
 		<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 			<th class="topleft"></th>
 			<td id="tbl-border-top">&nbsp;</td>
 			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
 			<td id="tbl-border-left"></td>
@@ -43,16 +43,16 @@ if (isset($_SESSION['user_id']))
 					<?php
 
 					$resultIDQuery = mysql_query("SELECT `id` FROM `world_vehicle`;");
-					while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) {$userDataIDs[] = $row[0];}
+					while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) { $userDataIDs[] = $row[0];}
 					$id = max($userDataIDs) + 1;
 						
 					for ($i = 0; $i < count($rows); $i++)
-					{
+					{ 
 						$direction = 0;
 						$exists = false;
 						
 						if (strpos($rows[$i], '_this = createVehicle [') !== false)
-						{
+						{ 
 							// Get vehicle values
 							
 							$strings = explode("\"", $rows[$i]);
@@ -61,7 +61,7 @@ if (isset($_SESSION['user_id']))
 							$firstCloseBracket = strpos($rows[$i], "]");
 						
 							if (strpos($rows[$i + 2], '_this setDir') !== false)
-							{
+							{ 
 								$firstSpace = strpos($rows[$i + 2], " ");
 								$secondSpace = strpos($rows[$i + 2], " ", $firstSpace + strlen(" "));
 								$thirdSpace = strpos($rows[$i + 2], " ", $secondSpace + strlen(" "));
@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id']))
 							$newPos = explode(",", $pos);
 							
 							if (count($newPos) == 3)
-							{
+							{ 
 								$pos = "[$direction,".substr($rows[$i], $secondOpenBracket, $firstCloseBracket - $secondOpenBracket).",0]]";
 								$pos = str_replace(array(' '), '', $pos);
 							}
@@ -83,17 +83,17 @@ if (isset($_SESSION['user_id']))
 							// Insert to database
 
 							$resultCheckQuery = mysql_query("SELECT * FROM `instance_vehicle`;");
-							while ($row = mysql_fetch_array($resultCheckQuery)) {if ($row['worldspace'] == $pos) {$exists = true;}}
+							while ($row = mysql_fetch_array($resultCheckQuery)) { if ($row['worldspace'] == $pos) { $exists = true;}}
 
 							if (!$exists)
-							{
+							{ 
 								$error = false;
 								$matchFound = false;
 								$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;");
-								while ($row = mysql_fetch_assoc($resultClassNameQuery)) {if ($strings[1] == $row['class_name']) {$matchFound = true;}}
+								while ($row = mysql_fetch_assoc($resultClassNameQuery)) { if ($strings[1] == $row['class_name']) { $matchFound = true;}}
 
 								if (!$matchFound)
-								{
+								{ 
 									//echo "Inserting new Class Name";
 									if (!mysql_query("INSERT INTO `vehicle` (`class_name`, `damage_min`, `damage_max`, `fuel_min`, `fuel_max`, `limit_min`, `limit_max`, `parts`) VALUES ('$strings[1]', '0.100', '0.700', '0.200', '0.800', '0', '100', 'motor');")) { echo mysql_error(); }
 								}
@@ -150,12 +150,12 @@ if (isset($_SESSION['user_id']))
 	<?php
 	}
 	else
-	{
+	{ 
 		echo "<div id='page-heading'><h2>Mission file not found</h2></div>";
 	}
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

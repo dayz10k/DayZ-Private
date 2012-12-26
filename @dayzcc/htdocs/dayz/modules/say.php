@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "control") !== false))
-{
+{ 
 	?>
 
 	<h2>Say to global chat:</h2>
@@ -24,7 +24,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

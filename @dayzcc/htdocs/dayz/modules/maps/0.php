@@ -6,24 +6,24 @@
 	$cmd = "players";	
 	$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
 
-	if ($answer != "") {
+	if ($answer != "") { 
 		$k = strrpos($answer, "---");
 		$l = strrpos($answer, "(");
 		$out = substr($answer, $k + 4, $l - $k - 5);
 		$parray = preg_split ('/$\R?^/m', $out);
 
 		$players = array();
-		for ($j = 0; $j < count($parray); $j++) {$players[] = "";}
+		for ($j = 0; $j < count($parray); $j++) { $players[] = "";}
 		for ($i = 0; $i < count($parray); $i++)
-		{
+		{ 
 			$m = 0;
 			$players[$i][] = "";
 			$pout = preg_replace('/\s+/', ' ', $parray[$i]);
-			for ($j = 0; $j < strlen($pout); $j++) {
+			for ($j = 0; $j < strlen($pout); $j++) { 
 				$char = substr($pout, $j, 1);
-				if ($m < 4) {
-					if ($char != " ") {$players[$i][$m] .= $char;} else {$m++;}
-				} else {
+				if ($m < 4) { 
+					if ($char != " ") { $players[$i][$m] .= $char;} else { $m++;}
+				} else { 
 					$players[$i][$m] .= $char;
 				}
 			}
@@ -31,8 +31,8 @@
 		
 		$markers = "";
 
-		for ($i = 0; $i < count($players); $i++) {
-			if (strlen($players[$i][4]) > 1){
+		for ($i = 0; $i < count($players); $i++) { 
+			if (strlen($players[$i][4]) > 1){ 
 				$playername = trim(str_replace(" (Lobby)", "", $players[$i][4]));
 				$ip = $players[$i][1];
 				$ping = $players[$i][2];
@@ -45,7 +45,7 @@
 		include ('/modules/leaf.php');
 	}
 	else
-	{
+	{ 
 		echo "<div id='page-heading'><h2>BattlEye did not respond within the specified time.</h2></div>";
 	}
 ?>

@@ -27,7 +27,7 @@
  * @version   $Revision: 1.4 $
  */
 class GameQ_Result
-{
+{ 
     /**
      * Formatted server response
      *
@@ -42,7 +42,7 @@ class GameQ_Result
      * @param      string    $value     Variable value
      */
     public function add($name, $value)
-    {
+    { 
         $this->result[$name] = $value;
     }
 
@@ -54,7 +54,7 @@ class GameQ_Result
      * @param       string   $value     Variable value
      */
     public function addPlayer($name, $value)
-    {
+    { 
         $this->addSub('players', $name, $value);
     }
 
@@ -65,7 +65,7 @@ class GameQ_Result
      * @param       string   $value     Variable value
      */
     public function addTeam($name, $value)
-    {
+    { 
         $this->addSub('teams', $name, $value);
     }    
 
@@ -77,16 +77,16 @@ class GameQ_Result
      * @param  $value  string  The variable value
      */
     public function addSub($sub, $key, $value)
-    {
+    { 
         // Nothing of this type yet, set an empty array
-        if (!isset($this->result[$sub]) or !is_array($this->result[$sub])) {
+        if (!isset($this->result[$sub]) or !is_array($this->result[$sub])) { 
             $this->result[$sub] = array();
         }
         
         // Find the first entry that doesn't have this variable
         $found = false;
-        for ($i = 0; $i != count($this->result[$sub]); $i++) {
-            if (!isset($this->result[$sub][$i][$key])) {
+        for ($i = 0; $i != count($this->result[$sub]); $i++) { 
+            if (!isset($this->result[$sub][$i][$key])) { 
                 $this->result[$sub][$i][$key] = $value;
                 $found = true;
                 break;
@@ -94,7 +94,7 @@ class GameQ_Result
         }
 
         // Not found, create a new entry
-        if (!$found) {
+        if (!$found) { 
             $this->result[$sub][][$key] = $value;
         }
     }
@@ -105,7 +105,7 @@ class GameQ_Result
      * @return  mixed  All results
      */
     public function fetch()
-    {
+    { 
         return $this->result;
     }
 
@@ -116,7 +116,7 @@ class GameQ_Result
      * @return  mixed   The variable value
      */
     public function get($var)
-    {
+    { 
         return isset($this->result[$var]) ? $this->result[$var] : null;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "map") !== false))
-{
-	switch ($show) {
+{ 
+	switch ($show) { 
 		case 0:
 			$pagetitle = "Online player locations";
 			break;
@@ -45,7 +45,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "map"
 	include ('/modules/maps/'.$show.'.php');
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

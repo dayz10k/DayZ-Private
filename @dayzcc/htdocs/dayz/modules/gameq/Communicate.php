@@ -27,7 +27,7 @@
  * @version   $Revision: 1.12 $ 
  */
 class GameQ_Communicate
-{
+{ 
     private $sockets    = array();
 
     /**
@@ -40,9 +40,9 @@ class GameQ_Communicate
      * @return    array    Packet data
      */
     public function query($packets, $timeout, $type = 'data', $sock)
-    {
+    { 
         // Create a socket for each packet
-        foreach ($packets as $pid => &$packet) {
+        foreach ($packets as $pid => &$packet) { 
 			
             // We only send packets for the current type
             if (!isset($packet[$type])) continue;
@@ -62,11 +62,11 @@ class GameQ_Communicate
         $responses = $this->listen($timeout);
 
         // Add responses to packets
-        foreach ($this->sockets as $pid => $socket) {
+        foreach ($this->sockets as $pid => $socket) { 
 
             $sid = (int) $socket;
 
-            if (isset($responses[$sid])) {
+            if (isset($responses[$sid])) { 
                 $packets[$pid]['response'] = $responses[$sid];
             }
         }
@@ -90,14 +90,14 @@ class GameQ_Communicate
      * @return   resource    Socket object, or false if the connection failed
      */
     private function open($address, $port, $pid, $sock, $timeout, $transport = 'udp')
-    {
+    { 
         // Check if we already opened a socket for this packet
         // This should only be so if it is a challenge-response type packet
         if (isset($this->sockets[$pid])) return $this->sockets[$pid];
         
         // Resolve address
         $address = $this->getIp($address);
-        if ($address === false) {
+        if ($address === false) { 
             return false;
         }
 
@@ -108,7 +108,7 @@ class GameQ_Communicate
        
         $context = stream_context_create();
 		if ($sock != 0)
-		{
+		{ 
 			$opts['socket']['bindto'] = '0:' . $sock;
 			stream_context_set_option ($context, $opts);
 		}
@@ -119,7 +119,7 @@ class GameQ_Communicate
         $socket  = stream_socket_client($addr, $errno, $errstr, ($timeout/1000), STREAM_CLIENT_CONNECT, $context);
 
         // Set non-blocking, add socket to list
-        if ($socket !== false) {
+        if ($socket !== false) { 
             $this->sockets[$pid] = $socket;
             stream_set_blocking($socket, false);
         }
@@ -134,7 +134,7 @@ class GameQ_Communicate
      * @param    string      $packet    String to write
      */
     private function write($socket, $packet)
-    {
+    { 
         fwrite($socket, $packet);
     }
 
@@ -146,7 +146,7 @@ class GameQ_Communicate
      * @return   array    Result data
      */
     private function listen($timeout)
-    {
+    { 
         // Initialize
         $loops     = 0;
         $maxloops  = 50;
@@ -158,14 +158,14 @@ class GameQ_Communicate
 
         if (count($this->sockets) == 0) return $result;
 
-        while (($t = $timeout * 1000 - (microtime(true) - $starttime) * 10000) > 0 ) {
+        while (($t = $timeout * 1000 - (microtime(true) - $starttime) * 10000) > 0 ) { 
 
             $s = stream_select($r, $w, $e, 0, $t);
             if ($s === false || $s <= 0) break;
 
             if (++$loops > $maxloops) break;
 
-            foreach ($r as $socket) {
+            foreach ($r as $socket) { 
                 $response = stream_socket_recvfrom($socket, 2048);
 
                 if ($response === false) continue;
@@ -183,8 +183,8 @@ class GameQ_Communicate
      * Close all sockets.
      */
     private function close()
-    {
-        foreach ($this->sockets as &$socket) {
+    { 
+        foreach ($this->sockets as &$socket) { 
             fclose($socket);
         }
         $this->sockets = array();
@@ -197,18 +197,18 @@ class GameQ_Communicate
      * @return   string    An IP address, or false if the address was invalid
      */
     public function getIp($address)
-    {
+    { 
         // If it isn't a valid IP assume it is a hostname
-        $preg = '#^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}' . 
+        $preg = '#^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){ 3}' . 
                 '(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$#';
-        if (!preg_match($preg, $address)) {
+        if (!preg_match($preg, $address)) { 
             $result = gethostbyname($address);
 
             // Not a valid host nor IP
-            if ($result === $address) {
+            if ($result === $address) { 
                 $result = false;
              }
-        } else {
+        } else { 
             $result = $address;
         }
         

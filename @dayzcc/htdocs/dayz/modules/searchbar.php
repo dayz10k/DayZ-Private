@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']))
-{
+{ 
 	?>
 
 	<form action="index.php?view=search" method="post">
@@ -27,7 +27,7 @@ if (isset($_SESSION['user_id']))
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

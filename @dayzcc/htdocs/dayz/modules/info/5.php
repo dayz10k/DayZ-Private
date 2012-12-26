@@ -25,11 +25,11 @@
 
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 	<tr>
-		<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 		<th class="topleft"></th>
 		<td id="tbl-border-top">&nbsp;</td>
 		<th class="topright"></th>
-		<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 	</tr>
 	<tr>
 		<td id="tbl-border-left"></td>
@@ -54,13 +54,13 @@
 								</div>							
 							</div>
 							<?php
-								if ($row['owner_id'] != "0") {
+								if ($row['owner_id'] != "0") { 
 									$resowner = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.id = '".$row['owner_id']."' LIMIT 1");
 									$owner = '';
 									$ownerid = '';
 									$owneruid = '';
 									
-									while ($rowowner = mysql_fetch_array($resowner)) {
+									while ($rowowner = mysql_fetch_array($resowner)) { 
 										$owner = $rowowner['name'];
 										$ownerid = $rowowner['id'];
 										$owneruid = $rowowner['unique_id'];
@@ -87,31 +87,31 @@
 								$freebacks = 0;
 								$BackpackName = $row['class_name'];
 								
-								if (array_key_exists('s'.$row['class_name'],$vehicles_xml['vehicles'])) {
+								if (array_key_exists('s'.$row['class_name'],$vehicles_xml['vehicles'])) { 
 									$maxmagazines = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxmagazines'];
 									$maxweaps = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxweapons'];
 									$maxbacks = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxbackpacks'];
 									$BackpackName = $vehicles_xml['vehicles']['s'.$row['class_name']]['Name'];
 								}
 								
-								if (count($Backpack) > 0) {
+								if (count($Backpack) > 0) { 
 									$bpweaponscount = count($Backpack[0][0]);
 									$bpweapons = array();
-									for ($m = 0; $m < $bpweaponscount; $m++) {
-										for ($mi = 0; $mi<$Backpack[0][1][$m]; $mi++) {$bpweapons[] = $Backpack[0][0][$m];}
+									for ($m = 0; $m < $bpweaponscount; $m++) { 
+										for ($mi = 0; $mi<$Backpack[0][1][$m]; $mi++) { $bpweapons[] = $Backpack[0][0][$m];}
 									}							
 
 									
 									$bpitemscount = count($Backpack[1][0]);
 									$bpitems = array();
-									for ($m = 0; $m < $bpitemscount; $m++) {
-										for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) {$bpitems[] = $Backpack[1][0][$m];}
+									for ($m = 0; $m < $bpitemscount; $m++) { 
+										for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpitems[] = $Backpack[1][0][$m];}
 									}
 									
 									$bpackscount = count($Backpack[2][0]);
 									$bpacks = array();
-									for ($m = 0; $m < $bpackscount; $m++) {
-										for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) {$bpacks[] = $Backpack[2][0][$m];}
+									for ($m = 0; $m < $bpackscount; $m++) { 
+										for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpacks[] = $Backpack[2][0][$m];}
 									}
 									
 									$Backpack = (array_merge($bpweapons, $bpacks, $bpitems));
@@ -120,9 +120,9 @@
 									$backpackitem = array();
 									$bpweapons = array();
 									
-									for ($i = 0; $i < count($Backpack); $i++) {
-										if(array_key_exists('s'.$Backpack[$i], $items_xml['items'])) {
-											switch($items_xml['items']['s'.$Backpack[$i]]['Type']) {
+									for ($i = 0; $i < count($Backpack); $i++) { 
+										if(array_key_exists('s'.$Backpack[$i], $items_xml['items'])) { 
+											switch($items_xml['items']['s'.$Backpack[$i]]['Type']) { 
 												case 'binocular':
 													$backpackitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
 													break;
@@ -157,26 +157,26 @@
 									$freeweaps = $maxweaps;
 									$jx = 1; $jy = 0; $jk = 0; $jl = 0;
 									$numlines = 0;
-									for ($j = 0; $j < $weapons; $j++) {
-										if ($jk > 3) {$jk = 0; $jl++;}
+									for ($j = 0; $j < $weapons; $j++) { 
+										if ($jk > 3) { $jk = 0; $jl++;}
 										echo '<div class="gear_slot" style="margin-left:'.($jx+(86*$jk)).'px;margin-top:'.($jy+(86*$jl)).'px;width:84px;height:84px;">'.$bpweapons[$j]['image'].'</div>';
 										$freeweaps = $freeweaps - 1;
 										$jk++;
 									}
 									
-									if ($jl > 0) {
+									if ($jl > 0) { 
 										$numlines = $jl + 1;
-									} elseif ($jl == 0) {
-										if ($weapons > 0) {$numlines++;}
+									} elseif ($jl == 0) { 
+										if ($weapons > 0) { $numlines++;}
 									}
 
 									$jx = 1; $jy = (86 * $numlines); $jk = 0; $jl = 0;
-									for ($j = 0; $j < $magazines; $j++) {
+									for ($j = 0; $j < $magazines; $j++) { 
 										if ($jk > 6){ $jk = 0; $jl++;}
-										if ($j < count($backpackitem)) {
+										if ($j < count($backpackitem)) { 
 											echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$backpackitem[$j]['image'].'</div>';
 											$freeslots = $freeslots - 1;
-										} else {
+										} else { 
 											echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;"></div>';
 										}								
 										$jk++;

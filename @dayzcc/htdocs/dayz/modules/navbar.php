@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']))
-{
+{ 
 	?>
 	
 	<div class="nav-outer-repeat"> 
@@ -9,9 +9,9 @@ if (isset($_SESSION['user_id']))
 				<div id="nav-right">
 					<div class="nav-divider">&nbsp;</div>
 					<?php if (strpos($_SESSION['user_permissions'], "user") !== false) { ?>
-						<a href="index.php?view=admin" id="logout"><img src="images/shared/nav_myaccount.gif" width="67" height="14" alt="" /></a>
+						<a href="index.php?view=admin" id="logout"><img src="images/forms/nav_myaccount.gif" width="67" height="14" alt="" /></a>
 					<?php } ?>
-					<a href="index.php?logout" id="logout"><img src="images/shared/nav_logout.gif" width="64" height="14" alt="" /></a>
+					<a href="index.php?logout" id="logout"><img src="images/forms/nav_logout.gif" width="64" height="14" alt="" /></a>
 					<div class="clear">&nbsp;</div>
 				</div>
 				<!-- end nav-right -->
@@ -85,7 +85,7 @@ if (isset($_SESSION['user_id']))
 <?
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "control") !== false))
-{
+{ 
 	$pagetitle = "Server control";
 	?>
 	
@@ -19,32 +19,32 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 		$becexestatus = explode(",", strtolower($becexestatus))[0];
 		$becexestatus = str_replace('"', "", $becexestatus);
 		
-		if (isset($_GET['action'])) {
-			switch($_GET['action']) {
+		if (isset($_GET['action'])) { 
+			switch($_GET['action']) { 
 				case 0:
 					pclose(popen($commandString_server, 'r'));
-					mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{$_SESSION['login']}', NOW())");
+					mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{ $_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 1:
 					$output = exec('taskkill /IM '.$serverexestatus);
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP SERVER', '{$_SESSION['login']}', NOW())");
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP SERVER', '{ $_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 3:
 					pclose(popen($commandString_bec, 'r'));
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('START BEC', '{$_SESSION['login']}', NOW())");
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('START BEC', '{ $_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 4:
 					$output = exec('taskkill /IM '.$becexestatus);
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP BEC', '{$_SESSION['login']}', NOW())");
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP BEC', '{ $_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 5:
 					$cmd = "#restart";
 					$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{$_SESSION['login']}', NOW())");
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{ $_SESSION['login']}', NOW())");
 					sleep(1);
 					break;
 				default:
@@ -59,18 +59,18 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 		$becexestatus = explode(",", strtolower($becexestatus))[0];
 		$becexestatus = str_replace('"', "", $becexestatus);
 
-		$serverrunning = false; if ($serverexestatus == strtolower($exeserver)) {$serverrunning = true;}
-		$becrunning = false; if ($becexestatus == strtolower($exebec)) {$becrunning = true;}
+		$serverrunning = false; if ($serverexestatus == strtolower($exeserver)) { $serverrunning = true;}
+		$becrunning = false; if ($becexestatus == strtolower($exebec)) { $becrunning = true;}
 	?>
 	</div>
 
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 			<th class="topleft"></th>
 			<td id="tbl-border-top">&nbsp;</td>
 			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
 			<td id="tbl-border-left"></td>
@@ -82,7 +82,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 					<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="green-left">Server is running.</td>
-						<td class="green-right"><a class="close-green"><img src="images/table/icon_close_green.gif"   alt="" /></a></td>
+						<td class="green-right"><a class="close-green"><img src="images/forms/icon_close_green.gif"   alt="" /></a></td>
 					</tr>
 					</table>
 					</div>
@@ -100,7 +100,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						<table border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<td class="green-left">BattlEye Extended Controls is running.</td>
-							<td class="green-right"><a class="close-green"><img src="images/table/icon_close_green.gif"   alt="" /></a></td>
+							<td class="green-right"><a class="close-green"><img src="images/forms/icon_close_green.gif"   alt="" /></a></td>
 						</tr>
 						</table>
 					</div>
@@ -118,7 +118,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						<table border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<td class="yellow-left">BattlEye Extended Controls is not running.</td>
-							<td class="yellow-right"><a class="close-yellow"><img src="images/table/icon_close_yellow.gif"   alt="" /></a></td>
+							<td class="yellow-right"><a class="close-yellow"><img src="images/forms/icon_close_yellow.gif"   alt="" /></a></td>
 						</tr>
 						</table>
 					</div>
@@ -137,7 +137,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						<table border="0" width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<td class="red-left">Server is stopped.</td>
-							<td class="red-right"><a class="close-red"><img src="images/table/icon_close_red.gif"   alt="" /></a></td>
+							<td class="red-right"><a class="close-red"><img src="images/forms/icon_close_red.gif"   alt="" /></a></td>
 						</tr>
 						</table>
 					</div>
@@ -168,7 +168,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

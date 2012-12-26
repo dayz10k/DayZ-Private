@@ -27,7 +27,7 @@ require_once GAMEQ_BASE . 'Filter.php';
  * @version    $Revision: 1.10 $
  */
 class GameQ_Filter_normalise extends GameQ_Filter
-{
+{ 
     private $translate;
     private $allowed;
     
@@ -65,7 +65,7 @@ class GameQ_Filter_normalise extends GameQ_Filter
      * @return    array    The original array, with normalised variables
      */
     public function filter($original, $server)
-    {
+    { 
         $result = array();
         if (empty($original)) return $result;
 
@@ -73,19 +73,19 @@ class GameQ_Filter_normalise extends GameQ_Filter
         $result = $this->normalise($original, $this->vars);
 
         // Normalise players
-        if (is_array($result['gq_players'])) {
+        if (is_array($result['gq_players'])) { 
 
             // Don't rename the players array
             $result['players'] = $result['gq_players'];
 
-            foreach ($result['players'] as $key => $player) {
+            foreach ($result['players'] as $key => $player) { 
                 $result['players'][$key] = array_merge($player, $this->normalise($player, $this->player));
             }
 			
 			$result['gq_numplayers'] = count($result['players']);
         }
         else
-		{
+		{ 
 			$result['players'] = array();
 		}
 
@@ -109,17 +109,17 @@ class GameQ_Filter_normalise extends GameQ_Filter
      * @return    array    A normalised array
      */
     private function normalise($data, $vars)
-    {
+    { 
         // Create a new array, with all the specified variables
         $new = $this->fill($vars);
 
-        foreach ($data as $var => $value) {
+        foreach ($data as $var => $value) { 
 
             // Normalise values
             $stripped = strtolower(str_replace('_', '', $var));
 
-            foreach ($vars as $target => $sources) {
-                if ($target == $stripped or in_array($stripped, $sources)) {
+            foreach ($vars as $target => $sources) { 
+                if ($target == $stripped or in_array($stripped, $sources)) { 
                     $new['gq_' . $target] = $value;
                     unset($vars[$target]);
 
@@ -138,10 +138,10 @@ class GameQ_Filter_normalise extends GameQ_Filter
      * @return    array    An array filled with keys
      */
     private function fill($vars, $val = false)
-    {
+    { 
         $data = array();
 
-        foreach ($vars as $target => $source) {
+        foreach ($vars as $target => $source) { 
             $data['gq_' . $target] = $val;
         }
 

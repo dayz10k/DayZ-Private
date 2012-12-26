@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']))
-{
+{ 
 	ini_set("display_errors", 0);
 	error_reporting (E_ALL ^ E_NOTICE);
 	require_once 'gameq.php';
@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id']))
 
 	$logs = "";
 	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 100;") or die(mysql_error());
-	while ($row = mysql_fetch_array($res)) {$logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13);}
+	while ($row = mysql_fetch_array($res)) { $logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13);}
 	
 	$xml = file_get_contents('/quicklinks.xml', true);
 	require_once('xml2array.php');
@@ -25,10 +25,10 @@ if (isset($_SESSION['user_id']))
 	$oresults = $gq->requestData();
 
 	// Some functions to print the results
-	function print_results($oresults) {
+	function print_results($oresults) { 
 		foreach ($oresults as $id => $data)
-		{
-			if (!$data['gq_online']) {printf("<p>Gamespy did not respond within the specified time.</p>\n"); return;}			
+		{ 
+			if (!$data['gq_online']) { printf("<p>Gamespy did not respond within the specified time.</p>\n"); return;}			
 			?>
 				<h2><?php echo $data['gq_hostname']; ?></h2>
 				<h2>Address:</h2><h3><?php echo gethostbyname(trim(`hostname`)).":".$data['gq_port']; ?></h3>
@@ -47,11 +47,11 @@ if (isset($_SESSION['user_id']))
 	
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 			<th class="topleft"></th>
 			<td id="tbl-border-top">&nbsp;</td>
 			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
 			<td id="tbl-border-left"></td>
@@ -80,8 +80,8 @@ if (isset($_SESSION['user_id']))
 							<div id="quicklinks">
 								<ul>
 								<?php
-									foreach ($quicklinks['quicklinks'] as $ql) {
-										if ($ql != null) {
+									foreach ($quicklinks['quicklinks'] as $ql) { 
+										if ($ql != null) { 
 										?>
 											<li>
 												<a href="<?php echo $ql['Link']; ?>" style="color: #000;">
@@ -117,7 +117,7 @@ if (isset($_SESSION['user_id']))
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

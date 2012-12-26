@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tools") !== false))
-{
+{ 
 	$pagetitle = "Database Tools";
 
 	// Thanks to TorZar for parts of his code!
@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 	if (isset($_GET['vehicle'])) { ?>
 
 		<div id="dvPopup_vehicle" style="display: none; width: 900px; height: 450px; border: 4px solid #000000; background-color: #FFFFFF;">
-			<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+			<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('dvPopup_vehicle'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
 			<?php include_once ('/modules/tools/parseVehicles.php'); ?>
 		</div>
 		<script>ShowModalPopup('dvPopup_vehicle');</script>
@@ -17,7 +17,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 	if (isset($_GET['building'])) { ?>
 
 		<div id="dvPopup_building" style="display: none; width: 900px; height: 450px; border: 4px solid #000000; background-color: #FFFFFF;">
-			<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+			<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('dvPopup_building'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
 			<?php include_once ('/modules/tools/parseBuildings.php'); ?>
 		</div>
 		<script>ShowModalPopup('dvPopup_building');</script>
@@ -31,11 +31,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 		
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 			<th class="topleft"></th>
 			<td id="tbl-border-top">&nbsp;</td>
 			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
 			<td id="tbl-border-left"></td>
@@ -115,7 +115,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

@@ -2,53 +2,53 @@
 
 <?php
 if (isset($_SESSION['user_id']))
-{
+{ 
 	header('Location: index.php');
 	exit;
 }
 
 if (!empty($_POST))
-{
+{ 
 	$login = (isset($_POST['login'])) ? mysql_real_escape_string($_POST['login']) : '';
-	$sql = mysql_query("SELECT `salt` FROM `users` WHERE `login` = '{$login}' LIMIT 1") or die(mysql_error());
+	$sql = mysql_query("SELECT `salt` FROM `users` WHERE `login` = '{ $login}' LIMIT 1") or die(mysql_error());
 
 	if (mysql_num_rows($sql) == 1)
-	{
+	{ 
 		$row = mysql_fetch_assoc($sql);
 		$salt = $row['salt'];
 		$password = md5(md5($_POST['password']).$salt);
-		$sql = mysql_query("SELECT `id` FROM `users` WHERE `login` = '{$login}' AND `password` = '{$password}' LIMIT 1") or die(mysql_error());
+		$sql = mysql_query("SELECT `id` FROM `users` WHERE `login` = '{ $login}' AND `password` = '{ $password}' LIMIT 1") or die(mysql_error());
 
 		if (mysql_num_rows($sql) == 1)
-		{
+		{ 
 			$row = mysql_fetch_assoc($sql);
 			$_SESSION['user_id'] = $row['id'];
 			$_SESSION['login'] = $login;
 			$time = 86400;
 			
-			$sql = mysql_query("SELECT `permissions` FROM `users` WHERE `login` = '{$login}' LIMIT 1") or die(mysql_error());
+			$sql = mysql_query("SELECT `permissions` FROM `users` WHERE `login` = '{ $login}' LIMIT 1") or die(mysql_error());
 			$row = mysql_fetch_assoc($sql);
 			$_SESSION['user_permissions'] = $row['permissions'];
 			
 			if (isset($_POST['remember']))
-			{
+			{ 
 				setcookie('login', $login, time() + $time, "/");
 				setcookie('password', $password, time() + $time, "/");
 			}
 
-			mysql_query("UPDATE `users` SET `lastlogin` = NOW() WHERE `login` = '{$login}' LIMIT 1");
-			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('LOGIN', '{$login}', NOW())");
+			mysql_query("UPDATE `users` SET `lastlogin` = NOW() WHERE `login` = '{ $login}' LIMIT 1");
+			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('LOGIN', '{ $login}', NOW())");
 			
 			header('Location: index.php');
 			exit;
 		}
 		else
-		{
+		{ 
 			header('Location: index.php');
 		}
 	}
 	else
-	{
+	{ 
 		header('Location: index.php');
 	}
 }
@@ -60,12 +60,12 @@ if (!empty($_POST))
 	<title>Login - <?php echo $sitename; ?></title>
 	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
 	<script src="js/pngFix.js" type="text/javascript"></script>
-	<script type="text/javascript"> $(document).ready(function(){$(document).pngFix( );}); </script>
+	<script type="text/javascript"> $(document).ready(function(){ $(document).pngFix( );}); </script>
 </head>
 <body id="login-bg"> 
 	<div id="login-holder">
 		<div id="logo-login">
-			<a href="/"><img src="images/login/logo.png" width="451px" height="218px" alt="" /></a>
+			<a href="/"><img src="images/forms/logo.png" width="451px" height="218px" alt="" /></a>
 		</div>
 		<div class="clear"></div>
 		<form action="index.php" method="post">

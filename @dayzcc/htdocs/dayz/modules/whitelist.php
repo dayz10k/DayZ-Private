@@ -1,31 +1,31 @@
 <?php
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whitelist") !== false))
-{
+{ 
 	$pagetitle = "Whitelist";
 
 	// Thanks to deadfred666 for parts of his code!
 	if (ISSET($_POST['action']))
-	{
+	{ 
 		// Add new Whitelisted User
-		if ($_POST['action'] == "Add") {
+		if ($_POST['action'] == "Add") { 
 			$totalFields = 0;
 			if (isset($_POST['name'])) { $name = $_POST['name']; $totalFields++; }
 			if (isset($_POST['guid'])) { $guid = $_POST['guid']; $totalFields++; }
-			if ($totalFields == 2) {
-				if (strlen($name) < 2 || strlen($guid) != 32) {
+			if ($totalFields == 2) { 
+				if (strlen($name) < 2 || strlen($guid) != 32) { 
 					echo "<div id='page-heading'><h2>Entered information is too short!</h2></div>";
-				} else {
+				} else { 
 					mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1');") or die(mysql_error());
 					echo "<div id='page-heading'><h2>".$name." (".$guid.") was added to the whitelist!</h2></div>";
 				}
-			} else {
+			} else { 
 				echo "<div id='page-heading'><h2>Error: Required field is missing!</h2></div>";
 			}
 		}
 	
 		// Change status of Whitelist User
-		if ($_POST['action'] == "On" || $_POST['action'] == "Off") {
-			if (isset($_POST['id'])) {
+		if ($_POST['action'] == "On" || $_POST['action'] == "Off") { 
+			if (isset($_POST['id'])) { 
 				$id = $_POST['id'];
 				if ($_POST['status'] == 0) { $status = 1; } else { $status = 0; }
 				mysql_query("UPDATE `whitelist` SET `is_whitelisted` = '".$status."' WHERE `id` = '".$id."';") or die(mysql_error());
@@ -35,11 +35,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 		
 	$tablerows = '';
 	$res = mysql_query("select * from `whitelist`;") or die(mysql_error());
-	while ($row = mysql_fetch_array($res)){
-		if ($row['is_whitelisted'] == 1) {
+	while ($row = mysql_fetch_array($res)){ 
+		if ($row['is_whitelisted'] == 1) { 
 			$button = "Off";
 			$icon = "status_green.png";
-		} else {
+		} else { 
 			$button = "On";
 			$icon = "status_red.png";
 		}
@@ -60,11 +60,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 	
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 			<th class="topleft"></th>
 			<td id="tbl-border-top">&nbsp;</td>
 			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
 			<td id="tbl-border-left"></td>
@@ -109,7 +109,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

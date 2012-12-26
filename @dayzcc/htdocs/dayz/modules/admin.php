@@ -1,22 +1,22 @@
 <?php
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user") !== false))
-{
+{ 
 	$pagetitle = "Manage users";
 	$delresult = '';
 	
 	if (isset($_POST["user"]))
-	{
+	{ 
 		$deluser = $_POST["user"];
 		
 		for ($i = 0; $i < count($deluser); $i++)
-		{
-			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('DELETED USER: ".$deluser[$i]."', '{$_SESSION['login']}', NOW())");
+		{ 
+			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('DELETED USER: ".$deluser[$i]."', '{ $_SESSION['login']}', NOW())");
 			mysql_query("DELETE FROM `users` WHERE `id` = '".$deluser[$i]."'") or die(mysql_error());
 			
 			$delresult .= '<div id="message-green">
 				<table border="0" width="100%" cellpadding="0" cellspacing="0"><tr>
 				<td class="green-left">User '.$deluser[$i].' successfully removed!</td>
-				<td class="green-right"><a class="close-green"><img src="images/table/icon_close_green.gif" alt="" /></a></td>
+				<td class="green-right"><a class="close-green"><img src="images/forms/icon_close_green.gif" alt="" /></a></td>
 				</tr></table>
 				</div>';
 
@@ -24,19 +24,19 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 		}
 	}
 	else
-	{
-		mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('MANAGE USERS', '{$_SESSION['login']}', NOW())");
+	{ 
+		mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('MANAGE USERS', '{ $_SESSION['login']}', NOW())");
 	}
 
 	$res = mysql_query("SELECT * FROM `users` ORDER BY `id` ASC") or die(mysql_error());
 	$number = mysql_num_rows($res);
 	$users = '';
-	while ($row = mysql_fetch_array($res)) {$users .= '<tr><td align="center"><input name="user[]" value="'.$row['id'].'" type="checkbox"/></td><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td>'.$row['permissions'].'</td><td>'.$row['lastlogin'].'</td></tr>';}
+	while ($row = mysql_fetch_array($res)) { $users .= '<tr><td align="center"><input name="user[]" value="'.$row['id'].'" type="checkbox"/></td><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td>'.$row['permissions'].'</td><td>'.$row['lastlogin'].'</td></tr>';}
 
 	?>
 
 	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-		<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="images/table/action_delete.gif" alt="" /></a><br />
+		<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
 		<?php include_once ('/modules/register.php'); ?>
 	</div>
 
@@ -47,11 +47,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 
 	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
 			<th class="topleft"></th>
 			<td id="tbl-border-top">&nbsp;</td>
 			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/shared/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
 			<td id="tbl-border-left"></td>
@@ -105,7 +105,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 <?php
 }
 else
-{
+{ 
 	header('Location: index.php');
 }
 ?>

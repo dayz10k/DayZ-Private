@@ -5,7 +5,7 @@
 	$pnumber = mysql_num_rows($res);			
 
 	if (isset($_GET['page']))
-	{
+	{ 
 		$pageNum = $_GET['page'];
 	}
 	
@@ -13,13 +13,13 @@
 	$maxPage = ceil($pnumber/$rowsPerPage);			
 
 	for ($page = 1; $page <= $maxPage; $page++)
-	{
+	{ 
 		if ($page == $pageNum)
-		{
+		{ 
 			$nav .= " $page ";
 		}
 		else
-		{
+		{ 
 			$nav .= "$self&page=$page";
 		}
 	}
@@ -30,7 +30,7 @@
 
 	$tableheader = header_player($show, $order);
 
-	while ($row = mysql_fetch_array($res)) {$tablerows .= row_player($row, $serverworld);}
+	while ($row = mysql_fetch_array($res)) { $tablerows .= row_player($row, $serverworld);}
 
 	include ('paging.php');
 ?>

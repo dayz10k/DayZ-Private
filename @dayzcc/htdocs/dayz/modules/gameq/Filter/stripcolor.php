@@ -41,8 +41,8 @@ class GameQ_Filter_stripcolor extends GameQ_Filter
      * @return    array    Modified results
      */
     public function filter($result, $server)
-    {
-        switch ($server['prot']) {
+    { 
+        switch ($server['prot']) { 
 
             case 'quake2':
             case 'quake3':
@@ -64,7 +64,7 @@ class GameQ_Filter_stripcolor extends GameQ_Filter
      * @param  $key     string  Array key
      */
     private function stripQuake(&$string, $key)
-    {
+    { 
         $string = preg_replace('#(\^.)#', '', $string);
     }
 }

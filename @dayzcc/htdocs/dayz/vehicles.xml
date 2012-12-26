@@ -2,13 +2,13 @@
 <vehicles>
 	<sAn2_DZ>
 		<Type>Plane</Type>
-        <Side>CIV</Side>
-        <Faction>CIV</Faction>
-        <Name>An-2</Name>
-        <transportmaxweapons>3</transportmaxweapons>
-        <transportmaxmagazines>20</transportmaxmagazines>
-        <transportmaxbackpacks>0</transportmaxbackpacks>
-        <cargo>15</cargo>
+		<Side>CIV</Side>
+		<Faction>CIV</Faction>
+		<Name>An-2</Name>
+		<transportmaxweapons>3</transportmaxweapons>
+		<transportmaxmagazines>20</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>15</cargo>
 	</sAn2_DZ>
     <sAn2_1_TK_CIV_EP1>
         <Type>Plane</Type>
