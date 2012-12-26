@@ -49,7 +49,7 @@ if (isset($_SESSION['user_id']))
 							<?php
 								foreach ($gqresults as $id => $data) {
 									if (!$data['gq_online']) {
-										echo "<p>Gamespy did not respond within the specified time.</p>";
+										echo "<p>Server did not respond within the specified time.</p>";
 									} else {
 										echo "<h2>".$data['gq_hostname']."</h2>
 											<h2>Address:</h2><h3>".(gethostbyname(trim(`hostname`))).":".$data['gq_port']."</h3>
