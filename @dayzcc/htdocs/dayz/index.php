@@ -6,16 +6,16 @@ session_start();
 defined('DS') ? null : define('DS',DIRECTORY_SEPARATOR);
 $sitename = "DayZ Controlcenter Administration";
 
-include ('config.php');
+include('config.php');
 
 mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die (mysql_error());
 mysql_select_db($dbname) or die (mysql_error());
 
 if (isset($_GET['logout']))
 { 
-	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('LOGOUT', '{ $_SESSION['login']}', NOW())");
+	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('LOGOUT', '{$_SESSION['login']}', NOW())");
 	
-	if (isset($_SESSION['user_id'])) { unset($_SESSION['user_id']);}
+	if (isset($_SESSION['user_id'])) { unset($_SESSION['user_id']); }
 		
 	setcookie('login', '', 0, "/");
 	setcookie('password', '', 0, "/");
@@ -26,9 +26,9 @@ if (isset($_GET['logout']))
 if (isset($_SESSION['user_id']))
 { 
 	// Include functions
-	include ('/modules/rcon.php');
-	include ('/modules/tables/rows.php');
-	include ('/modules/maps/markers.php');
+	include('modules/rcon.php');
+	include('modules/tables/rows.php');
+	include('modules/maps/markers.php');
 	
 	function slashes(&$el)
 	{ 
@@ -55,7 +55,7 @@ if (isset($_SESSION['user_id']))
 
 		
 	// Start page-header 
-	include ('/modules/header.php');
+	include('modules/header.php');
 	// End page-header
 	
 	?>
@@ -64,13 +64,13 @@ if (isset($_SESSION['user_id']))
 		<div id="content">
 		<?php
 			if (isset($_GET['view'])){ 
-				include ('/modules/'.$_GET["view"].'.php');
+				include('modules/'.$_GET["view"].'.php');
 			} else { 
-				include ('/modules/dashboard.php');
+				include('modules/dashboard.php');
 			}
 
 			// Start page-footer 
-			include ('/modules/footer.php');
+			include('modules/footer.php');
 			// End page-footer
 		?>
 		</div>
@@ -81,6 +81,6 @@ if (isset($_SESSION['user_id']))
 }
 else
 { 
-	include ('/modules/login.php');
+	include('modules/login.php');
 }
 ?>

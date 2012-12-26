@@ -13,7 +13,7 @@
 		$parray = preg_split ('/$\R?^/m', $out);
 
 		$players = array();
-		for ($j = 0; $j < count($parray); $j++) { $players[] = "";}
+		for ($j = 0; $j < count($parray); $j++) { $players[] = ""; }
 		for ($i = 0; $i < count($parray); $i++)
 		{ 
 			$m = 0;
@@ -22,7 +22,7 @@
 			for ($j = 0; $j < strlen($pout); $j++) { 
 				$char = substr($pout, $j, 1);
 				if ($m < 4) { 
-					if ($char != " ") { $players[$i][$m] .= $char;} else { $m++;}
+					if ($char != " ") { $players[$i][$m] .= $char; } else {$m++; }
 				} else { 
 					$players[$i][$m] .= $char;
 				}
@@ -42,7 +42,7 @@
 			}
 		}
 
-		include ('/modules/leaf.php');
+		include('modules/leaf.php');
 	}
 	else
 	{ 

@@ -11,10 +11,10 @@
 	$Backpack  = json_decode($Backpack);
 
 	$xml = file_get_contents('/items.xml', true);
-	require_once('/modules/xml2array.php');
+	require_once('modules/xml2array.php');
 	$items_xml = XML2Array::createArray($xml);
 	$xml = file_get_contents('/vehicles.xml', true);
-	require_once('/modules/xml2array.php');
+	require_once('modules/xml2array.php');
 	$vehicles_xml = XML2Array::createArray($xml);
 ?>
 
@@ -98,20 +98,20 @@
 									$bpweaponscount = count($Backpack[0][0]);
 									$bpweapons = array();
 									for ($m = 0; $m < $bpweaponscount; $m++) { 
-										for ($mi = 0; $mi<$Backpack[0][1][$m]; $mi++) { $bpweapons[] = $Backpack[0][0][$m];}
+										for ($mi = 0; $mi<$Backpack[0][1][$m]; $mi++) { $bpweapons[] = $Backpack[0][0][$m]; }
 									}							
 
 									
 									$bpitemscount = count($Backpack[1][0]);
 									$bpitems = array();
 									for ($m = 0; $m < $bpitemscount; $m++) { 
-										for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpitems[] = $Backpack[1][0][$m];}
+										for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpitems[] = $Backpack[1][0][$m]; }
 									}
 									
 									$bpackscount = count($Backpack[2][0]);
 									$bpacks = array();
 									for ($m = 0; $m < $bpackscount; $m++) { 
-										for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpacks[] = $Backpack[2][0][$m];}
+										for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpacks[] = $Backpack[2][0][$m]; }
 									}
 									
 									$Backpack = (array_merge($bpweapons, $bpacks, $bpitems));
@@ -158,7 +158,7 @@
 									$jx = 1; $jy = 0; $jk = 0; $jl = 0;
 									$numlines = 0;
 									for ($j = 0; $j < $weapons; $j++) { 
-										if ($jk > 3) { $jk = 0; $jl++;}
+										if ($jk > 3) { $jk = 0; $jl++; }
 										echo '<div class="gear_slot" style="margin-left:'.($jx+(86*$jk)).'px;margin-top:'.($jy+(86*$jl)).'px;width:84px;height:84px;">'.$bpweapons[$j]['image'].'</div>';
 										$freeweaps = $freeweaps - 1;
 										$jk++;
@@ -167,12 +167,12 @@
 									if ($jl > 0) { 
 										$numlines = $jl + 1;
 									} elseif ($jl == 0) { 
-										if ($weapons > 0) { $numlines++;}
+										if ($weapons > 0) { $numlines++; }
 									}
 
 									$jx = 1; $jy = (86 * $numlines); $jk = 0; $jl = 0;
 									for ($j = 0; $j < $magazines; $j++) { 
-										if ($jk > 6){ $jk = 0; $jl++;}
+										if ($jk > 6){ $jk = 0; $jl++; }
 										if ($j < count($backpackitem)) { 
 											echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$backpackitem[$j]['image'].'</div>';
 											$freeslots = $freeslots - 1;

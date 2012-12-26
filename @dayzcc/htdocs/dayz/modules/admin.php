@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 		
 		for ($i = 0; $i < count($deluser); $i++)
 		{ 
-			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('DELETED USER: ".$deluser[$i]."', '{ $_SESSION['login']}', NOW())");
+			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('DELETED USER: ".$deluser[$i]."', '{$_SESSION['login']}', NOW())");
 			mysql_query("DELETE FROM `users` WHERE `id` = '".$deluser[$i]."'") or die(mysql_error());
 			
 			$delresult .= '<div id="message-green">
@@ -25,19 +25,19 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 	}
 	else
 	{ 
-		mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('MANAGE USERS', '{ $_SESSION['login']}', NOW())");
+		mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('MANAGE USERS', '{$_SESSION['login']}', NOW())");
 	}
 
 	$res = mysql_query("SELECT * FROM `users` ORDER BY `id` ASC") or die(mysql_error());
 	$number = mysql_num_rows($res);
 	$users = '';
-	while ($row = mysql_fetch_array($res)) { $users .= '<tr><td align="center"><input name="user[]" value="'.$row['id'].'" type="checkbox"/></td><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td>'.$row['permissions'].'</td><td>'.$row['lastlogin'].'</td></tr>';}
+	while ($row = mysql_fetch_array($res)) { $users .= '<tr><td align="center"><input name="user[]" value="'.$row['id'].'" type="checkbox"/></td><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td>'.$row['permissions'].'</td><td>'.$row['lastlogin'].'</td></tr>'; }
 
 	?>
 
 	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
 		<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
-		<?php include_once ('/modules/register.php'); ?>
+		<?php include_once('modules/register.php'); ?>
 	</div>
 
 	<div id="page-heading">

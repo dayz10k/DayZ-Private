@@ -3,41 +3,27 @@ if (isset($_SESSION['user_id']))
 { 
 	ini_set("display_errors", 0);
 	error_reporting (E_ALL ^ E_NOTICE);
-	require_once 'gameq.php';
 
 	$pagetitle = "Dashboard";
 
 	$logs = "";
 	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 100;") or die(mysql_error());
-	while ($row = mysql_fetch_array($res)) { $logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13);}
+	while ($row = mysql_fetch_array($res)) {$logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13); }
 	
 	$xml = file_get_contents('/quicklinks.xml', true);
-	require_once('xml2array.php');
+	require_once('modules/xml2array.php');
 	$quicklinks = XML2Array::createArray($xml);
 
 	// GameQ Server define, fixed by Crosire to allow multiple instances
+	require_once('modules/gameq.php');
 	$servers = array('dayzserver' => array('armedassault2', $serverip, $serverport));
 	$gq = new GameQ();
 	$gq->addServers($servers);
 	$gq->setOption('timeout', 200);
 	$gq->setFilter('normalise');
 	$gq->setFilter('sortplayers', 'gq_ping');
-	$oresults = $gq->requestData();
+	$gqresults = $gq->requestData();
 
-	// Some functions to print the results
-	function print_results($oresults) { 
-		foreach ($oresults as $id => $data)
-		{ 
-			if (!$data['gq_online']) { printf("<p>Gamespy did not respond within the specified time.</p>\n"); return;}			
-			?>
-				<h2><?php echo $data['gq_hostname']; ?></h2>
-				<h2>Address:</h2><h3><?php echo gethostbyname(trim(`hostname`)).":".$data['gq_port']; ?></h3>
-				<h2>Mods:</h2><h3><?php echo $data['gq_mod']; ?></h3>
-				<h2>Max players:</h2><h3><?php echo $data['gq_maxplayers']; ?></h3>
-				<h2>Online players:</h2><h3><?php echo $data['gq_numplayers']; ?></h3>	
-			<?php
-		}
-	}
 	?>
 
 	<div id="page-heading">
@@ -59,14 +45,26 @@ if (isset($_SESSION['user_id']))
 			<div id="content-table-inner">	
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="40%">	
-							<?php print_results($oresults); ?>
+						<td width="40%">
+							<?php
+								foreach ($gqresults as $id => $data) {
+									if (!$data['gq_online']) {
+										echo "<p>Gamespy did not respond within the specified time.</p>";
+									} else {
+										echo "<h2>".$data['gq_hostname']."</h2>
+											<h2>Address:</h2><h3>".(gethostbyname(trim(`hostname`))).":".$data['gq_port']."</h3>
+											<h2>Mods:</h2><h3>".$data['gq_mod']."</h3>
+											<h2>Max players:</h2><h3>".$data['gq_maxplayers']."</h3>
+											<h2>Online players:</h2><h3>".$data['gq_numplayers']."</h3>";
+									}
+								}
+							?>
 						</td>
 						<td width="10%">
-							<?php include_once ("/modules/watch.php"); ?>
+							<?php include_once('modules/watch.php'); ?>
 						</td>
 						<td width="50%">
-							<?php include ('/modules/say.php'); ?>
+							<?php include_once('modules/say.php'); ?>
 						</td>
 					</tr>
 				</table>
@@ -80,20 +78,16 @@ if (isset($_SESSION['user_id']))
 							<div id="quicklinks">
 								<ul>
 								<?php
-									foreach ($quicklinks['quicklinks'] as $ql) { 
-										if ($ql != null) { 
-										?>
-											<li>
-												<a href="<?php echo $ql['Link']; ?>" style="color: #000;">
-													<span class="quicklink-box">
-														<img src="images/icons/<?php echo $ql['Icon']; ?>" alt="<?php echo $ql['Name']; ?>" /><br />
-														<strong><?php echo $ql['Name']; ?></strong>
-													</span>
-												</a>
-											</li>
-										<?php
-										} 
-									} ?>
+									foreach ($quicklinks['quicklinks'] as $ql) { if ($ql != null) { ?>
+										<li>
+											<a href="<?php echo $ql['Link']; ?>" style="color: #000;">
+												<span class="quicklink-box">
+													<img src="images/icons/<?php echo $ql['Icon']; ?>" alt="<?php echo $ql['Name']; ?>" /><br />
+													<strong><?php echo $ql['Name']; ?></strong>
+												</span>
+											</a>
+										</li>
+									<?php } } ?>
 								</ul>
 							</div>
 						</td>

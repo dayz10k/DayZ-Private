@@ -16,7 +16,7 @@ if (isset($_SESSION['user_id']))
 	}
 	
 	if (isset($_POST["say"])){ 
-		$id = "-1"; if (isset($_GET["id"])) { $id = $_GET["id"];}
+		$id = "-1"; if (isset($_GET["id"])) { $id = $_GET["id"]; }
 		$cmd = "Say ".$id." ".$_POST["say"];
 		$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
 		

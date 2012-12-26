@@ -199,7 +199,7 @@ class GameQ_Communicate
     public function getIp($address)
     { 
         // If it isn't a valid IP assume it is a hostname
-        $preg = '#^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){ 3}' . 
+        $preg = '#^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}' . 
                 '(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$#';
         if (!preg_match($preg, $address)) { 
             $result = gethostbyname($address);

@@ -78,7 +78,7 @@ if (isset($_SESSION['user_id']))
 							// Insert to database
 							
 							$resultCheckQuery = mysql_query("SELECT * FROM `instance_building`;");
-							while ($row = mysql_fetch_array($resultCheckQuery)) { if ($row['worldspace'] == $pos) { $exists = true;}}
+							while ($row = mysql_fetch_array($resultCheckQuery)) { if ($row['worldspace'] == $pos) { $exists = true; } }
 							
 							if (!$exists)
 							{ 
@@ -86,7 +86,7 @@ if (isset($_SESSION['user_id']))
 								
 								$matchFound = false;
 								$resultClassNameQuery = mysql_query("SELECT * FROM `building`;");
-								while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) { if ($strings[1] == $row['class_name']) { $matchFound = true;}}
+								while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) { if ($strings[1] == $row['class_name']) { $matchFound = true; } }
 
 								if (!$matchFound)
 								{ 

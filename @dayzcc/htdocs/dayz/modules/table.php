@@ -181,7 +181,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			$pagetitle = "Online players";
 	};
 		
-	include ('/modules/tables/'.$show.'.php');
+	include('modules/tables/'.$show.'.php');
 	
 	?>
 

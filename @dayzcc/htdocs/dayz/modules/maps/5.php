@@ -4,5 +4,5 @@
 	$res = mysql_query($query) or die(mysql_error());
 	$markers = markers_deployable($res, $serverworld);
 
-	include ('/modules/leaf.php');
+	include('modules/leaf.php');
 ?>

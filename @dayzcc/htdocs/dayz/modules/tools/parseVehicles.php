@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id']))
 					<?php
 
 					$resultIDQuery = mysql_query("SELECT `id` FROM `world_vehicle`;");
-					while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) { $userDataIDs[] = $row[0];}
+					while ($row = mysql_fetch_array($resultIDQuery, MYSQL_NUM)) { $userDataIDs[] = $row[0]; }
 					$id = max($userDataIDs) + 1;
 						
 					for ($i = 0; $i < count($rows); $i++)
@@ -83,14 +83,14 @@ if (isset($_SESSION['user_id']))
 							// Insert to database
 
 							$resultCheckQuery = mysql_query("SELECT * FROM `instance_vehicle`;");
-							while ($row = mysql_fetch_array($resultCheckQuery)) { if ($row['worldspace'] == $pos) { $exists = true;}}
+							while ($row = mysql_fetch_array($resultCheckQuery)) { if ($row['worldspace'] == $pos) { $exists = true; } }
 
 							if (!$exists)
 							{ 
 								$error = false;
 								$matchFound = false;
 								$resultClassNameQuery = mysql_query("SELECT * FROM `vehicle`;");
-								while ($row = mysql_fetch_assoc($resultClassNameQuery)) { if ($strings[1] == $row['class_name']) { $matchFound = true;}}
+								while ($row = mysql_fetch_assoc($resultClassNameQuery)) { if ($strings[1] == $row['class_name']) { $matchFound = true; } }
 
 								if (!$matchFound)
 								{ 

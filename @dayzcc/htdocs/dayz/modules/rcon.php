@@ -3,13 +3,13 @@ if (isset($_SESSION['user_id']))
 { 
 	function strToHex($string) { 
 		$hex = '';
-		for ($i = 0; $i < strlen($string); $i++) { $hex .= dechex(ord($string[$i]));}
+		for ($i = 0; $i < strlen($string); $i++) { $hex .= dechex(ord($string[$i])); }
 		return $hex;
 	}
 
 	function hexToStr($hex) { 
 		$string = '';
-		for ($i = 0; $i < strlen($hex) - 1; $i += 2) { $string .= chr(hexdec($hex[$i].$hex[$i+1]));}
+		for ($i = 0; $i < strlen($hex) - 1; $i += 2) { $string .= chr(hexdec($hex[$i].$hex[$i+1])); }
 		return $string;
 	}
 
@@ -24,7 +24,7 @@ if (isset($_SESSION['user_id']))
 		$h = null;
 		$hex = Array( 0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 'a', 11 => 'b', 12 => 'c', 13 => 'd', 14 => 'e', 15 => 'f' );
 		
-		if ($dec < 0) { $sign = "-"; $dec = abs($dec);}
+		if ($dec < 0) { $sign = "-"; $dec = abs($dec); }
 		do
 		{ 
 			$h = $hex[($dec%16)] . $h;
@@ -69,7 +69,7 @@ if (isset($_SESSION['user_id']))
 		
 			if ( strToHex(substr($answer, 9, 1)) == "0") { 
 				$count = strToHex(substr($answer, 10, 1));
-				for ($i = 0; $i < $count - 1; $i++) { $answer .= fread($rcon, 102400);}
+				for ($i = 0; $i < $count - 1; $i++) { $answer .= fread($rcon, 102400); }
 			}
 
 			$cmd = "Exit";

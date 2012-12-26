@@ -12,10 +12,10 @@
 	$model = $row['model'];
 	$name = $row['name'];
 
-	if (is_array($Inventory)) { if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1]));}} else { $Inventory = array();}
+	if (is_array($Inventory)) { if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); } } else {$Inventory = array(); }
 	
 	$xml = file_get_contents('/items.xml', true);
-	require_once('/modules/xml2array.php');
+	require_once('modules/xml2array.php');
 	$items_xml = XML2Array::createArray($xml);
 	
 	$binocular = array();
@@ -32,7 +32,7 @@
 			$curitem = $Inventory[$i];
 			$icount = "";
 			
-			if (is_array($curitem)) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds';}
+			if (is_array($curitem)) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
 			if (array_key_exists('s'.$curitem, $items_xml['items'])){ 
 				switch($items_xml['items']['s'.$curitem]['Type']){ 
 					case 'binocular':
@@ -98,8 +98,8 @@
 							</div>
 							<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 								<?
-									require_once('/modules/calc.php');
-									if (array_key_exists(1, $Worldspace) && array_key_exists(2, $Worldspace)) { echo sprintf("%03d", round(world_x($Worldspace[1], $serverworld))).sprintf("%03d", round(world_y($Worldspace[2], $serverworld)));} else { echo "000000";}
+									require_once('modules/calc.php');
+									if (array_key_exists(1, $Worldspace) && array_key_exists(2, $Worldspace)) { echo sprintf("%03d", round(world_x($Worldspace[1], $serverworld))).sprintf("%03d", round(world_y($Worldspace[2], $serverworld))); } else { echo "000000"; }
 								?>
 							</div>							
 						</div>
@@ -119,10 +119,10 @@
 					<!-- Inventory -->
 					<div class="gear_inventory">
 						<div class="gear_slot" style="margin-left:1px;margin-top:48px;width:80px;height:80px;">
-							<?php if (array_key_exists(0, $binocular)) { echo $binocular[0];} else { echo '<img style="max-width:78px;max-height:78px;" src="images/gear/binocular.png" title="" alt=""/>';} ?>
+							<?php if (array_key_exists(0, $binocular)) { echo $binocular[0]; } else { echo '<img style="max-width:78px;max-height:78px;" src="images/gear/binocular.png" title="" alt=""/>'; } ?>
 						</div>
 						<div class="gear_slot" style="margin-left:292px;margin-top:48px;width:80px;height:80px;">
-							<?php if (array_key_exists(1, $binocular)) { echo $binocular[1];} else { echo '<img style="max-width:78px;max-height:78px;" src="images/gear/binocular.png" title="" alt=""/>';} ?>
+							<?php if (array_key_exists(1, $binocular)) { echo $binocular[1]; } else { echo '<img style="max-width:78px;max-height:78px;" src="images/gear/binocular.png" title="" alt=""/>'; } ?>
 						</div>
 						<div class="gear_slot" style="margin-left:0px;margin-top:130px;width:224px;height:96px;">
 							<?php echo $rifle; ?>
@@ -130,7 +130,7 @@
 						<div class="gear_slot" style="margin-left:0px;margin-top:228px;width:224px;height:96px;">
 							<?php
 								if (array_key_exists(0, $Backpack)) { 
-									if ($Backpack[0] != "") { echo '<img style="max-width:220px; max-height:92px;" src="images/thumbs/'.$Backpack[0].'.png" title="'.$Backpack[0].'" alt="'.$Backpack[0].'"/>';} else { echo $second;}
+									if ($Backpack[0] != "") { echo '<img style="max-width:220px; max-height:92px;" src="images/thumbs/'.$Backpack[0].'.png" title="'.$Backpack[0].'" alt="'.$Backpack[0].'"/>'; } else { echo $second; }
 								} else { 
 									echo $second;
 								}
@@ -144,16 +144,16 @@
 							$jx = 226; $jy = 130; $jk = 0; $jl = 0;
 							$maxslots = 12;
 							for ($j = 0; $j < $maxslots; $j++) { 
-								if ($jk > 2) { $jk = $jk - 3; $jl++;}
+								if ($jk > 2) { $jk = $jk - 3; $jl++; }
 								$hammo = '<img style="max-width:43px;max-height:43px;" src="images/gear/heavyammo.png" title="" alt=""/>';
-								if ($j > 5){ $hammo = '<img style="max-width:43px;max-height:43px;" src="images/gear/grenade.png" title="" alt=""/>';}
+								if ($j > 5){ $hammo = '<img style="max-width:43px;max-height:43px;" src="images/gear/grenade.png" title="" alt=""/>'; }
 								if (array_key_exists($j, $heavyammo)) { 
 									$hammo = $heavyammo[$j]['image'];									
 									echo '<div class="gear_slot" style="margin-left:'.($jx + (49 * $jk)).'px;margin-top:'.($jy + (49 * $jl)).'px;width:47px;height:47px;">'.$hammo.'</div>';
 									$jk = $jk - 1 + $heavyammo[$j]['slots'];
 									$heavyammoslots = $heavyammoslots + $heavyammo[$j]['slots'];
 								} else { 
-									if ($heavyammoslots == $maxslots) { break;}
+									if ($heavyammoslots == $maxslots) { break; }
 									$heavyammoslots++;
 									echo '<div class="gear_slot" style="margin-left:'.($jx + (49 * $jk)).'px;margin-top:'.($jy + (49 * $jl)).'px;width:47px;height:47px;">'.$hammo.'</div>';
 								}
@@ -163,9 +163,9 @@
 							// Small Ammo
 							$jx = 128; $jy = 326; $jk = 0; $jl = 0;
 							for ($j = 0; $j < 8; $j++) { 
-								if ($jk > 3) { $jk = 0; $jl++;}
+								if ($jk > 3) { $jk = 0; $jl++; }
 								$sammo = '<img style="max-width:43px;max-height:43px;" src="images/gear/smallammo.png" title="" alt=""/>';
-								if (array_key_exists($j, $smallammo)) { $sammo = $smallammo[$j];}
+								if (array_key_exists($j, $smallammo)) { $sammo = $smallammo[$j]; }
 								echo '<div class="gear_slot" style="margin-left:'.($jx + (49 * $jk)).'px;margin-top:'.($jy + (49 * $jl)).'px;width:47px;height:47px;">'.$sammo.'</div>';								
 								$jk++;
 							}
@@ -173,9 +173,9 @@
 							// Items
 							$jx = 30; $jy = 424; $jk = 0; $jl = 0;
 							for ($j = 0; $j < 12; $j++) { 
-								if ($jk > 5){ $jk = 0; $jl++;}
+								if ($jk > 5){$jk = 0; $jl++; }
 								$uitem = '';
-								if (array_key_exists($j, $usableitems)) { $uitem = $usableitems[$j];}
+								if (array_key_exists($j, $usableitems)) { $uitem = $usableitems[$j]; }
 								echo '<div class="gear_slot" style="margin-left:'.($jx + (49 * $jk)).'px;margin-top:'.($jy + (49 * $jl)).'px;width:47px;height:47px;">'.$uitem.'</div>';								
 								$jk++;
 							}
@@ -190,7 +190,7 @@
 							if (array_key_exists(0, $Backpack)) { 
 								if ($Backpack[0] != "") { 
 									$BackpackName = $Backpack[0];
-									if (array_key_exists('s'.$Backpack[0], $items_xml['items'])) { $maxmagazines = $items_xml['items']['s'.$Backpack[0]]['maxmagazines'];}
+									if (array_key_exists('s'.$Backpack[0], $items_xml['items'])) { $maxmagazines = $items_xml['items']['s'.$Backpack[0]]['maxmagazines']; }
 								}
 							}
 							
@@ -198,7 +198,7 @@
 							if (array_key_exists(0, $Backpack[1])) { 
 								$bpweaponscount = count($Backpack[1][0]);
 								for ($m = 0; $m < $bpweaponscount; $m++) { 
-									for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpweapons[] = $Backpack[1][0][$m];}
+									for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpweapons[] = $Backpack[1][0][$m]; }
 								}
 							}
 
@@ -206,7 +206,7 @@
 							if (array_key_exists(0, $Backpack[2])) { 
 								$bpitemscount = count($Backpack[2][0]);							
 								for ($m = 0; $m < $bpitemscount; $m++) { 
-									for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpitems[] = $Backpack[2][0][$m];}
+									for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpitems[] = $Backpack[2][0][$m]; }
 								}
 							}
 							
@@ -249,7 +249,7 @@
 							
 							$jx = 1; $jy = 48; $jk = 0; $jl = 0;
 							for ($j = 0; $j < $weapons; $j++) { 
-								if ($jk > 1) { $jk = 0; $jl++;}
+								if ($jk > 1) { $jk = 0; $jl++; }
 								echo '<div class="gear_slot" style="margin-left:'.($jx + (130 * $jk)).'px;margin-top:'.($jy + (98 * $jl)).'px;width:128px;height:96px;">'.$bpweapons[$j]['image'].'</div>';
 								$magazines = $magazines - $bpweapons[$j]['slots'];	
 								$freeslots = $freeslots - $magazines;
@@ -258,14 +258,14 @@
 							
 							$jx = 1; $jy = 48 + (98 * round($weapons / 2)); $jk = 0; $jl = 0;
 							for ($j = 0; $j < $magazines; $j++) { 
-								if ($jk > 6) { $jk = 0; $jl++;}
+								if ($jk > 6) { $jk = 0; $jl++; }
 								if ($j < count($backpackitem)) { 
 									echo '<div class="gear_slot" style="margin-left:'.($jx + (49 * $jk)).'px;margin-top:'.($jy + (49 * $jl)).'px;width:47px;height:47px;">'.$backpackitem[$j]['image'].'</div>';
 									$jk = $jk - 1 + $backpackitem[$j]['slots'];
 									$backpackslots = $backpackslots + $backpackitem[$j]['slots'];
 									$freeslots = $freeslots - $backpackitem[$j]['slots'];
 								} else { 
-									if ($backpackslots == $maxmagazines) { break;}
+									if ($backpackslots == $maxmagazines) { break; }
 									$backpackslots++;
 									echo '<div class="gear_slot" style="margin-left:'.($jx + (49 * $jk)).'px;margin-top:'.($jy + (49 * $jl)).'px;width:47px;height:47px;"></div>';
 								}								

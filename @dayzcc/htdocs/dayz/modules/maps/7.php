@@ -10,5 +10,5 @@
 	$markers .= markers_vehicle($res2, $serverworld);
 	$markers .= markers_vehicle($res3, $serverworld);
 	
-	include ('/modules/leaf.php');
+	include('modules/leaf.php');
 ?>

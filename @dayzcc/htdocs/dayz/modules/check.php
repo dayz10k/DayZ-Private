@@ -2,13 +2,13 @@
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "table") !== false))
 { 
 	$pagetitle = "Items check";
-	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('ITEMS CHECK', '{ $_SESSION['login']}', NOW())") or die(mysql_error());
+	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('ITEMS CHECK', '{$_SESSION['login']}', NOW())") or die(mysql_error());
 	
 	
 		error_reporting (E_ALL ^ E_NOTICE);
 
 		$xml = file_get_contents('/items.xml', true);
-		require_once('/modules/xml2array.php');
+		require_once('modules/xml2array.php');
 		$items_xml = XML2Array::createArray($xml);
 
 		$res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id") or die(mysql_error());
@@ -33,17 +33,17 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 				$Unknown = array();
 				
 				if (array_key_exists(0, $Inventory)) { 
-					if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1]));}
+					if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); }
 				} else { 
-					if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1];}			
+					if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1]; }			
 				}		
 				
 				$bpweaponscount = count($Backpack[1][0]);
 				$bpweapons = array();
-				for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpweapons[] = $Backpack[1][0][$m];}}		
+				for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) {$bpweapons[] = $Backpack[1][0][$m]; } }		
 				$bpitemscount = count($Backpack[2][0]);
 				$bpitems = array();
-				for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpitems[] = $Backpack[2][0][$m];}}
+				for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) {$bpitems[] = $Backpack[2][0][$m]; } }
 				
 				$Backpack = (array_merge($bpweapons, $bpitems));
 				$Inventory = (array_merge($Inventory, $Backpack));
@@ -51,8 +51,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 				for ($i = 0; $i < count($Inventory); $i++) { 
 					if (array_key_exists($i, $Inventory)) { 
 						$curitem = $Inventory[$i];
-						if (is_array($curitem)) { $curitem = $Inventory[$i][0];}
-						if (!array_key_exists('s'.$curitem,$items_xml['items'])) { $Unknown[] = $curitem;}
+						if (is_array($curitem)) { $curitem = $Inventory[$i][0]; }
+						if (!array_key_exists('s'.$curitem,$items_xml['items'])) {$Unknown[] = $curitem; }
 					}
 				}
 

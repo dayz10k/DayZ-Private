@@ -26,7 +26,7 @@ if (isset($_SESSION['user_id']))
 
 			<!--  start top-search -->
 			<div id="top-search">
-				<?php include ('/modules/searchbar.php'); ?>
+				<?php include('modules/searchbar.php'); ?>
 			</div>
 			<!--  end top-search -->
 			<div class="clear"></div>
@@ -34,7 +34,7 @@ if (isset($_SESSION['user_id']))
 	</div>
 	<div class="clear">&nbsp;</div>
 	<!-- start navbar -->
-	<?php include ('/modules/navbar.php'); ?>
+	<?php include('modules/navbar.php'); ?>
 	<!-- end navbar -->
 	<div class="clear"></div>
 

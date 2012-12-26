@@ -2,23 +2,22 @@
 	error_reporting (E_ALL ^ E_NOTICE);
 
 	if (isset($_POST["deployable"])) { 
-		$aDoor = $_POST["deployable"];
-		$N = count($aDoor);
+		$del = $_POST["deployable"];
+		$N = count($del);
 		
 		for ($i = 0; $i < $N; $i++)
 		{ 
-			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE DEPLOYABLE: ".$aDoor[$i]."', '{ $_SESSION['login']}', NOW())");
-			mysql_query("DELETE FROM `instance_deployable` WHERE unique_id = '".$aDoor[$i]."'") or die(mysql_error());
-			$delresult = "Deployable ".$aDoor[$i]." successfully removed!";
-			//echo($aDoor[$i]);
+			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('DELETE DEPLOYABLE: ".$del[$i]."', '{$_SESSION['login']}', NOW())");
+			mysql_query("DELETE FROM `instance_deployable` WHERE unique_id = '".$del[$i]."'") or die(mysql_error());
+			$delresult = "Deployable ".$del[$i]." successfully removed!";
+			//echo($del[$i]);
 		}
 	}
 	
-	$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
-	$serverexestatus = explode(",", strtolower($serverexestatus));
-	$serverexestatus = $serverexestatus[0];
-	$serverexestatus = str_replace('"', "", $serverexestatus);
-	if ($serverexestatus == strtolower($exeserver)) { $serverrunning = true;} else { $serverrunning = false;}
+	$status = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
+	$status = explode(",", strtolower($serverexestatus));
+	$status = str_replace('"', "", $serverexestatus[0]);
+	$serverrunning = false; if ($status == strtolower($exeserver)) { $serverrunning = true; }
 	
 	$res = mysql_query($query) or die(mysql_error());
 	$pnumber = mysql_num_rows($res);			
@@ -58,9 +57,9 @@
 	$tableheader = header_deployable($show, $chbox, $order);
 	
 	while ($row = mysql_fetch_array($res)) { 
-		if (!$serverrunning) { $chbox = "<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input name=\"deployable[]\" value=\"".$row['unique_id']."\" type=\"checkbox\"/></td>";}	
+		if (!$serverrunning) { $chbox = "<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><input name=\"deployable[]\" value=\"".$row['unique_id']."\" type=\"checkbox\"/></td>"; }	
 		$tablerows .= row_deployable($row, $chbox, $serverworld);
 	}
 	
-	include ('paging.php');
+	include('paging.php');
 ?>

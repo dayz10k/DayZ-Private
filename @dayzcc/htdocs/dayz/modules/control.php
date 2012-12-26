@@ -9,58 +9,49 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 		echo "<title>".$pagetitle." - ".$sitename."</title>";
 		echo "<h1>".$pagetitle."</h1>";
 
-		$commandString_server = "start \"\" /d \"".$patharma."\" /b ".'"'.$pathserver.'"'.$exeserver_string;
-		$commandString_bec = "start \"\" /d \"".$pathbec."\" ".'"'.$pathbec.'\\'.$exebec.'"'.$exebec_string;
-		
-		$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
-		$serverexestatus = explode(",", strtolower($serverexestatus))[0];
-		$serverexestatus = str_replace('"', "", $serverexestatus);
-		$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV');
-		$becexestatus = explode(",", strtolower($becexestatus))[0];
-		$becexestatus = str_replace('"', "", $becexestatus);
-		
+		$cmdS = "start \"\" /d \"".$patharma."\" /b ".'"'.$pathserver.'"'.$exeserver_string;
+		$cmdB = "start \"\" /d \"".$pathbec."\" ".'"'.$pathbec.'\\'.$exebec.'"'.$exebec_string;
+
 		if (isset($_GET['action'])) { 
 			switch($_GET['action']) { 
 				case 0:
-					pclose(popen($commandString_server, 'r'));
-					mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{ $_SESSION['login']}', NOW())");
+					pclose(popen($cmdS, 'r'));
+					mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{$_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 1:
-					$output = exec('taskkill /IM '.$serverexestatus);
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP SERVER', '{ $_SESSION['login']}', NOW())");
+					$output = exec('taskkill /IM '.$exeserver);
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP SERVER', '{$_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 3:
-					pclose(popen($commandString_bec, 'r'));
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('START BEC', '{ $_SESSION['login']}', NOW())");
+					pclose(popen($cmdB, 'r'));
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('START BEC', '{$_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 4:
-					$output = exec('taskkill /IM '.$becexestatus);
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP BEC', '{ $_SESSION['login']}', NOW())");
+					$output = exec('taskkill /IM '.$exebec);
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP BEC', '{$_SESSION['login']}', NOW())");
 					sleep(6);
 					break;
 				case 5:
 					$cmd = "#restart";
 					$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
-					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{ $_SESSION['login']}', NOW())");
+					mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{$_SESSION['login']}', NOW())");
 					sleep(1);
 					break;
 				default:
 					sleep(1);
 			}
 		}
+		
+		$statusS = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
+		$statusS = str_replace('"', "", explode(",", strtolower($statusS))[0]);
+		$statusB = exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV');
+		$statusB = str_replace('"', "", explode(",", strtolower($statusB))[0]);
 
-		$serverexestatus = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
-		$serverexestatus = explode(",", strtolower($serverexestatus))[0];
-		$serverexestatus = str_replace('"', "", $serverexestatus);
-		$becexestatus = exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV');
-		$becexestatus = explode(",", strtolower($becexestatus))[0];
-		$becexestatus = str_replace('"', "", $becexestatus);
-
-		$serverrunning = false; if ($serverexestatus == strtolower($exeserver)) { $serverrunning = true;}
-		$becrunning = false; if ($becexestatus == strtolower($exebec)) { $becrunning = true;}
+		$serverrunning = false; if ($statusS == strtolower($exeserver)) { $serverrunning = true; }
+		$becrunning = false; if ($statusB == strtolower($exebec)) { $becrunning = true; }
 	?>
 	</div>
 

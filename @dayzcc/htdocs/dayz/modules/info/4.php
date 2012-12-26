@@ -1,8 +1,8 @@
 <?php
 	// Thanks to SilverShot and ChemicalBliss for their initial idea about the repair and refuel feature
 	if (isset($_GET["action"])) { 
-		if ($_GET["action"] == "repair") { mysql_query("UPDATE `instance_vehicle` SET parts='[]', damage='0' WHERE id = '".$_GET["id"]."'");}
-		if ($_GET["action"] == "refuel") { mysql_query("UPDATE `instance_vehicle` SET fuel='1' WHERE id = '".$_GET["id"]."'");}
+		if ($_GET["action"] == "repair") { mysql_query("UPDATE `instance_vehicle` SET parts='[]', damage='0' WHERE id = '".$_GET["id"]."'"); }
+		if ($_GET["action"] == "refuel") { mysql_query("UPDATE `instance_vehicle` SET fuel='1' WHERE id = '".$_GET["id"]."'"); }
 	}
 	
 	$res = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.id = '".$_GET["id"]."' LIMIT 1") or die(mysql_error());
@@ -59,7 +59,7 @@
 								</div>
 								<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 								<?php
-									require_once("/modules/calc.php");
+									require_once("modules/calc.php");
 									echo sprintf("%03d",round(world_x($Worldspace[1], $serverworld))).sprintf("%03d",round(world_y($Worldspace[2], $serverworld)));
 								?>
 								</div>							
@@ -94,19 +94,19 @@
 									$bpweaponscount = count($Backpack[0][0]);
 									$bpweapons = array();
 									for ($m = 0; $m < $bpweaponscount; $m++) { 
-											for ($mi=0; $mi<$Backpack[0][1][$m]; $mi++) { $bpweapons[] = $Backpack[0][0][$m];}
+											for ($mi=0; $mi<$Backpack[0][1][$m]; $mi++) { $bpweapons[] = $Backpack[0][0][$m]; }
 									}							
 
 								$bpitemscount = count($Backpack[1][0]);
 								$bpitems = array();
 								for ($m = 0; $m < $bpitemscount; $m++){ 
-									for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpitems[] = $Backpack[1][0][$m];}
+									for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpitems[] = $Backpack[1][0][$m]; }
 								}
 								
 								$bpackscount = count($Backpack[2][0]);
 								$bpacks = array();
 								for ($m = 0; $m < $bpackscount; $m++){ 
-									for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpacks[] = $Backpack[2][0][$m];}
+									for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) {$bpacks[] = $Backpack[2][0][$m]; }
 								}
 								
 								$Backpack = (array_merge($bpweapons, $bpacks, $bpitems));
@@ -155,7 +155,7 @@
 								$jl = 0;
 								$numlines = 0;
 								for ($j = 0; $j < $weapons; $j++) { 
-									if ($jk > 3) { $jk = 0; $jl++;}
+									if ($jk > 3) { $jk = 0; $jl++; }
 									echo '<div class="gear_slot" style="margin-left:'.($jx+(86*$jk)).'px;margin-top:'.($jy+(86*$jl)).'px;width:84px;height:84px;">'.$bpweapons[$j]['image'].'</div>';
 									$freeweaps = $freeweaps - 1;
 									$jk++;
@@ -166,7 +166,7 @@
 								}
 
 								if ($jl == 0){ 
-									if ($weapons > 0) { $numlines++;}
+									if ($weapons > 0) { $numlines++; }
 								}
 
 								$jx = 1;
@@ -174,7 +174,7 @@
 								$jk = 0;
 								$jl = 0;
 								for ($j = 0; $j < $magazines; $j++) { 
-									if ($jk > 6){ $jk = 0; $jl++;}
+									if ($jk > 6){$jk = 0; $jl++; }
 									if ($j < count($backpackitem)) { 
 										echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$backpackitem[$j]['image'].'</div>';
 										$freeslots = $freeslots - 1;
@@ -200,7 +200,7 @@
 							$jk = 0;
 							$jl = 0;
 							for ($i = 0; $i < count($Hitpoints); $i++) { 
-								if ($jk > 3) { $jk = 0; $jl++;}
+								if ($jk > 3) { $jk = 0; $jl++; }
 								$hit = '<img style="max-width:90px;max-height:90px;" src="images/hits/'.$Hitpoints[$i][0].'.png" title="'.$Hitpoints[$i][0].' - '.round(100 - ($Hitpoints[$i][1]*100)).'%" alt="'.$Hitpoints[$i][0].' - '.round(100 - ($Hitpoints[$i][1]*100)).'%"/>';
 								echo '<div class="hit_slot" style="margin-left:'.($jx+(93*$jk)).'px;margin-top:'.($jy+(93*$jl)).'px;width:91px;height:91px;background-color: rgba(100,'.round((255/100)*(100 - ($Hitpoints[$i][1]*100))).',0,0.8);">'.$hit.'</div>';
 								$jk++;

@@ -51,8 +51,8 @@ function row_player($row, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
-	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1];}
-	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2];}
+	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1]; }
+	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
 	$InventoryPreview = "";
 	$Inventory = $row['inventory'];
@@ -61,9 +61,9 @@ function row_player($row, $world) {
 
 	if (is_array($Inventory)) { 
 		if (array_key_exists(0,$Inventory)){ 
-			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1]));} else { $Inventory = $Inventory[0];}
+			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); } else {$Inventory = $Inventory[0]; }
 		} else { 
-			if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1];}
+			if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1]; }
 		}
 	} else { 
 		$Inventory = array();
@@ -90,12 +90,12 @@ function row_player($row, $world) {
 		$bpweapons[] = $Backpack[0];
 		if(array_key_exists(1, $Backpack)){ 
 			$bpweaponscount = count($Backpack[1][0]);				
-			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++){ $bpweapons[] = $Backpack[1][0][$m];}}							
+			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++){ $bpweapons[] = $Backpack[1][0][$m]; } }
 		}
 		$bpitems = array();
 		if(array_key_exists(1, $Backpack)){ 
 			$bpitemscount = count($Backpack[2][0]);
-			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++){ $bpitems[] = $Backpack[2][0][$m];}}
+			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++){ $bpitems[] = $Backpack[2][0][$m]; } }
 		}
 		$Backpack = (array_merge($bpweapons, $bpitems));
 	}
@@ -104,7 +104,7 @@ function row_player($row, $world) {
 		if (array_key_exists($i, $Backpack)) { 
 			$curitem = $Backpack[$i];
 			if (is_array($curitem)) { 
-				if ($i != 0) { $curitem = $Backpack[$i][0]; $icount = ' - '.$Backpack[$i][1].' rounds';}
+				if ($i != 0) { $curitem = $Backpack[$i][0]; $icount = ' - '.$Backpack[$i][1].' rounds'; }
 			}
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/></div>';
 		} else { 
@@ -122,7 +122,7 @@ function row_player($row, $world) {
 	$thealth = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$health."</a>";
 	$icon = '<img src="images/icons/player'.($row['is_dead'] ? '_dead' : '').'.png" title="" alt=""/>';
 
-	require_once('/modules/calc.php');
+	require_once('modules/calc.php');
 	$tablerow = "<tr>
 		<td align=\"center\" class=\"gear_preview\">".$icon."</td>
 		<td align=\"center\" class=\"gear_preview\">".$name."</td>
@@ -140,8 +140,8 @@ function row_online_player($row, $player, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);				
-	$x = 0; if (array_key_exists(1,$Worldspace)) { $x = $Worldspace[1];}
-	$y = 0; if (array_key_exists(2,$Worldspace)) { $y = $Worldspace[2];}
+	$x = 0; if (array_key_exists(1,$Worldspace)) { $x = $Worldspace[1]; }
+	$y = 0; if (array_key_exists(2,$Worldspace)) { $y = $Worldspace[2]; }
 
 	$dead = ($row['is_dead'] ? '_dead' : '');
 	$InventoryPreview = "";
@@ -152,9 +152,9 @@ function row_online_player($row, $player, $world) {
 
 	if (is_array($Inventory)) { 
 		if (array_key_exists(0, $Inventory)) { 
-			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1]));} else { $Inventory = $Inventory[0];}
+			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); } else {$Inventory = $Inventory[0]; }
 		} else { 
-			if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1];}
+			if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1]; }
 		}
 	} else { 
 		$Inventory = array();
@@ -180,14 +180,14 @@ function row_online_player($row, $player, $world) {
 		if (array_key_exists(1, $Backpack)){ 
 			if (array_key_exists(0, $Backpack[1])){ 
 				$bpweaponscount = count($Backpack[1][0]);				
-				for ($m=0; $m<$bpweaponscount; $m++){ for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpweapons[] = $Backpack[1][0][$m];}}	
+				for ($m=0; $m<$bpweaponscount; $m++){ for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpweapons[] = $Backpack[1][0][$m]; } }
 			}							
 		}
 		$bpitems = array();
 		if (array_key_exists(1, $Backpack)){ 
 			if (array_key_exists(0, $Backpack[2])){ 
 				$bpitemscount = count($Backpack[2][0]);
-				for ($m = 0; $m < $bpitemscount; $m++){ for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpitems[] = $Backpack[2][0][$m];}}
+				for ($m = 0; $m < $bpitemscount; $m++){ for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpitems[] = $Backpack[2][0][$m]; } }
 			}
 		}
 		$Backpack = (array_merge($bpweapons, $bpitems));
@@ -219,7 +219,7 @@ function row_online_player($row, $player, $world) {
 	$iconkick = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
 	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="images/icons/player_ban'.$dead.'.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
 
-	require_once('/modules/calc.php');
+	require_once('modules/calc.php');
 	$tablerow = "<tr>
 		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconkick."</td>
 		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconban."</td>
@@ -238,8 +238,8 @@ function row_vehicle($row, $chbox, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
-	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1];}
-	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2];}
+	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1]; }
+	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
 	$InventoryPreview = "";
 	$Inventory = $row['inventory'];
@@ -250,19 +250,19 @@ function row_vehicle($row, $chbox, $world) {
 		$bpweapons = array();
 		if (array_key_exists(0, $Inventory)){ 
 			$bpweaponscount = count($Inventory[0][0]);				
-			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Inventory[0][1][$m]; $mi++) { $bpweapons[] = $Inventory[0][0][$m];}}							
+			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Inventory[0][1][$m]; $mi++) { $bpweapons[] = $Inventory[0][0][$m]; } }
 		}
 
 		$bpitems = array();
 		if (array_key_exists(1, $Inventory)){ 
 			$bpitemscount = count($Inventory[1][0]);
-			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Inventory[1][1][$m]; $mi++) { $bpitems[] = $Inventory[1][0][$m];}}
+			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Inventory[1][1][$m]; $mi++) { $bpitems[] = $Inventory[1][0][$m]; } }
 		}
 
 		$bpacks = array();
 		if (array_key_exists(2, $Inventory)){ 
 			$bpackscount = count($Inventory[2][0]);
-			for ($m = 0; $m < $bpackscount; $m++) { for ($mi = 0; $mi < $Inventory[2][1][$m]; $mi++) { $bpacks[] = $Inventory[2][0][$m];}}
+			for ($m = 0; $m < $bpackscount; $m++) { for ($mi = 0; $mi < $Inventory[2][1][$m]; $mi++) { $bpacks[] = $Inventory[2][0][$m]; } }
 		}
 
 		$Inventory = (array_merge($bpweapons, $bpacks, $bpitems));
@@ -274,7 +274,7 @@ function row_vehicle($row, $chbox, $world) {
 		if (array_key_exists($i, $Inventory)){ 
 			$curitem = $Inventory[$i];
 			if (is_array($curitem)){ 
-				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds';}
+				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
 			}
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/></div>';
 		} else { 
@@ -286,7 +286,7 @@ function row_vehicle($row, $chbox, $world) {
 	$Hitpoints = $row['parts'];
 	$Hitpoints = json_decode($Hitpoints);
 
-	if (!is_array($Hitpoints)) { $Hitpoints = array();}
+	if (!is_array($Hitpoints)) { $Hitpoints = array(); }
 
 	for ($i = 0; $i < $limit; $i++){ 
 		if (array_key_exists($i, $Hitpoints)){ 
@@ -295,7 +295,7 @@ function row_vehicle($row, $chbox, $world) {
 		}
 	}
 
-	require_once('/modules/calc.php');
+	require_once('modules/calc.php');
 	$tablerow = "<tr>".$chbox."
 		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
 		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['class_name']."</a></td>			
@@ -312,8 +312,8 @@ function row_deployable($row, $chbox, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
-	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1];}
-	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2];}
+	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1]; }
+	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
 	$InventoryPreview = "";
 	$Inventory = $row['inventory'];
@@ -324,19 +324,19 @@ function row_deployable($row, $chbox, $world) {
 		$bpweapons = array();
 		if (array_key_exists(0, $Inventory)) { 
 			$bpweaponscount = count($Inventory[0][0]);				
-			for ($m = 0; $m < $bpweaponscount; $m++){ for ($mi = 0; $mi < $Inventory[0][1][$m]; $mi++) { $bpweapons[] = $Inventory[0][0][$m];}}							
+			for ($m = 0; $m < $bpweaponscount; $m++){ for ($mi = 0; $mi < $Inventory[0][1][$m]; $mi++) { $bpweapons[] = $Inventory[0][0][$m]; } }
 		}
 
 		$bpitems = array();
 		if (array_key_exists(1, $Inventory)) { 
 			$bpitemscount = count($Inventory[1][0]);
-			for ($m = 0; $m < $bpitemscount; $m++){ for ($mi = 0; $mi < $Inventory[1][1][$m]; $mi++) { $bpitems[] = $Inventory[1][0][$m];}}
+			for ($m = 0; $m < $bpitemscount; $m++){ for ($mi = 0; $mi < $Inventory[1][1][$m]; $mi++) { $bpitems[] = $Inventory[1][0][$m]; } }
 		}
 
 		$bpacks = array();
 		if (array_key_exists(2, $Inventory)) { 
 			$bpackscount = count($Inventory[2][0]);
-			for ($m = 0; $m < $bpackscount; $m++){ for ($mi = 0; $mi < $Inventory[2][1][$m]; $mi++) { $bpacks[] = $Inventory[2][0][$m];}}
+			for ($m = 0; $m < $bpackscount; $m++){ for ($mi = 0; $mi < $Inventory[2][1][$m]; $mi++) { $bpacks[] = $Inventory[2][0][$m]; } }
 		}
 
 		$Inventory = (array_merge($bpweapons, $bpacks, $bpitems));
@@ -348,7 +348,7 @@ function row_deployable($row, $chbox, $world) {
 		if(array_key_exists($i, $Inventory)) { 
 			$curitem = $Inventory[$i];
 			if (is_array($curitem)) { 
-				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds';}
+				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
 			}
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/></div>';
 		} else { 
@@ -356,7 +356,7 @@ function row_deployable($row, $chbox, $world) {
 		}
 	}
 
-	require_once('/modules/calc.php');
+	require_once('modules/calc.php');
 	$tablerow = "<tr>".$chbox."
 		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=5&id=".$row['id']."\">".$row['id']."</a></td>
 		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=5&id=".$row['id']."\">".$row['unique_id']."</a></td>

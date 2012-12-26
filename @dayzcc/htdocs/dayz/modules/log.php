@@ -6,7 +6,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 
 	$pathlog = str_replace($exeserver, 'server_'.$serverinstance.'.log', $pathserver);
 	$lines = file($pathlog);
-	foreach ($lines as $line) { $logtext .= $line;}
+	foreach ($lines as $line) { $logtext .= $line; }
 
 	?>
 
