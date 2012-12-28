@@ -32,6 +32,8 @@ if (!isDedicated) then {  	// If mission is loaded by a player execute the playe
 	_id = player addEventHandler ["Respawn", {_id = [] spawn player_death;}];
 	_playerMonitor = [] execVM "\z\addons\dayz_code\system\player_monitor.sqf";
 	
+	[] execVM "actions.sqf";
+	
 	#include "gcam\gcam_config.hpp"
 	#include "gcam\gcam_functions.sqf"
 
