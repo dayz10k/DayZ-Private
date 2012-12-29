@@ -96,7 +96,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						</table>
 					</div>
 					<div id="step-holder">	
-							<div class="step-no-off"><img src="images/start.png"/></div>
+							<div class="step-no-off"><img src="images/icons/start.png"/></div>
 							<div class="step-light-left">Start</div>
 							<div class="step-light-right">&nbsp;</div>
 							<div class="step-no"><a href="index.php?view=control&action=4"><img src="images/icons/stop.png"/></a></div>
