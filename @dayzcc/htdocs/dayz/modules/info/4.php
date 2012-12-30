@@ -10,15 +10,12 @@
 
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
-	$Worldspace = str_replace("|", ",", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
-	$Backpack  = $row['inventory'];
-	$Backpack = str_replace("|", ",", $Backpack);
-	$Backpack  = json_decode($Backpack);
+	$Vehicle = $row['inventory'];
+	$Vehicle = json_decode($Vehicle);
 
-	$Hitpoints  = $row['parts'];
-	//$Hitpoints  ='[["wheel_1_1_steering",0.2],["wheel_2_1_steering",0],["wheel_1_4_steering",1],["wheel_2_4_steering",1],["wheel_1_3_steering",1],["wheel_2_3_steering",1],["wheel_1_2_steering",0],["wheel_2_2_steering",1],["motor",0.1],["karoserie",0.4]]';
-	$Hitpoints = str_replace("|", ",", $Hitpoints);
+	$Hitpoints = $row['parts'];
+	//$Hitpoints ='[["wheel_1_1_steering",0.2],["wheel_2_1_steering",0],["wheel_1_4_steering",1],["wheel_2_4_steering",1],["wheel_1_3_steering",1],["wheel_2_3_steering",1],["wheel_1_2_steering",0],["wheel_2_2_steering",1],["motor",0.1],["karoserie",0.4]]';
 	$Hitpoints = json_decode($Hitpoints);
 
 	$xml = file_get_contents('/items.xml', true);
@@ -60,7 +57,7 @@
 								<div class="gpstext" style="width:120px;margin-left:13px;margin-top:61px">
 								<?php
 									require_once("modules/calc.php");
-									echo sprintf("%03d",round(world_x($Worldspace[1], $serverworld))).sprintf("%03d",round(world_y($Worldspace[2], $serverworld)));
+									echo sprintf("%03d", round(world_x($Worldspace[1], $serverworld))).sprintf("%03d", round(world_y($Worldspace[2], $serverworld)));
 								?>
 								</div>							
 							</div>
@@ -71,7 +68,7 @@
 								<?php echo 'Fuel:&nbsp;<a href="index.php?view=info&show=4&id='.$_GET["id"].'&action=refuel" style="color:blue">'.$row['fuel'].'</a>'; ?>
 							</div>
 						</div>
-						<!-- Backpack -->
+						<!-- Vehicle -->
 						<div class="vehicle_gear">	
 							<div id="vehicle_inventory">	
 							<?php
@@ -81,63 +78,64 @@
 								$freeslots = 0;
 								$freeweaps = 0;
 								$freebacks = 0;
-								$BackpackName = $row['class_name'];
+								$VehicleName = $row['class_name'];
 								
-								if(array_key_exists('s'.$row['class_name'],$vehicles_xml['vehicles'])){ 
-									$maxmagazines = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxmagazines'];
-									$maxweaps = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxweapons'];
-									$maxbacks = $vehicles_xml['vehicles']['s'.$row['class_name']]['transportmaxbackpacks'];
-									$BackpackName = $vehicles_xml['vehicles']['s'.$row['class_name']]['Name'];
+								$class = strtolower($row['class_name']);
+								if (array_key_exists('s'.$class, $vehicles_xml['vehicles'])){ 
+									$maxmagazines = $vehicles_xml['vehicles']['s'.$class]['transportmaxmagazines'];
+									$maxweaps = $vehicles_xml['vehicles']['s'.$class]['transportmaxweapons'];
+									$maxbacks = $vehicles_xml['vehicles']['s'.$class]['transportmaxbackpacks'];
+									$VehicleName = $vehicles_xml['vehicles']['s'.$class]['Name'];
 								}
 								
-								if (count($Backpack) > 0) { 
-									$bpweaponscount = count($Backpack[0][0]);
+								if (count($Vehicle) > 0) { 
+									$bpweaponscount = count($Vehicle[0][0]);
 									$bpweapons = array();
 									for ($m = 0; $m < $bpweaponscount; $m++) { 
-											for ($mi=0; $mi<$Backpack[0][1][$m]; $mi++) { $bpweapons[] = $Backpack[0][0][$m]; }
+											for ($mi=0; $mi < $Vehicle[0][1][$m]; $mi++) { $bpweapons[] = $Vehicle[0][0][$m]; }
 									}							
 
-								$bpitemscount = count($Backpack[1][0]);
+								$bpitemscount = count($Vehicle[1][0]);
 								$bpitems = array();
 								for ($m = 0; $m < $bpitemscount; $m++){ 
-									for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpitems[] = $Backpack[1][0][$m]; }
+									for ($mi = 0; $mi < $Vehicle[1][1][$m]; $mi++) { $bpitems[] = $Vehicle[1][0][$m]; }
 								}
 								
-								$bpackscount = count($Backpack[2][0]);
+								$bpackscount = count($Vehicle[2][0]);
 								$bpacks = array();
 								for ($m = 0; $m < $bpackscount; $m++){ 
-									for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) {$bpacks[] = $Backpack[2][0][$m]; }
+									for ($mi = 0; $mi < $Vehicle[2][1][$m]; $mi++) { $bpacks[] = $Vehicle[2][0][$m]; }
 								}
 								
-								$Backpack = (array_merge($bpweapons, $bpacks, $bpitems));
+								$Vehicle = (array_merge($bpweapons, $bpacks, $bpitems));
 								$freebacks = $maxbacks;
-								$backpackslots = 0;
-								$backpackitem = array();
+								$Vehicleslots = 0;
+								$Vehicleitem = array();
 								$bpweapons = array();
-								for ($i = 0; $i < count($Backpack); $i++) { 
-									if(array_key_exists('s'.$Backpack[$i],$items_xml['items'])){ 
-										switch($items_xml['items']['s'.$Backpack[$i]]['Type']){ 
+								for ($i = 0; $i < count($Vehicle); $i++) { 
+									if(array_key_exists('s'.$Vehicle[$i],$items_xml['items'])){ 
+										switch ($items_xml['items']['s'.$Vehicle[$i]]['Type']){ 
 											case 'binocular':
-												$backpackitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
+												$Vehicleitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 												break;
 											case 'rifle':
-												$bpweapons[] = array('image' => '<img style="max-width:84px;max-height:84px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
+												$bpweapons[] = array('image' => '<img style="max-width:84px;max-height:84px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 												break;
 											case 'pistol':
-												$bpweapons[] = array('image' => '<img style="max-width:84px;max-height:84px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
+												$bpweapons[] = array('image' => '<img style="max-width:84px;max-height:84px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 												break;
 											case 'backpack':
-												$bpweapons[] = array('image' => '<img style="max-width:84px;max-height:84px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
+												$bpweapons[] = array('image' => '<img style="max-width:84px;max-height:84px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 												$freebacks = $freebacks - 1;
 												break;
 											case 'heavyammo':
-												$backpackitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
+												$Vehicleitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 												break;
 											case 'smallammo':
-												$backpackitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
+												$Vehicleitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 												break;
 											case 'item':
-												$backpackitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Backpack[$i].'.png" title="'.$Backpack[$i].'" alt="'.$Backpack[$i].'"/>', 'slots' => $items_xml['items']['s'.$Backpack[$i]]['Slots']);
+												$Vehicleitem[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 												break;
 											default:
 												$s = '';
@@ -175,8 +173,8 @@
 								$jl = 0;
 								for ($j = 0; $j < $magazines; $j++) { 
 									if ($jk > 6){$jk = 0; $jl++; }
-									if ($j < count($backpackitem)) { 
-										echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$backpackitem[$j]['image'].'</div>';
+									if ($j < count($Vehicleitem)) { 
+										echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;">'.$Vehicleitem[$j]['image'].'</div>';
 										$freeslots = $freeslots - 1;
 									} else { 
 										echo '<div class="gear_slot" style="margin-left:'.($jx+(49*$jk)).'px;margin-top:'.($jy+(49*$jl)).'px;width:47px;height:47px;"></div>';
@@ -190,7 +188,7 @@
 								<?php echo 'Mags:&nbsp;'.$freeslots.'&nbsp;/&nbsp;'.$maxmagazines.'&nbsp;Weaps:&nbsp;'.$freeweaps.'&nbsp;/&nbsp;'.$maxweaps.'&nbsp;Backs:&nbsp;'.$freebacks.'&nbsp;/&nbsp;'.$maxbacks.'&nbsp;';?>
 							</div>
 						</div>
-						<!-- Backpack -->
+						<!-- Vehicle -->
 						
 						<!-- Hitpoints -->
 						<div class="vehicle_hitpoints">	
