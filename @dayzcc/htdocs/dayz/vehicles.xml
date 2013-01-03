@@ -73,7 +73,7 @@
 		<cargo>1</cargo>
 	</sdatsun1_civil_3_open>
 	<sfishing_boat>
-		<Type>lboat</Type>
+		<Type>lBoat</Type>
 		<Name>Fishing Boat</Name>
 		<transportmaxweapons>0</transportmaxweapons>
 		<transportmaxmagazines>0</transportmaxmagazines>
@@ -305,7 +305,7 @@
 		<cargo>3</cargo>
 	</sskodared>
 	<ssmallboat_1>
-		<Type>mboat</Type>
+		<Type>mBoat</Type>
 		<Name>Boat</Name>
 		<transportmaxweapons>0</transportmaxweapons>
 		<transportmaxmagazines>0</transportmaxmagazines>
@@ -313,7 +313,7 @@
 		<cargo>0</cargo>
 	</ssmallboat_1>
 	<ssmallboat_2>
-		<Type>mboat</Type>
+		<Type>mBoat</Type>
 		<Name>Boat</Name>
 		<transportmaxweapons>0</transportmaxweapons>
 		<transportmaxmagazines>0</transportmaxmagazines>
