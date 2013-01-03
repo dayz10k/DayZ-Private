@@ -18,7 +18,7 @@
 
 <div id="page-heading">
 	<title><?php echo $row['class_name']." - ".$sitename; ?></title>
-	<h1><?php echo $row['class_name']." - ".$row['id']." - Last save: ".$row['last_updated']." - Position: .".$row['worldspace']; ?></h1>
+	<h1><?php echo $row['class_name']." - ".$row['id']." - Last save: ".$row['last_updated']." - Position: ".$row['worldspace']; ?></h1>
 </div>
 
 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">

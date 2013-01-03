@@ -12,10 +12,11 @@ if (isset($_SESSION['user_id']))
 				<td>
 					<select name="type" class="styledselect">
 						<option value="player">Player</option>
-						<option value="item">Player Inventory</option>
+						<option value="playerinv">Player Inventory</option>
 						<option value="vehicle">Vehicle</option>
-						<option value="container">Vehicle Inventory</option>
-					</select> 
+						<option value="vehicleinv">Vehicle Inventory</option>
+						<option value="tent">Tents</option>
+					</select>
 				</td>
 				<td>
 					<input type="submit" class="submit-login" />

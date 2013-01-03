@@ -32,11 +32,11 @@ function markers_vehicle($res, $world) {
 		$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
 		$type = $row['class_name'];
-		$class = strtolower($row['class_name']);
-		if (array_key_exists('s'.$class, $vehicles_xml['vehicles'])) { $class = $vehicles_xml['vehicles']['s'.$class]['Type']; } else { $class = "Car"; }
+		$ltype = strtolower($type);
+		if (array_key_exists('s'.$ltype, $vehicles_xml['vehicles'])) { $class = $vehicles_xml['vehicles']['s'.$ltype]['Type']; } else { $class = "Car"; }
 
 		require_once('modules/calc.php');
-		$description = '<h2><a href="index.php?view=info&show=4&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img style="width: 100px;" src="images/vehicles/'.(strtolower($type)).'.png"\></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
+		$description = '<h2><a href="index.php?view=info&show=4&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img style="width: 100px;" src="images/vehicles/'.$ltype.'.png"\></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
 		$markers .= "L.marker([".(world_y($y, $world) / 10).", ".(world_x($x, $world) / 10)."], { icon: ".$class.", title: '".$type." (".$row['id'].")' }).addTo(map).bindPopup('".$description."'); ";
 	};
 	
@@ -58,11 +58,11 @@ function markers_deployable($res, $world) {
 		$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
 		$type = $row['class_name'];
-		$class = strtolower($type);
-		if (array_key_exists('s'.$class, $vehicles_xml['vehicles'])) { $class = $vehicles_xml['vehicles']['s'.$class]['Type']; } else { $class = "Car"; }
+		$ltype = strtolower($type);
+		if (array_key_exists('s'.$ltype, $vehicles_xml['vehicles'])) { $class = $vehicles_xml['vehicles']['s'.$ltype]['Type']; } else { $class = "Car"; }
 
 		require_once('modules/calc.php');
-		$description = '<h2><a href="index.php?view=info&show=5&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img style="width: 100px;" src="images/vehicles/'.(strtolower($type)).'.png"\></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
+		$description = '<h2><a href="index.php?view=info&show=5&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img style="width: 100px;" src="images/vehicles/'.$ltype.'.png"\></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align:top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
 		$markers .= "L.marker([".(world_y($y, $world) / 10).", ".(world_x($x, $world) / 10)."], { icon: ".$class.", title: '".$type." (".$row['id'].")' }).addTo(map).bindPopup('".$description."'); ";
 	};
 	
