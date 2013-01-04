@@ -69,22 +69,20 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<p>Missions can be edited/created from launching DayZ with or without rMod:</p><br />
 					<p>1. At the main menu press ALT + E. Select your world [World]</p><br />
 					<p>2. Once you are in the 3D editor do the following:</p>
-					<ul>
-						<li>Place "Center (F10)" anywhere on map [Just hit OK].</li>
-						<li>Place "Group (F2)" anywhere on map [Just hit OK].</li>
-						<li>Place "Unit (F1)" anywhere on map [Just hit OK].</li>
-						<li>Your mission can be saved now!</li>
-					</ul>
+					<br />
+					<li>Place "Center (F10)" anywhere on map [Just hit OK].</li>
+					<li>Place "Group (F2)" anywhere on map [Just hit OK].</li>
+					<li>Place "Unit (F1)" anywhere on map [Just hit OK].</li>
+					<li>Your mission can be saved now!</li>
 					<br />
 					<p>3. Find anywhere you like on the map and RIGHT CLICK -> "default camera" (takes you to 3d).</p><br />
 					<p>4. Upper-Right Menu select "Vehicle (F5), double click the ground, select the vehicle/building to place, hit ok.</p><br />
 					<p>5. Left click and hold yellow circle for object and drag to place. Hold SHIFT while holding left mouse button to rotate. Hold ALT while holding left mouse to raise or lower object.</p><br />
 					<p>6. Hover over the object and hit DELETE to remove.</p><br />
 					<p>7. Save your progress:</p>
-					<ul>
-						<li>Save your vehicles as "User mission" under name [Your Mission Name]</li>
-						<li>Save your buildings as "User mission" under name [Your Mission Name]</li>
-					</ul>
+					<br />
+					<li>Save your vehicles as "User mission" under name [Your Mission Name]</li>
+					<li>Save your buildings as "User mission" under name [Your Mission Name]</li>
 					<br />
 					<p>8. Copy files to working directory:</p><br />
 					<p><strong><font color="green">FOR VEHICLES:</font></strong></p>
