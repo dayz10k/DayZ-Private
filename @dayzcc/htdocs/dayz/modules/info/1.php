@@ -33,34 +33,36 @@
 			$icount = "";
 			
 			if (is_array($curitem)) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
-			if (array_key_exists('s'.$curitem, $items_xml['items'])){ 
-				switch($items_xml['items']['s'.$curitem]['Type']){ 
-					case 'binocular':
-						$binocular[] = '<img style="max-width:78px;max-height:78px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
-						break;
-					case 'rifle':
-						$rifle = '<img style="max-width:220px;max-height:92px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
-						break;
-					case 'pistol':
-						$pistol = '<img style="max-width:92px;max-height:92px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
-						break;
-					case 'backpack':
-						break;
-					case 'heavyammo':
-						$heavyammo[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/>', 'slots' => $items_xml['items']['s'.$curitem]['Slots']);
-						break;
-					case 'smallammo':
-						$smallammo[] = '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/>';
-						break;
-					case 'item':
-						$usableitems[] = '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
-						break;
-					default:
-						$s = '';
+			if (array_key_exists('s'.$curitem, $items_xml['items'])) {
+				if (isset($items_xml['items']['s'.$curitem]['Type'])) {
+					switch($items_xml['items']['s'.$curitem]['Type']) { 
+						case 'binocular':
+							$binocular[] = '<img style="max-width:78px;max-height:78px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
+							break;
+						case 'rifle':
+							$rifle = '<img style="max-width:220px;max-height:92px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
+							break;
+						case 'pistol':
+							$pistol = '<img style="max-width:92px;max-height:92px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
+							break;
+						case 'backpack':
+							break;
+						case 'heavyammo':
+							$heavyammo[] = array('image' => '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/>', 'slots' => $items_xml['items']['s'.$curitem]['Slots']);
+							break;
+						case 'smallammo':
+							$smallammo[] = '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/>';
+							break;
+						case 'item':
+							$usableitems[] = '<img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.'" alt="'.$curitem.'"/>';
+							break;
+						default:
+							$s = '';
+					}
+				} else {
+					$debug .= 'Error finding:&nbsp;'.$curitem.';<br />';
 				}
-			}
-			else
-			{ 
+			} else { 
 				$debug .= 'Unknown item:&nbsp;'.$curitem.';<br />';
 			}
 		}
