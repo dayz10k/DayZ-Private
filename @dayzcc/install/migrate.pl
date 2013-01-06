@@ -38,7 +38,7 @@ print "\n";
 
 my $schema1 = "Bliss";
 my $schema2 = "Controlcenter";
-my $version1 = "0.35";
+my $version1 = "0.36";
 my $version2 = "0.07";
 
 print "Trying to connect to MySQL server on $db{'host'}, database $db{'name'} as $db{'user'}\n";
