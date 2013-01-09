@@ -12,8 +12,10 @@
 #define GenderSelect true
 // Enable kill messages
 #define KillMsgs true
+#define KillMsgsIngame true
 // Enable hit messages
 #define HitMsgs true
+#define HitMsgsIngame false
 
 // Spawn helicopter crashes
 #define SpawnHelis true
