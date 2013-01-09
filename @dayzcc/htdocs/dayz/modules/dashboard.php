@@ -52,7 +52,7 @@ if (isset($_SESSION['user_id']))
 										echo "<p>Server did not respond within the specified time.</p>";
 									} else {
 										echo "<h2>".$data['gq_hostname']."</h2>
-											<h2>Address:</h2><h3>".(gethostbyname(trim(`hostname`))).":".$data['gq_port']."</h3>
+											<h2>Local Address:</h2><h3>".(gethostbyname(trim(`hostname`))).":".$data['gq_port']."</h3>
 											<h2>Mods:</h2><h3>".$data['gq_mod']."</h3>
 											<h2>Max players:</h2><h3>".$data['gq_maxplayers']."</h3>
 											<h2>Online players:</h2><h3>".$data['gq_numplayers']."</h3>";
