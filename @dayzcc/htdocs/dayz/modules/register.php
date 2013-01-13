@@ -46,7 +46,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 								<tr>
 									<th valign="top">Permissions:</th>
 									<td><input type="text" class="inp-form" name="permission" /></td>
-									<td>&nbsp;&nbsp;(control, table, map, user, whitelist, tools)</td>
+									<td>&nbsp;&nbsp;(control, table, map, user, whitelist, tools, feed)</td>
 									<td></td>
 								</tr>
 								<tr>

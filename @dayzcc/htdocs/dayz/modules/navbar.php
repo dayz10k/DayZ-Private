@@ -5,7 +5,6 @@ if (isset($_SESSION['user_id']))
 	
 	<div class="nav-outer-repeat"> 
 		<div class="nav-outer"> 
-				<!-- start nav-right -->
 				<div id="nav-right">
 					<div class="nav-divider">&nbsp;</div>
 					<?php if (strpos($_SESSION['user_permissions'], "user") !== false) { ?>
@@ -14,9 +13,7 @@ if (isset($_SESSION['user_id']))
 					<a href="index.php?logout" id="logout"><img src="images/forms/nav_logout.gif" width="64" height="14" alt="" /></a>
 					<div class="clear">&nbsp;</div>
 				</div>
-				<!-- end nav-right -->
 
-				<!--  start nav -->
 				<div class="mc-nav">
 					<div class="table">
 						<ul class="select menutop level1">
@@ -69,6 +66,8 @@ if (isset($_SESSION['user_id']))
 										<li class="li-mass-mail-users"><a href="index.php?view=map&show=7" class="class:massmail item">All</a></li>
 									</ul>
 								</li>
+							<?php } if (strpos($_SESSION['user_permissions'], "feed") !== false) { ?>
+								<li class="li-users parent root"><a href="index.php?view=feed" style="color:#FFF;" class="class:massmail item">Feed</a></li>
 							<?php } if (strpos($_SESSION['user_permissions'], "tools") !== false) { ?>
 								<li class="li-users parent root"><a href="index.php?view=tools" style="color:#FFF;" class="class:massmail item">Tools</a></li>
 							<?php } ?>
@@ -77,7 +76,6 @@ if (isset($_SESSION['user_id']))
 					</div>
 					<div class="clear"></div>
 				</div>
-				<!-- stop nav -->
 		</div>
 		<div class="clear"></div>
 	</div>
