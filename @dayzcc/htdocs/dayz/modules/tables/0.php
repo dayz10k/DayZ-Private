@@ -35,7 +35,7 @@
 				$ip = $players[$i][1];
 				$ping = $players[$i][2];
 	
-				$res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '".(mysql_real_escape_string($playername))."' ORDER BY survivor.last_updated DESC LIMIT 1;") or die(mysql_error());
+				$res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '%".(mysql_real_escape_string($playername))."%' ORDER BY survivor.last_updated DESC LIMIT 1;") or die(mysql_error());
 				while ($row = mysql_fetch_array($res)) { $tablerows .= row_online_player($row, $players[$i], $serverworld); }
 			}
 		}
