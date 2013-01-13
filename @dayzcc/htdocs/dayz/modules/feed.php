@@ -62,21 +62,21 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "feed
 				
 				if ($order == "1") {
 					$tablerows .= "<tr>
-						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$time."</td>
-						<td align=\"center\" class=\"gear_preview\"><font color=\"#".$color."\"><b>".$type."</b></font></td>
+						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$time."</font></td>
+						<td align=\"center\" class=\"gear_preview\"><font color=\"#".$color."\">".$type."</font></td>
 						<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$attacker_row['unique_id']."&cid=".$attacker_row['id']."\">".$attacker."</a></td>
 						<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$victim_row['unique_id']."&cid=".$victim_row['id']."\">".$victim."</a></td>
-						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$range."</td>
-						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$weapon."</td>
+						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$range."</font></td>
+						<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=search&type=playerinv&search=".$weapon."\">".$weapon."</a></td>
 						</tr>";
 				} else {
 					$tablerows = "<tr>
 						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$time."</font></td>
-						<td align=\"center\" class=\"gear_preview\"><font color=\"#".$color."\"><b>".$type."</b></font></td>
+						<td align=\"center\" class=\"gear_preview\"><font color=\"#".$color."\">".$type."</font></td>
 						<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$attacker_row['unique_id']."&cid=".$attacker_row['id']."\">".$attacker."</a></td>
 						<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=1&id=".$victim_row['unique_id']."&cid=".$victim_row['id']."\">".$victim."</a></td>
 						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$range."</font></td>
-						<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$weapon."</font></td>
+						<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=search&type=playerinv&search=".$weapon."\">".$weapon."</a></td>
 						</tr>".$tablerows;
 				}
 			}
