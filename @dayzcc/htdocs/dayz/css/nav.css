@@ -129,3 +129,17 @@ body #toolbar li:hover li:hover a,
 .mc-pagination-container .pages:hover a,
 .mc-pagination-container .pages:hover span,
 .mc-pagination .page-button a:hover { color: #FFFFFF; }
+
+/* Right Navbar */
+#nav-holder	{ margin: 0 auto; max-width: 1260px; min-width: 780px; text-align: left; }
+.nav-outer-repeat { background: url(../images/forms/repeat.jpg) repeat-x; height: 38px; }
+.nav-outer { margin: 0 auto; max-width: 1260px; min-width: 850px; }
+#nav-right { float: right; position: relative; width: 225px; z-index: 0; }
+#nav-right a	{ display: block; float: left; margin: 0px 0 0 0; }
+a#logout { margin: 10px 0 0 5px; }
+.nav { float: left; font-family: Tahoma; font-size: 13px; height: 38px; position: relative; width: 600px; min-width: 600px; z-index: 500; }
+.nav-divider { background: url(../images/forms/divider.jpg) top no-repeat; float: left; height: 40px; width: 15px; }
+.nav .table { display: table; }
+.nav .select,
+.nav .current { display: table-cell; float: left; list-style: none; margin: 0 0px 0 0; padding: 0; white-space: nowrap; }
+.nav li { float: left; height: auto; margin: 0; padding: 0; }

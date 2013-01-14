@@ -6,8 +6,8 @@ if (isset($_SESSION['user_id']))
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;" />
-	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
-	<link rel="stylesheet" href="css/menu.css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="default" />
+	<link rel="stylesheet" href="css/nav.css" />
 	<link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" />
 	<script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 	<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
