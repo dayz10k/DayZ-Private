@@ -46,7 +46,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 						$search = '';
 					}
 					
-					if (!empty($_POST) || !empty($_GET))
+					if ($search != '')
 					{
 						//echo $_POST['search']."<br />".$_POST['type'];
 						error_reporting (E_ALL ^ E_NOTICE);

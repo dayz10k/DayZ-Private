@@ -58,7 +58,7 @@ if (!empty($_POST))
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Login - <?php echo $sitename; ?></title>
-	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" title="default" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" title="default" />
 	<script src="js/pngFix.js" type="text/javascript"></script>
 	<script type="text/javascript"> $(document).ready(function(){$(document).pngFix( ); }); </script>
 </head>
