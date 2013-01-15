@@ -60,6 +60,7 @@ if (isset($_SESSION['user_id']))
 		Tent = new Icon({ iconUrl: 'images/icons/Tent.png' }),
 		Hedgehog = new Icon({ iconUrl: 'images/icons/Hedgehog.png' }),
 		Sandbag = new Icon({ iconUrl: 'images/icons/Sandbag.png' }),
+		Object = new Icon({ iconUrl: 'images/icons/Object.png' }),
 		Player = new Icon({ iconUrl: 'images/icons/player.png' }),
 		PlayerDead = new Icon({ iconUrl: 'images/icons/player_dead.png' });
 	

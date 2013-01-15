@@ -464,6 +464,103 @@
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>0</cargo>
 	</swire_cat1>
+	
+	<swire2>
+		<Type>Wire</Type>
+		<Name>Wire</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</swire2>
+	<ssandbag2_dz>
+		<Type>Sandbag</Type>
+		<Name>Sandbag</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</ssandbag2_dz>
+	<ssandbag3_dz>
+		<Type>Sandbag</Type>
+		<Name>Sandbag</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</ssandbag3_dz>
+	<ssandbagnest>
+		<Type>Object</Type>
+		<Name>Sandbag Nest</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</ssandbagnest>
+	<scamonet>
+		<Type>Object</Type>
+		<Name>CamoNet</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</scamonet>
+	<sdeerstand>
+		<Type>Object</Type>
+		<Name>Deer Stand</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</sdeerstand>
+	<swatchtower>
+		<Type>Object</Type>
+		<Name>Watch Tower</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</swatchtower>
+	<shbarrier>
+		<Type>Object</Type>
+		<Name>Barrier</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</shbarrier>
+	<sscaffolding>
+		<Type>Object</Type>
+		<Name>Scaffolding</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</sscaffolding>
+	<sladdersmall>
+		<Type>Object</Type>
+		<Name>Small Ladder</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</sladdersmall>
+	<sladderlarge>
+		<Type>Object</Type>
+		<Name>Large Ladder</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</sladderlarge>
+	<sgate1_dz>
+		<Type>Object</Type>
+		<Name>Gate</Name>
+		<transportmaxweapons>0</transportmaxweapons>
+		<transportmaxmagazines>0</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>0</cargo>
+	</sgate1_dz>
 
 	<sl39_tk_ep1>
 		<Type>Plane</Type>

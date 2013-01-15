@@ -52,16 +52,18 @@ if ($m2->get_current_version()) { printf("Current ".$schema2." schema version is
 print "\n";
 
 print "Running database migration ...\n\n";
-$m1->migrate or die "> Error: Migration failed!\n";
-$m2->migrate or die "> Error: Migration failed!\n";
+$m1->migrate or die "> Error: Bliss Migration failed!\n";
+$m2->migrate or die "> Error: Controlcenter Migration failed!\n";
 print "\n";
 print "> Completed ".$schema1." update to version $version1\n";
 print "> Completed ".$schema2." update to version $version2\n";
 print "\n";
 
 print "Running optional package migration ...\n\n";
-$m1 = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissBuildings", desired_version => "0.01", dbh => $dbh);
-$m1->migrate;
-$m1 = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissInvCust", desired_version => "0.02", dbh => $dbh);
-$m1->migrate;
-print "\n> Completed optional package update";
+$m = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissBuildings", desired_version => "0.01", dbh => $dbh);
+$m->migrate;
+$m = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissInvCust", desired_version => "0.02", dbh => $dbh);
+$m->migrate;
+$m = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissCustom", desired_version => "0.01", dbh => $dbh);
+$m->migrate;
+print "> Completed optional package update";
