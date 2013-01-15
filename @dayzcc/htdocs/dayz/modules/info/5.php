@@ -36,7 +36,7 @@
 				<div id="table-content">
 					<div id="gear_vehicle">
 						<div class="gear_info">
-							<img class="playermodel" src='images/vehicles/<?php echo $row['class_name']; ?>.png'/>
+							<img class="playermodel" src='images/vehicles/<?php echo strtolower($row['class_name']); ?>.png'/>
 							<div id="gps" style="margin-left:46px;margin-top:54px">
 								<div class="gpstext" style="font-size: 22px;width:60px;text-align: left;margin-left:47px;margin-top:13px">
 								<?php echo round(($Worldspace[0]/100)); ?>
@@ -184,7 +184,7 @@
 							?>
 							</div>
 							<div class="backpackname">
-								<?php echo 'Mags:&nbsp;'.$freeslots.'&nbsp;/&nbsp;'.$maxmagazines.'&nbsp;Weaps:&nbsp;'.$freeweaps.'&nbsp;/&nbsp;'.$maxweaps.'&nbsp;Backs:&nbsp;'.$freebacks.'&nbsp;/&nbsp;'.$maxbacks.'&nbsp;'; ?>
+								<?php echo 'Magazines:&nbsp;'.$freeslots.'&nbsp;/&nbsp;'.$maxmagazines.'&nbsp;Weapons:&nbsp;'.$freeweaps.'&nbsp;/&nbsp;'.$maxweaps.'&nbsp;Backs:&nbsp;'.$freebacks.'&nbsp;/&nbsp;'.$maxbacks.'&nbsp;'; ?>
 							</div>
 						</div>
 						<!-- Deployable -->

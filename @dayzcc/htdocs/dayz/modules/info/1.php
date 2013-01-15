@@ -182,6 +182,9 @@
 								$jk++;
 							}
 						?>
+						<div class="backpackname">
+							<?php echo "Start Time: ".$row['start_time']." ".$debug; ?>
+						</div>
 					</div>
 					<!-- Backpack -->
 					<div class="gear_backpack">
@@ -281,7 +284,6 @@
 					<!-- Backpack -->
 				</div>			
 			</div>
-			<?php echo "Start Time: ".$row['start_time']." ".$debug; ?>
 			<div class="clear"></div>
 		</div>
 		</td>
