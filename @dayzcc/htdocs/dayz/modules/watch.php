@@ -1,8 +1,16 @@
+<?php
+	$timeoffset = 0;
+	
+	error_reporting(0);
+	$ini = parse_ini_file(trim($pathserver, $exeserver)."HiveExt.ini", true);
+	$timeoffset = $ini['Time']['Offset'];
+?>
+
 <OBJECT CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" CODEBASE="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" flashVars="timeOffset=-4" WIDTH="192px" HEIGHT="192px">
 	<PARAM NAME="movie" VALUE="flash/clock.swf">
 	<PARAM NAME="quality" VALUE="high">
 	<PARAM NAME="bgcolor" VALUE="#FFFFFF">
 	<PARAM NAME="wmode" VALUE="transparent">
 	<PARAM NAME="menu" VALUE="false">
-	<EMBED SRC="flash/clock.swf" WIDTH="100px" HEIGHT="100px" flashVars="timeOffset=-4" QUALITY="high" WMODE="transparent" MENU="false"></EMBED>
+	<EMBED SRC="flash/clock.swf" WIDTH="100px" HEIGHT="100px" flashVars="timeOffset=<?php echo $timeoffset; ?>" QUALITY="high" WMODE="transparent" MENU="false"></EMBED>
 </OBJECT>
