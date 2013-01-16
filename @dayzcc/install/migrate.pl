@@ -64,6 +64,6 @@ $m = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', sche
 $m->migrate;
 $m = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissInvCust", desired_version => "0.02", dbh => $dbh);
 $m->migrate;
-$m = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissCustom", desired_version => "0.01", dbh => $dbh);
+$m = DBIx::Migration::Directories->new(base => dirname(__FILE__).'/schema', schema => "BlissCustom", desired_version => "0.02", dbh => $dbh);
 $m->migrate;
 print "> Completed optional package update";
