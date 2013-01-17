@@ -2,6 +2,7 @@
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "control") !== false))
 { 
 	$pagetitle = "Server control";
+	
 	?>
 	
 	<div id="page-heading">

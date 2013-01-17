@@ -77,7 +77,7 @@ if (isset($_SESSION['user_id']))
 
 							// Insert to database
 							
-							$resultCheckQuery = mysql_query("SELECT * FROM `instance_building`;");
+							$resultCheckQuery = mysql_query("SELECT * FROM `instance_building`");
 							while ($row = mysql_fetch_array($resultCheckQuery)) { if ($row['worldspace'] == $pos) { $exists = true; } }
 							
 							if (!$exists)
@@ -85,13 +85,13 @@ if (isset($_SESSION['user_id']))
 								$error = false;
 								
 								$matchFound = false;
-								$resultClassNameQuery = mysql_query("SELECT * FROM `building`;");
+								$resultClassNameQuery = mysql_query("SELECT * FROM `building`");
 								while ($row = mysql_fetch_array($resultClassNameQuery, MYSQL_ASSOC)) { if ($strings[1] == $row['class_name']) { $matchFound = true; } }
 
 								if (!$matchFound)
 								{ 
 									//echo "Inserting new Class Name";
-									if (!mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]');")) { echo mysql_error(); }
+									if (!mysql_query("INSERT INTO `building` (`class_name`) VALUES ('$strings[1]')")) { echo mysql_error(); }
 								}
 
 								$time = date("y-m-d H:i:s", time());
@@ -100,7 +100,7 @@ if (isset($_SESSION['user_id']))
 								$userDataIDQuery = mysql_fetch_array($resultIDQuery, MYSQL_ASSOC);
 								$building_id = $userDataIDQuery['id'];
 								
-								if (!mysql_query("INSERT INTO `instance_building` (`building_id`, `instance_id`, `worldspace`, `created`) VALUES ('$building_id', '$serverinstance', '$pos', '$time');")) { echo mysql_error()."<br />"; $error = true; }
+								if (!mysql_query("INSERT INTO `instance_building` (`building_id`, `instance_id`, `worldspace`, `created`) VALUES ('$building_id', '$serverinstance', '$pos', '$time')")) { echo mysql_error()."<br />"; $error = true; }
 								
 								$buildingcount++;
 								

@@ -55,22 +55,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query = $query." ORDER BY survivor.name $ordered";
+					$query .= " ORDER BY survivor.name $ordered";
 					break;
 				case 2:
-					$query = $query." ORDER BY survivor.unique_id` $ordered";
+					$query .= " ORDER BY survivor.unique_id` $ordered";
 					break;
 				case 3:
-					$query = $query." ORDER BY survivor.worldspace $ordered";
+					$query .= " ORDER BY survivor.worldspace $ordered";
 					break;
 				case 4:
-					$query = $query." ORDER BY survivor.medical $ordered";
+					$query .= " ORDER BY survivor.medical $ordered";
 					break;
 				case 5:
-					$query = $query." ORDER BY survivor.inventory $ordered";
+					$query .= " ORDER BY survivor.inventory $ordered";
 					break;
 				case 6:
-					$query = $query." ORDER BY survivor.backpack $ordered";
+					$query .= " ORDER BY survivor.backpack $ordered";
 					break;
 			};
 			
@@ -81,22 +81,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query = $query." ORDER BY survivor.name $ordered";
+					$query .= " ORDER BY survivor.name $ordered";
 					break;
 				case 2:
-					$query = $query." ORDER BY survivor.unique_id $ordered";
+					$query .= " ORDER BY survivor.unique_id $ordered";
 					break;
 				case 3:
-					$query = $query." ORDER BY survivor.worldspace $ordered";
+					$query .= " ORDER BY survivor.worldspace $ordered";
 					break;
 				case 4:
-					$query = $query." ORDER BY survivor.medical $ordered";
+					$query .= " ORDER BY survivor.medical $ordered";
 					break;
 				case 5:
-					$query = $query." ORDER BY survivor.inventory $ordered";
+					$query .= " ORDER BY survivor.inventory $ordered";
 					break;
 				case 6:
-					$query = $query." ORDER BY survivor.backpack $ordered";
+					$query .= " ORDER BY survivor.backpack $ordered";
 					break;
 			};
 			
@@ -107,22 +107,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query = $query." ORDER BY survivor.name $ordered";
+					$query .= " ORDER BY survivor.name $ordered";
 					break;
 				case 2:
-					$query = $query." ORDER BY survivor.unique_id $ordered";
+					$query .= " ORDER BY survivor.unique_id $ordered";
 					break;
 				case 3:
-					$query = $query." ORDER BY survivor.worldspace $ordered";
+					$query .= " ORDER BY survivor.worldspace $ordered";
 					break;
 				case 4:
-					$query = $query." ORDER BY survivor.medical $ordered";
+					$query .= " ORDER BY survivor.medical $ordered";
 					break;
 				case 5:
-					$query = $query." ORDER BY survivor.inventory $ordered";
+					$query .= " ORDER BY survivor.inventory $ordered";
 					break;
 				case 6:
-					$query = $query." ORDER BY survivor.backpack $ordered";
+					$query .= " ORDER BY survivor.backpack $ordered";
 					break;
 			};
 			
@@ -133,22 +133,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query = $query." ORDER BY `id` $ordered";
+					$query .= " ORDER BY `id` $ordered";
 					break;
 				case 2:
-					$query = $query." ORDER BY `class_name` $ordered";
+					$query .= " ORDER BY `class_name` $ordered";
 					break;
 				case 3:
-					$query = $query." ORDER BY `damage` $ordered";
+					$query .= " ORDER BY `damage` $ordered";
 					break;
 				case 4:
-					$query = $query." ORDER BY `worldspace` $ordered";
+					$query .= " ORDER BY `worldspace` $ordered";
 					break;
 				case 5:
-					$query = $query." ORDER BY `inventory` $ordered";
+					$query .= " ORDER BY `inventory` $ordered";
 					break;
 				case 6:
-					$query = $query." ORDER BY `parts` $ordered";
+					$query .= " ORDER BY `parts` $ordered";
 					break;
 			};
 			
@@ -159,19 +159,19 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query = $query." ORDER BY instance_deployable.id $ordered";
+					$query .= " ORDER BY instance_deployable.id $ordered";
 					break;
 				case 2:
-					$query = $query." ORDER BY `unique_id` $ordered";
+					$query .= " ORDER BY `unique_id` $ordered";
 					break;
 				case 3:
-					$query = $query." ORDER BY `class_name` $ordered";
+					$query .= " ORDER BY `class_name` $ordered";
 					break;
 				case 4:
-					$query = $query." ORDER BY `worldspace` $ordered";
+					$query .= " ORDER BY `worldspace` $ordered";
 					break;
 				case 5:
-					$query = $query." ORDER BY `inventory` $ordered";
+					$query .= " ORDER BY `inventory` $ordered";
 					break;
 			};
 			

@@ -15,7 +15,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 				if (strlen($name) < 2 || strlen($guid) != 32) { 
 					echo "<div id='page-heading'><h2>Entered information is too short!</h2></div>";
 				} else { 
-					mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1');") or die(mysql_error());
+					mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1')") or die(mysql_error());
 					echo "<div id='page-heading'><h2>".$name." (".$guid.") was added to the whitelist!</h2></div>";
 				}
 			} else { 
@@ -34,7 +34,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 	}
 		
 	$tablerows = '';
-	$res = mysql_query("select * from `whitelist`;") or die(mysql_error());
+	$res = mysql_query("SELECT * FROM `whitelist`") or die(mysql_error());
 	while ($row = mysql_fetch_array($res)){ 
 		if ($row['is_whitelisted'] == 1) { 
 			$button = "Off";

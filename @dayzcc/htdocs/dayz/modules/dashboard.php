@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id']))
 	$pagetitle = "Dashboard";
 
 	$logs = "";
-	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 100;") or die(mysql_error());
+	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 100") or die(mysql_error());
 	while ($row = mysql_fetch_array($res)) {$logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13); }
 	
 	$xml = file_get_contents('/quicklinks.xml', true);

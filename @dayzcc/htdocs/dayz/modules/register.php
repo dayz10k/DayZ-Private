@@ -122,7 +122,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			$errort .= 'Password must be at least 6 characters.<br />';
 		}
 		
-		$rescheck = mysql_query("SELECT `id` FROM `users` WHERE `login` = '{$login }' LIMIT 1") or die(mysql_error());
+		$rescheck = mysql_query("SELECT `id` FROM `users` WHERE `login` = '{$login}' LIMIT 1") or die(mysql_error());
 		if (mysql_num_rows($rescheck) == 1) { 
 			$error = true;
 			$errort .= 'Login already used.<br />';
@@ -133,8 +133,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			$salt = GenerateSalt();
 			$hashed_password = md5(md5($password).$salt);
 			
-			mysql_query("INSERT INTO `users` SET `login` = '{$login }', `password` = '{$hashed_password }', `salt` = '{$salt }', `permissions` = '{$permission }'") or die(mysql_error());
-			mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('REGISTER USER: {$login }','{$_SESSION['login']}',NOW())");
+			mysql_query("INSERT INTO `users` SET `login` = '{$login}', `password` = '{$hashed_password}', `salt` = '{$salt}', `permissions` = '{$permission }'") or die(mysql_error());
+			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('REGISTER USER: {$login}', '{$_SESSION['login']}', NOW())");
 			
 			?>
 

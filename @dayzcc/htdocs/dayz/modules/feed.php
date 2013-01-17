@@ -55,8 +55,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "feed
 				$attacker = preg_replace("#\b[A-Z] [0-9]\-[0-9]\-[A-Z]\:[0-9] \(#", "", $matches[4]);
 				$attacker = preg_replace("#\) REMOTE\b#", "", $attacker);
 				
-				$attacker_res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '".(mysql_real_escape_string($attacker))."' ORDER BY survivor.last_updated DESC LIMIT 1;");
-				$victim_res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '".(mysql_real_escape_string($victim))."' ORDER BY survivor.last_updated DESC LIMIT 1;");
+				$attacker_res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '".(mysql_real_escape_string($attacker))."' ORDER BY survivor.last_updated DESC LIMIT 1");
+				$victim_res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '".(mysql_real_escape_string($victim))."' ORDER BY survivor.last_updated DESC LIMIT 1");
 				$attacker_row = mysql_fetch_array($attacker_res);
 				$victim_row = mysql_fetch_array($victim_res);
 				
