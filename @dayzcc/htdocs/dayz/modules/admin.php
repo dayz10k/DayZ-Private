@@ -23,6 +23,14 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			//echo($aDoor[$i]);
 		}
 	}
+	else if (isset($_GET['register']))
+	{ ?>
+		<div id="dvPopup" style="display: none; width: 900px; height: 450px; border: 4px solid #000000; background-color: #FFFFFF;">
+			<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
+			<?php include_once('modules/register.php'); ?>
+		</div>
+		<script>ShowModalPopup('dvPopup');</script>
+	<?php }
 	else
 	{ 
 		mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('MANAGE USERS', '{$_SESSION['login']}', NOW())");
@@ -34,11 +42,6 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 	while ($row = mysql_fetch_array($res)) { $users .= '<tr><td align="center"><input name="user[]" value="'.$row['id'].'" type="checkbox"/></td><td>'.$row['id'].'</td><td>'.$row['login'].'</td><td>'.$row['permissions'].'</td><td>'.$row['lastlogin'].'</td></tr>'; }
 
 	?>
-
-	<div id="dvPopup" style="display:none; width:900px; height: 450px; border:4px solid #000000; background-color:#FFFFFF;">
-		<a id="closebutton" style="float:right;" href="#" onclick="HideModalPopup('dvPopup'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
-		<?php include_once('modules/register.php'); ?>
-	</div>
 
 	<div id="page-heading">
 		<title><?php echo $pagetitle." - ".$sitename; ?></title>
@@ -68,7 +71,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 									<img width="21" height="21" alt="" src="images/forms/icon_plus.gif"></a>
 								</div>
 								<div class="right">
-									<h5><a href="#" onclick="ShowModalPopup('dvPopup'); return false;">Add user</a></h5>
+									<h5><a href="index.php?view=admin&register">Add user</a></h5>
 								</div>
 								<div class="clear"></div>
 							</div>
