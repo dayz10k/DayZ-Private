@@ -14,7 +14,7 @@ function fromLatLngToGps(e) {
 }
 
 function getData(id) {
-	$.getJSON('http://localhost:78/dayz/js/map.php?id=' + id + '&callback=?', function(data) {
+	$.getJSON('js/map.php?id=' + id + '&callback=?', function(data) {
 		if ("error" in data) {
 			if ($('#page-error').length == 0) { $('#map').before(data.error); }
 		} else {

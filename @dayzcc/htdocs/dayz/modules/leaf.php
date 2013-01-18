@@ -46,7 +46,7 @@ if (isset($_SESSION['user_id']))
 	
 	var intervalId;
 	var plotlayers = [];
-	var autorefresh = true;
+	var autorefresh = false;
 	
 	$('#map').append('<div id="mapCoords"><label>000 000</label></div>');
 	$('#map').append('<div id="mapRefresh"><label>Auto refresh</label></div>');
