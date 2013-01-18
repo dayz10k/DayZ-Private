@@ -534,14 +534,14 @@
         <Type>item</Type>
         <Slots>1</Slots>
     </sItemWatch>
-    <sItemWaterbottle>
+    <sItemWaterBottle>
         <Type>heavyammo</Type>
         <Slots>1</Slots>
-    </sItemWaterbottle>
-    <sItemWaterbottleUnfilled>
+    </sItemWaterBottle>
+    <sItemWaterBottleUnfilled>
         <Type>heavyammo</Type>
         <Slots>1</Slots>
-    </sItemWaterbottleUnfilled>
+    </sItemWaterBottleUnfilled>
     <sItemWire>
         <Type>heavyammo</Type>
         <Slots>1</Slots>
