@@ -1,8 +1,7 @@
-<!--<meta http-equiv="refresh" content="10">-->
-
 <?php
 	error_reporting (E_ALL ^ E_NOTICE);
 
+	$markers = array();
 	$cmd = "players";	
 	$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
 
@@ -28,8 +27,6 @@
 				}
 			}
 		}
-		
-		$markers = "";
 
 		for ($i = 0; $i < count($players); $i++) { 
 			if (strlen($players[$i][4]) > 1){ 
@@ -38,14 +35,12 @@
 				$ping = $players[$i][2];
 				
 				$res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND profile.name LIKE '%".(mysql_real_escape_string($playername))."%' ORDER BY survivor.last_updated DESC LIMIT 1") or die(mysql_error());
-				$markers .= markers_player($res, $serverworld);			
+				$markers = array_merge($markers, markers_player($res, $serverworld));
 			}
 		}
-
-		include('modules/leaf.php');
 	}
 	else
 	{ 
-		echo "<div id='page-heading'><h2>BattlEye did not respond within the specified time.</h2></div>";
+		$markers["error"] = "<div id='page-error'><h2>BattlEye did not respond within the specified time.</h2></div>";
 	}
 ?>

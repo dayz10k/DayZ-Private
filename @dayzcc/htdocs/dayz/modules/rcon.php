@@ -1,6 +1,4 @@
 <?php
-if (isset($_SESSION['user_id']))
-{ 
 	function strToHex($string) { 
 		$hex = '';
 		for ($i = 0; $i < strlen($string); $i++) { $hex .= dechex(ord($string[$i])); }
@@ -18,7 +16,7 @@ if (isset($_SESSION['user_id']))
 		$var = dechex($var + 0);
 		return $var;
 	}
- 
+
 	function dec_to_hex($dec) { 
 		$sign = "";
 		$h = null;
@@ -81,9 +79,4 @@ if (isset($_SESSION['user_id']))
 
 		return $answer;
 	}
-}
-else
-{ 
-	header('Location: index.php');
-}
 ?>	

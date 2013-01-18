@@ -3,42 +3,18 @@ if (isset($_SESSION['user_id']))
 { 
 	?>
 	<head>
-		<script src="js/map/chernarus.js"></script>
-		<script src="js/map/namalsk.js"></script>
-		<script src="js/map/lingor.js"></script>
-		<script src="js/map/panthera.js"></script>
-		<script src="js/map/takistan.js"></script>
-		<script src="js/map/fallujah.js"></script>
-		<script src="js/map/taviana.js"></script>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" type="text/css" />
+		<link rel="stylesheet" href="css/map.css" type="text/css" />
+		<script src="js/map.js" type="text/javascript"></script>
+		<script src="js/map/<?php echo $serverworld; ?>.js"></script>
 	</head>
 	
-	<div id="map" style="width:99%;height:1050px;margin:10px auto;border:2px solid #000;"></div>
+	<div id="map" style="width: 99%; height: 1050px; margin: 10px auto; border: 2px solid #000;"></div>
 	
 	<script>
-	<?php if (strpos($serverworld, "chernarus") !== false) { ?>
-		InitChernarus();
-	<?php } elseif (strpos($serverworld, "lingor") !== false) { ?>
-		InitLingor();
-	<?php } elseif (strpos($serverworld, "utes") !== false) { ?>
-		InitUtes();
-	<?php } elseif (strpos($serverworld, "panthera") !== false) { ?>
-		InitPanthera();
-	<?php } elseif (strpos($serverworld, "takistan") !== false) { ?>
-		InitTakistan();
-	<?php } elseif (strpos($serverworld, "fallujah") !== false) { ?>
-		InitFallujah();
-	<?php } elseif (strpos($serverworld, "celle") !== false) { ?>
-		InitCelle();
-	<?php } elseif (strpos($serverworld, "namalsk") !== false) { ?>
-		InitNamalsk();
-	<?php } elseif (strpos($serverworld, "zargabad") !== false) { ?>
-		InitZargabad();
-	<?php } elseif (strpos($serverworld, "tavi") !== false) { ?>
-		InitTaviana();
-	<?php }; ?>
+	InitMap();
 	
 	var Icon = L.Icon.extend({ options: { iconSize: [32, 37], iconAnchor: [16, 35] } });
-	
 	var Car = new Icon({ iconUrl: 'images/icons/Car.png' }),
 		Bus = new Icon({ iconUrl: 'images/icons/Bus.png' }),
 		ATV = new Icon({ iconUrl: 'images/icons/ATV.png' }),
@@ -63,8 +39,32 @@ if (isset($_SESSION['user_id']))
 		Object = new Icon({ iconUrl: 'images/icons/Object.png' }),
 		Player = new Icon({ iconUrl: 'images/icons/player.png' }),
 		PlayerDead = new Icon({ iconUrl: 'images/icons/player_dead.png' });
+
+	map.on("mousemove", function (a) {
+		$("#mapCoords").html(fromLatLngToGps(a.latlng));
+	});
 	
-	<?php echo $markers; ?>
+	var intervalId;
+	var plotlayers = [];
+	var autorefresh = true;
+	
+	$('#map').append('<div id="mapCoords"><label>000 000</label></div>');
+	$('#map').append('<div id="mapRefresh"><label>Auto refresh</label></div>');
+	$('#mapRefresh').click(function() {
+		if (autorefresh) {
+			$(this).css('background-color', "#ff0000");
+			$(this).css('background-color', "rgba(255, 0, 0, 0.5)");
+			clearInterval(intervalId);
+		} else {
+			$(this).css('background-color', "#404040");
+			$(this).css('background-color', "rgba(0, 0, 0, 0.5)");
+			getData(<?php echo $show; ?>);
+			intervalId = setInterval(function() { getData(); }, 5000);
+		}
+		autorefresh = !autorefresh;
+	});
+	
+	getData(<?php echo $show; ?>);
 	</script>
 
 <?php

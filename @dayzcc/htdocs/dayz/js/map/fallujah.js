@@ -1,6 +1,6 @@
 var map, crsFallujah;
 
-function InitFallujah() {
+function InitMap() {
 	var tilesUrl = 'http://static.dayzdb.com/tiles/fallujah/{z}/{x}_{y}.png',
 		tilesAttrib = '&copy; Crosire, Fallujah map data from <a href="http://dayzdb.com/map">DayZDB</a>',
 		tiles = new L.TileLayer(tilesUrl, {noWrap: true, continuousWorld: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:7,y:7},4:{x:13,y:13},5:{x:25,y:25},6:{x:50,y:50}}, minZoom: 2, maxZoom: 6});
@@ -18,7 +18,4 @@ function InitFallujah() {
 
 	// Create tile layer
 	map.addLayer(tiles);
-	
-	// Add events
-	map.on('click', function(e) {alert(fromLatLngToGps(e.latlng))});
 }

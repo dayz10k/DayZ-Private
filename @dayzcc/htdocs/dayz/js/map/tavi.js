@@ -1,6 +1,6 @@
 var map, crsTaviana;
 
-function InitTaviana() {
+function InitMap() {
 	var tilesUrl = 'http://static.dayzdb.com/tiles/taviana/{z}/{x}_{y}.png',
 		tilesAttrib = '&copy; Crosire, Taviana map data from <a href="http://dayzdb.com/map">DayZDB</a>',
 		tiles = new L.TileLayer(tilesUrl, {noWrap: true, continuousWorld: true, attribution: tilesAttrib, tileLimits: {2:{x:4,y:4},3:{x:8,y:7},4:{x:16,y:14},5:{x:32,y:27},6:{x:64,y:54}}});
@@ -18,7 +18,4 @@ function InitTaviana() {
 
 	// Create tile layer
 	map.addLayer(tiles);
-
-	// Add events
-	map.on('click', function(e) {alert(fromLatLngToGps(e.latlng))});
 }

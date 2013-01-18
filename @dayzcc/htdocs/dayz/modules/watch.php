@@ -1,7 +1,7 @@
 <?php
-	$timeoffset = 0;
+	error_reporting (0);
 	
-	error_reporting(0);
+	$timeoffset = 0;
 	$ini = parse_ini_file(trim($pathserver, $exeserver)."HiveExt.ini", true);
 	$timeoffset = $ini['Time']['Offset'];
 ?>
