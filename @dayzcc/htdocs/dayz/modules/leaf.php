@@ -1,15 +1,18 @@
 <?php
-if (isset($_SESSION['user_id']))
-{ 
+
+if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map") !== false))
+{
 	?>
+
 	<head>
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4/leaflet.css" type="text/css" />
 		<link rel="stylesheet" href="css/map.css" type="text/css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js" type="text/javascript"></script>
 		<script src="js/map.js" type="text/javascript"></script>
 		<script src="js/map/<?php echo $serverworld; ?>.js"></script>
 	</head>
 	
-	<div id="map" style="width: 99%; height: 1050px; margin: 10px auto; border: 2px solid #000;"></div>
+	<div id="map"></div>
 	
 	<script>
 	InitMap();
@@ -20,6 +23,7 @@ if (isset($_SESSION['user_id']))
 		ATV = new Icon({ iconUrl: 'images/icons/ATV.png' }),
 		Bike = new Icon({ iconUrl: 'images/icons/Bike.png' }),
 		Wreck = new Icon({ iconUrl: 'images/icons/Wreck.png' }),
+		Crashsite = new Icon({ iconUrl: 'images/icons/Crashsite.png' }),
 		Care = new Icon({ iconUrl: 'images/icons/Care.png' }),
 		Farmvehicle = new Icon({ iconUrl: 'images/icons/Farmvehicle.png' }),
 		Helicopter = new Icon({ iconUrl: 'images/icons/Helicopter.png' }),
@@ -30,6 +34,8 @@ if (isset($_SESSION['user_id']))
 		PBX = new Icon({ iconUrl: 'images/icons/PBX.png' }),
 		Truck = new Icon({ iconUrl: 'images/icons/Truck.png' }),
 		Plane = new Icon({ iconUrl: 'images/icons/Plane.png' }),
+		C130 = new Icon({ iconUrl: 'images/icons/C130.png' }),
+		MV22 = new Icon({ iconUrl: 'images/icons/MV22.png' }),
 		Support = new Icon({ iconUrl: 'images/icons/Truck.png' }),
 		Trap = new Icon({ iconUrl: 'images/icons/Trap.png' }),
 		Wire = new Icon({ iconUrl: 'images/icons/Wire.png' }),
@@ -58,8 +64,7 @@ if (isset($_SESSION['user_id']))
 		} else {
 			$(this).css('background-color', "#404040");
 			$(this).css('background-color', "rgba(0, 0, 0, 0.5)");
-			getData(<?php echo $show; ?>);
-			intervalId = setInterval(function() { getData(); }, 5000);
+			intervalId = setInterval(function() { getData(<?php echo $show; ?>); }, 5000);
 		}
 		autorefresh = !autorefresh;
 	});
@@ -73,4 +78,5 @@ else
 { 
 	header('Location: index.php');
 }
+
 ?>

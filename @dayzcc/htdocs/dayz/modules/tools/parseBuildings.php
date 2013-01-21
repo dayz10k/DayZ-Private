@@ -21,16 +21,16 @@ if (isset($_SESSION['user_id']))
 		<div id="page-heading">
 			<h1>Create buildings</h1>
 		</div>
-		<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+		<table id="content-table" border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-			<th class="topleft"></th>
-			<td id="tbl-border-top">&nbsp;</td>
-			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th class="corner-topleft"></th>
+			<td class="border-top">&nbsp;</td>
+			<th class="corner-topright"></th>
+			<th rowspan="3"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
-			<td id="tbl-border-left"></td>
+			<td class="border-left"></td>
 			<td>
 				<div id="content-table-inner" style="height: 300px; overflow-y: scroll">
 					<table border="1" width="100%" cellpadding="0" cellspacing="0" id="building-table">
@@ -125,12 +125,12 @@ if (isset($_SESSION['user_id']))
 					<strong><?php echo $buildingcount; ?></strong> new buildings added!
 				</div>
 			</td>
-			<td id="tbl-border-right"></td>
+			<td class="border-right"></td>
 		</tr>
 		<tr>
-			<th class="sized bottomleft"></th>
-			<td id="tbl-border-bottom">&nbsp;</td>
-			<th class="sized bottomright"></th>
+			<th class="corner-bottomleft"></th>
+			<td class="border-bottom">&nbsp;</td>
+			<th class="corner-bottomright"></th>
 		</tr>
 		</table>
 
@@ -138,7 +138,7 @@ if (isset($_SESSION['user_id']))
 	}
 	else
 	{ 
-		echo "<div id='page-heading'><h2>Mission file not found</h2></div>";
+		echo "<div id='page-heading'><h2>Mission file not found.</h2></div>";
 	}
 }
 else

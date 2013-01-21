@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map") !== false))
 { 
 	switch ($show) { 
@@ -30,12 +31,13 @@ if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map")
 			$pagetitle = "Online player locations";
 	};
 	
-	echo "<div id='page-heading'><title>{$pagetitle} - {$sitename}</title><h1>{$pagetitle}</h1></div>";
-	
+	echo '<div id="page-heading"><title>'.$pagetitle.' - '.$sitename.'</title><h1>'.$pagetitle.'</h1></div>';
+
 	include('modules/leaf.php');
 }
 else
 {
 	header('Location: index.php');
 }
+
 ?>

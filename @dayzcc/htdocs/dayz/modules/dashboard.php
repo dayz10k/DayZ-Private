@@ -1,28 +1,29 @@
 <?php
+
 if (isset($_SESSION['user_id']))
-{ 
-	ini_set("display_errors", 0);
-	error_reporting (E_ALL ^ E_NOTICE);
-
+{
 	$pagetitle = "Dashboard";
-
-	$logs = "";
-	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 100") or die(mysql_error());
-	while ($row = mysql_fetch_array($res)) {$logs .= $row['timestamp'].' '.$row['user'].': '.$row['action'].chr(13); }
+	$log = array();
+	$chat = array();
 	
-	$xml = file_get_contents('/quicklinks.xml', true);
-	require_once('modules/xml2array.php');
-	$quicklinks = XML2Array::createArray($xml);
+	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 150");
+	while ($row = mysql_fetch_array($res)) {$log[] = $row['timestamp'].' '.$row['user'].': '.$row['action']; }
 
-	// GameQ Server define, fixed by Crosire to allow multiple instances
-	require_once('modules/gameq.php');
-	$servers = array('dayzserver' => array('armedassault2', $serverip, $serverport));
-	$gq = new GameQ();
-	$gq->addServers($servers);
-	$gq->setOption('timeout', 200);
-	$gq->setFilter('normalise');
-	$gq->setFilter('sortplayers', 'gq_ping');
-	$gqresults = $gq->requestData();
+	foreach (glob($patharma."\\@dayzcc_config\\".$serverinstance."\\{server,server_".$serverinstance."}.log", GLOB_BRACE) as $filepath) {
+		if (file_exists($filepath)) {
+			require_once('modules/file.php');
+			$chat = explode("\n", last_lines($filepath, 150));
+		}
+	}
+	$chat = array_reverse($chat);
+	array_shift($chat);
+	
+	function getIP() {
+		$ip = file_get_contents("http://checkip.dyndns.org/");
+		$ip = trim(substr($ip, 76, -16));
+		if (!filter_var($ip, FILTER_VALIDATE_IP)) {	$ip = gethostbyname(trim(`hostname`)); }
+		return $ip;
+	}
 
 	?>
 
@@ -31,33 +32,43 @@ if (isset($_SESSION['user_id']))
 		<h1><?php echo $pagetitle; ?></h1>
 	</div>
 	
-	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+	<table id="content-table" border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-			<th class="topleft"></th>
-			<td id="tbl-border-top">&nbsp;</td>
-			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th class="corner-topleft"></th>
+			<td class="border-top">&nbsp;</td>
+			<th class="corner-topright"></th>
+			<th rowspan="3"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
-			<td id="tbl-border-left"></td>
+			<td class="border-left"></td>
 			<td>
 			<div id="content-table-inner">	
 				<table border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="40%">
 							<?php
-								foreach ($gqresults as $id => $data) {
-									if (!$data['gq_online']) {
-										echo "<p>Server did not respond within the specified time.</p>";
+								require_once('modules/lib/class.gameq.php');
+								$server = array('gq' => array('armedassault2', $serverip, $serverport));
+								$gq = new GameQ();
+								$gq->addServers($server);
+								$gq->setFilter('normalise');
+
+								foreach ($gq->requestData() as $data) {
+									if ($data['gq_online']) {
+										$name = $data['gq_hostname'];
+										$mod = str_replace("Expansion;beta", "", preg_replace("/^[^@]*/", "", $data['gq_mod'])); // Mod cleanup regex by Crosire
+										$maxplayers = $data['gq_maxplayers'];
+										$numplayers = $data['gq_numplayers'];
 									} else {
-										echo "<h2>".$data['gq_hostname']."</h2>
-											<h2>Local Address:</h2><h3>".(gethostbyname(trim(`hostname`))).":".$data['gq_port']."</h3>
-											<h2>Mods:</h2><h3>".$data['gq_mod']."</h3>
-											<h2>Max players:</h2><h3>".$data['gq_maxplayers']."</h3>
-											<h2>Online players:</h2><h3>".$data['gq_numplayers']."</h3>";
+										$name = "Server is offline.";
+										$mod = "&nbsp;";
+										$maxplayers = "&nbsp;";
+										$numplayers = "&nbsp;";
 									}
 								}
+								
+								echo "<h2>".$name."</h2><h2>Address:</h2><h3>".(getIP()).":".$serverport."</h3><h2>Mods:</h2><h3>".$mod."</h3><h2>Max players:</h2><h3>".$maxplayers."</h3><h2>Online players:</h2><h3>".$numplayers."</h3>";
 							?>
 						</td>
 						<td width="10%">
@@ -68,45 +79,30 @@ if (isset($_SESSION['user_id']))
 						</td>
 					</tr>
 				</table>
-				<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+				<table id="product-table" border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
-						<th class="table-header-repeat line-left minwidth-1"><a href="">Quick links</a>	</th>
-						<th class="table-header-repeat line-left minwidth-1"><a href="">Actions log</a></th>
+						<th class="product-table-header"><a>Action Log</a></th>
+						<th class="product-table-header"><a>Server Log</a></th>
 					</tr>
 					<tr>
 						<td align="center" width="50%">
-							<div id="quicklinks">
-								<ul>
-								<?php
-									foreach ($quicklinks['quicklinks'] as $ql) { if ($ql != null) { ?>
-										<li>
-											<a href="<?php echo $ql['Link']; ?>" style="color: #000;">
-												<span class="quicklink-box">
-													<img src="images/icons/<?php echo $ql['Icon']; ?>" alt="<?php echo $ql['Name']; ?>" /><br />
-													<strong><?php echo $ql['Name']; ?></strong>
-												</span>
-											</a>
-										</li>
-									<?php } } ?>
-								</ul>
-							</div>
+							<textarea style="width: 99.8%; height: 200px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $log); ?></textarea>
 						</td>
 						<td align="center" width="50%">
-							<textarea cols="68" rows="12" readonly><?php echo $logs; ?></textarea>
+							<textarea style="width: 99.8%; height: 200px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $chat); ?></textarea>
 						</td>	
 					</tr>
 				</table>
 			</div>
 			</td>
-			<td id="tbl-border-right"></td>
+			<td class="border-right"></td>
 		</tr>
 		<tr>
-			<th class="sized bottomleft"></th>
-			<td id="tbl-border-bottom">&nbsp;</td>
-			<th class="sized bottomright"></th>
+			<th class="corner-bottomleft"></th>
+			<td class="border-bottom">&nbsp;</td>
+			<th class="corner-bottomright"></th>
 		</tr>
 	</table>
-	<div class="clear">&nbsp;</div>
 	
 <?php
 }
@@ -114,4 +110,5 @@ else
 { 
 	header('Location: index.php');
 }
+
 ?>

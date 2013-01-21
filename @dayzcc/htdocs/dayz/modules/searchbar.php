@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_SESSION['user_id']))
 { 
 	?>
@@ -7,10 +8,10 @@ if (isset($_SESSION['user_id']))
 		<table border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td>
-					<input name="search" type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" />
+					<input name="search" type="text" value="Search" onblur="if (this.value == '') { this.value = 'Search'; }" onfocus="if (this.value == 'Search') { this.value = ''; }" class="search-inp" />
 				</td>
 				<td>
-					<select name="type" class="styledselect">
+					<select name="type" class="search-select">
 						<option value="player">Player</option>
 						<option value="playerinv">Player Inventory</option>
 						<option value="vehicle">Vehicle</option>
@@ -19,7 +20,7 @@ if (isset($_SESSION['user_id']))
 					</select>
 				</td>
 				<td>
-					<input type="submit" class="submit-login" />
+					<input type="submit" class="submit" />
 				</td>
 			</tr>
 		</table>
@@ -31,4 +32,5 @@ else
 { 
 	header('Location: index.php');
 }
+
 ?>

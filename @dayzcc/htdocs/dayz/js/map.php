@@ -1,6 +1,5 @@
 <?php
 	error_reporting (0);
-	defined('DS') ? null : define('DS',DIRECTORY_SEPARATOR);
 	chdir("..");
 	
 	$markers = array();
@@ -11,7 +10,7 @@
 	require_once("modules/rcon.php");
 	require_once("modules/maps/markers.php");
 	
-	$pathserver = str_replace('.exe', "_{$serverinstance}.exe", $pathserver);
+	$pathserver = $patharma."\\@dayzcc_config\\".$serverinstance."\\arma2oaserver_".$serverinstance.".exe";
 
 	mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die;
 	mysql_select_db($dbname) or die;
@@ -25,7 +24,7 @@
 		$callback = $_GET['callback'];
 	}
 
-	include("modules/maps/{$id}.php");
+	include('modules/maps/'.$id.'.php');
 
 	echo $callback.'('.(json_encode($markers)).')';
 ?>

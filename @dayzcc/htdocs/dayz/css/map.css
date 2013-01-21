@@ -1,3 +1,12 @@
+/* Map CSS file by Krunch and Crosire */
+
+#map {
+	width: 99%;
+	height: 1050px;
+	margin: 10px auto;
+	border: 2px solid #000;
+}
+
 #mapCoords {
 	z-index: 1000;
 	position: absolute;

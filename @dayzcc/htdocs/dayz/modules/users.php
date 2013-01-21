@@ -1,0 +1,115 @@
+<?php
+
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user") !== false))
+{ 
+	$pagetitle = "Manage users";
+	if (!isset($delresult)) { $delresult = ''; }
+	
+	if (isset($_POST["user"]))
+	{ 
+		$deluser = $_POST["user"];
+		$delresult = '<div id="message-green"><table border="0" width="100%" cellpadding="0" cellspacing="0"><tr><td class="green-left">User ';
+
+		for ($i = 0; $i < count($deluser); $i++) { 
+			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('DELETED USER: ".$deluser[$i]."', '{$_SESSION['login']}', NOW())");
+			mysql_query("DELETE FROM `users` WHERE `id` = '".$deluser[$i]."'") or die(mysql_error());
+			
+			$delresult .= $deluser[$i].", ";
+		}
+		
+		$delresult = substr($delresult, 0, -2).' successfully removed!</td><td class="green-right"><a class="close-green"><img src="images/forms/icon_close_green.gif" alt="" /></a></td></tr></table></div>';
+	}
+	else if (isset($_GET['register']))
+	{
+		?>
+			<div id="Popup" class="modalPopup" style="display: none;">
+				<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('Popup'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
+				<?php include_once('modules/register.php'); ?>
+			</div>
+			<script type="text/javascript">ShowModalPopup('Popup');</script>
+		<?php
+	}
+	else
+	{ 
+		mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('MANAGED USERS', '{$_SESSION['login']}', NOW())");
+	}
+
+	$res = mysql_query("SELECT * FROM `users` ORDER BY `id` ASC") or die(mysql_error());
+	$number = mysql_num_rows($res);
+	$users = '';
+	while ($row = mysql_fetch_array($res)) {
+		$users .= '<tr>
+			<td align="center" style="height: 47px;"><input name="user[]" value="'.$row['id'].'" type="checkbox"/></td>
+			<td align="center" style="height: 47px;">'.$row['id'].'</td>
+			<td align="center" style="height: 47px;">'.$row['login'].'</td>
+			<td align="center" style="height: 47px;">'.$row['permissions'].'</td>
+			<td align="center" style="height: 47px;">'.$row['lastlogin'].'</td></tr>';
+	}
+
+	?>
+
+	<script type="text/javascript">
+		function post() {
+			document.del.submit();
+		}
+	</script>
+	
+	<div id="page-heading">
+		<title><?php echo $pagetitle." - ".$sitename; ?></title>
+		<h1><?php echo $pagetitle; ?></h1>
+	</div>
+
+	<table id="content-table" border="0" width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+			<th rowspan="3"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th class="corner-topleft"></th>
+			<td class="border-top">&nbsp;</td>
+			<th class="corner-topright"></th>
+			<th rowspan="3"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+		</tr>
+		<tr>
+			<td class="border-left"></td>
+			<td>
+				<div id="content-table-inner">
+					<div>
+						<img src="images/forms/icon_plus.gif" width="21" height="21" alt="Add new user" style="vertical-align: middle" />
+						<span style="vertical-align: middle"><a href="index.php?view=users&register"><b>Add new user</b></a></span>
+					</div>
+					<br />
+					<br />
+					<?php echo $delresult; ?>
+					<div id="table-content">
+						<form action="index.php?view=users" method="post">
+							<table id="product-table" border="1" width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<th class="product-table-header" style="width: 10%"><a>Delete</a></th>
+									<th class="product-table-header" style="width: 5%"><a>ID</a></th>
+									<th class="product-table-header" style="width: 25%"><a>Username</a></th>
+									<th class="product-table-header" style="width: 40%"><a>Permissions</a></th>
+									<th class="product-table-header" style="width: 20%"><a>Last access</a></th>
+								</tr>
+								<?php echo $users; ?>
+							</table>
+							<input type="submit" class="submit" />
+						</form>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</td>
+			<td class="border-right"></td>
+		</tr>
+		<tr>
+			<th class="corner-bottomleft"></th>
+			<td class="border-bottom">&nbsp;</td>
+			<th class="corner-bottomright"></th>
+		</tr>
+	</table>
+
+<?php
+}
+else
+{ 
+	header('Location: index.php');
+}
+
+?>

@@ -1,60 +1,58 @@
 <?php
+
 function header_player($show, $order) { 
 	return '<tr>
-		<th class="table-header-repeat line-left" width="5%"><a href="">Status</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.$order.'">Player Name</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.$order.'">Player UID</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.$order.'">Position</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.$order.'">Health</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.$order.'">Inventory preview</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.$order.'">Backpack preview</a></th>
+		<th class="product-table-header" style="width: 5%"><a>Status</a></th>
+		<th class="product-table-header" style="width: 25%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.($order == "ASC" ? "DESC" : "ASC").'">Name</a></th>
+		<th class="product-table-header" style="width: 10%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.($order == "ASC" ? "DESC" : "ASC").'">UID</a></th>
+		<th class="product-table-header" style="width: 10%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.($order == "ASC" ? "DESC" : "ASC").'">Position</a></th>
+		<th class="product-table-header" style="width: 10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.($order == "ASC" ? "DESC" : "ASC").'">Health</a></th>
+		<th class="product-table-header" style="width: 20%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.($order == "ASC" ? "DESC" : "ASC").'">Inventory</a></th>
+		<th class="product-table-header" style="width: 20%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.($order == "ASC" ? "DESC" : "ASC").'">Backpack</a></th>
 		</tr>';
 }
-
 function header_player_online($show) { 
 	return '<tr>
-		<th class="table-header-repeat line-left" width="5%"><a href="">Kick</a></th>
-		<th class="table-header-repeat line-left" width="5%"><a href="">Ban</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="">Player Name</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="">Player UID</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="">Position</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="">Health</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="">Inventory preview</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="">Backpack preview</a></th>
+		<th class="product-table-header" style="width: 5%"><a>Kick</a></th>
+		<th class="product-table-header" style="width: 5%"><a>Ban</a></th>
+		<th class="product-table-header" style="width: 20%"><a>Name</a></th>
+		<th class="product-table-header" style="width: 10%"><a>UID</a></th>
+		<th class="product-table-header" style="width: 10%"><a>Position</a></th>
+		<th class="product-table-header" style="width: 10%"><a>Health</a></th>
+		<th class="product-table-header" style="width: 20%"><a>Inventory</a></th>
+		<th class="product-table-header" style="width: 20%"><a>Backpack</a></th>
 		</tr>';
 }
-
 function header_vehicle($show, $chbox, $order) { 
 	return '
 		<tr>'.$chbox.'
-		<th class="table-header-repeat line-left" width="5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.$order.'">ID</a></th>
-		<th class="table-header-repeat line-left" width="18%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.$order.'">Classname</a></th>
-		<th class="table-header-repeat line-left" width="7%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.$order.'">Damage</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.$order.'">Position</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.$order.'">Inventory</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.$order.'">Hitpoints</a></th>
+		<th class="product-table-header" style="width: 5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.($order == "ASC" ? "DESC" : "ASC").'">ID</a></th>
+		<th class="product-table-header" style="width: 23%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.($order == "ASC" ? "DESC" : "ASC").'">Class</a></th>
+		<th class="product-table-header" style="width: 7%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.($order == "ASC" ? "DESC" : "ASC").'">Damage</a></th>
+		<th class="product-table-header" style="width: 10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.($order == "ASC" ? "DESC" : "ASC").'">Position</a></th>
+		<th class="product-table-header" style="width: 20%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.($order == "ASC" ? "DESC" : "ASC").'">Inventory</a></th>
+		<th class="product-table-header" style="width: 25%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.($order == "ASC" ? "DESC" : "ASC").'">Hitpoints</a></th>
 		</tr>';
 }
-
 function header_deployable($show, $chbox, $order) { 
 	return '
 		<tr>'.$chbox.'
-		<th class="table-header-repeat line-left" width="5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.$order.'">ID</a></th>
-		<th class="table-header-repeat line-left" width="20%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.$order.'">UID</a></th>
-		<th class="table-header-repeat line-left" width="30%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.$order.'">Classname</a></th>
-		<th class="table-header-repeat line-left" width="10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.$order.'">Position</a></th>
-		<th class="table-header-repeat line-left" width="25%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.$order.'">Inventory</a></th>
+		<th class="product-table-header" style="width: 5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.($order == "ASC" ? "DESC" : "ASC").'">ID</a></th>
+		<th class="product-table-header" style="width: 20%"><a href="index.php?view=table&show='.$show.'&sort=2&order='.($order == "ASC" ? "DESC" : "ASC").'">UID</a></th>
+		<th class="product-table-header" style="width: 31%"><a href="index.php?view=table&show='.$show.'&sort=3&order='.($order == "ASC" ? "DESC" : "ASC").'">Class</a></th>
+		<th class="product-table-header" style="width: 10%"><a href="index.php?view=table&show='.$show.'&sort=4&order='.($order == "ASC" ? "DESC" : "ASC").'">Position</a></th>
+		<th class="product-table-header" style="width: 24%"><a href="index.php?view=table&show='.$show.'&sort=5&order='.($order == "ASC" ? "DESC" : "ASC").'">Inventory</a></th>
 		</tr>';
 }
 
-function row_player($row, $world) { 
+function row_player($row, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
 	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1]; }
 	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
-	$InventoryPreview = "";
+	$InventoryPreview = '';
 	$Inventory = $row['inventory'];
 	$Inventory = json_decode($Inventory);
 	$limit = 6;
@@ -71,17 +69,19 @@ function row_player($row, $world) {
 
 	for ($i = 0; $i< $limit; $i++) { 
 		if (array_key_exists($i, $Inventory)) { 
-			//$InventoryPreview .= $Inventory[$i];
 			$curitem = $Inventory[$i];
-			$icount = "";
-			if (is_array($curitem)) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/></div>';
+			$pcount = '';
+			if (is_array($curitem)) {
+				$curitem = $Inventory[$i][0];
+				$pcount = ' - '.$Inventory[$i][1].' rounds';
+			}
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
 
-	$BackpackPreview = "";
+	$BackpackPreview = '';
 	$Backpack = $row['backpack'];
 	$Backpack = json_decode($Backpack);
 
@@ -103,12 +103,16 @@ function row_player($row, $world) {
 	for ($i = 0; $i < $limit; $i++) { 
 		if (array_key_exists($i, $Backpack)) { 
 			$curitem = $Backpack[$i];
+			$pcount = '';
 			if (is_array($curitem)) { 
-				if ($i != 0) { $curitem = $Backpack[$i][0]; $icount = ' - '.$Backpack[$i][1].' rounds'; }
+				if ($i != 0) {
+					$curitem = $Backpack[$i][0];
+					$pcount = ' - '.$Backpack[$i][1].' rounds';
+				}
 			}
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
 
@@ -117,24 +121,23 @@ function row_player($row, $world) {
 	$Medical = explode(",", $Medical);
 	$health = $Medical[7];
 
-	$name = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['name']."</a>";
-	$uuid = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row['unique_id']."</a>";
-	$icon = '<img src="images/icons/player'.($row['is_dead'] ? '_dead' : '').'.png" title="" alt=""/>';
+	$name = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row['name'].'</a>';
+	$uuid = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row['unique_id'].'</a>';
+	$icon = '<img src="images/icons/player'.($row['is_dead'] ? '_dead' : '').'.png" title="" alt="" />';
 
 	require_once('modules/calc.php');
-	$tablerow = "<tr>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$icon."</td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$name."</td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$uuid."</td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><font color=\"#FFFFFF\">".sprintf("%03d",round(world_x($x, $world))).sprintf("%03d",round(world_y($y, $world)))."</font></td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><font color=\"#FFFFFF\">".$health."</font></td>
-		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-		<td align=\"center\" class=\"gear_preview\">".$BackpackPreview."</td>
-		</tr>";
+	$tablerow = '<tr>
+		<td align="center" class="gear_preview">'.$icon.'</td>
+		<td align="center" class="gear_preview">'.$name.'</td>
+		<td align="center" class="gear_preview">'.$uuid.'</td>
+		<td align="center" class="gear_preview">'.(sprintf("%03d",round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))).'</td>
+		<td align="center" class="gear_preview">'.$health.'</td>
+		<td align="center" class="gear_preview">'.$InventoryPreview.'</td>
+		<td align="center" class="gear_preview">'.$BackpackPreview.'</td>
+		</tr>';
 
 	return $tablerow;
 }
-
 function row_online_player($row, $player, $world) { 
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
@@ -143,15 +146,15 @@ function row_online_player($row, $player, $world) {
 	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
 	$dead = ($row['is_dead'] ? '_dead' : '');
-	$InventoryPreview = "";
+	$InventoryPreview = '';
 	$Inventory = $row['inventory'];
 	$Inventory = json_decode($Inventory);
 	$limit = 6;
-	$pcount = "";
+	$pcount = '';
 
 	if (is_array($Inventory)) { 
 		if (array_key_exists(0, $Inventory)) { 
-			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); } else {$Inventory = $Inventory[0]; }
+			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); } else { $Inventory = $Inventory[0]; }
 		} else { 
 			if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1]; }
 		}
@@ -160,16 +163,16 @@ function row_online_player($row, $player, $world) {
 	}
 
 	for ($p = 0; $p < $limit; $p++) { 
-		if (array_key_exists($p,$Inventory)) { 
+		if (array_key_exists($p, $Inventory)) { 
 			$curitem = $Inventory[$p];
 			if (is_array($curitem)) { $curitem = $Inventory[$p][0]; $pcount = ' - '.$Inventory[$p][1].' rounds'; }
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'"/></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
 
-	$BackpackPreview = "";
+	$BackpackPreview = '';
 	$Backpack = $row['backpack'];
 	$Backpack = json_decode($Backpack);
 
@@ -195,15 +198,16 @@ function row_online_player($row, $player, $world) {
 	for ($p = 0; $p < $limit; $p++) { 
 		if (array_key_exists($p, $Backpack)) { 
 			$curitem = $Backpack[$p];
+			$pcount = '';
 			if (is_array($curitem)) { 
 				if ($p != 0) { 
 					$curitem = $Backpack[$p][0];
 					$pcount = ' - '.$Backpack[$p][1].' rounds';
 				}
 			}
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'"/></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
 
@@ -212,26 +216,25 @@ function row_online_player($row, $player, $world) {
 	$Medical = explode(",", $Medical);
 	$health = $Medical[7];
 
-	$name = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$player[4]."</a>";
-	$uid = "<a href=\"index.php?view=info&show=1&id=".$row['unique_id']."&cid=".$row['id']."\">".$row["unique_id"]."</a>";
+	$name = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$player[4].'</a>';
+	$uid = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row["unique_id"].'</a>';
 	$iconkick = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
 	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="images/icons/player_ban'.$dead.'.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
 
 	require_once('modules/calc.php');
-	$tablerow = "<tr>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconkick."</td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$iconban."</td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$name."</td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\">".$uid."</td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><font color=\"#FFFFFF\">".sprintf("%03d",round(world_x($x, $world))).sprintf("%03d",round(world_y($y, $world)))."</font></td>
-		<td align=\"center\" class=\"gear_preview\" style=\"vertical-align:middle;\"><font color=\"#FFFFFF\">".$health."</font></td>
-		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-		<td align=\"center\" class=\"gear_preview\">".$BackpackPreview."</td>
-		<tr>";
+	$tablerow = '<tr>
+		<td align="center" class="gear_preview">'.$iconkick.'</td>
+		<td align="center" class="gear_preview">'.$iconban.'</td>
+		<td align="center" class="gear_preview">'.$name.'</td>
+		<td align="center" class="gear_preview">'.$uid.'</td>
+		<td align="center" class="gear_preview">'.(sprintf("%03d",round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))).'</td>
+		<td align="center" class="gear_preview">'.$health.'</font></td>
+		<td align="center" class="gear_preview">'.$InventoryPreview.'</td>
+		<td align="center" class="gear_preview">'.$BackpackPreview.'</td>
+		<tr>';
 
 	return $tablerow;	
 }
-
 function row_vehicle($row, $chbox, $world) { 
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
@@ -239,7 +242,7 @@ function row_vehicle($row, $chbox, $world) {
 	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1]; }
 	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
-	$InventoryPreview = "";
+	$InventoryPreview = '';
 	$Inventory = $row['inventory'];
 	$Inventory = json_decode($Inventory);
 	$limit = 6;
@@ -271,16 +274,20 @@ function row_vehicle($row, $chbox, $world) {
 	for ($i = 0; $i < $limit; $i++) { 
 		if (array_key_exists($i, $Inventory)) { 
 			$curitem = $Inventory[$i];
+			$icount = '';
 			if (is_array($curitem)) { 
-				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
+				if ($i != 0) {
+					$curitem = $Inventory[$i][0];
+					$icount = ' - '.$Inventory[$i][1].' rounds';
+				}
 			}
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
 
-	$HitpointsPreview = "";
+	$HitpointsPreview = '';
 	$Hitpoints = $row['parts'];
 	$Hitpoints = json_decode($Hitpoints);
 
@@ -289,23 +296,22 @@ function row_vehicle($row, $chbox, $world) {
 	for ($i = 0; $i < $limit; $i++) { 
 		if (array_key_exists($i, $Hitpoints)) { 
 			$curitem = $Hitpoints[$i];
-			$HitpointsPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;background-color: rgba(100, '.round((255 / 100) * (100 - ($curitem[1] * 100))).', 0, 0.8);"><img style="max-width:43px;max-height:43px;" src="images/hits/'.$curitem[0].'.png" title="'.$curitem[0].' - '.round(100 - ($curitem[1] * 100)).'%" alt="'.$curitem[0].' - '.round(100 - ($curitem[1] * 100)).'%"/></div>';
+			$HitpointsPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; background-color: rgba(100, '.(round((255 / 100) * (100 - ($curitem[1] * 100)))).', 0, 0.8);"><img style="width: 43px; height: 43px;" src="images/hits/'.$curitem[0].'.png" title="'.$curitem[0].' - '.(round(100 - ($curitem[1] * 100))).'%" alt="'.$curitem[0].' - '.(round(100 - ($curitem[1] * 100))).'%"/></div>';
 		}
 	}
 
 	require_once('modules/calc.php');
-	$tablerow = "<tr>".$chbox."
-		<td align=\"center\" class=\"gear_preview\"><a href=\"index.php?view=info&show=4&id=".$row['id']."\">".$row['id']."</a></td>
-		<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".$row['class_name']."</font></td>			
-		<td align=\"center\" class=\"gear_preview\" style=\"background-color: rgba(100, ".round((255 / 100) * (100 - ($row['damage']*100))).", 0, 0.8);\">".substr($row['damage'], 0, 6)."</td>
-		<td align=\"center\" class=\"gear_preview\"><font color=\"#FFFFFF\">".sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))."</font></td>
-		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-		<td align=\"center\" class=\"gear_preview\">".$HitpointsPreview."</td>
-		</tr>";
+	$tablerow = '<tr>'.$chbox.'
+		<td align="center" class="gear_preview"><a href="index.php?view=info&show=4&id='.$row['id'].'">'.$row['id'].'</a></td>
+		<td align="center" class="gear_preview">'.$row['class_name'].'</td>			
+		<td align="center" class="gear_preview" style="background-color: rgba(100, '.(round((255 / 100) * (100 - ($row['damage'] * 100)))).', 0, 0.8);">'.substr($row['damage'], 0, 6).'</td>
+		<td align="center" class="gear_preview">'.(sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))).'</td>
+		<td align="center" class="gear_preview">'.$InventoryPreview.'</td>
+		<td align="center" class="gear_preview">'.$HitpointsPreview.'</td>
+		</tr>';
 
 	return $tablerow;
 }
-
 function row_deployable($row, $chbox, $world) { 
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
@@ -313,7 +319,7 @@ function row_deployable($row, $chbox, $world) {
 	$x = 0; if (array_key_exists(1, $Worldspace)) { $x = $Worldspace[1]; }
 	$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
-	$InventoryPreview = "";
+	$InventoryPreview = '';
 	$Inventory = $row['inventory'];
 	$Inventory = json_decode($Inventory);
 	$limit = 6;
@@ -348,21 +354,22 @@ function row_deployable($row, $chbox, $world) {
 			if (is_array($curitem)) { 
 				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
 			}
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"><img style="max-width:43px;max-height:43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'"/></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top:0px;width:47px;height:47px;"></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
 
 	require_once('modules/calc.php');
-	$tablerow = "<tr>".$chbox."
-		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=5&id=".$row['id']."\">".$row['id']."</a></td>
-		<td align=\"center\" class=\"gear_preview\" ><a href=\"index.php?view=info&show=5&id=".$row['id']."\">".$row['unique_id']."</a></td>
-		<td align=\"center\" class=\"gear_preview\" ><font color=\"#FFFFFF\">".$row['class_name']."</font></td>			
-		<td align=\"center\" class=\"gear_preview\" ><font color=\"#FFFFFF\">".sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))."</font></td>
-		<td align=\"center\" class=\"gear_preview\">".$InventoryPreview."</td>
-		</tr>";
+	$tablerow = '<tr>'.$chbox.'
+		<td align="center" class="gear_preview"><a href="index.php?view=info&show=5&id='.$row['id'].'">'.$row['id'].'</a></td>
+		<td align="center" class="gear_preview"><a href="index.php?view=info&show=5&id='.$row['id'].'">'.$row['unique_id'].'</a></td>
+		<td align="center" class="gear_preview">'.$row['class_name'].'</td>			
+		<td align="center" class="gear_preview">'.(sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))).'</td>
+		<td align="center" class="gear_preview">'.$InventoryPreview.'</td>
+		</tr>';
 
 	return $tablerow;
 }
+
 ?>

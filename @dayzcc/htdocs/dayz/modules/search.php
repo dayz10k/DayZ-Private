@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "table") !== false))
 { 
 	if (isset($_POST['search'])) { 
@@ -8,6 +9,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 	} else { 
 		$pagetitle = "New search";
 	}
+	
 	?>
 
 	<div id="page-heading">
@@ -15,52 +17,49 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 		<h1><?php echo $pagetitle; ?></h1>
 	</div>
 
-	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+	<table id="content-table" border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-			<th class="topleft"></th>
-			<td id="tbl-border-top">&nbsp;</td>
-			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th class="corner-topleft"></th>
+			<td class="border-top">&nbsp;</td>
+			<th class="corner-topright"></th>
+			<th rowspan="3"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
-			<td id="tbl-border-left"></td>
+			<td class="border-left"></td>
 			<td>
 				<div id="content-table-inner">	
-					<?php include('modules/searchbar.php'); ?>
-					<br/><?php
+					<?php
+						include('modules/searchbar.php');
 					
-					if (isset($_POST['type'])) {
-						$type = $_POST['type'];
-					} else if (isset($_GET['type'])) {
-						$type = $_GET['type'];
-					} else {
-						$type = 'player';
-					}
-					
-					if (isset($_POST['search'])) {
-						$search = $_POST['search'];
-					} else if (isset($_GET['search'])) {
-						$search = $_GET['search'];
-					} else {
-						$search = '';
-					}
-					
-					if ($search != '')
-					{
-						//echo $_POST['search']."<br />".$_POST['type'];
-						error_reporting (E_ALL ^ E_NOTICE);
+						if (isset($_POST['type'])) {
+							$type = $_POST['type'];
+						} else if (isset($_GET['type'])) {
+							$type = $_GET['type'];
+						} else {
+							$type = 'player';
+						}
 						
-						$search = substr($search, 0, 64);
-						$search = preg_replace("/[^\w\x7F-\xFF\s]/", " ", $search);
-						$search = trim(preg_replace("/\s(\S{1,2})\s/", " ", preg_replace("[ +]", "  "," $search ")));
-						$search = preg_replace("[ +]", " ", $search);
-						$logic = "OR";
+						if (isset($_POST['search'])) {
+							$search = $_POST['search'];
+						} else if (isset($_GET['search'])) {
+							$search = $_GET['search'];
+						} else {
+							$search = '';
+						}
 						
-						?>
-						
-						<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
-						<?php
+						if ($search != '')
+						{
+							require_once('modules/tables/rows.php');
+
+							$search = substr($search, 0, 64);
+							$search = preg_replace("/[^\w\x7F-\xFF\s]/", " ", $search);
+							$search = trim(preg_replace("/\s(\S{1,2})\s/", " ", preg_replace("[ +]", "  "," $search ")));
+							$search = preg_replace("[ +]", " ", $search);
+							$logic = "OR";
+
+							echo '<br /><table id="product-table" border="0" width="100%" cellpadding="0" cellspacing="0">';
+
 							switch ($type) { 
 								case 'player':
 									$tableheader = header_player(1, 0);
@@ -106,20 +105,21 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 									$tablerows = "";
 									while ($row = mysql_fetch_array($res)) { $tablerows .= row_player($row, $serverworld); }
 									echo $tablerows;
-								};
-						?></table>
-					<?php } ?>
+							};
+								
+							echo '</table>';
+						}
+					?>
 				</div>
 			</td>
-			<td id="tbl-border-right"></td>
+			<td class="border-right"></td>
 		</tr>
 		<tr>
-			<th class="sized bottomleft"></th>
-			<td id="tbl-border-bottom">&nbsp;</td>
-			<th class="sized bottomright"></th>
+			<th class="corner-bottomleft"></th>
+			<td class="border-bottom">&nbsp;</td>
+			<th class="corner-bottomright"></th>
 		</tr>
 	</table>
-	<div class="clear">&nbsp;</div>
 
 <?php
 }
@@ -127,4 +127,5 @@ else
 { 
 	header('Location: index.php');
 }
+
 ?>

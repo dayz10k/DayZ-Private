@@ -534,14 +534,14 @@
         <Type>item</Type>
         <Slots>1</Slots>
     </sItemWatch>
-    <sItemWaterBottle>
+    <sItemWaterbottle>
         <Type>heavyammo</Type>
         <Slots>1</Slots>
-    </sItemWaterBottle>
-    <sItemWaterBottleUnfilled>
+    </sItemWaterbottle>
+    <sItemWaterbottleUnfilled>
         <Type>heavyammo</Type>
         <Slots>1</Slots>
-    </sItemWaterBottleUnfilled>
+    </sItemWaterbottleUnfilled>
     <sItemWire>
         <Type>heavyammo</Type>
         <Slots>1</Slots>
@@ -710,10 +710,6 @@
         <Type>rifle</Type>
         <Slots>10</Slots>
     </sM4A1_HWS_GL_SD_Camo>
-    <sM4A1_HWS_GL_camo>
-        <Type>rifle</Type>
-        <Slots>10</Slots>
-    </sM4A1_HWS_GL_camo>
     <sM4A1_RCO_GL>
         <Type>rifle</Type>
         <Slots>10</Slots>

@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "table") !== false))
 { 
 	$pnumber = 0;
@@ -14,36 +15,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 	$formhead = "";
 	$formfoot = "";
 	
-	if (isset($_GET["show"])){ 
+	if (isset($_GET["show"])) {
 		$show = $_GET["show"];
 	} else { 
 		$show = 0;
 	}
 
-	if (isset($_GET["sort"])){ 
+	if (isset($_GET["sort"])) {
 		$sort = $_GET["sort"];
 	} else { 
 		$sort = 0;
 	}
 	
-	// Thanks to SilverShot and ChemicalBliss for the order code
-	if (isset($_GET['order']))
-	{ 
+	if (isset($_GET['order'])) {
 		$order = $_GET['order'];
-		if($order == "1")
-		{ 
-			$ordered = "DESC";
-			$order = 0;
-		}
-		else
-		{ 
-			$ordered = "ASC";
-			$order = 1;
-		}
-	}
-	else
-	{ 
-		$ordered = "ASC";
+	} else { 
+		$order = "ASC";
 	}
 	
 	switch ($show) { 
@@ -55,22 +42,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query .= " ORDER BY survivor.name $ordered";
+					$query .= " ORDER BY survivor.name $order";
 					break;
 				case 2:
-					$query .= " ORDER BY survivor.unique_id` $ordered";
+					$query .= " ORDER BY survivor.unique_id` $order";
 					break;
 				case 3:
-					$query .= " ORDER BY survivor.worldspace $ordered";
+					$query .= " ORDER BY survivor.worldspace $order";
 					break;
 				case 4:
-					$query .= " ORDER BY survivor.medical $ordered";
+					$query .= " ORDER BY survivor.medical $order";
 					break;
 				case 5:
-					$query .= " ORDER BY survivor.inventory $ordered";
+					$query .= " ORDER BY survivor.inventory $order";
 					break;
 				case 6:
-					$query .= " ORDER BY survivor.backpack $ordered";
+					$query .= " ORDER BY survivor.backpack $order";
 					break;
 			};
 			
@@ -81,22 +68,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query .= " ORDER BY survivor.name $ordered";
+					$query .= " ORDER BY survivor.name $order";
 					break;
 				case 2:
-					$query .= " ORDER BY survivor.unique_id $ordered";
+					$query .= " ORDER BY survivor.unique_id $order";
 					break;
 				case 3:
-					$query .= " ORDER BY survivor.worldspace $ordered";
+					$query .= " ORDER BY survivor.worldspace $order";
 					break;
 				case 4:
-					$query .= " ORDER BY survivor.medical $ordered";
+					$query .= " ORDER BY survivor.medical $order";
 					break;
 				case 5:
-					$query .= " ORDER BY survivor.inventory $ordered";
+					$query .= " ORDER BY survivor.inventory $order";
 					break;
 				case 6:
-					$query .= " ORDER BY survivor.backpack $ordered";
+					$query .= " ORDER BY survivor.backpack $order";
 					break;
 			};
 			
@@ -107,22 +94,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query .= " ORDER BY survivor.name $ordered";
+					$query .= " ORDER BY survivor.name $order";
 					break;
 				case 2:
-					$query .= " ORDER BY survivor.unique_id $ordered";
+					$query .= " ORDER BY survivor.unique_id $order";
 					break;
 				case 3:
-					$query .= " ORDER BY survivor.worldspace $ordered";
+					$query .= " ORDER BY survivor.worldspace $order";
 					break;
 				case 4:
-					$query .= " ORDER BY survivor.medical $ordered";
+					$query .= " ORDER BY survivor.medical $order";
 					break;
 				case 5:
-					$query .= " ORDER BY survivor.inventory $ordered";
+					$query .= " ORDER BY survivor.inventory $order";
 					break;
 				case 6:
-					$query .= " ORDER BY survivor.backpack $ordered";
+					$query .= " ORDER BY survivor.backpack $order";
 					break;
 			};
 			
@@ -133,22 +120,22 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query .= " ORDER BY `id` $ordered";
+					$query .= " ORDER BY `id` $order";
 					break;
 				case 2:
-					$query .= " ORDER BY `class_name` $ordered";
+					$query .= " ORDER BY `class_name` $order";
 					break;
 				case 3:
-					$query .= " ORDER BY `damage` $ordered";
+					$query .= " ORDER BY `damage` $order";
 					break;
 				case 4:
-					$query .= " ORDER BY `worldspace` $ordered";
+					$query .= " ORDER BY `worldspace` $order";
 					break;
 				case 5:
-					$query .= " ORDER BY `inventory` $ordered";
+					$query .= " ORDER BY `inventory` $order";
 					break;
 				case 6:
-					$query .= " ORDER BY `parts` $ordered";
+					$query .= " ORDER BY `parts` $order";
 					break;
 			};
 			
@@ -159,19 +146,19 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			
 			switch ($sort) { 
 				case 1:
-					$query .= " ORDER BY instance_deployable.id $ordered";
+					$query .= " ORDER BY instance_deployable.id $order";
 					break;
 				case 2:
-					$query .= " ORDER BY `unique_id` $ordered";
+					$query .= " ORDER BY `unique_id` $order";
 					break;
 				case 3:
-					$query .= " ORDER BY `class_name` $ordered";
+					$query .= " ORDER BY `class_name` $order";
 					break;
 				case 4:
-					$query .= " ORDER BY `worldspace` $ordered";
+					$query .= " ORDER BY `worldspace` $order";
 					break;
 				case 5:
-					$query .= " ORDER BY `inventory` $ordered";
+					$query .= " ORDER BY `inventory` $order";
 					break;
 			};
 			
@@ -180,64 +167,48 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 		default:
 			$pagetitle = "Online players";
 	};
-		
+	
+	echo '<div id="page-heading"><title>'.$pagetitle.' - '.$sitename.'</title><h1>'.$pagetitle.'</h1></div>';
+	
+	require_once('modules/tables/rows.php');
 	include('modules/tables/'.$show.'.php');
 	
 	?>
 
-	<div id="page-heading">
-		<title><?php echo $pagetitle." - ".$sitename; ?></title>
-		<h1><?php echo $pagetitle; ?></h1>
-	</div>
-
-	<table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
+	<table id="content-table" border="0" width="100%" cellpadding="0" cellspacing="0">
 		<tr>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
-			<th class="topleft"></th>
-			<td id="tbl-border-top">&nbsp;</td>
-			<th class="topright"></th>
-			<th rowspan="3" class="sized"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
+			<th rowspan="3"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
+			<th class="corner-topleft"></th>
+			<td class="border-top">&nbsp;</td>
+			<th class="corner-topright"></th>
+			<th rowspan="3"><img src="images/forms/side_shadowright.jpg" width="20" height="300" alt="" /></th>
 		</tr>
 		<tr>
-			<td id="tbl-border-left"></td>
+			<td class="border-left"></td>
 			<td>
 				<div id="content-table-inner">
 					<div id="table-content">
-						<!--  start message-blue -->
 						<div id="message-blue">
 							<table border="0" width="100%" cellpadding="0" cellspacing="0">
 								<tr>
-									<td class="blue-left"><?php echo $pagetitle.": ".$pnumber; ?>. </td>
-									<td class="blue-right"><a class="close-blue"><img src="images/forms/icon_close_blue.gif"   alt="" /></a></td>
+									<td class="blue-left"><?php echo (isset($delresult) ? $delresult : $pagetitle.": ".$pnumber."."); ?></td>
+									<td class="blue-right"><a class="close-blue"><img src="images/forms/icon_blue.gif" alt="" /></a></td>
 								</tr>
 							</table>
 						</div>
-						<!--  end message-blue -->
-						
-						<?php echo $paging; ?>				
-						<br/>
-						<br/>
-						<?php echo $formhead;?>	
-							<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
-								<?php echo $tableheader;
-								echo $tablerows; ?>				
-							</table>
-						<?php echo $formfoot;?>	
+						<?php echo $paging.'<br \><br \><br \>'.$formhead.'<table id="product-table" border="0" width="100%" cellpadding="0" cellspacing="0">'.$tableheader.$tablerows.'</table>'.$formfoot; ?>	
 					</div>
-
 					<?php echo $paging; ?>
-					<div class="clear"></div>
 				</div>
 			</td>
-			<td id="tbl-border-right"></td>
+			<td class="border-right"></td>
 		</tr>
 		<tr>
-			<th class="sized bottomleft"></th>
-			<td id="tbl-border-bottom">&nbsp;</td>
-			<th class="sized bottomright"></th>
+			<th class="corner-bottomleft"></th>
+			<td class="border-bottom">&nbsp;</td>
+			<th class="corner-bottomright"></th>
 		</tr>
 	</table>
-	<div class="clear">&nbsp;</div>
 
 <?php
 }
@@ -245,4 +216,5 @@ else
 { 
 	header('Location: index.php');
 }
+
 ?>

@@ -208,6 +208,22 @@
 		<transportmaxbackpacks>10</transportmaxbackpacks>
 		<cargo>16</cargo>
 	</smi17_dz>
+	<skh_maule_m7_white_dz>
+		<Type>Plane</Type>
+		<Name>Maule M7</Name>
+		<transportmaxweapons>3</transportmaxweapons>
+		<transportmaxmagazines>20</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>15</cargo>
+	</skh_maule_m7_white_dz>
+	<smv22_dz>
+		<Type>MV22</Type>
+		<Name>MV-22</Name>
+		<transportmaxweapons>3</transportmaxweapons>
+		<transportmaxmagazines>20</transportmaxmagazines>
+		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<cargo>24</cargo>
+	</smv22_dz>
 	<sold_bike_tk_ins_ep1>
         <Type>Bike</Type>
 		<Name>Old Bike</Name>
@@ -1083,8 +1099,8 @@
 		<cargo>0</cargo>
 	</smq9predatorb_campaign>
 	<smv22>
-		<Type>Helicopter</Type>
-		<Name>mv-22</Name>
+		<Type>MV22</Type>
+		<Name>MV-22</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1116,7 +1132,7 @@
 	</sparachutemediumwest>
 	<suh1y>
 		<Type>Helicopter</Type>
-		<Name>uh-1y</Name>
+		<Name>UH-1Y</Name>
 		<transportmaxweapons>30</transportmaxweapons>
 		<transportmaxmagazines>150</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -1124,7 +1140,7 @@
 	</suh1y>
 	<suh1y_cutscene>
 		<Type>Helicopter</Type>
-		<Name>uh-1y</Name>
+		<Name>UH-1Y</Name>
 		<transportmaxweapons>30</transportmaxweapons>
 		<transportmaxmagazines>150</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -2211,16 +2227,16 @@
 		<cargo>14</cargo>
 	</sural_ins>
 	<sural_zu23_ins>
-		<Type>Car</Type>
-		<Name>ural (zu-23)</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>3</cargo>
 	</sural_zu23_ins>
 	<suralopen_ins>
-		<Type>Car</Type>
-		<Name>ural (open)</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2268,7 +2284,7 @@
 	</suaz_ru>
 	<soffroad_dshkm_tk_gue_ep1>
 		<Type>Car</Type>
-		<Name>offroad (dshkm)</Name>
+		<Name>Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2276,7 +2292,7 @@
 	</soffroad_dshkm_tk_gue_ep1>
 	<soffroad_spg9_tk_gue_ep1>
 		<Type>Car</Type>
-		<Name>offroad (spg-9)</Name>
+		<Name>Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2284,15 +2300,15 @@
 	</soffroad_spg9_tk_gue_ep1>
 	<spickup_pk_tk_gue_ep1>
 		<Type>Car</Type>
-		<Name>pickup (pk)</Name>
+		<Name>Pickup</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
 		<cargo>3</cargo>
 	</spickup_pk_tk_gue_ep1>
 	<sural_zu23_tk_gue_ep1>
-		<Type>Car</Type>
-		<Name>ural (zu-23)</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2308,7 +2324,7 @@
 	</sv3s_tk_gue_ep1>
 	<ssuv_un_ep1>
 		<Type>Car</Type>
-		<Name>suv</Name>
+		<Name>SUV</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2324,7 +2340,7 @@
 	</suaz_unarmed_un_ep1>
 	<sural_un_ep1>
 		<Type>Car</Type>
-		<Name>ural</Name>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2332,7 +2348,7 @@
 	</sural_un_ep1>
 	<soffroad_dshkm_gue>
 		<Type>Car</Type>
-		<Name>offroad (dshkm)</Name>
+		<Name>Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2340,7 +2356,7 @@
 	</soffroad_dshkm_gue>
 	<soffroad_spg9_gue>
 		<Type>Car</Type>
-		<Name>offroad (spg-9)</Name>
+		<Name>Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2348,7 +2364,7 @@
 	</soffroad_spg9_gue>
 	<spickup_pk_gue>
 		<Type>Car</Type>
-		<Name>pickup (pk)</Name>
+		<Name>Pickup</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2356,7 +2372,7 @@
 	</spickup_pk_gue>
 	<stt650_gue>
 		<Type>Motorcycle</Type>
-		<Name>motorcycle</Name>
+		<Name>Motorcycle</Name>
 		<transportmaxweapons>0</transportmaxweapons>
 		<transportmaxmagazines>5</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -2364,7 +2380,7 @@
 	</stt650_gue>
 	<sural_zu23_gue>
 		<Type>Car</Type>
-		<Name>ural (zu-23)</Name>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2388,7 +2404,7 @@
 	</sv3s_civ>
 	<ssuv_pmc_baf>
 		<Type>Car</Type>
-		<Name>pmc suv</Name>
+		<Name>SUV</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>

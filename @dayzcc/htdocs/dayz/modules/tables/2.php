@@ -1,3 +1,5 @@
 <?php
-	include('1.php');
+
+include('1.php');
+
 ?>

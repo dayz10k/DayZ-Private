@@ -1,4 +1,5 @@
 <?php
+
 function world_x($x, $world){ 
 	if (strpos($world, "chernarus") !== false) { 
 		return ($x / 100);
@@ -50,4 +51,5 @@ function world_y($y, $world){
 		return ($y / 100);
 	}
 }
+
 ?>
