@@ -9,14 +9,20 @@ if (isset($_SESSION['user_id']))
 	$res = mysql_query("SELECT * FROM `log_tool` ORDER BY `timestamp` DESC LIMIT 150");
 	while ($row = mysql_fetch_array($res)) {$log[] = $row['timestamp'].' '.$row['user'].': '.$row['action']; }
 
-	foreach (glob($patharma."\\@dayzcc_config\\".$serverinstance."\\{server,server_".$serverinstance."}.log", GLOB_BRACE) as $filepath) {
-		if (file_exists($filepath)) {
-			require_once('modules/file.php');
-			$chat = explode("\n", last_lines($filepath, 150));
+	if (isset($_POST['comment'])) {
+			if ($_POST['comment'] != "") {
+			$file = fopen("comments.log", (file_exists("comments.log") ? 'a' : 'w'));
+			fwrite($file, date('Y-m-d h:m:s')." ".$_SESSION['login'].": ".$_POST['comment']."\n");
+			fclose($file);
 		}
 	}
-	$chat = array_reverse($chat);
-	array_shift($chat);
+	
+	if (file_exists("comments.log")) {
+		require_once('modules/file.php');
+		$chat = explode("\n", str_replace("\r", "", last_lines("comments.log", 150)));
+		$chat = array_reverse($chat);
+		array_shift($chat);
+	}
 	
 	function getIP() {
 		$ip = file_get_contents("http://checkip.dyndns.org/");
@@ -81,16 +87,20 @@ if (isset($_SESSION['user_id']))
 				</table>
 				<table id="product-table" border="0" width="100%" cellpadding="0" cellspacing="0">
 					<tr>
+						<th class="product-table-header"><a>Comments</a></th>
 						<th class="product-table-header"><a>Action Log</a></th>
-						<th class="product-table-header"><a>Server Log</a></th>
 					</tr>
 					<tr>
+						<form method="post">
+							<td align="center" width="50%">
+								<textarea style="width: 99.7%; height: 170px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $chat); ?></textarea>
+								<textarea name="comment" style="width: 86%; height: 16px; margin-top: 7px;"></textarea>
+								<input type="submit" class="submit" style="display: inline;" />
+							</td>
+						</form>
 						<td align="center" width="50%">
-							<textarea style="width: 99.8%; height: 200px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $log); ?></textarea>
+							<textarea style="width: 99.7%; height: 200px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $log); ?></textarea>
 						</td>
-						<td align="center" width="50%">
-							<textarea style="width: 99.8%; height: 200px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $chat); ?></textarea>
-						</td>	
 					</tr>
 				</table>
 			</div>
