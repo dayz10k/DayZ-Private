@@ -1,17 +1,15 @@
 <?php
+
 if (isset($_SESSION['user_id']))
-{ 
+{
+	/** 3D Editor Mission File Parser
+	  *
+	  * This will take your mission file and add any new buildings to your building table
+	  * Written by: Planek and Crosire
+	  *
+	  **/
 
-	/* 3D Editor Mission File Parser
-	 *
-	 * This will take your mission file and add any new buildings to your building table
-	 * Written by: Planek and Crosire
-	 *
-	 */
-
-	if (file_exists("buildings.sqf")) { 
-		error_reporting (E_ALL ^ E_NOTICE);
-
+	if (file_exists("buildings.sqf")) {
 		$missionfile = file_get_contents("buildings.sqf");
 		$rows = explode("\n", $missionfile); array_shift($rows);
 		$buildingcount = 0;
@@ -145,4 +143,5 @@ else
 { 
 	header('Location: index.php');
 }
+
 ?>

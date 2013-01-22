@@ -1,20 +1,20 @@
 <?php
-if (isset($_SESSION['user_id']))
-{ 
 
-	/* 3D Editor Mission File Parser
-	 *
-	 * This will take your mission file and add any new vehicles to your vehicle table and all spawn points
-	 * to your world_vehicle table
-	 * Written by: Planek and Crosire
-	 *
-	 */
- 
-	if (file_exists("vehicles.sqf")) { 
-		error_reporting (E_ALL ^ E_NOTICE);
-		
+if (isset($_SESSION['user_id']))
+{
+
+	/** 3D Editor Mission File Parser
+	  *
+	  * This will take your mission file and add any new vehicles to your vehicle table and all spawn points
+	  * to your world_vehicle table
+	  * Written by: Planek and Crosire
+	  *
+	  **/
+
+	if (file_exists("vehicles.sqf")) {
 		$missionfile = file_get_contents("vehicles.sqf");
-		$rows = explode("\n", $missionfile); array_shift($rows);
+		$rows = explode("\n", $missionfile);
+		array_shift($rows);
 		$vehiclecount = 0;
 
 		?>
@@ -158,4 +158,5 @@ else
 { 
 	header('Location: index.php');
 }
+
 ?>
