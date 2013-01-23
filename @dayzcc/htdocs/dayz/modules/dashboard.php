@@ -93,9 +93,9 @@ if (isset($_SESSION['user_id']))
 					<tr>
 						<form method="post">
 							<td align="center" width="50%">
-								<textarea style="width: 99.7%; height: 170px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $chat); ?></textarea>
-								<textarea name="comment" style="width: 86%; height: 16px; margin-top: 7px;"></textarea>
-								<input type="submit" class="submit" style="display: inline;" />
+								<textarea style="width: 99.7%; height: 165px; white-space: nowrap;" wrap="off" readonly><?php echo implode("\n", $chat); ?></textarea>
+								<textarea name="comment" style="width: 80%; height: 22px; margin-top: 7px;"></textarea>
+								<input type="submit" class="submit" style="display: inline; vertical-align: top; margin-top: 5px;" />
 							</td>
 						</form>
 						<td align="center" width="50%">
