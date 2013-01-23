@@ -1,6 +1,10 @@
 <?php
 	if (isset($_SESSION['user_id']))
-	{ 
+	{
+		function strcontains($haystack, $needle) {  
+			if (strpos($haystack, $needle) !== false) { return true; } else { return false; }
+		}
+		
 		?>
 		
 		<div class="nav-outer-repeat"> 
@@ -11,30 +15,33 @@
 							<li class="root">
 								<a href="index.php" class="item">Dashboard</a>
 							</li>
-							<?php if (strpos($_SESSION['user_permissions'], "control") !== false) { ?>
-								<li class="root"><a href="index.php?view=manage" class="item down">Manage</a>
+							<?php if (strcontains($_SESSION['user_permissions'], "control") || strcontains($_SESSION['user_permissions'], "manage") || strcontains($_SESSION['user_permissions'], "whitelist")) { ?>
+								<li class="root"><a class="item down">Manage</a>
 									<ul class="menu">
-										<li><a href="index.php?view=manage" class="item">Overview</a></li>
-										<li><a href="index.php?view=control" class="item">Server Control</a></li>
-										<?php if (strpos($_SESSION['user_permissions'], "whitelist") !== false) { ?>
+										<?php if (strcontains($_SESSION['user_permissions'], "manage")) { ?>
+											<li><a href="index.php?view=manage" class="item">Overview</a></li>
+										<?php } if (strcontains($_SESSION['user_permissions'], "control")) { ?>
+											<li><a href="index.php?view=control" class="item">Server Control</a></li>
+										<?php } if (strcontains($_SESSION['user_permissions'], "whitelist")) { ?>
 											<li><a href="index.php?view=whitelist" class="item">Whitelist</a></li>
+										<?php } if (strcontains($_SESSION['user_permissions'], "control")) { ?>
+											<li class="nav-separator"><span></span></li>
+											<li><a href="index.php?view=log&type=server" class="item down">Logs</a>
+												<ul class="menu">
+													<li><a href="index.php?view=log&type=server" class="item">Server</a></li>
+													<li><a href="index.php?view=log&type=battleye" class="item">BattlEye</a></li>
+												</ul>
+											</li>
+											<li><a href="index.php?view=battleye" class="item down">Battleye</a>
+												<ul class="menu">
+													<li><a href="index.php?view=battleye" class="item">Bans</a></li>
+													<li><a href="index.php?view=battleye&filter" class="item">Filters</a></li>
+												</ul>
+											</li>
 										<?php } ?>
-										<li class="nav-separator"><span></span></li>
-										<li><a href="index.php?view=log&type=server" class="item down">Logs</a>
-											<ul class="menu">
-												<li><a href="index.php?view=log&type=server" class="item">Server</a></li>
-												<li><a href="index.php?view=log&type=battleye" class="item">BattlEye</a></li>
-											</ul>
-										</li>
-										<li><a href="index.php?view=battleye" class="item down">Battleye</a>
-											<ul class="menu">
-												<li><a href="index.php?view=battleye" class="item">Bans</a></li>
-												<li><a href="index.php?view=battleye&filter" class="item">Filters</a></li>
-											</ul>
-										</li>
 									</ul>
 								</li>
-							<?php } if (strpos($_SESSION['user_permissions'], "table") !== false) { ?>
+							<?php } if (strcontains($_SESSION['user_permissions'], "table")) { ?>
 							<li class="root"><a class="item down">Entities & Info</a>
 								<ul class="menu">
 									<li><a href="index.php?view=table&show=3" class="item down">Players</a>
@@ -53,7 +60,7 @@
 									<li><a href="index.php?view=search" class="item">Search</a></li>
 								</ul>
 							</li>
-							<?php } if (strpos($_SESSION['user_permissions'], "map") !== false) { ?>
+							<?php } if (strcontains($_SESSION['user_permissions'], "map")) { ?>
 								<li class="root"><a href="index.php?view=map&show=7" class="item down">Map</a>
 									<ul class="menu">
 										<li><a href="index.php?view=map&show=3" class="item down">Players</a>
@@ -72,11 +79,11 @@
 										<li><a href="index.php?view=map&show=7" class="item">All</a></li>
 									</ul>
 								</li>
-							<?php } if (strpos($_SESSION['user_permissions'], "feed") !== false) { ?>
+							<?php } if (strcontains($_SESSION['user_permissions'], "feed")) { ?>
 								<li class="root">
 									<a href="index.php?view=feed" class="item">Feed</a>
 								</li>
-							<?php } if (strpos($_SESSION['user_permissions'], "tools") !== false) { ?>
+							<?php } if (strcontains($_SESSION['user_permissions'], "tools")) { ?>
 								<li class="root">
 									<a href="index.php?view=tools" class="item">Tools</a>
 								</li>
@@ -87,7 +94,7 @@
 				</div>
 				<div id="nav-right">
 					<div class="nav-divider">&nbsp;</div>
-					<?php if (strpos($_SESSION['user_permissions'], "user") !== false) { ?>
+					<?php if (strcontains($_SESSION['user_permissions'], "user")) { ?>
 						<a href="index.php?view=users"><img src="images/forms/nav_myaccount.gif" width="67" height="14" alt="" /></a>
 					<?php } ?>
 					<a href="index.php?logout"><img src="images/forms/nav_logout.gif" width="64" height="14" alt="" /></a>

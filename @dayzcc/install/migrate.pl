@@ -39,7 +39,7 @@ print "\n";
 my $schema1 = "Bliss";
 my $schema2 = "Controlcenter";
 my $version1 = "0.36";
-my $version2 = "0.08";
+my $version2 = "0.09";
 
 print "Trying to connect to MySQL server on $db{'host'}, database $db{'name'} as $db{'user'}\n";
 my $dbh = DBIx::Transaction->connect("dbi:mysql:$db{'name'}:$db{'host'}:$db{'port'}", $db{'user'}, $db{'pass'}) or die "> Error: MySQL Error: ".DBI->errstr."\n";

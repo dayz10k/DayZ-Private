@@ -2,7 +2,7 @@
 
 // This page was written by SilverShot and completly overhauled by Crosire
 
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"control") !== false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "manage") !== false))
 {
 	$pagetitle = "Manage Server";
 	
@@ -252,7 +252,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'],"contr
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

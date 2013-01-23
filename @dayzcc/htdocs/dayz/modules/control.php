@@ -1,6 +1,7 @@
 <?php
+
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "control") !== false))
-{ 
+{
 	$pagetitle = "Server Control";
 	$exebec = "bec_".$serverinstance.".exe";
 
@@ -167,7 +168,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
+
 ?>
