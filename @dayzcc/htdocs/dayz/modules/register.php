@@ -37,8 +37,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 					<div id="table-content">
 						<form action="index.php?view=users<?php echo (isset($_GET['edit']) ? '&edit='.$id : ''); ?>" method="post">
 							<h2>Enter login name and password for the user:</h2>
-							<input type="text" name="login" value="<?php echo $login; ?>" <?php echo ($type == "edit" ? 'readonly' : ''); ?> onblur="if (this.value == '') { this.value = 'Username'; }" onfocus="if (this.value == 'Username') { this.value = ''; }" style="display: inline; padding-top: 6px; padding-bottom: 6px; padding-left: 6px; width: 200px;" />
-							<input type="text" name="password" value="<?php echo $password; ?>" onblur="if (this.value == '') { this.value = 'Password'; }" onfocus="if (this.value == 'Password') { this.value = ''; }" style="display: inline; padding-top: 6px; padding-bottom: 6px; padding-left: 6px; width: 200px;" />
+							<input type="text" name="login" value="<?php echo $login; ?>" <?php echo (isset($_GET['edit']) ? 'readonly' : ''); ?> maxlength="50" onblur="if (this.value == '') { this.value = 'Username'; }" onfocus="if (this.value == 'Username') { this.value = ''; }" style="display: inline; padding-top: 6px; padding-bottom: 6px; padding-left: 6px; width: 200px;" />
+							<input type="text" name="password" value="<?php echo $password; ?>" maxlength="32" onblur="if (this.value == '') { this.value = 'Password'; }" onfocus="if (this.value == 'Password') { this.value = ''; }" style="display: inline; padding-top: 6px; padding-bottom: 6px; padding-left: 6px; width: 200px;" />
 							<br /><br />
 							<h2>Select the pages the user should be allowed to view:</h2>
 							<div style="border: 2px solid #ccc; width: 403px; height: 100px; padding-top: 6px; padding-left: 6px; overflow-y: scroll;">
