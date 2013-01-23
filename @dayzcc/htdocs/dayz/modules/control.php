@@ -13,9 +13,9 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 				sleep(6);
 				break;
 			case 1:
-				$output = exec('taskkill /IM '.$exeserver);
+				exec('taskkill /IM "'.$exeserver.'"');
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP SERVER', '{$_SESSION['login']}', NOW())");
-				sleep(6);
+				sleep(3);
 				break;
 			case 3:
 				pclose(popen('start "" /d "'.$patharma.'\\@dayzcc_config\\'.$serverinstance.'\\BattlEye Extended Controls" "'.$patharma.'\\@dayzcc_config\\'.$serverinstance.'\\BattlEye Extended Controls\\'.$exebec.'" -f config.cfg', 'r'));
@@ -23,17 +23,17 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 				sleep(6);
 				break;
 			case 4:
-				$output = exec('taskkill /IM "'.$exebec.'"');
+				exec('taskkill /IM "'.$exebec.'"');
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP BEC', '{$_SESSION['login']}', NOW())");
-				sleep(6);
+				sleep(3);
 				break;
 			case 5:
-				$answer = rcon($serverip, $serverport, $rconpassword, "#restart");
+				rcon($serverip, $serverport, $rconpassword, "#restart");
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{$_SESSION['login']}', NOW())");
 				sleep(1);
 				break;
 			case 6:
-				exec('taskkill /IM "arma2oaserver_'.$serverinstance.'.exe" /F 2>&1', $output);
+				exec('taskkill /IM "'.$exeserver.'" /F 2>&1', $output);
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('KILLED SERVER', '{$_SESSION['login']}', NOW())");
 				sleep(3);
 				$outmessage = implode('&nbsp;', $output);
@@ -41,6 +41,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 			default:
 				sleep(1);
 		}
+		
+		echo '<script type="text/javascript">$.unblockUI</script>';
 	}
 
 	if ((str_replace('"', "", explode(",", strtolower(exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV')))[0])) == strtolower($exeserver)) {
@@ -56,6 +58,16 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 	
 	?>
 	
+	<script type="text/javascript">
+		function cblockUI() {
+			$.blockUI({ message: $('#blockMessage') });
+		}
+	</script>
+	
+	<div id="blockMessage" style="display: none;">
+		<h1><img src="images/forms/spinner.gif" /> Waiting for action to complete.</h1><br /><h1>Please be patient ...</h1>
+	</div>
+
 	<div id="page-heading">
 		<?php
 			echo "<title>".$pagetitle." - ".$sitename."</title>";
@@ -86,14 +98,14 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						</table>
 						</div>
 						<div id="step-holder">	
-							<div class="step-no"><a href="index.php?view=control&action=5"><img src="images/icons/start.png"/></div>
-							<div class="step-dark-left">Restart</div>
+							<div class="step-no"><a href="index.php?view=control&action=5"><img src="images/icons/start.png"/></a></div>
+							<div class="step-dark-left"><a href="index.php?view=control&action=5">Restart</a></div>
 							<div class="step-dark-right">&nbsp;</div>
-							<div class="step-no"><a href="index.php?view=control&action=1"><img src="images/icons/stop.png"/></a></div>
-							<div class="step-dark-left"><a href="index.php?view=control&action=1">Stop</a></div>
+							<div class="step-no"><a href="index.php?view=control&action=1" onclick="cblockUI();"><img src="images/icons/stop.png"/></a></div>
+							<div class="step-dark-left"><a href="index.php?view=control&action=1" onclick="cblockUI();">Stop</a></div>
 							<div class="step-dark-right">&nbsp;</div>
-							<div class="step-no"><a href="index.php?view=control&action=1"><img src="images/icons/stop.png"/></a></div>
-							<div class="step-dark-left"><a href="index.php?view=control&action=6">Kill Process</a></div>
+							<div class="step-no"><a href="index.php?view=control&action=6" onclick="cblockUI();"><img src="images/icons/stop.png"/></a></div>
+							<div class="step-dark-left"><a href="index.php?view=control&action=6" onclick="cblockUI();">Kill Process</a></div>
 							<div class="step-dark-round">&nbsp;</div>
 							<div class="clear"></div>
 						</div>
@@ -110,8 +122,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 									<div class="step-no-off"><img src="images/icons/start.png"/></div>
 									<div class="step-light-left">Start</div>
 									<div class="step-light-right">&nbsp;</div>
-									<div class="step-no"><a href="index.php?view=control&action=4"><img src="images/icons/stop.png"/></a></div>
-									<div class="step-dark-left"><a href="index.php?view=control&action=4">Stop</a></div>
+									<div class="step-no"><a href="index.php?view=control&action=4" onclick="cblockUI();"><img src="images/icons/stop.png"/></a></div>
+									<div class="step-dark-left"><a href="index.php?view=control&action=4" onclick="cblockUI();">Stop</a></div>
 									<div class="step-dark-round">&nbsp;</div>
 									<div class="clear"></div>
 							</div>
@@ -125,8 +137,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 								</table>
 							</div>
 							<div id="step-holder">	
-								<div class="step-no"><a href="index.php?view=control&action=3"><img src="images/icons/start.png"/></a></div>
-								<div class="step-dark-left"><a href="index.php?view=control&action=3">Start</a></div>
+								<div class="step-no"><a href="index.php?view=control&action=3" onclick="cblockUI();"><img src="images/icons/start.png"/></a></div>
+								<div class="step-dark-left"><a href="index.php?view=control&action=3" onclick="cblockUI();">Start</a></div>
 								<div class="step-dark-right">&nbsp;</div>
 								<div class="step-no-off"><img src="images/icons/stop.png"/></div>
 								<div class="step-light-left">Stop</div>
@@ -143,8 +155,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 							</table>
 						</div>
 						<div id="step-holder">	
-							<div class="step-no"><a href="index.php?view=control&action=0"><img src="images/icons/start.png"/></a></div>
-							<div class="step-dark-left"><a href="index.php?view=control&action=0">Start</a></div>
+							<div class="step-no"><a href="index.php?view=control&action=0" onclick="cblockUI();"><img src="images/icons/start.png"/></a></div>
+							<div class="step-dark-left"><a href="index.php?view=control&action=0" onclick="cblockUI();">Start</a></div>
 							<div class="step-dark-right">&nbsp;</div>
 							<div class="step-no-off"><img src="images/icons/stop.png"/></div>
 							<div class="step-light-left">Stop</div>

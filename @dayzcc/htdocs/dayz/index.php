@@ -33,8 +33,6 @@ else
 		mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die (mysql_error());
 		mysql_select_db($dbname) or die (mysql_error());
 
-		error_reporting (E_All ^ E_Notice);
-
 		include('modules/rcon.php');
 		include('modules/header.php');
 

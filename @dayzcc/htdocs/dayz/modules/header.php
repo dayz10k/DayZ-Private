@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="css/nav.css" type="text/css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" language="javascript" type="text/javascript"></script>
 		<script src="js/popup.js" type="text/javascript"></script>
+		<script src="js/blockui.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div id="page-top-outer">    
