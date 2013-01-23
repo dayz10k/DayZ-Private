@@ -11,12 +11,13 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 	}
 
 	if (empty($_POST))
-	{ 
+	{
 		?>
 		
 		<div id="page-heading">
 			<h1>Registration</h1>
 		</div>
+
 		<table id="content-table" border="0" width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<th rowspan="3"><img src="images/forms/side_shadowleft.jpg" width="20" height="300" alt="" /></th>
@@ -30,30 +31,24 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 				<td>
 					<div id="content-table-inner">
 						<div id="table-content">
-							<h2>Enter login, password and permissions for the new user</h2>
-							
 							<form action="index.php?view=register" method="post">
-								<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
-									<tr>
-										<td style="width: 30%"><strong>Login:</strong></th>
-										<td style="width: 70%"><input type="text" name="login" style="height: 22px; padding: 6px 6px 0 6px; width: 80%;" /></td>
-									</tr>
-									<tr>
-										<td style="width: 30%"><strong>Password:</strong></th>
-										<td style="width: 70%"><input type="text" name="password" style="height: 22px; padding: 6px 6px 0 6px; width: 80%;" /></td>
-									</tr>
-									<tr>
-										<td style="width: 30%"><strong>Permissions:</strong></th>
-										<td style="width: 70%"><input type="text" name="permission" style="height: 22px; padding: 6px 6px 0 6px; width: 80%;" value="control, table, map, user, whitelist, tools, feed" /></td>
-									</tr>
-									<tr><td>&nbsp;</td></tr>
-									<tr>
-										<td>&nbsp;</th>
-										<td>
-											<input type="submit" value="" class="submit" />
-										</td>
-									</tr>
-								</table>
+								<h2>Enter login name and password for the new user:</h2>
+								<input type="text" name="login" value="Username" onblur="if (this.value == '') { this.value = 'Username'; }" onfocus="if (this.value == 'Username') { this.value = ''; }" style="display: inline; padding-top: 6px; padding-bottom: 6px; padding-left: 6px; width: 200px;" />
+								<input type="text" name="password" value="Password" onblur="if (this.value == '') { this.value = 'Password'; }" onfocus="if (this.value == 'Password') { this.value = ''; }" style="display: inline; padding-top: 6px; padding-bottom: 6px; padding-left: 6px; width: 200px;" />
+								<br /><br />
+								<h2>Select the pages the user should be allowed to view:</h2>
+								<div style="border: 2px solid #ccc; width: 403px; height: 100px; padding-top: 6px; padding-left: 6px; overflow-y: scroll;">
+									<input type="hidden" name="permission" />
+									<input type="checkbox" name="manage" checked />&nbsp;&nbsp;&nbsp;"Manage Overview"<br />
+									<input type="checkbox" name="control" checked />&nbsp;&nbsp;&nbsp;"Server Control", "Logs", "BattlEye", "Bans"<br />
+									<input type="checkbox" name="table" checked />&nbsp;&nbsp;&nbsp;"Playerlist", "Vehiclelist", "Deployablelist", "Check items", "Search"<br />
+									<input type="checkbox" name="map" checked />&nbsp;&nbsp;&nbsp;"Playermap", "Vehiclemap", "Deployablemap", "Wreckmap"<br />
+									<input type="checkbox" name="tools" checked />&nbsp;&nbsp;&nbsp;"Vehicle import tools"<br />
+									<input type="checkbox" name="feed" checked />&nbsp;&nbsp;&nbsp;"Killfeed"<br />
+									<input type="checkbox" name="user" checked />&nbsp;&nbsp;&nbsp;"Accounts"<br />
+								</div>
+								<br />
+								<input type="submit" class="submit" />
 							</form>
 						</div>
 						<div class="clear"></div>
@@ -74,7 +69,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 	{ 
 		$login = (isset($_POST['login'])) ? mysql_real_escape_string($_POST['login']) : '';
 		$password = (isset($_POST['password'])) ? mysql_real_escape_string($_POST['password']) : '';
-		$permission = (isset($_POST['permission'])) ? mysql_real_escape_string($_POST['permission']) : '';
+		$permissions = '';
 		$error = false;
 		$errort = '';
 		
@@ -91,12 +86,21 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			$errort .= 'Login already used. ';
 		}
 
+		if (isset($_POST['permission'])) {
+			foreach (array('manage', 'control', 'table', 'map', 'tools', 'feed', 'user') as $permission) {
+				if (isset($_POST[$permission])) {
+					if ($_POST[$permission] == "on") { $permissions .= $permission.", "; }
+				}
+			}
+			$permissions = mysql_real_escape_string(substr($permissions, 0, -2));
+		}
+
 		if (!$error)
 		{ 
 			$salt = GenerateSalt();
 			$hash = md5(md5($password).$salt);
 			
-			mysql_query("INSERT INTO `users` SET `login` = '{$login}', `password` = '{$hash}', `salt` = '{$salt}', `permissions` = '{$permission}'") or die(mysql_error());
+			mysql_query("INSERT INTO `users` SET `login` = '{$login}', `password` = '{$hash}', `salt` = '{$salt}', `permissions` = '{$permissions}'") or die(mysql_error());
 			mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('REGISTERED USER: {$login}', '{$_SESSION['login']}', NOW())");
 			
 			$delresult = '<div id="message-green">
