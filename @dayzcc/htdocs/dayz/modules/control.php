@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 	if (isset($_GET['action'])) {
 		switch($_GET['action']) {
 			case 0:
-				pclose(popen("start \"\" /d \"".$patharma."\" /b ".'"'.$pathserver.'" -beta=Expansion\\beta;Expansion\\beta\\Expansion -mod='.$servermodlist.' -name=Server -config=@dayzcc_config\\'.$serverinstance.'\\config.cfg -cfg=@dayzcc_config\\'.$serverinstance.'\\basic.cfg -profiles=@dayzcc_config\\'.$serverinstance.' -ip='.$serverip.' -port='.$serverport.' -cpuCount=2 -maxMem=2047 -noSound -exThreads=1 -noPause', 'r'));
+				pclose(popen('start "" /d "'.$patharma.'" /b "'.$pathserver.'" -beta=Expansion\\beta;Expansion\\beta\\Expansion -mod='.$servermodlist.' -name=Server -config=@dayzcc_config\\'.$serverinstance.'\\config.cfg -cfg=@dayzcc_config\\'.$serverinstance.'\\basic.cfg -profiles=@dayzcc_config\\'.$serverinstance.' -port='.$serverport.' -cpuCount=2 -maxMem=2047 -noSound -exThreads=1 -noPause', 'r'));
 				mysql_query("INSERT INTO `log_tool`(`action`, `user`, `timestamp`) VALUES ('START SERVER','{$_SESSION['login']}', NOW())");
 				sleep(6);
 				break;
@@ -17,7 +17,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 				sleep(6);
 				break;
 			case 3:
-				pclose(popen("start \"\" /d \"".$patharma."\\@dayzcc_config\\".$serverinstance."\\BattlEye Extended Controls\" ".'"'.$patharma."\\@dayzcc_config\\".$serverinstance."\\BattlEye Extended Controls\\".$exebec.'" -f config.cfg', 'r'));
+				pclose(popen('start "" /d "'.$patharma.'\\@dayzcc_config\\'.$serverinstance.'\\BattlEye Extended Controls" "'.$patharma.'\\@dayzcc_config\\'.$serverinstance.'\\BattlEye Extended Controls\\'.$exebec.'" -f config.cfg', 'r'));
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('START BEC', '{$_SESSION['login']}', NOW())");
 				sleep(6);
 				break;
@@ -27,8 +27,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 				sleep(6);
 				break;
 			case 5:
-				$cmd = "#restart";
-				$answer = rcon($serverip, $serverport, $rconpassword, $cmd);
+				$answer = rcon($serverip, $serverport, $rconpassword, "#restart");
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{$_SESSION['login']}', NOW())");
 				sleep(1);
 				break;
