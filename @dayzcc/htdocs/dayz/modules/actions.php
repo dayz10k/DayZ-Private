@@ -16,8 +16,11 @@ if (isset($_SESSION['user_id']))
 						$worldid = intval(mysql_fetch_assoc($res)['id']);
 
 						require_once('modules/lib/class.vehicles.php');
-						$om = (new Object_Management(new mysqli($dbhost.':'.$dbport, $dbuser, $dbpass, $dbname)))->setDBName($dbname)->setWorldID($worldid)->setGenerateVehicles(true);
-						$om->execute();
+						$generation = new vehicle_generator(new mysqli($dbhost.':'.$dbport, $dbuser, $dbpass, $dbname));
+						$generation->setDatabaseName($dbname);
+						$generation->setInstanceID($serverinstance);
+						$generation->setWorldID($worldid);
+						$generation->execute();
 						
 						exit();
 						break;
