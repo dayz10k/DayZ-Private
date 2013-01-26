@@ -4,7 +4,7 @@
 if (isset($_GET["delete"])) {
 	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('DELETE VEHICLE {$_GET["id"]}', '{$_SESSION['login']}', NOW())");
 	mysql_query("DELETE FROM `instance_vehicle` WHERE `id` = '{$_GET["id"]}'") or die(mysql_error());
-	echo "<script>window.location = 'index.php?view=table&show=4'</script>";
+	echo '<script type="text/javascript">window.location = "index.php?view=table&show=4"</script>';
 } else {
 	if (isset($_GET["repair"])) {
 		mysql_query("UPDATE `instance_vehicle` SET parts='[]', damage='0' WHERE id = '{$_GET["id"]}'");
@@ -59,10 +59,10 @@ $vehicles_xml = XML2Array::createArray($xml);
 							<img class="playermodel" src='images/vehicles/<?php echo strtolower($row['class_name']); ?>.png'/>
 							<div id="gps" style="margin-left: 46px; margin-top: 54px">
 								<div class="gpstext" style="font-size: 22px; width: 60px; text-align: left; margin-left: 47px; margin-top: 13px">
-									<?php echo round(($Worldspace[0]/100)); ?>
+									<?php echo round($Worldspace[0] / 100); ?>
 								</div>
 								<div class="gpstext" style="font-size: 22px; width: 60px; text-align: left; margin-left: 47px; margin-top: 34px">
-									<?php echo round(($Worldspace[3]/100)); ?>
+									<?php echo round($Worldspace[3] / 100); ?>
 								</div>
 								<div class="gpstext" style="width: 120px; margin-left: 13px; margin-top: 61px">
 									<?php

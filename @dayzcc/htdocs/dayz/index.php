@@ -6,6 +6,7 @@ session_start();
 
 include('config.php');
 $sitename = "DayZ Controlcenter Administration";
+$serverinstance = intval($serverinstance);
 $exeserver = "arma2oaserver_".$serverinstance.".exe";
 $pathserver = $patharma."\\@dayzcc_config\\".$serverinstance."\\".$exeserver;
 

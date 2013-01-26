@@ -75,9 +75,9 @@ function row_player($row, $world) {
 				$curitem = $Inventory[$i][0];
 				$pcount = ' - '.$Inventory[$i][1].' rounds';
 			}
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
 
@@ -110,9 +110,9 @@ function row_player($row, $world) {
 					$pcount = ' - '.$Backpack[$i][1].' rounds';
 				}
 			}
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
 
@@ -166,9 +166,9 @@ function row_online_player($row, $player, $world) {
 		if (array_key_exists($p, $Inventory)) { 
 			$curitem = $Inventory[$p];
 			if (is_array($curitem)) { $curitem = $Inventory[$p][0]; $pcount = ' - '.$Inventory[$p][1].' rounds'; }
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
 
@@ -205,9 +205,9 @@ function row_online_player($row, $player, $world) {
 					$pcount = ' - '.$Backpack[$p][1].' rounds';
 				}
 			}
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
 		} else { 
-			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
+			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
 
@@ -281,9 +281,9 @@ function row_vehicle($row, $chbox, $world) {
 					$icount = ' - '.$Inventory[$i][1].' rounds';
 				}
 			}
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
 
@@ -354,9 +354,9 @@ function row_deployable($row, $chbox, $world) {
 			if (is_array($curitem)) { 
 				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
 			}
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
 		} else { 
-			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
+			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
 

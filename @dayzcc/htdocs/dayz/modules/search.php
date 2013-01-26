@@ -81,6 +81,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 									$tableheader = header_vehicle(4, "", 0);
 									echo $tableheader;
 									$res = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND vehicle.class_name LIKE '%". str_replace(" ", "%' OR vehicle.class_name LIKE '%", $search). "%'") or die(mysql_error());
+									$tablerows = "";
 									while ($row = mysql_fetch_array($res)) { $tablerows .= row_vehicle($row, "", $serverworld); }
 									echo $tablerows;
 									break;
@@ -88,6 +89,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 									$tableheader = header_vehicle(4, "", 0);
 									echo $tableheader;
 									$res = mysql_query("SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.inventory LIKE '%". str_replace(" ", "%' OR instance_vehicle.inventory LIKE '%", $search). "%'") or die(mysql_error());
+									$tablerows = "";
 									while ($row = mysql_fetch_array($res)) { $tablerows .= row_vehicle($row, "", $serverworld); }
 									echo $tablerows;
 									break;
@@ -95,6 +97,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 									$tableheader = header_deployable(5, "", 0);
 									echo $tableheader;
 									$res = mysql_query("SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND deployable.class_name = 'TentStorage' AND instance_deployable.inventory LIKE '%". str_replace(" ", "%' OR instance_deployable.inventory LIKE '%", $search). "%'") or die(mysql_error());
+									$tablerows = "";
 									while ($row = mysql_fetch_array($res)) { $tablerows .= row_deployable($row, "", $serverworld); }
 									echo $tablerows;
 									break;

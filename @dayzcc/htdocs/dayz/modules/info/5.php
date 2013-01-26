@@ -3,10 +3,10 @@
 if (isset($_GET["delete"])) {
 	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('DELETE DEPLOYABLE {$_GET["id"]}', '{$_SESSION['login']}', NOW())");
 	mysql_query("DELETE FROM `instance_deployable` WHERE `id` = '{$_GET["id"]}'") or die(mysql_error());
-	echo "<script>window.location = 'index.php?view=table&show=5'</script>";
+	echo '<script type="text/javascript">window.location = "index.php?view=table&show=5"</script>';
 }
 
-$res = mysql_query("SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` AS `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.id = '".$_GET["id"]."' LIMIT 1") or die(mysql_error());
+$res = mysql_query("SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.id = '".$_GET["id"]."' LIMIT 1") or die(mysql_error());
 $row = mysql_fetch_assoc($res);
 
 $Worldspace = str_replace("[", "", $row['worldspace']);
@@ -47,10 +47,10 @@ $vehicles_xml = XML2Array::createArray($xml);
 							<img class="playermodel" src='images/vehicles/<?php echo strtolower($row['class_name']); ?>.png'/>
 							<div id="gps" style="margin-left: 46px; margin-top: 54px">
 								<div class="gpstext" style="font-size: 22px; width: 60px; text-align: left; margin-left: 47px; margin-top: 13px">
-									<?php echo round(($Worldspace[0]/100)); ?>
+									<?php echo round($Worldspace[0] / 100); ?>
 								</div>
 								<div class="gpstext" style="font-size: 22px; width: 60px; text-align: left; margin-left: 47px; margin-top: 34px">
-									<?php echo round(($Worldspace[3]/100)); ?>
+									<?php echo round($Worldspace[3] / 100); ?>
 								</div>
 								<div class="gpstext" style="width: 120px; margin-left: 13px; margin-top: 61px">
 									<?php
