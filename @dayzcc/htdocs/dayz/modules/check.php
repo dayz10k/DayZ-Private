@@ -16,13 +16,12 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 	} else {
 		$items_banned = array();
 	}
-
-	$res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id") or die(mysql_error());
-	$number = mysql_num_rows($res);
+	
 	$rows = '';
 	$count = 0;
 
-	if ($number != 0) {
+	$res = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` WHERE profile.unique_id = survivor.unique_id") or die(mysql_error());
+	if (mysql_num_rows($res) > 0) {
 		while ($row = mysql_fetch_array($res)) {
 			$Inventory = $row['inventory'];	
 			$Inventory = json_decode($Inventory);
@@ -36,6 +35,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 				} else { 
 					if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1]; }			
 				}
+			} else {
+				$Inventory = array();
 			}
 			
 			$bpweaponscount = count($Backpack[1][0]);
@@ -44,10 +45,10 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 			$bpitemscount = count($Backpack[2][0]);
 			$bpitems = array();
 			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) {$bpitems[] = $Backpack[2][0][$m]; } }
-			
-			$Backpack = (array_merge($bpweapons, $bpitems));
-			$Inventory = (array_merge($Inventory, $Backpack));
-								
+
+			$Backpack = array_merge($bpweapons, $bpitems);
+			$Inventory = array_merge($Inventory, $Backpack);
+
 			for ($i = 0; $i < count($Inventory); $i++) { 
 				if (array_key_exists($i, $Inventory)) { 
 					$curitem = $Inventory[$i];
@@ -59,10 +60,52 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 
 			if (count($Unknown) > 0) { 
 				$rows .= '<tr>
-					<td align="center" style="height: 47px;"><a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'&clear"><img src="images/icons/player_clear.png" title="Delete inventory" alt="Delete inventory"/></a></td>
-					<td align="center" style="height: 47px;">'.$row['name'].'</td>
-					<td align="center" style="height: 47px;">'.$row['unique_id'].'</td>
-					<td align="center" style="height: 47px;">';
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'&clear"><img src="images/icons/player_clear.png" title="Delete inventory" alt="Delete inventory"/></a></td>
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row['name'].'</a></td>
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row['unique_id'].'</a></td>
+					<td align="center" class="gear_preview">';
+					
+				foreach ($Unknown as $item) { 
+					$rows .= $item."; ";
+					$count++;
+				}
+				
+				$rows .= '</td></tr>';
+			}
+		}
+	}
+	
+	$res = mysql_query("SELECT v_deployable.owner_id, v_deployable.owner_unique_id, v_deployable.owner_name, v_deployable.inventory FROM v_deployable") or die(mysql_error());
+	if (mysql_num_rows($res) > 0) {
+		while ($row = mysql_fetch_array($res)) {
+			$Inventory = $row['inventory'];	
+			$Inventory = json_decode($Inventory);
+			$Unknown = array();
+			
+			$bpweaponscount = count($Inventory[1][0]);
+			$bpweapons = array();
+			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Inventory[1][1][$m]; $mi++) {$bpweapons[] = $Inventory[1][0][$m]; } }		
+			$bpitemscount = count($Inventory[2][0]);
+			$bpitems = array();
+			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Inventory[2][1][$m]; $mi++) {$bpitems[] = $Inventory[2][0][$m]; } }
+
+			$Inventory = array_merge($bpweapons, $bpitems);
+
+			for ($i = 0; $i < count($Inventory); $i++) { 
+				if (array_key_exists($i, $Inventory)) { 
+					$curitem = $Inventory[$i];
+					if (is_array($curitem)) { $curitem = $Inventory[$i][0]; }
+					if (in_array($curitem, $items_banned)) { $Unknown[] = $curitem; }
+					if (!array_key_exists('s'.$curitem, $items_xml['items'])) { $Unknown[] = $curitem; }
+				}
+			}
+
+			if (count($Unknown) > 0) { 
+				$rows .= '<tr>
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['owner_unique_id'].'&id='.$row['owner_id'].'&clear"><img src="images/icons/player_clear.png" title="Delete inventory" alt="Delete inventory"/></a></td>
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['owner_unique_id'].'&id='.$row['owner_id'].'">'.$row['owner_name'].' (Deployable)</a></td>
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['owner_unique_id'].'&id='.$row['owner_id'].'">'.$row['owner_unique_id'].'</a></td>
+					<td align="center" class="gear_preview">';
 					
 				foreach ($Unknown as $item) { 
 					$rows .= $item."; ";
