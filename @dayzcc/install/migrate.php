@@ -7,8 +7,7 @@
 chdir(dirname(__FILE__));
 
 $args = getopt("", array("host:", "port:", "username:", "password:", "database:", "schema:"));
-$path_schema = "schema";
-$path_mysql = "..\\mysql\\bin\\mysql.exe";
+$path = "schema";
 
 $dbhost = (isset($args['host']) ? $args['host'] : "127.0.0.1");
 $dbport = (isset($args['port']) ? $args['port'] : "3306");
@@ -33,15 +32,20 @@ $res = mysql_query("SELECT `version` FROM `migration_schema_version` WHERE `name
 if (!$res) {
 	echo "No existing ".$schema." schema was found!\n";
 } else {
-	$version = rtrim(mysql_fetch_assoc($res)['version'], "0");
-	echo "Current ".$schema." version is: $version\n";
+	$v = rtrim(mysql_fetch_assoc($res)['version'], "0");
+	if ($v == "") {
+		echo "No existing ".$schema." schema was found!\n";
+	} else {
+		$version = $v;
+		echo "Current ".$schema." version is: $version\n";
+	}
 }
 
 function get_folders() {
-	global $path_schema, $schema;
+	global $path, $schema;
 	$folders = array();
-	foreach(scandir($path_schema."\\".$schema."\\mysql") as $dir) {
-		if (is_dir($path_schema."\\".$schema."\\mysql\\".$dir)) {
+	foreach(scandir($path."\\".$schema."\\mysql") as $dir) {
+		if (is_dir($path."\\".$schema."\\mysql\\".$dir)) {
 			if (preg_match("/([.0-9]{4})-?([.0-9]{4})?/", $dir, $matches)) {
 				if (isset($matches[2])) { $folders[] = array($matches[2], $dir); } else { $folders[] = array($matches[1], $dir); };
 			}
@@ -50,16 +54,44 @@ function get_folders() {
 	return $folders;
 }
 function get_files($dir) {
-	global $path_schema, $schema;
+	global $path, $schema;
 	$files = array();
-	$handle = opendir($path_schema."\\".$schema."\\mysql\\".$dir);
+	$handle = opendir($path."\\".$schema."\\mysql\\".$dir);
 	while (false !== ($file = readdir($handle))) {
 		if (preg_match("/([0-9]+)_([_a-zA-Z0-9]*).sql/", $file)) {
-			$files[] = array($file, $path_schema."\\".$schema."\\mysql\\".$dir."\\".$file);
+			$files[] = array($file, $path."\\".$schema."\\mysql\\".$dir."\\".$file);
 		}
 	}
 	closedir($handle);
 	return $files;
+}
+function splitSQL($file, $delimiter = ';') {
+	global $link;
+	set_time_limit(0);
+	if (is_file($file) === true) {
+		$file = fopen($file, 'r');
+		if (is_resource($file) === true) {
+			$query = array();
+			while (feof($file) === false) {
+				$query[] = fgets($file);
+				if (preg_match('~' . preg_quote($delimiter, '~') . '\s*$~iS', end($query)) === 1) {
+					$query = trim(implode('', $query));
+					if (mysql_query($query, $link) === false) {
+						echo "> Error: ".(mysql_error())."\n";
+					}
+					while (ob_get_level() > 0) {
+						ob_end_flush();
+					}
+					flush();
+				}
+				if (is_string($query) === true) {
+					$query = array();
+				}
+			}
+			return fclose($file);
+		}
+	}
+	return false;
 }
 
 // Run migration proces
@@ -78,7 +110,7 @@ foreach (get_folders() as $folder) {
 	if ($folder[0] > $version) {
 		foreach (get_files($folder[1]) as $file) {
 			echo "> ".$folder[1]."\\".$file[0]."\n";
-			$output = shell_exec($path_mysql." --host={$dbhost} --port={$dbport} --user={$dbuser} --password={$dbpass} {$dbname} < {$file[1]}");
+			splitSQL($file[1]);
 		}
 		$oldversion = $version;
 		$version = $folder[0];
