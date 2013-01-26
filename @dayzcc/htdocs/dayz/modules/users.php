@@ -36,10 +36,6 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			$error = true;
 			$errortext .= 'Password must be at least 6 characters. ';
 		}
-		if ($password == "Password") {
-			$error = true;
-			$errortext .= 'Invalid password, use another one. ';
-		}
 		
 		if (mysql_num_rows(mysql_query("SELECT `id` FROM `users` WHERE `login` = '{$login}' LIMIT 1")) == 1 && $type != "edit") {
 			$error = true;
@@ -58,11 +54,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			$hash = md5(md5($password).$salt);
 			
 			if ($type == "edit") {
-				mysql_query("UPDATE `users` SET `login` = '{$login}', `password` = '{$hash}', `salt` = '{$salt}', `permissions` = '{$permissions}' WHERE `id` = '{$id}'") or die(mysql_error());
-				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('EDITED USER: {$login}', '{$_SESSION['login']}', NOW())");
+				mysql_query("UPDATE `users` SET `login` = '{$login}', ".($password != "Password" ? "`password` = '{$hash}', `salt` = '{$salt}', " : "")."`permissions` = '{$permissions}' WHERE `id` = '{$id}'") or die(mysql_error());
+				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('EDITED USER {$login}', '{$_SESSION['login']}', NOW())");
 			} else {
 				mysql_query("INSERT INTO `users` SET `login` = '{$login}', `password` = '{$hash}', `salt` = '{$salt}', `permissions` = '{$permissions}'") or die(mysql_error());
-				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('REGISTERED USER: {$login}', '{$_SESSION['login']}', NOW())");
+				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('REGISTERED USER {$login}', '{$_SESSION['login']}', NOW())");
 			}
 
 			$delresult = '<div id="message-green">
