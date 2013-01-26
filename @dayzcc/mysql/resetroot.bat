@@ -12,4 +12,5 @@ del resetroot.sql
 echo.
 echo Password for user "root" was deleted!
 echo.
+
 pause
