@@ -68,7 +68,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

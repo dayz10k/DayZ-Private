@@ -30,17 +30,17 @@ require_once GAMEQ_BASE . 'Protocol.php';
  * @version        $Revision: 1.4 $
  */
 class GameQ_Protocol_gamespy2 extends GameQ_Protocol
-{ 
+{
     /*
      * Status packet
      */
     public function status()
-    { 
+    {
         // Header
         $this->header();
 
         // Read the var/value pairs
-        while ($this->p->getLength()) { 
+        while ($this->p->getLength()) {
             $this->r->add($this->p->readString(), $this->p->readString());
         }
     }
@@ -50,7 +50,7 @@ class GameQ_Protocol_gamespy2 extends GameQ_Protocol
      * Player packet
      */
     public function players()
-    { 
+    {
         // Header
         $this->header();
 
@@ -62,38 +62,38 @@ class GameQ_Protocol_gamespy2 extends GameQ_Protocol
     }
 
     private function getSub($type)
-    { 
+    {
         // The number of $type entries
-        try { 
+        try {
             $this->r->add('num_' . $type, $this->p->readInt8());
         }
         // Number not present, means we're at the end of the stream
-        catch (GameQ_ParsingException $e) { 
+        catch (GameQ_ParsingException $e) {
             return;
         }
 
         // Variable names
         $varnames = array();
-        while ($this->p->getLength()) { 
+        while ($this->p->getLength()) {
             $varnames[] = str_replace('_', '', $this->p->readString());
-            if ($this->p->lookAhead() === "\x00") { 
+            if ($this->p->lookAhead() === "\x00") {
                 $this->p->skip();
                 break;
             }
         }
 
         // Check if there are any value entries
-        if ($this->p->lookAhead() == "\x00") { 
+        if ($this->p->lookAhead() == "\x00") {
             $this->p->skip();
             return;
         }
 
         // Get the values
-        while ($this->p->getLength() > 4) { 
-            foreach ($varnames as $varname) { 
+        while ($this->p->getLength() > 4) {
+            foreach ($varnames as $varname) {
                 $this->r->addSub($type, $varname, $this->p->readString());
             }
-            if ($this->p->lookAhead() === "\x00") { 
+            if ($this->p->lookAhead() === "\x00") {
                 $this->p->skip();
                 break;
             }
@@ -101,9 +101,9 @@ class GameQ_Protocol_gamespy2 extends GameQ_Protocol
     }
 
     private function header()
-    { 
+    {
         // Header
-        if ($this->p->read() !== "\x00") { 
+        if ($this->p->read() !== "\x00") {
             throw new GameQ_ParsingException($this->p);
         }
         $this->p->read(4);
@@ -113,7 +113,7 @@ class GameQ_Protocol_gamespy2 extends GameQ_Protocol
         if ($this->p->lookAhead() == "\x00") $this->p->read();
 
         // Check if we have a complete packet
-        if ($this->p->readLast() !== "\x00") { 
+        if ($this->p->readLast() !== "\x00") {
             throw new GameQ_ParsingException($this->p);
         }
     }

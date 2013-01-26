@@ -17,18 +17,18 @@ if ($answer != "") {
 		$m = 0;
 		$players[$i][] = "";
 		$pout = preg_replace('/\s+/', ' ', $parray[$i]);
-		for ($j = 0; $j < strlen($pout); $j++) { 
+		for ($j = 0; $j < strlen($pout); $j++) {
 			$char = substr($pout, $j, 1);
-			if ($m < 4) { 
+			if ($m < 4) {
 				if($char != " ") { $players[$i][$m] .= $char; } else {$m++; }
-			} else { 
+			} else {
 				$players[$i][$m] .= $char;
 			}
 		}
 	}
 
 	for ($i = 0; $i < count($players); $i++) {
-		if (strlen($players[$i][4]) > 1) { 
+		if (strlen($players[$i][4]) > 1) {
 			$playername = trim(str_replace(" (Lobby)", "", $players[$i][4]));
 			$ip = $players[$i][1];
 			$ping = $players[$i][2];

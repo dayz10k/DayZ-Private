@@ -75,7 +75,7 @@ if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map")
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "table") !== false))
-{ 
+{
 	$pnumber = 0;
 	$tableheader = '';
 	$tablerows = '';
@@ -17,30 +17,30 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 	
 	if (isset($_GET["show"])) {
 		$show = $_GET["show"];
-	} else { 
+	} else {
 		$show = 0;
 	}
 
 	if (isset($_GET["sort"])) {
 		$sort = $_GET["sort"];
-	} else { 
+	} else {
 		$sort = 0;
 	}
 	
 	if (isset($_GET['order'])) {
 		$order = $_GET['order'];
-	} else { 
+	} else {
 		$order = "ASC";
 	}
 	
-	switch ($show) { 
+	switch ($show) {
 		case 0:
 			$pagetitle = "Online players";
 			break;
 		case 1:
 			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '0'";
 			
-			switch ($sort) { 
+			switch ($sort) {
 				case 1:
 					$query .= " ORDER BY survivor.name $order";
 					break;
@@ -66,7 +66,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 		case 2:
 			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.is_dead = '1' AND survivor.inventory NOT LIKE '[[],[]]'";
 			
-			switch ($sort) { 
+			switch ($sort) {
 				case 1:
 					$query .= " ORDER BY survivor.name $order";
 					break;
@@ -92,7 +92,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 		case 3:
 			$query = "SELECT profile.name, survivor.* FROM `profile`, `survivor` WHERE profile.unique_id = survivor.unique_id";
 			
-			switch ($sort) { 
+			switch ($sort) {
 				case 1:
 					$query .= " ORDER BY survivor.name $order";
 					break;
@@ -118,7 +118,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 		case 4:
 			$query = "SELECT world_vehicle.vehicle_id, vehicle.class_name, instance_vehicle.* FROM `world_vehicle`, `vehicle`, `instance_vehicle` WHERE vehicle.id = world_vehicle.vehicle_id AND instance_vehicle.world_vehicle_id = world_vehicle.id AND instance_vehicle.instance_id = '".$serverinstance."' AND instance_vehicle.damage < '0.95'";
 			
-			switch ($sort) { 
+			switch ($sort) {
 				case 1:
 					$query .= " ORDER BY `id` $order";
 					break;
@@ -144,7 +144,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 		case 5:
 			$query = "SELECT deployable.class_name, instance_deployable.* FROM `deployable`, `instance_deployable` WHERE deployable.id = instance_deployable.deployable_id AND instance_deployable.instance_id = '".$serverinstance."'";
 			
-			switch ($sort) { 
+			switch ($sort) {
 				case 1:
 					$query .= " ORDER BY instance_deployable.id $order";
 					break;
@@ -213,7 +213,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

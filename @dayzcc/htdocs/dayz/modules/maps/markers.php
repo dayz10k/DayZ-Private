@@ -1,9 +1,9 @@
 <?php
 
-function markers_player($res, $world) { 
+function markers_player($res, $world) {
 	$markers = array();
 
-	while ($row = mysql_fetch_array($res)) { 
+	while ($row = mysql_fetch_array($res)) {
 		$Worldspace = str_replace("[", "", $row['worldspace']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = explode(",", $Worldspace);
@@ -26,14 +26,14 @@ function markers_player($res, $world) {
 	return $markers;
 }
 
-function markers_vehicle($res, $world) { 
+function markers_vehicle($res, $world) {
 	$markers = array();
 
 	$xml = file_get_contents('vehicles.xml', true);
 	require_once('modules/lib/class.xml2array.php');
 	$vehicles_xml = XML2Array::createArray($xml);
 
-	while ($row = mysql_fetch_array($res)) { 
+	while ($row = mysql_fetch_array($res)) {
 		$Worldspace = str_replace("[", "", $row['worldspace']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = explode(",", $Worldspace);
@@ -60,14 +60,14 @@ function markers_vehicle($res, $world) {
 	return $markers;
 }
 
-function markers_deployable($res, $world) { 
+function markers_deployable($res, $world) {
 	$markers = array();
 
 	$xml = file_get_contents('vehicles.xml', true);
 	require_once('modules/lib/class.xml2array.php');
 	$vehicles_xml = XML2Array::createArray($xml);
 
-	while ($row = mysql_fetch_array($res)) { 
+	while ($row = mysql_fetch_array($res)) {
 		$Worldspace = str_replace("[", "", $row['worldspace']);
 		$Worldspace = str_replace("]", "", $Worldspace);
 		$Worldspace = explode(",", $Worldspace);

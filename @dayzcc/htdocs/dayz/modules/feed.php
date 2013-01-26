@@ -18,12 +18,12 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "feed
 		<th class="product-table-header" width="20%"><a>Weapon</a></th>
 		</tr>';
 		
-	if (isset($_GET['order'])) { 
+	if (isset($_GET['order'])) {
 		$order = $_GET['order'];
 		if ($order == "1") { $order = 0; } else { $order = 1; }
 	}
 	
-	if (isset($_GET['hide'])) { 
+	if (isset($_GET['hide'])) {
 		$hide = $_GET['hide'];
 	}
 
@@ -118,7 +118,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "feed
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

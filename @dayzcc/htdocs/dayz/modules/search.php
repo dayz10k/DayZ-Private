@@ -1,12 +1,12 @@
 <?php
 
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "table") !== false))
-{ 
-	if (isset($_POST['search'])) { 
+{
+	if (isset($_POST['search'])) {
 		$pagetitle = "Search for ".$_POST['search'];
 	} else if (isset($_GET['search'])) {
 		$pagetitle = "Search for ".$_GET['search'];
-	} else { 
+	} else {
 		$pagetitle = "New search";
 	}
 	
@@ -60,7 +60,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 
 							echo '<br /><table id="product-table" border="0" width="100%" cellpadding="0" cellspacing="0">';
 
-							switch ($type) { 
+							switch ($type) {
 								case 'player':
 									$tableheader = header_player(1, 0);
 									echo $tableheader;
@@ -127,7 +127,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

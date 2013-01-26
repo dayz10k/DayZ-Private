@@ -1,13 +1,13 @@
 <?php
 
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whitelist") !== false))
-{ 
+{
 	$pagetitle = "Whitelist";
 	$message = '';
 
 	// Thanks to deadfred666 for parts of his code!
 	if (ISSET($_POST['action']))
-	{ 
+	{
 		// Add new Whitelisted User
 		if ($_POST['action'] == "Add") {
 			$totalFields = 0;
@@ -15,14 +15,14 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 			if (isset($_POST['name'])) { $name = $_POST['name']; $totalFields++; }
 			if (isset($_POST['guid'])) { $guid = $_POST['guid']; $totalFields++; }
 
-			if ($totalFields == 2) { 
-				if (strlen($name) < 2 || strlen($guid) != 32) { 
+			if ($totalFields == 2) {
+				if (strlen($name) < 2 || strlen($guid) != 32) {
 					$message = '<div id="message-red">
 						<table border="0" width="100%" cellpadding="0" cellspacing="0"><tr>
 						<td class="red-left">Error: Entered GUID is too short!</td>
 						<td class="red-right"><a class="close-red"><img src="images/forms/icon_close_red.gif" alt="" /></a></td>
 						</tr></table></div>';
-				} else { 
+				} else {
 					mysql_query("INSERT INTO whitelist (`name`, `guid`, `is_whitelisted`) VALUES ('".$name."', '".$guid."', '1')") or die(mysql_error());
 					$message = '<div id="message-green">
 						<table border="0" width="100%" cellpadding="0" cellspacing="0"><tr>
@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 	
 		// Change status of Whitelist User
 		if ($_POST['action'] == "On" || $_POST['action'] == "Off") {
-			if (isset($_POST['id'])) { 
+			if (isset($_POST['id'])) {
 				$id = $_POST['id'];
 				if ($_POST['status'] == 0) { $status = 1; } else { $status = 0; }
 				mysql_query("UPDATE `whitelist` SET `is_whitelisted` = '".$status."' WHERE `id` = '".$id."'") or die(mysql_error());
@@ -51,11 +51,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 
 	$tablerows = '';
 	$res = mysql_query("SELECT * FROM `whitelist`") or die(mysql_error());
-	while ($row = mysql_fetch_array($res)) { 
-		if ($row['is_whitelisted'] == 1) { 
+	while ($row = mysql_fetch_array($res)) {
+		if ($row['is_whitelisted'] == 1) {
 			$button = "Off";
 			$icon = "status_green.png";
-		} else { 
+		} else {
 			$button = "On";
 			$icon = "status_red.png";
 		}
@@ -125,7 +125,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

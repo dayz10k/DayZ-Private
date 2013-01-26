@@ -1,11 +1,11 @@
 <?php
 
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user") !== false))
-{ 
+{
 	$pagetitle = "Manage users";
 	$delresult = '';
 	
-	function GenerateSalt($n = 3) { 
+	function GenerateSalt($n = 3) {
 		$key = '';
 		$pattern = '1234567890abcdefghijklmnopqrstuvwxyz.,*_-=+';
 		$counter = strlen($pattern)-1;
@@ -109,7 +109,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 		<?php
 	}
 	else
-	{ 
+	{
 		mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('MANAGED USERS', '{$_SESSION['login']}', NOW())");
 	}
 
@@ -190,7 +190,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

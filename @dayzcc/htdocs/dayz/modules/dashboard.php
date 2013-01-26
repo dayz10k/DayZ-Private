@@ -117,7 +117,7 @@ if (isset($_SESSION['user_id']))
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

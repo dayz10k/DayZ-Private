@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id']))
 	include('modules/info/'.$show.'.php');
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

@@ -26,7 +26,7 @@
  * @version   $Revision: 1.4 $
  */
 class GameQ_Filter
-{ 
+{
     protected $params = array();
     
     /**
@@ -35,13 +35,13 @@ class GameQ_Filter
      * @param    array    $params    Filter parameters
      */
     function __construct($params)
-    { 
-        if (is_array($params)) { 
-            foreach ($params as $key => $param) { 
+    {
+        if (is_array($params)) {
+            foreach ($params as $key => $param) {
                 $this->params[$key] = $param;
             }
         }
-        else { 
+        else {
             $this->params = $params;
         }
     }
@@ -56,7 +56,7 @@ class GameQ_Filter
      * @return    array    Modified results
      */
     public function filter($results, $servers)
-    { 
+    {
         return $results;
     }
 }

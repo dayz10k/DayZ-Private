@@ -28,18 +28,18 @@ require_once GAMEQ_BASE . 'Protocol.php';
  * @version        $Revision: 1.5 $
  */
 class GameQ_Protocol_gamespy3 extends GameQ_Protocol
-{ 
+{
 
     public function status()
-    { 
+    {
         // Var / value pairs
         $this->info();
 
         // Players and teams
-        while ($this->p->getLength() and ($type = $this->p->readInt8())) { 
+        while ($this->p->getLength() and ($type = $this->p->readInt8())) {
             if ($type == 1)      $this->getSub('players');
             else if ($type == 2) $this->getSub('teams');
-            else { 
+            else {
                 $this->getSub('players');
                 $this->getSub('teams');
             }
@@ -47,8 +47,8 @@ class GameQ_Protocol_gamespy3 extends GameQ_Protocol
     }
 
     private function info()
-    { 
-        while ($this->p->getLength()) { 
+    {
+        while ($this->p->getLength()) {
             $var = $this->p->readString();
 
             if (empty($var)) break;
@@ -58,8 +58,8 @@ class GameQ_Protocol_gamespy3 extends GameQ_Protocol
     }
 
     private function getSub($type)
-    { 
-        while ($this->p->getLength()) { 
+    {
+        while ($this->p->getLength()) {
 
             // Get the header
             $header = $this->p->readString();
@@ -67,7 +67,7 @@ class GameQ_Protocol_gamespy3 extends GameQ_Protocol
             $this->p->skip();
 
             // Get the values
-            while ($this->p->getLength()) { 
+            while ($this->p->getLength()) {
                 $value = $this->p->readString();
                 if ($value === '') break;
                 $this->r->addSub($type, $header, $value);
@@ -77,11 +77,11 @@ class GameQ_Protocol_gamespy3 extends GameQ_Protocol
 
 
     public function preprocess($packets)
-    { 
+    {
         $result = array();
 
         // Get packet index, remove header
-        foreach ($packets as $packet) { 
+        foreach ($packets as $packet) {
 
             $p = new GameQ_Buffer($packet);
 
@@ -98,7 +98,7 @@ class GameQ_Protocol_gamespy3 extends GameQ_Protocol
         // Compare last var of current packet with first var of next packet
         // On a partial match, remove last var from current packet,
         // variable header from next packet
-        for ($i = 0, $x = count($result); $i < $x - 1; $i++) { 
+        for ($i = 0, $x = count($result); $i < $x - 1; $i++) {
 
             // First packet
             $fst = substr($result[$i], 0, -1);
@@ -114,7 +114,7 @@ class GameQ_Protocol_gamespy3 extends GameQ_Protocol
 
             // Check if fstvar is a substring of sndvar
             // If so, remove it from the first string
-            if (strpos($sndvar, $fstvar) !== false) { 
+            if (strpos($sndvar, $fstvar) !== false) {
                 $result[$i] = preg_replace("#(\\x00[^\\x00]+\\x00)$#", "\x00\x00", $result[$i]);
             }
         }
@@ -124,7 +124,7 @@ class GameQ_Protocol_gamespy3 extends GameQ_Protocol
     }
 
     public function parseChallenge($packet)
-    { 
+    {
         $this->p->skip(5);
         $cc = (int) $this->p->readString();
         $x = pack( "H*", sprintf("%08X", $cc));

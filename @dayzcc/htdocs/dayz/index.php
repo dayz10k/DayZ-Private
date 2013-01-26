@@ -37,22 +37,22 @@ else
 		include('modules/rcon.php');
 		include('modules/header.php');
 
-		if (isset($_GET["show"])) { 
+		if (isset($_GET["show"])) {
 			$show = $_GET["show"];
-		} else { 
+		} else {
 			$show = 0;
 		}
 
-		if (isset($_GET['view'])) { 
+		if (isset($_GET['view'])) {
 			include('modules/'.$_GET["view"].'.php');
-		} else { 
+		} else {
 			include('modules/dashboard.php');
 		}
 
 		include('modules/footer.php');
 	}
 	else
-	{ 
+	{
 		include('modules/login.php');
 	}
 }

@@ -2,11 +2,11 @@
 
 // Improved by Crosire
 
-if ($pageNum > 1) { 
+if ($pageNum > 1) {
 	$page = $pageNum - 1;
 	$prev = '<a class="paging-left" href="'.$self.'&sort='.$sort.'&order='.$order.'&page='.$page.'"></a>';
 	$first = '<a class="paging-far-left" href="'.$self.'&sort='.$sort.'&order='.$order.'&page=1"></a>';
-} else { 
+} else {
 	$prev = '';
 	$first = '';
 }

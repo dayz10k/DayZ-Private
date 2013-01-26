@@ -1,8 +1,8 @@
 <?php
 
 if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map") !== false))
-{ 
-	switch ($show) { 
+{
+	switch ($show) {
 		case 0:
 			$pagetitle = "Online player locations";
 			break;

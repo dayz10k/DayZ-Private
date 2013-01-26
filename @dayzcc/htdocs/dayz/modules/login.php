@@ -8,7 +8,7 @@ $colpass = "000000";
 $message = "";
 
 if (isset($_SESSION['user_id']))
-{ 
+{
 	header('Location: index.php');
 	exit;
 }
@@ -37,7 +37,7 @@ if (!empty($_POST))
 			$_SESSION['user_permissions'] = $row['permissions'];
 			
 			if (isset($_POST['remember']))
-			{ 
+			{
 				setcookie('login', $login, time() + $time, "/");
 				setcookie('password', $password, time() + $time, "/");
 			}
@@ -49,13 +49,13 @@ if (!empty($_POST))
 			exit;
 		}
 		else
-		{ 
+		{
 			$colpass = "900122";
 			$message = "Incorrect password!";
 		}
 	}
 	else
-	{ 
+	{
 		$coluser = "900122";
 		$message = "Incorrect username!";
 	}

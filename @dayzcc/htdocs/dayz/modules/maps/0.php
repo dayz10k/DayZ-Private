@@ -17,7 +17,7 @@ if ($answer != "") {
 		$m = 0;
 		$players[$i][] = "";
 		$pout = preg_replace('/\s+/', ' ', $parray[$i]);
-		for ($j = 0; $j < strlen($pout); $j++) { 
+		for ($j = 0; $j < strlen($pout); $j++) {
 			$char = substr($pout, $j, 1);
 			if ($m < 4) {
 				if ($char != " ") { $players[$i][$m] .= $char; } else {$m++; }

@@ -60,13 +60,13 @@ $vehicles_xml = XML2Array::createArray($xml);
 								</div>							
 							</div>
 							<?php
-								if ($row['owner_id'] != "0") { 
+								if ($row['owner_id'] != "0") {
 									$resowner = mysql_query("SELECT profile.name, survivor.* FROM `profile`, `survivor` AS `survivor` WHERE profile.unique_id = survivor.unique_id AND survivor.id = '".$row['owner_id']."' LIMIT 1");
 									$owner = '';
 									$ownerid = '';
 									$owneruid = '';
 									
-									while ($rowowner = mysql_fetch_array($resowner)) { 
+									while ($rowowner = mysql_fetch_array($resowner)) {
 										$owner = $rowowner['name'];
 										$ownerid = $rowowner['id'];
 										$owneruid = $rowowner['unique_id'];
@@ -99,30 +99,30 @@ $vehicles_xml = XML2Array::createArray($xml);
 								$DeployableName = $row['class_name'];
 								
 								$class = strtolower($row['class_name']);
-								if (array_key_exists('s'.$class, $vehicles_xml['vehicles'])) { 
+								if (array_key_exists('s'.$class, $vehicles_xml['vehicles'])) {
 									$maxmagazines = $vehicles_xml['vehicles']['s'.$class]['transportmaxmagazines'];
 									$maxweaps = $vehicles_xml['vehicles']['s'.$class]['transportmaxweapons'];
 									$maxbacks = $vehicles_xml['vehicles']['s'.$class]['transportmaxbackpacks'];
 									$DeployableName = $vehicles_xml['vehicles']['s'.$class]['Name'];
 								}
 								
-								if (count($Deployable) > 0) { 
+								if (count($Deployable) > 0) {
 									$bpweaponscount = count($Deployable[0][0]);
 									$bpweapons = array();
-									for ($m = 0; $m < $bpweaponscount; $m++) { 
+									for ($m = 0; $m < $bpweaponscount; $m++) {
 										for ($mi = 0; $mi < $Deployable[0][1][$m]; $mi++) { $bpweapons[] = $Deployable[0][0][$m]; }
 									}							
 
 									
 									$bpitemscount = count($Deployable[1][0]);
 									$bpitems = array();
-									for ($m = 0; $m < $bpitemscount; $m++) { 
+									for ($m = 0; $m < $bpitemscount; $m++) {
 										for ($mi = 0; $mi < $Deployable[1][1][$m]; $mi++) { $bpitems[] = $Deployable[1][0][$m]; }
 									}
 									
 									$bpackscount = count($Deployable[2][0]);
 									$bpacks = array();
-									for ($m = 0; $m < $bpackscount; $m++) { 
+									for ($m = 0; $m < $bpackscount; $m++) {
 										for ($mi = 0; $mi < $Deployable[2][1][$m]; $mi++) { $bpacks[] = $Deployable[2][0][$m]; }
 									}
 									
@@ -132,9 +132,9 @@ $vehicles_xml = XML2Array::createArray($xml);
 									$Deployableitem = array();
 									$bpweapons = array();
 									
-									for ($i = 0; $i < count($Deployable); $i++) { 
-										if(array_key_exists('s'.$Deployable[$i], $items_xml['items'])) { 
-											switch($items_xml['items']['s'.$Deployable[$i]]['Type']) { 
+									for ($i = 0; $i < count($Deployable); $i++) {
+										if(array_key_exists('s'.$Deployable[$i], $items_xml['items'])) {
+											switch($items_xml['items']['s'.$Deployable[$i]]['Type']) {
 												case 'binocular':
 													$Deployableitem[] = array('image' => '<img style="max-width: 43px; max-height: 43px;" src="images/thumbs/'.$Deployable[$i].'.png" title="'.$Deployable[$i].'" alt="'.$Deployable[$i].'"/>', 'slots' => $items_xml['items']['s'.$Deployable[$i]]['Slots']);
 													break;
@@ -169,26 +169,26 @@ $vehicles_xml = XML2Array::createArray($xml);
 									$freeweaps = $maxweaps;
 									$jx = 1; $jy = 0; $jk = 0; $jl = 0;
 									$numlines = 0;
-									for ($j = 0; $j < $weapons; $j++) { 
+									for ($j = 0; $j < $weapons; $j++) {
 										if ($jk > 3) { $jk = 0; $jl++; }
 										echo '<div class="gear_slot" style="margin-left: '.($jx+(86*$jk)).'px; margin-top: '.($jy+(86*$jl)).'px; width: 84px; height: 84px;">'.$bpweapons[$j]['image'].'</div>';
 										$freeweaps = $freeweaps - 1;
 										$jk++;
 									}
 									
-									if ($jl > 0) { 
+									if ($jl > 0) {
 										$numlines = $jl + 1;
-									} elseif ($jl == 0) { 
+									} elseif ($jl == 0) {
 										if ($weapons > 0) { $numlines++; }
 									}
 
 									$jx = 1; $jy = (86 * $numlines); $jk = 0; $jl = 0;
-									for ($j = 0; $j < $magazines; $j++) { 
+									for ($j = 0; $j < $magazines; $j++) {
 										if ($jk > 6){ $jk = 0; $jl++; }
-										if ($j < count($Deployableitem)) { 
+										if ($j < count($Deployableitem)) {
 											echo '<div class="gear_slot" style="margin-left: '.($jx+(49*$jk)).'px; margin-top: '.($jy+(49*$jl)).'px; width: 47px; height: 47px;">'.$Deployableitem[$j]['image'].'</div>';
 											$freeslots = $freeslots - 1;
-										} else { 
+										} else {
 											echo '<div class="gear_slot" style="margin-left: '.($jx+(49*$jk)).'px; margin-top: '.($jy+(49*$jl)).'px; width: 47px; height: 47px;"></div>';
 										}								
 										$jk++;

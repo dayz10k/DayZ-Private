@@ -42,7 +42,7 @@ require_once GAMEQ_BASE . 'Filter.php';
  * @version    $Revision: 1.2 $
  */
 class GameQ_Filter_sortplayers extends GameQ_Filter
-{ 
+{
     
     /**
      * Sort the player array
@@ -52,7 +52,7 @@ class GameQ_Filter_sortplayers extends GameQ_Filter
      * @return    array    The original array, with sorted player array
      */
     public function filter($original, $server)
-    { 
+    {
         // No player array, return default
         if (!isset($original['players']) or !is_array($original['players'])) return $original;
         $players = $original['players'];
@@ -62,11 +62,11 @@ class GameQ_Filter_sortplayers extends GameQ_Filter
         $sort_asc = true;
 
         // Override default parameters, if any
-        if (is_array($this->params)) { 
+        if (is_array($this->params)) {
             if (isset($this->params[0])) $sort_key = $this->params[0];
             if (isset($this->params[1])) $sort_asc = $this->params[1];
         }
-        else if (isset($this->params)) { 
+        else if (isset($this->params)) {
             $sort_key = $this->params;
         }
 
@@ -75,7 +75,7 @@ class GameQ_Filter_sortplayers extends GameQ_Filter
 
         // Sort the player array on the given sort_key
         $sort_column = array();
-        foreach ($players as $player) { 
+        foreach ($players as $player) {
             $sort_column[] = $player[$sort_key];
         }
         array_multisort($sort_column, $dir, $players);

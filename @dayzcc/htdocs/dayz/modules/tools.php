@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tools") !== false))
-{ 
+{
 	$pagetitle = "Database Tools";
 	
 	if (isset($_GET['vehicle'])) { ?>
@@ -96,7 +96,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

@@ -94,29 +94,29 @@ $vehicles_xml = XML2Array::createArray($xml);
 									$VehicleName = $row['class_name'];
 									
 									$class = strtolower($row['class_name']);
-									if (array_key_exists('s'.$class, $vehicles_xml['vehicles'])){ 
+									if (array_key_exists('s'.$class, $vehicles_xml['vehicles'])){
 										$maxmagazines = $vehicles_xml['vehicles']['s'.$class]['transportmaxmagazines'];
 										$maxweaps = $vehicles_xml['vehicles']['s'.$class]['transportmaxweapons'];
 										$maxbacks = $vehicles_xml['vehicles']['s'.$class]['transportmaxbackpacks'];
 										$VehicleName = $vehicles_xml['vehicles']['s'.$class]['Name'];
 									}
 									
-									if (count($Vehicle) > 0) { 
+									if (count($Vehicle) > 0) {
 										$bpweaponscount = count($Vehicle[0][0]);
 										$bpweapons = array();
-										for ($m = 0; $m < $bpweaponscount; $m++) { 
+										for ($m = 0; $m < $bpweaponscount; $m++) {
 											for ($mi=0; $mi < $Vehicle[0][1][$m]; $mi++) { $bpweapons[] = $Vehicle[0][0][$m]; }
 										}							
 
 									$bpitemscount = count($Vehicle[1][0]);
 									$bpitems = array();
-									for ($m = 0; $m < $bpitemscount; $m++){ 
+									for ($m = 0; $m < $bpitemscount; $m++){
 										for ($mi = 0; $mi < $Vehicle[1][1][$m]; $mi++) { $bpitems[] = $Vehicle[1][0][$m]; }
 									}
 									
 									$bpackscount = count($Vehicle[2][0]);
 									$bpacks = array();
-									for ($m = 0; $m < $bpackscount; $m++){ 
+									for ($m = 0; $m < $bpackscount; $m++){
 										for ($mi = 0; $mi < $Vehicle[2][1][$m]; $mi++) { $bpacks[] = $Vehicle[2][0][$m]; }
 									}
 									
@@ -125,9 +125,9 @@ $vehicles_xml = XML2Array::createArray($xml);
 									$Vehicleslots = 0;
 									$Vehicleitem = array();
 									$bpweapons = array();
-									for ($i = 0; $i < count($Vehicle); $i++) { 
-										if(array_key_exists('s'.$Vehicle[$i],$items_xml['items'])){ 
-											switch ($items_xml['items']['s'.$Vehicle[$i]]['Type']){ 
+									for ($i = 0; $i < count($Vehicle); $i++) {
+										if(array_key_exists('s'.$Vehicle[$i],$items_xml['items'])){
+											switch ($items_xml['items']['s'.$Vehicle[$i]]['Type']){
 												case 'binocular':
 													$Vehicleitem[] = array('image' => '<img style="max-width: 43px; max-height: 43px;" src="images/thumbs/'.$Vehicle[$i].'.png" title="'.$Vehicle[$i].'" alt="'.$Vehicle[$i].'"/>', 'slots' => $items_xml['items']['s'.$Vehicle[$i]]['Slots']);
 													break;
@@ -165,18 +165,18 @@ $vehicles_xml = XML2Array::createArray($xml);
 									$jk = 0;
 									$jl = 0;
 									$numlines = 0;
-									for ($j = 0; $j < $weapons; $j++) { 
+									for ($j = 0; $j < $weapons; $j++) {
 										if ($jk > 3) { $jk = 0; $jl++; }
 										echo '<div class="gear_slot" style="margin-left: '.($jx + (86 * $jk)).'px; margin-top: '.($jy + (86 * $jl)).'px; width: 84px; height: 84px;">'.$bpweapons[$j]['image'].'</div>';
 										$freeweaps = $freeweaps - 1;
 										$jk++;
 									}
 
-									if ($jl > 0){ 
+									if ($jl > 0){
 										$numlines = $jl+1;
 									}
 
-									if ($jl == 0){ 
+									if ($jl == 0){
 										if ($weapons > 0) { $numlines++; }
 									}
 
@@ -184,12 +184,12 @@ $vehicles_xml = XML2Array::createArray($xml);
 									$jy = (86*$numlines);
 									$jk = 0;
 									$jl = 0;
-									for ($j = 0; $j < $magazines; $j++) { 
+									for ($j = 0; $j < $magazines; $j++) {
 										if ($jk > 6){$jk = 0; $jl++; }
-										if ($j < count($Vehicleitem)) { 
+										if ($j < count($Vehicleitem)) {
 											echo '<div class="gear_slot" style="margin-left: '.($jx + (49 * $jk)).'px; margin-top: '.($jy + (49 * $jl)).'px; width: 47px; height: 47px;">'.$Vehicleitem[$j]['image'].'</div>';
 											$freeslots = $freeslots - 1;
-										} else { 
+										} else {
 											echo '<div class="gear_slot" style="margin-left: '.($jx + (49 * $jk)).'px; margin-top: '.($jy + (49 * $jl)).'px; width: 47px; height: 47px;"></div>';
 										}								
 										$jk++;
@@ -210,7 +210,7 @@ $vehicles_xml = XML2Array::createArray($xml);
 								$jy = 48;
 								$jk = 0;
 								$jl = 0;
-								for ($i = 0; $i < count($Hitpoints); $i++) { 
+								for ($i = 0; $i < count($Hitpoints); $i++) {
 									if ($jk > 3) { $jk = 0; $jl++; }
 									$hit = '<img style="max-width: 90px; max-height: 90px;" src="images/hits/'.$Hitpoints[$i][0].'.png" title="'.$Hitpoints[$i][0].' - '.round(100 - ($Hitpoints[$i][1] * 100)).'%" alt="'.$Hitpoints[$i][0].' - '.round(100 - ($Hitpoints[$i][1] * 100)).'%"/>';
 									echo '<div class="hit_slot" style="margin-left: '.($jx + (93 * $jk)).'px; margin-top: '.($jy + (93 * $jl)).'px; width: 91px; height: 91px; background-color: rgba(100,'.round((255 / 100) * (100 - ($Hitpoints[$i][1] * 100))).', 0, 0.8);">'.$hit.'</div>';

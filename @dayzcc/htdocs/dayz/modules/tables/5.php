@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST["deployable"])) { 
+if (isset($_POST["deployable"])) {
 	$del = $_POST["deployable"];
 	$delresult = "Deployable ";
 	
@@ -22,17 +22,17 @@ $serverrunning = false; if ($status == strtolower($exeserver)) { $serverrunning 
 $res = mysql_query($query) or die(mysql_error());
 $pnumber = mysql_num_rows($res);
 
-if (isset($_GET['page'])) { 
+if (isset($_GET['page'])) {
 	$pageNum = $_GET['page'];
 }
 
 $offset = ($pageNum - 1) * $rowsPerPage;
 $maxPage = ceil($pnumber / $rowsPerPage);			
 
-for ($page = 1; $page <= $maxPage; $page++) { 
-	if ($page == $pageNum) { 
+for ($page = 1; $page <= $maxPage; $page++) {
+	if ($page == $pageNum) {
 		$nav .= " $page ";
-	} else  { 
+	} else  {
 		$nav .= "$self&page=$page";
 	}
 }
@@ -42,7 +42,7 @@ $res = mysql_query($query) or die(mysql_error());
 $number = mysql_num_rows($res);
 $chbox = '';
 
-if (!$serverrunning){ 
+if (!$serverrunning){
 	$chbox = '<th class="product-table-header"><a>Delete</a></th>';
 	$formhead = '<form action="index.php?view=table&show=5" method="post">';
 	$formfoot = '<input type="submit" class="submit" /></form>';
@@ -50,7 +50,7 @@ if (!$serverrunning){
 
 $tableheader = header_deployable($show, $chbox, $order);
 
-while ($row = mysql_fetch_array($res)) { 
+while ($row = mysql_fetch_array($res)) {
 	if (!$serverrunning) {
 		$chbox = '<td align="center" class="gear_preview" style="vertical-align: middle;"><input name="deployable[]" value="'.$row['unique_id'].'" type="checkbox" /></td>';
 	} else {

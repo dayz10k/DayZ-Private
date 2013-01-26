@@ -26,7 +26,7 @@
  * @version   $Revision: 1.6 $
  */
 class GameQ_Config
-{ 
+{
     private $games;     // Game data
     private $packets;   // Packet data
 
@@ -34,7 +34,7 @@ class GameQ_Config
      * Constructor, reads configuration files.
      */
     public function __construct()
-    { 
+    {
         $this->readGamesConfig();
         $this->readPacketConfig();
     }
@@ -46,11 +46,11 @@ class GameQ_Config
      * @return    array     Data read from the file
      */
     private function readIniFile($path)
-    { 
+    {
         // Read an ini file
         $path = GAMEQ_BASE . $path . '.ini';
         $data = @parse_ini_file($path, true);
-        if (count($data) == 0) { 
+        if (count($data) == 0) {
             $msg = sprintf('GameQ_Config::readIniFile: unable to read file [%s].', $path);
             trigger_error($msg, E_USER_ERROR);
         }
@@ -62,12 +62,12 @@ class GameQ_Config
      * Loads the game configuration file.
      */
     private function readGamesConfig()
-    { 
+    {
         // Read the file
         $this->games = $this->readIniFile('games');
 
         // If protocol is not set, set the game id as protocol
-        foreach ($this->games as $id => &$game) { 
+        foreach ($this->games as $id => &$game) {
             if (!isset($game['prot'])) $game['prot'] = $id;
             if (!isset($game['pack'])) $game['pack'] = $game['prot'];
             if (!isset($game['transport'])) $game['transport'] = 'udp';
@@ -78,13 +78,13 @@ class GameQ_Config
      * Loads the packet configuration file.
      */
     private function readPacketConfig()
-    { 
+    {
         // Read the file
         $this->packets = $this->readIniFile('packets');
 
         // Unescape each packet
-        foreach ($this->packets as $prot => $packets) { 
-            foreach ($packets as $id => $packet) { 
+        foreach ($this->packets as $prot => $packets) {
+            foreach ($packets as $id => $packet) {
                 $this->packets[$prot][$id] = stripcslashes($packet);
             }
         }
@@ -99,9 +99,9 @@ class GameQ_Config
      * @return    array     Game server data
      */
     public function getGame($gid, $addr, $port)
-    { 
+    {
         // Get the game entry
-        if (!array_key_exists($gid, $this->games)) { 
+        if (!array_key_exists($gid, $this->games)) {
             $msg = sprintf('GameQ_Config::getGame: Unknown game identifier [%s].', $gid);
             trigger_error($msg, E_USER_ERROR);
         }
@@ -124,8 +124,8 @@ class GameQ_Config
      * @param    array     Packets
      */
     public function getPackets($pid)
-    { 
-        if (!array_key_exists($pid, $this->packets)) { 
+    {
+        if (!array_key_exists($pid, $this->packets)) {
             $msg = sprintf('GameQ_Config::getPackets: Unknown packet identifier [%s].', $pid);
             trigger_error($msg, E_USER_ERROR);
         }

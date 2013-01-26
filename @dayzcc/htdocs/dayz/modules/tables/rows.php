@@ -1,6 +1,6 @@
 <?php
 
-function header_player($show, $order) { 
+function header_player($show, $order) {
 	return '<tr>
 		<th class="product-table-header" style="width: 5%"><a>Status</a></th>
 		<th class="product-table-header" style="width: 25%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.($order == "ASC" ? "DESC" : "ASC").'">Name</a></th>
@@ -11,7 +11,7 @@ function header_player($show, $order) {
 		<th class="product-table-header" style="width: 20%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.($order == "ASC" ? "DESC" : "ASC").'">Backpack</a></th>
 		</tr>';
 }
-function header_player_online($show) { 
+function header_player_online($show) {
 	return '<tr>
 		<th class="product-table-header" style="width: 5%"><a>Kick</a></th>
 		<th class="product-table-header" style="width: 5%"><a>Ban</a></th>
@@ -23,7 +23,7 @@ function header_player_online($show) {
 		<th class="product-table-header" style="width: 20%"><a>Backpack</a></th>
 		</tr>';
 }
-function header_vehicle($show, $chbox, $order) { 
+function header_vehicle($show, $chbox, $order) {
 	return '
 		<tr>'.$chbox.'
 		<th class="product-table-header" style="width: 5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.($order == "ASC" ? "DESC" : "ASC").'">ID</a></th>
@@ -34,7 +34,7 @@ function header_vehicle($show, $chbox, $order) {
 		<th class="product-table-header" style="width: 25%"><a href="index.php?view=table&show='.$show.'&sort=6&order='.($order == "ASC" ? "DESC" : "ASC").'">Hitpoints</a></th>
 		</tr>';
 }
-function header_deployable($show, $chbox, $order) { 
+function header_deployable($show, $chbox, $order) {
 	return '
 		<tr>'.$chbox.'
 		<th class="product-table-header" style="width: 5%"><a href="index.php?view=table&show='.$show.'&sort=1&order='.($order == "ASC" ? "DESC" : "ASC").'">ID</a></th>
@@ -57,18 +57,18 @@ function row_player($row, $world) {
 	$Inventory = json_decode($Inventory);
 	$limit = 6;
 
-	if (is_array($Inventory)) { 
-		if (array_key_exists(0,$Inventory)) { 
+	if (is_array($Inventory)) {
+		if (array_key_exists(0,$Inventory)) {
 			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); } else {$Inventory = $Inventory[0]; }
-		} else { 
+		} else {
 			if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1]; }
 		}
-	} else { 
+	} else {
 		$Inventory = array();
 	}
 
-	for ($i = 0; $i< $limit; $i++) { 
-		if (array_key_exists($i, $Inventory)) { 
+	for ($i = 0; $i< $limit; $i++) {
+		if (array_key_exists($i, $Inventory)) {
 			$curitem = $Inventory[$i];
 			$pcount = '';
 			if (is_array($curitem)) {
@@ -76,7 +76,7 @@ function row_player($row, $world) {
 				$pcount = ' - '.$Inventory[$i][1].' rounds';
 			}
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
-		} else { 
+		} else {
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
@@ -85,33 +85,33 @@ function row_player($row, $world) {
 	$Backpack = $row['backpack'];
 	$Backpack = json_decode($Backpack);
 
-	if (array_key_exists(0, $Backpack)) { 
+	if (array_key_exists(0, $Backpack)) {
 		$bpweapons = array();
 		$bpweapons[] = $Backpack[0];
-		if (array_key_exists(1, $Backpack)) { 
+		if (array_key_exists(1, $Backpack)) {
 			$bpweaponscount = count($Backpack[1][0]);				
 			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpweapons[] = $Backpack[1][0][$m]; } }
 		}
 		$bpitems = array();
-		if (array_key_exists(1, $Backpack)) { 
+		if (array_key_exists(1, $Backpack)) {
 			$bpitemscount = count($Backpack[2][0]);
 			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpitems[] = $Backpack[2][0][$m]; } }
 		}
 		$Backpack = (array_merge($bpweapons, $bpitems));
 	}
 
-	for ($i = 0; $i < $limit; $i++) { 
-		if (array_key_exists($i, $Backpack)) { 
+	for ($i = 0; $i < $limit; $i++) {
+		if (array_key_exists($i, $Backpack)) {
 			$curitem = $Backpack[$i];
 			$pcount = '';
-			if (is_array($curitem)) { 
+			if (is_array($curitem)) {
 				if ($i != 0) {
 					$curitem = $Backpack[$i][0];
 					$pcount = ' - '.$Backpack[$i][1].' rounds';
 				}
 			}
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
-		} else { 
+		} else {
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
@@ -138,7 +138,7 @@ function row_player($row, $world) {
 
 	return $tablerow;
 }
-function row_online_player($row, $player, $world) { 
+function row_online_player($row, $player, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);				
@@ -152,22 +152,22 @@ function row_online_player($row, $player, $world) {
 	$limit = 6;
 	$pcount = '';
 
-	if (is_array($Inventory)) { 
-		if (array_key_exists(0, $Inventory)) { 
+	if (is_array($Inventory)) {
+		if (array_key_exists(0, $Inventory)) {
 			if (array_key_exists(1, $Inventory)) { $Inventory = (array_merge($Inventory[0], $Inventory[1])); } else { $Inventory = $Inventory[0]; }
-		} else { 
+		} else {
 			if (array_key_exists(1, $Inventory)) { $Inventory = $Inventory[1]; }
 		}
-	} else { 
+	} else {
 		$Inventory = array();
 	}
 
-	for ($p = 0; $p < $limit; $p++) { 
-		if (array_key_exists($p, $Inventory)) { 
+	for ($p = 0; $p < $limit; $p++) {
+		if (array_key_exists($p, $Inventory)) {
 			$curitem = $Inventory[$p];
 			if (is_array($curitem)) { $curitem = $Inventory[$p][0]; $pcount = ' - '.$Inventory[$p][1].' rounds'; }
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
-		} else { 
+		} else {
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}			
 	}
@@ -176,18 +176,18 @@ function row_online_player($row, $player, $world) {
 	$Backpack = $row['backpack'];
 	$Backpack = json_decode($Backpack);
 
-	if (array_key_exists(0, $Backpack)) { 
+	if (array_key_exists(0, $Backpack)) {
 		$bpweapons = array();
 		$bpweapons[] = $Backpack[0];
-		if (array_key_exists(1, $Backpack)) { 
-			if (array_key_exists(0, $Backpack[1])) { 
+		if (array_key_exists(1, $Backpack)) {
+			if (array_key_exists(0, $Backpack[1])) {
 				$bpweaponscount = count($Backpack[1][0]);				
 				for ($m=0; $m<$bpweaponscount; $m++) { for ($mi = 0; $mi < $Backpack[1][1][$m]; $mi++) { $bpweapons[] = $Backpack[1][0][$m]; } }
 			}							
 		}
 		$bpitems = array();
-		if (array_key_exists(1, $Backpack)) { 
-			if (array_key_exists(0, $Backpack[2])) { 
+		if (array_key_exists(1, $Backpack)) {
+			if (array_key_exists(0, $Backpack[2])) {
 				$bpitemscount = count($Backpack[2][0]);
 				for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Backpack[2][1][$m]; $mi++) { $bpitems[] = $Backpack[2][0][$m]; } }
 			}
@@ -195,18 +195,18 @@ function row_online_player($row, $player, $world) {
 		$Backpack = (array_merge($bpweapons, $bpitems));
 	}
 
-	for ($p = 0; $p < $limit; $p++) { 
-		if (array_key_exists($p, $Backpack)) { 
+	for ($p = 0; $p < $limit; $p++) {
+		if (array_key_exists($p, $Backpack)) {
 			$curitem = $Backpack[$p];
 			$pcount = '';
-			if (is_array($curitem)) { 
-				if ($p != 0) { 
+			if (is_array($curitem)) {
+				if ($p != 0) {
 					$curitem = $Backpack[$p][0];
 					$pcount = ' - '.$Backpack[$p][1].' rounds';
 				}
 			}
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$pcount.'" alt="'.$curitem.$pcount.'" /></div>';
-		} else { 
+		} else {
 			$BackpackPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
@@ -235,7 +235,7 @@ function row_online_player($row, $player, $world) {
 
 	return $tablerow;	
 }
-function row_vehicle($row, $chbox, $world) { 
+function row_vehicle($row, $chbox, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
@@ -247,42 +247,42 @@ function row_vehicle($row, $chbox, $world) {
 	$Inventory = json_decode($Inventory);
 	$limit = 6;
 
-	if (count($Inventory) > 0) { 
+	if (count($Inventory) > 0) {
 		$bpweapons = array();
-		if (array_key_exists(0, $Inventory)) { 
+		if (array_key_exists(0, $Inventory)) {
 			$bpweaponscount = count($Inventory[0][0]);				
 			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Inventory[0][1][$m]; $mi++) { $bpweapons[] = $Inventory[0][0][$m]; } }
 		}
 
 		$bpitems = array();
-		if (array_key_exists(1, $Inventory)) { 
+		if (array_key_exists(1, $Inventory)) {
 			$bpitemscount = count($Inventory[1][0]);
 			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Inventory[1][1][$m]; $mi++) { $bpitems[] = $Inventory[1][0][$m]; } }
 		}
 
 		$bpacks = array();
-		if (array_key_exists(2, $Inventory)) { 
+		if (array_key_exists(2, $Inventory)) {
 			$bpackscount = count($Inventory[2][0]);
 			for ($m = 0; $m < $bpackscount; $m++) { for ($mi = 0; $mi < $Inventory[2][1][$m]; $mi++) { $bpacks[] = $Inventory[2][0][$m]; } }
 		}
 
 		$Inventory = (array_merge($bpweapons, $bpacks, $bpitems));
-	} else { 
+	} else {
 		$Inventory = array();
 	}
 
-	for ($i = 0; $i < $limit; $i++) { 
-		if (array_key_exists($i, $Inventory)) { 
+	for ($i = 0; $i < $limit; $i++) {
+		if (array_key_exists($i, $Inventory)) {
 			$curitem = $Inventory[$i];
 			$icount = '';
-			if (is_array($curitem)) { 
+			if (is_array($curitem)) {
 				if ($i != 0) {
 					$curitem = $Inventory[$i][0];
 					$icount = ' - '.$Inventory[$i][1].' rounds';
 				}
 			}
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
-		} else { 
+		} else {
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}
@@ -293,8 +293,8 @@ function row_vehicle($row, $chbox, $world) {
 
 	if (!is_array($Hitpoints)) { $Hitpoints = array(); }
 
-	for ($i = 0; $i < $limit; $i++) { 
-		if (array_key_exists($i, $Hitpoints)) { 
+	for ($i = 0; $i < $limit; $i++) {
+		if (array_key_exists($i, $Hitpoints)) {
 			$curitem = $Hitpoints[$i];
 			$HitpointsPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; background-color: rgba(100, '.(round((255 / 100) * (100 - ($curitem[1] * 100)))).', 0, 0.8);"><img style="width: 43px; height: 43px;" src="images/hits/'.$curitem[0].'.png" title="'.$curitem[0].' - '.(round(100 - ($curitem[1] * 100))).'%" alt="'.$curitem[0].' - '.(round(100 - ($curitem[1] * 100))).'%"/></div>';
 		}
@@ -312,7 +312,7 @@ function row_vehicle($row, $chbox, $world) {
 
 	return $tablerow;
 }
-function row_deployable($row, $chbox, $world) { 
+function row_deployable($row, $chbox, $world) {
 	$Worldspace = str_replace("[", "", $row['worldspace']);
 	$Worldspace = str_replace("]", "", $Worldspace);
 	$Worldspace = explode(",", $Worldspace);
@@ -324,38 +324,39 @@ function row_deployable($row, $chbox, $world) {
 	$Inventory = json_decode($Inventory);
 	$limit = 6;
 
-	if (count($Inventory) > 0) { 
+	if (count($Inventory) > 0) {
 		$bpweapons = array();
-		if (array_key_exists(0, $Inventory)) { 
+		if (array_key_exists(0, $Inventory)) {
 			$bpweaponscount = count($Inventory[0][0]);				
 			for ($m = 0; $m < $bpweaponscount; $m++) { for ($mi = 0; $mi < $Inventory[0][1][$m]; $mi++) { $bpweapons[] = $Inventory[0][0][$m]; } }
 		}
 
 		$bpitems = array();
-		if (array_key_exists(1, $Inventory)) { 
+		if (array_key_exists(1, $Inventory)) {
 			$bpitemscount = count($Inventory[1][0]);
 			for ($m = 0; $m < $bpitemscount; $m++) { for ($mi = 0; $mi < $Inventory[1][1][$m]; $mi++) { $bpitems[] = $Inventory[1][0][$m]; } }
 		}
 
 		$bpacks = array();
-		if (array_key_exists(2, $Inventory)) { 
+		if (array_key_exists(2, $Inventory)) {
 			$bpackscount = count($Inventory[2][0]);
 			for ($m = 0; $m < $bpackscount; $m++) { for ($mi = 0; $mi < $Inventory[2][1][$m]; $mi++) { $bpacks[] = $Inventory[2][0][$m]; } }
 		}
 
 		$Inventory = (array_merge($bpweapons, $bpacks, $bpitems));
-	} else { 
+	} else {
 		$Inventory = array();
 	}
 	
-	for ($i = 0; $i < $limit; $i++) { 
-		if (array_key_exists($i, $Inventory)) { 
+	for ($i = 0; $i < $limit; $i++) {
+		if (array_key_exists($i, $Inventory)) {
 			$curitem = $Inventory[$i];
-			if (is_array($curitem)) { 
+			$icount = '';
+			if (is_array($curitem)) {
 				if ($i != 0) { $curitem = $Inventory[$i][0]; $icount = ' - '.$Inventory[$i][1].' rounds'; }
 			}
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/thumbs/'.$curitem.'.png" title="'.$curitem.$icount.'" alt="'.$curitem.$icount.'" /></div>';
-		} else { 
+		} else {
 			$InventoryPreview .= '<div class="preview_gear_slot" style="margin-top: 0px; width: 47px; height: 47px; min-width: 47px; min-height: 47px;"><img style="width: 43px; height: 43px;" src="images/forms/blank.gif" alt="" /></div>';
 		}
 	}

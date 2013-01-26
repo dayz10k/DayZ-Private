@@ -153,7 +153,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "mana
 <?php
 }
 else
-{ 
+{
 	header('Location: index.php');
 }
 

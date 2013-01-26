@@ -28,10 +28,10 @@ if (isset($_GET['page'])) {
 $offset = ($pageNum - 1) * $rowsPerPage;
 $maxPage = ceil($pnumber / $rowsPerPage);			
 
-for ($page = 1; $page <= $maxPage; $page++) { 
-	if ($page == $pageNum) { 
+for ($page = 1; $page <= $maxPage; $page++) {
+	if ($page == $pageNum) {
 		$nav .= " $page ";
-	} else { 
+	} else {
 		$nav .= "$self&page=$page";
 	}
 }
@@ -41,7 +41,7 @@ $res = mysql_query($query) or die(mysql_error());
 $number = mysql_num_rows($res);
 $chbox = '';
 
-if (!$serverrunning) { 
+if (!$serverrunning) {
 	$chbox = '<th class="product-table-header"><a>Delete</a></th>';
 	$formhead = '<form action="index.php?view=table&show=4" method="post">';
 	$formfoot = '<input type="submit" class="submit" /></form>';
@@ -49,7 +49,7 @@ if (!$serverrunning) {
 
 $tableheader = header_vehicle($show, $chbox, $order);
 
-while ($row = mysql_fetch_array($res)) { 
+while ($row = mysql_fetch_array($res)) {
 	if (!$serverrunning) {
 		$chbox = '<td align="center" class="gear_preview"><input name="vehicle[]" value="'.$row['id'].'" type="checkbox" /></td>';
 	} else {

@@ -9,7 +9,7 @@ if (file_exists($pathlog))
 	$start = 0;
 	$i = 0;
 	
-	foreach ($lines as $line) { 
+	foreach ($lines as $line) {
 		if (strpos($line, "SERVER: VERSION:") !== false) { $start = $i; }
 		$i++;
 	}

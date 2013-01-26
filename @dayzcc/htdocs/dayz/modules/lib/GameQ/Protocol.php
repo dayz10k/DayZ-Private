@@ -29,7 +29,7 @@ require_once GAMEQ_BASE . 'Result.php';
  * @version   $Revision: 1.2 $
  */
 abstract class GameQ_Protocol
-{ 
+{
     protected $p; // Packet object
     protected $r; // Result object
     
@@ -40,7 +40,7 @@ abstract class GameQ_Protocol
      * @param    array    $result    Result data
      */
     public function setData($packet, $result = null)
-    { 
+    {
         $this->p = $packet;
         $this->r = $result;
     }
@@ -51,7 +51,7 @@ abstract class GameQ_Protocol
      * @return    array    Result data
      */
     public function getData()
-    { 
+    {
         return $this->r->fetch();
     }
     
@@ -65,7 +65,7 @@ abstract class GameQ_Protocol
      * @return     string       Joined server response
      */
     public function preprocess($packets)
-    { 
+    {
         return implode('', $packets);
     }
 
@@ -76,7 +76,7 @@ abstract class GameQ_Protocol
      * @return    string    The modified packet
      */
     public function parseChallenge($packet)
-    { 
+    {
         return $packet;
     }
 
@@ -87,7 +87,7 @@ abstract class GameQ_Protocol
      * @return   array    The modified packet config
      */
     public function modifyPacket($packet_conf)
-    { 
+    {
         return $packet_conf;
     }
 
