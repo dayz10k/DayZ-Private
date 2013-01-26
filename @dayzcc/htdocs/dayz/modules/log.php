@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "control") !== false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "manage") !== false))
 {
 	$pagetitle = "Logs";
 
@@ -110,7 +110,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 										$path_parts = pathinfo($file);
 										$file = $path_parts['basename'];
 										$filepath = str_replace("\\", "__dir__", $patharma."\\@dayzcc_config\\".$serverinstance."\\".($_GET['type'] == "battleye" ? "BattlEye\\" : ""));
-										echo '<script type="text/javascript">window.open("modules/download.php?path='.$filepath.'&file='.$file.'"); window.location = "index.php?view=log&type='.$_GET['type'].'";</script>';
+										echo '<script type="text/javascript">window.open("modules/lib/download.php?path='.$filepath.'&file='.$file.'"); window.location = "index.php?view=log&type='.$_GET['type'].'";</script>';
 									} else {
 										echo '<div id="page-heading"><h2>Invalid file specified.<h2></div>';
 									}
