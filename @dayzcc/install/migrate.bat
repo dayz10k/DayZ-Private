@@ -4,16 +4,15 @@ if "%1" == "" goto manual
 if "%2" == "" goto manual
 if "%3" == "" goto manual
 if "%4" == "" goto manual
-if "%5" == "" goto manual
 goto auto
 
 :auto
 set type=1
-set dbhost=%1
-set dbport=%2
-set dbuser=%3
-set dbpass=%4
-set dbname=%5
+set dbhost=%2
+set dbport=%3
+set dbuser=%4
+set dbpass=%5
+set dbname=%1
 goto main
 
 :manual
