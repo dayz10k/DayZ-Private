@@ -31,6 +31,8 @@ else
 {
 	if (isset($_SESSION['user_id']))
 	{
+		error_reporting(E_ALL ^ E_NOTICE);
+		
 		mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die (mysql_error());
 		mysql_select_db($dbname) or die (mysql_error());
 

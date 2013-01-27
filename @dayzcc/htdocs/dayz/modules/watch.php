@@ -1,6 +1,6 @@
 <?php
 
-error_reporting (0);
+error_reporting(0);
 
 $ini = parse_ini_file($patharma."\\@dayzcc_config\\".$serverinstance."\\HiveExt.ini", true);
 $timeoffset = 0;

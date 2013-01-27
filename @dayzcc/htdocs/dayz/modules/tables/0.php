@@ -20,7 +20,7 @@ if ($answer != "") {
 		for ($j = 0; $j < strlen($pout); $j++) {
 			$char = substr($pout, $j, 1);
 			if ($m < 4) {
-				if($char != " ") { $players[$i][$m] .= $char; } else {$m++; }
+				if ($char != " ") { $players[$i][$m] .= $char; } else {$m++; }
 			} else {
 				$players[$i][$m] .= $char;
 			}
