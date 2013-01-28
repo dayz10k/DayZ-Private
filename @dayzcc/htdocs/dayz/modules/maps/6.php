@@ -19,7 +19,7 @@ if (file_exists($pathlog))
 }
 else
 {
-	$markers["error"] = "<div id='page-heading'><h2>Logfile not found.</h2></div>";
+	$markers["error"] = '<div id="page-error" style="margin: 0 0 15px 20px;"><h2>Logfile not found.</h2></div>';
 }
 
 ?>

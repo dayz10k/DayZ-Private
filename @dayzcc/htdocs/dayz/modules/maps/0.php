@@ -40,7 +40,7 @@ if ($answer != "") {
 }
 else
 {
-	$markers["error"] = "<div id='page-heading'><h2>BattlEye did not respond.</h2></div>";
+	$markers["error"] = '<div id="page-error" style="margin: 0 0 15px 20px;"><h2>BattlEye did not respond.</h2></div>';
 }
 
 ?>
