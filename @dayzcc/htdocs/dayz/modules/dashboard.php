@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id']))
 	if (isset($_POST['comment'])) {
 			if ($_POST['comment'] != "") {
 			$file = fopen("comments.log", (file_exists("comments.log") ? 'a' : 'w'));
-			fwrite($file, date('Y-m-d h:m:s')." ".$_SESSION['login'].": ".$_POST['comment']."\n");
+			fwrite($file, date('Y-m-d h:i:s')." ".$_SESSION['login'].": ".$_POST['comment']."\n");
 			fclose($file);
 		}
 	}
