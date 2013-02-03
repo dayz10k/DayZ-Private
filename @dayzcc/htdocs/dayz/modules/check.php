@@ -102,8 +102,8 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tabl
 
 			if (count($Unknown) > 0) { 
 				$rows .= '<tr>
-					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['owner_unique_id'].'&id='.$row['owner_id'].'&clear"><img src="images/icons/player_clear.png" title="Delete inventory" alt="Delete inventory"/></a></td>
-					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['owner_unique_id'].'&id='.$row['owner_id'].'">'.$row['owner_name'].' (Deployable)</a></td>
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=5&id='.$row['id'].'&delete"><img src="images/icons/player_clear.png" title="Delete inventory" alt="Delete inventory"/></a></td>
+					<td align="center" class="gear_preview"><a href="index.php?view=info&show=5&id='.$row['id'].'">'.$row['owner_name'].' (Deployable)</a></td>
 					<td align="center" class="gear_preview"><a href="index.php?view=info&show=1&uid='.$row['owner_unique_id'].'&id='.$row['owner_id'].'">'.$row['owner_unique_id'].'</a></td>
 					<td align="center" class="gear_preview">';
 					

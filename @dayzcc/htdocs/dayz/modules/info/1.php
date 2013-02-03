@@ -8,7 +8,7 @@ if (isset($_GET['delete'])) {
 	echo '<script type="text/javascript">window.location = "index.php?view=table&show=1"</script>';
 } else if (isset($_GET['clear'])) {
 	mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('CLEAR SURVIVOR {$_GET["id"]}', '{$_SESSION['login']}', NOW())");
-	mysql_query("UPDATE `survivor` SET `inventory` = '[]', `backpack` = '[]' WHERE `unique_id` = '{$_GET['uid']}' AND `id` = '{$_GET["id"]}'") or die(mysql_error());
+	mysql_query("UPDATE `survivor` SET `inventory` = '[[],[]]', `backpack` = '[\"\",[[],[]],[[],[]]]' WHERE `unique_id` = '{$_GET['uid']}' AND `id` = '{$_GET["id"]}'") or die(mysql_error());
 	echo '<script type="text/javascript">window.location = "index.php?view=check"</script>';
 } else {
 	if (isset($_POST['inventory'])) {
