@@ -3,7 +3,6 @@
 if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "control") !== false))
 {
 	$pagetitle = "Server Control";
-	$exebec = "bec_".$serverinstance.".exe";
 
 	if (isset($_GET['action'])) {
 		switch($_GET['action']) {
@@ -17,26 +16,16 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP SERVER', '{$_SESSION['login']}', NOW())");
 				sleep(3);
 				break;
-			case 3:
-				pclose(popen('start "" /d "'.$patharma.'\\@dayzcc_config\\'.$serverinstance.'\\BattlEye Extended Controls" "'.$patharma.'\\@dayzcc_config\\'.$serverinstance.'\\BattlEye Extended Controls\\'.$exebec.'" -f config.cfg', 'r'));
-				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('START BEC', '{$_SESSION['login']}', NOW())");
-				sleep(6);
-				break;
-			case 4:
-				exec('taskkill /IM "'.$exebec.'"');
-				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('STOP BEC', '{$_SESSION['login']}', NOW())");
-				sleep(3);
-				break;
-			case 5:
-				rcon($serverip, $serverport, $rconpassword, "#restart");
-				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{$_SESSION['login']}', NOW())");
-				sleep(1);
-				break;
-			case 6:
+			case 2:
 				exec('taskkill /IM "'.$exeserver.'" /F 2>&1', $output);
 				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('KILLED SERVER', '{$_SESSION['login']}', NOW())");
 				sleep(3);
 				$outmessage = implode('&nbsp;', $output);
+				break;
+			case 3:
+				rcon($serverip, $serverport, $rconpassword, "#restart");
+				mysql_query("INSERT INTO `log_tool` (`action`, `user`, `timestamp`) VALUES ('RESTART SERVER', '{$_SESSION['login']}', NOW())");
+				sleep(1);
 				break;
 			default:
 				sleep(1);
@@ -49,11 +38,6 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 		$serverrunning = true;
 	} else {
 		$serverrunning = false;
-	}
-	if ((str_replace('"', "", explode(",", strtolower(exec('tasklist /FI "IMAGENAME eq '.$exebec.'" /FO CSV')))[0])) == strtolower($exebec)) {
-		$becrunning = true;
-	} else {
-		$becrunning = false;
 	}
 	
 	?>
@@ -98,54 +82,18 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 						</table>
 						</div>
 						<div id="step-holder">	
-							<div class="step-no"><a href="index.php?view=control&action=5"><img src="images/icons/start.png"/></a></div>
-							<div class="step-dark-left"><a href="index.php?view=control&action=5">Restart</a></div>
+							<div class="step-no"><a href="index.php?view=control&action=3"><img src="images/icons/start.png"/></a></div>
+							<div class="step-dark-left"><a href="index.php?view=control&action=3">Restart</a></div>
 							<div class="step-dark-right">&nbsp;</div>
 							<div class="step-no"><a href="index.php?view=control&action=1" onclick="cblockUI();"><img src="images/icons/stop.png"/></a></div>
 							<div class="step-dark-left"><a href="index.php?view=control&action=1" onclick="cblockUI();">Stop</a></div>
 							<div class="step-dark-right">&nbsp;</div>
-							<div class="step-no"><a href="index.php?view=control&action=6" onclick="cblockUI();"><img src="images/icons/stop.png"/></a></div>
-							<div class="step-dark-left"><a href="index.php?view=control&action=6" onclick="cblockUI();">Kill Process</a></div>
+							<div class="step-no"><a href="index.php?view=control&action=2" onclick="cblockUI();"><img src="images/icons/stop.png"/></a></div>
+							<div class="step-dark-left"><a href="index.php?view=control&action=2" onclick="cblockUI();">Kill Process</a></div>
 							<div class="step-dark-round">&nbsp;</div>
 							<div class="clear"></div>
 						</div>
-						<?php if ($becrunning){ ?>
-							<div id="message-green">
-								<table border="0" width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<td class="green-left">BattlEye Extended Controls is running.</td>
-									<td class="green-right"><a class="close-green"><img src="images/forms/icon_close_green.gif"   alt="" /></a></td>
-								</tr>
-								</table>
-							</div>
-							<div id="step-holder">	
-									<div class="step-no-off"><img src="images/icons/start.png"/></div>
-									<div class="step-light-left">Start</div>
-									<div class="step-light-right">&nbsp;</div>
-									<div class="step-no"><a href="index.php?view=control&action=4" onclick="cblockUI();"><img src="images/icons/stop.png"/></a></div>
-									<div class="step-dark-left"><a href="index.php?view=control&action=4" onclick="cblockUI();">Stop</a></div>
-									<div class="step-dark-round">&nbsp;</div>
-									<div class="clear"></div>
-							</div>
-						<?php } else { ?>
-							<div id="message-yellow">
-								<table border="0" width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<td class="yellow-left">BattlEye Extended Controls is not running.</td>
-									<td class="yellow-right"><a class="close-yellow"><img src="images/forms/icon_close_yellow.gif"   alt="" /></a></td>
-								</tr>
-								</table>
-							</div>
-							<div id="step-holder">	
-								<div class="step-no"><a href="index.php?view=control&action=3" onclick="cblockUI();"><img src="images/icons/start.png"/></a></div>
-								<div class="step-dark-left"><a href="index.php?view=control&action=3" onclick="cblockUI();">Start</a></div>
-								<div class="step-dark-right">&nbsp;</div>
-								<div class="step-no-off"><img src="images/icons/stop.png"/></div>
-								<div class="step-light-left">Stop</div>
-								<div class="step-light-round">&nbsp;</div>
-								<div class="clear"></div>
-							</div>
-					<?php } } else { ?>
+					<?php } else { ?>
 						<div id="message-red">
 							<table border="0" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
