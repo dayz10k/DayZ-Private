@@ -1,17 +1,13 @@
 <?php
 
-// This script was written by ChemicalBliss
+// This script was written by ChemicalBliss and slightly altered by Crosire
 
 Class inventory_generator {
 	public function execute($vehicle_type){
-		$string = NULL;
-		
-		$vClassStr = $this->template($vehicle_type);
-		if ($vClassStr === false) { return "[]"; } // Exit when unknown
-		
+		$class = $this->template($vehicle_type);
+		if ($class === false) { return "[]"; } // Exit when unknown
 		$itemArray = array("weapons_tools" => array(), "items" => array(), "packs" => array());
-		$vItems = str_split($vClassStr, 2);
-		foreach ($vItems as $item) {
+		foreach (str_split($class, 2) as $item) {
 			switch($item[0]) {
 				case "w":
 					$key = "weapons_tools";
@@ -32,15 +28,15 @@ Class inventory_generator {
 			} else {
 				$itemArray[$key][] = $newItem;
 				if ($item[0] == "w") {
-					$clips = rand(0,3);
+					$clips = rand(0, 3);
 					for ($i = 0; $i < $clips; $i++) { $itemArray["items"][] = $this->weapon_ammo($newItem); }
 				}
 			}
 		}
 		
-		$weapons_tools = (count($itemArray['weapons_tools']) <= 0)? "[[],[]]" : "[[\"".implode("\",\"",$itemArray['weapons_tools'])."\"],[".$this->mk_count_string(count($itemArray['weapons_tools']))."]]";
-		$items = (count($itemArray['items']) <= 0)? "[[],[]]" : "[[\"".implode("\",\"",$itemArray['items'])."\"],[".$this->mk_count_string(count($itemArray['items']))."]]";
-		$packs = (count($itemArray['packs']) <= 0)? "[[],[]]" : "[[\"".implode("\",\"",$itemArray['packs'])."\"],[".$this->mk_count_string(count($itemArray['packs']))."]]";
+		$weapons_tools = (count($itemArray['weapons_tools']) <= 0) ? '[[],[]]' : '[["'.(implode('","', $itemArray['weapons_tools'])).'"],['.($this->mk_count_string(count($itemArray['weapons_tools']))).']]';
+		$items = (count($itemArray['items']) <= 0) ? '[[],[]]' : '[["'.(implode('","', $itemArray['items'])).'"],['.($this->mk_count_string(count($itemArray['items']))).']]';
+		$packs = (count($itemArray['packs']) <= 0) ? '[[],[]]' : '[["'.(implode('","', $itemArray['packs'])).'"],['.($this->mk_count_string(count($itemArray['packs']))).']]';
 
 		return "[".$weapons_tools.",".$items.",".$packs."]";
 	}
@@ -48,73 +44,73 @@ Class inventory_generator {
 	// Gear teamplates
 	private function template($vehicle) {
 		$vehicles  = array(
-			"UAZ_MG_CDF_DZ_VLM" => "w2w2w3t2t2t3i1i2i2i3i3i3i3i3i3p1p2",
-			"UAZ_Unarmed_TK_EP1" => "w2w2w3t2t2t3i1i2i2i3i3i3i3i3i3p1p2",
-			"UAZ_Unarmed_TK_CIV_EP1" => "w2w2w3t2t2t3i1i2i2i3i3i3i3i3i3p1p2",
-			"UAZ_Unarmed_UN_EP1" => "w2w2w3t2t2t3i1i2i2i3i3i3i3i3i3p1p2",
-			"UAZ_RU" => "w2w2w3t2t2t3i1i2i2i3i3i3i3i3i3p1p2",
-			"ATV_US_EP1" => "w3w2t2t2t3i2i2i3i3i3i3i3i3p2",
-			"ATV_CZ_EP1" => "w3w2t2t2t3i2i2i3i3i3i3i3i3p2",
-			"SkodaBlue" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-			"Skoda" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-			"SkodaGreen" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-			"SkodaRed" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
+			"UAZ_MG_CDF_DZ_VLM" => "w2w3t2t2t3i1i2i2i3i3i3i3i3i3p1p2",
+			"UAZ_Unarmed_TK_EP1" => "w2w3t2t2t3i1i2i2i3i3i3i3p1p2",
+			"UAZ_Unarmed_TK_CIV_EP1" => "w2w3t2t2t3i1i2i2i3i3i3i3p1p2",
+			"UAZ_Unarmed_UN_EP1" => "w2w3t2t2t3i1i2i2i3i3i3i3p1p2",
+			"UAZ_RU" => "w3t2t2t3i1i2i3i3i3i3p1p2",
+			"ATV_US_EP1" => "w2t2t2t3i3i3i3p2",
+			"ATV_CZ_EP1" => "t2t2t3i2i3i3i3p2",
+			"SkodaBlue" => "w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
+			"Skoda" => "w3t2t3t3i3i3i3i3i3i3i3i3p2",
+			"SkodaGreen" => "w2w3t2t3t3i3i3i3i3p2",
+			"SkodaRed" => "w3t2t3t3i3i3i3i3i3i3i3i3p2",
 			"TT650_Civ" => "t2i1",
 			"TT650_Gue" => "t2i1",
 			"TT650_Ins" => "t2i1",
 			"TT650_TK_EP1" => "t2i1",
 			"TT650_TK_CIV_EP1" => "t2i1",
-		#	"Old_bike_TK_CIV_EP1" => "",
-		#	"Old_bike_TK_INS_EP1" => "",
+		//	"Old_bike_TK_CIV_EP1" => "",
+		//	"Old_bike_TK_INS_EP1" => "",
 			"C130J" => "w1w2t1i1i2i2i3i3i3p1",
 			"C130J_DZ" => "w1w2t1i1i2i2i3i3i3p1",
 			"Mi17_DZ" => "w1w2t1i1i2i2i3i3i3p1",
 			"AH6X_DZ" => "w1w2t1i1i2i2i3i3i3p1",
-			"AN2_DZ" => "w1w2t1i1i2i2i3i3i3p1",
+			"AN2_DZ" => "w2t1i1i2i3i3i3p1",
 			"kh_maule_m7_white_DZ" => "w1w2t1i1i2i2i3i3i3p1",
-			"UH1H_DZ" => "w1w2t1i1i2i2i3i3i3p1",
+			"UH1H_DZ" => "w2w2t1i1i2i2i3i3i3p1",
 			"MV22_DZ" => "w1w2t1i1i2i2i3i3i3p1",
 			"Mi17_medevac_RU_DZ" => "w1w2t1i1i2i2i3i3i3p1",
-			"Mi17_Civilian_DZ" => "w1w2t1i1i2i2i3i3i3p1",
-			"Mi17_Civilian_Nam" => "w1w2t1i1i2i2i3i3i3p1",
+			"Mi17_Civilian_DZ" => "w2t1i1i2i2i3i3i3p1",
+			"Mi17_Civilian_Nam" => "w2t1i1i2i2i3i3i3p1",
 			"Mi17_DZ" => "w1w2t1i1i2i2i3i3i3p1",
 			"Mi17_medevac_RU_DZ" => "w1w2t1i1i2i2i3i3i3p1",
-			"hilux1_civil_3_open" => "w2w2w2t2t2t3i2i2i3i3i3i3i3i3i3i3p2p2",
-			"datsun1_civil_2_covered" => "w2w2w2t2t2t3i2i2i3i3i3i3i3i3i3i3p2p2",
-			"datsun1_civil_3_open" => "w2w2w2t2t2t3i2i2i3i3i3i3i3i3i3i3p2p2",
-			"hilux1_civil_2_covered" => "w2w2w2t2t2t3i2i2i3i3i3i3i3i3i3i3p2p2",
-			"Ikarus_TK_CIV_EP1" => "w2w3w3t2t3t3t3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
-			"Ikarus" => "w2w3w3t2t3t3t3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
-			"Tractor" => "w3t3i2i2i3i3i3i3i3p2",
+			"hilux1_civil_3_open" => "w2w3t2t2t3i2i2i3i3i3i3i3i3i3i3p2p2",
+			"datsun1_civil_2_covered" => "w2w3t2t2t3i2i3i3i3i3i3p2p2",
+			"datsun1_civil_3_open" => "w2w3t2t2t3i2i2i3i3i3i3p2p2",
+			"hilux1_civil_2_covered" => "w2w3t2t2t3i2i2i3i3i3i3i3i3i3i3p2p2",
+			"Ikarus_TK_CIV_EP1" => "w3t2t3t3t3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
+			"Ikarus" => "w3t2t3t3t3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
+			"Tractor" => "t3i2i2i3i3i3i3i3p2",
 			"S1203_TK_CIV_EP1" => "w1w2w3t1t2t3i1i2i3p1p2",
-			"V3S_Civ" => "w1w1w2w2w2w2w3w3w3w3t1t2t2t3t3t3i1i1i2i2i2i2i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
-			"UralCivil" => "w1w2w2w2w2w3w3w3w3t2t2t3t3t3i2i2i2i2i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
-			"UralCivil2" => "w1w2w2w2w2w3w3w3w3t2t2t3t3t3i2i2i2i2i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
-			"UralRefuel_INS" => "w1w2w2w2w2w3w3w3w3t2t2t3t3t3i2i2i2i2i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
-			"Ural_INS" => "w1w2w2w2w2w3w3w3w3t2t2t3t3t3i2i2i2i2i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
-			"GAZ_Vodnik" => "w1w2w2w2w3w3w3t2t2t3t3t3i2i2i2i3i3i3i3i3i3i3p1p2p2",
-			"GAZ_Vodnik_DZ_VLM" => "w1w2w2w2w3w3w3t2t2t3t3t3i2i2i2i3i3i3i3i3i3i3p1p2p2",
-			"GAZ_Vodnik_MedEvac" => "w1w2w2w2w3w3w3t2t2t3t3t3i2i2i2i3i3i3i3i3i3i3p1p2p2",
-			"car_hatchback" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-		#	"Fishing_Boat" => "",
-			"PBX" => "w1i2i3i3i3p1",
-		#	"Smallboat_1" => "",
-			"Volha_2_TK_CIV_EP1" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-			"Volha_1_TK_CIV_EP1" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-			"VolhaLimo_TK_CIV_EP1" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-			"BAF_Offroad_D" => "w1w2w3t1t2i1i2i3i3p1p2",
-			"BAF_Offroad_W" => "w1w2w3t1t2i1i2i3i3p1p2",
-			"SUV_TK_CIV_EP1" => "w1w1t1i1i1i3i3i3i3i3i3p1p1",
+			"V3S_Civ" => "w2w2w2w3w3t1t2t2t3t3t3i1i1i2i2i2i2i3i3i3i3i3i3i3i3p1p2p2",
+			"UralCivil" => "w2w2w3w3w3t2t2t3t3t3i2i2i2i2i3i3i3i3i3i3i3i3i3i3p1p2p2",
+			"UralCivil2" => "w2w2w2w3w3t2t2t3t3t3i2i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
+			"UralRefuel_INS" => "w1w2w2w3t2t2t3t3t3i2i2i2i2i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
+			"Ural_INS" => "w1w2w2w3w3t2t2t3t3t3i2i2i3i3i3i3i3i3i3i3i3i3i3p1p2p2",
+			"GAZ_Vodnik" => "w1w3w3t2t2t3t3t3i2i2i2i3i3i3i3i3i3i3p1p2p2",
+			"GAZ_Vodnik_DZ_VLM" => "w1w2w3t2t2t3t3t3i2i2i2i3i3i3i3i3i3i3p1p2p2",
+			"GAZ_Vodnik_MedEvac" => "w1w3w3t2t2t3t3t3i2i2i2i3i3i3i3i3i3i3p1p2p2",
+			"car_hatchback" => "w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
+		//	"Fishing_Boat" => "",
+			"PBX" => "w2i2i3i3i3p1",
+		//	"Smallboat_1" => "",
+			"Volha_2_TK_CIV_EP1" => "w3w3w1t2t3t3i3i3i3i3i3i3i3i3p2",
+			"Volha_1_TK_CIV_EP1" => "w3w3w2t2t3t3i3i3i3i3i3i3i3i3p2",
+			"VolhaLimo_TK_CIV_EP1" => "w3t2t3t3i3i3i3i3i3i3i3i3p2",
+			"BAF_Offroad_D" => "w2w3t2t2i2i2i3i3p1p2",
+			"BAF_Offroad_W" => "w2w3t2t2i2i2i3i3p1p2",
+			"SUV_TK_CIV_EP1" => "w2t2i1i1i3i3i3i3i3i3p1p1",
 			"HMMWV_DES_EP1" => "w1w1t1i1i1i3i3i3i3i3i3p1p1",
 			"HMMWV_Ambulance_DZ" => "w1w1w2t1i1i1i3i3i3i3i3i3p1p1",
-			"car_sedan" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2",
-		#	"player" => "" // yup, could generate random player loadouts too.
-			"VWGolf" => "w2w3w3t2t3t3i3i3i3i3i3i3i3i3p2"
+			"car_sedan" => "w3t2t3t3i3i3i3i3i3i3i3i3p2",
+		//	"player" => "",
+			"VWGolf" => "w3w2t2t3t3i3i3i3i3i3i3i3i3p2"
 		);
 		
-		if(!isset($vehicles[$vehicle])){
+		if (!isset($vehicles[$vehicle])){
 			return false;
-		}else{
+		} else {
 			return $vehicles[$vehicle];
 		}
 	}
@@ -129,10 +125,14 @@ Class inventory_generator {
 				}
 				break;
 			case "w2":
-				return $this->random_weapon(2);
+				if (rand(1, 100) <= 10) { // 10% chance to spawn
+					return $this->random_weapon(2);
+				}
 				break;
 			case "w3":
-				return $this->random_weapon(3);
+				if (rand(1, 100) <= 20) { // 20% chance to spawn
+					return $this->random_weapon(3);
+				}
 				break;
 			case "t1":
 				if (rand(1, 100) <= 5) { // 5% chance to spawn
@@ -140,29 +140,39 @@ Class inventory_generator {
 				}
 				break;
 			case "t2":
-				return $this->random_tool(2);
+				if (rand(1, 100) <= 15) { // 15% chance to spawn
+					return $this->random_tool(2);
+				}
 				break;
 			case "t3":
-				return $this->random_tool(3);
+				if (rand(1, 100) <= 25) { // 25% chance to spawn
+					return $this->random_tool(3);
+				}
 				break;
 			case "i1":
-				if (rand(1,100) <= 5) { // 5% chance to spawn
+				if (rand(1, 100) <= 5) { // 5% chance to spawn
 					return $this->random_item(1);
 				}
 				break;
 			case "i2":
-				return $this->random_item(2);
+				if (rand(1, 100) <= 10) { // 10% chance to spawn
+					return $this->random_item(2);
+				}
 				break;
 			case "i3":
-				return $this->random_item(3);
+				if (rand(1, 100) <= 20) { // 20% chance to spawn
+					return $this->random_item(3);
+				}
 				break;
 			case "p1":
-				if (rand(1,100) <= 25) { // 25% chance to spawn
+				if (rand(1, 100) <= 25) { // 25% chance to spawn
 					return $this->random_pack(1);
 				}
 				break;
 			case "p2":
-				return $this->random_pack(2);
+				if (rand(1, 100) <= 30) { // 30% chance to spawn
+					return $this->random_pack(2);
+				}
 				break;
 		}
 		
@@ -367,7 +377,7 @@ Class inventory_generator {
 	private function mk_count_string($count){
 		$array = array();
 		for ($i = 0; $i < $count; $i++) { $array[] = "1"; }
-		return implode(",",$array);
+		return implode(",", $array);
 	}
 }
 
