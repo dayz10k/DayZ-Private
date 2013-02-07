@@ -200,9 +200,17 @@
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>1</cargo>
 	</sm1030_us_des_ep1>
+	<smh6j_dz>
+		<Type>Helicopter</Type>
+		<Name>MH-6J</Name>
+		<transportmaxweapons>3</transportmaxweapons>
+		<transportmaxmagazines>20</transportmaxmagazines>
+		<transportmaxbackpacks>1</transportmaxbackpacks>
+		<cargo>5</cargo>
+	</smh6j_ep1>
 	<smi17_dz>
 		<Type>Helicopter</Type>
-		<Name>MI-17</Name>
+		<Name>Mi-17</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -240,14 +248,6 @@
         <transportmaxbackpacks>0</transportmaxbackpacks>
         <cargo>0</cargo>
     </sold_bike_tk_civ_ep1>
-	<sparachutewest>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>0</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutewest>
 	<spbx>
 		<Type>PBX</Type>
 		<Name>PBX</Name>
@@ -580,7 +580,7 @@
 
 	<sl39_tk_ep1>
 		<Type>Plane</Type>
-		<Name>l-39za</Name>
+		<Name>l-39ZA</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -612,7 +612,7 @@
 	</san2_tk_ep1>
 	<smi17_civilian>
 		<Type>Helicopter</Type>
-		<Name>MI-17</Name>
+		<Name>Mi-17</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -620,7 +620,7 @@
 	</smi17_civilian>
 	<smi17_tk_ep1>
 		<Type>Helicopter</Type>
-		<Name>MI-8</Name>
+		<Name>Mi-8</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -628,47 +628,15 @@
 	</smi17_tk_ep1>
 	<smi24_d_tk_ep1>
 		<Type>Helicopter</Type>
-		<Name>MI-24d</Name>
+		<Name>Mi-24D</Name>
 		<transportmaxweapons>30</transportmaxweapons>
 		<transportmaxmagazines>150</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
 		<cargo>8</cargo>
 	</smi24_d_tk_ep1>
-	<sparachutec>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutec>
-	<sparachute_tk_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachute_tk_ep1>
-	<sparachutebigeast_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutebigeast_ep1>
-	<sparachutemediumeast_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutemediumeast_ep1>
 	<ssu25_tk_ep1>
 		<Type>Plane</Type>
-		<Name>su-25</Name>
+		<Name>SU-25</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -676,7 +644,7 @@
 	</ssu25_tk_ep1>
 	<suh1h_tk_ep1>
 		<Type>Helicopter</Type>
-		<Name>uh-1h</Name>
+		<Name>UH-1H</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -684,7 +652,7 @@
 	</suh1h_tk_ep1>
 	<smi17_ins>
 		<Type>Helicopter</Type>
-		<Name>mi-8mt</Name>
+		<Name>Mi-8MT</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -692,7 +660,7 @@
 	</smi17_ins>
 	<ssu25_ins>
 		<Type>Plane</Type>
-		<Name>su-25</Name>
+		<Name>SU-25</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -700,7 +668,7 @@
 	</ssu25_ins>
 	<ska52>
 		<Type>Helicopter</Type>
-		<Name>ka-52</Name>
+		<Name>KA-52</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -708,23 +676,15 @@
 	</ska52>
 	<ska52black>
 		<Type>Helicopter</Type>
-		<Name>ka-52 (black)</Name>
+		<Name>KA-52</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
 		<cargo>0</cargo>
 	</ska52black>
-	<smi17_rockets_ru>
-		<Type>Ammo</Type>
-		<Name>mi-8mtv-3</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>10</transportmaxbackpacks>
-		<cargo>16</cargo>
-	</smi17_rockets_ru>
 	<smi24_p>
 		<Type>Helicopter</Type>
-		<Name>mi-24p</Name>
+		<Name>Mi-24P</Name>
 		<transportmaxweapons>30</transportmaxweapons>
 		<transportmaxmagazines>150</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -732,39 +692,15 @@
 	</smi24_p>
 	<smi24_v>
 		<Type>Helicopter</Type>
-		<Name>mi-24v</Name>
+		<Name>Mi-24V</Name>
 		<transportmaxweapons>30</transportmaxweapons>
 		<transportmaxmagazines>150</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
 		<cargo>8</cargo>
 	</smi24_v>
-	<sparachutebigeast>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutebigeast>
-	<sparachuteeast>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachuteeast>
-	<sparachutemediumeast>
-		<Type>Parachute</Type>
-		<Name>cargo parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutemediumeast>
 	<spchela1t>
 		<Type>Plane</Type>
-		<Name>pchela-1t</Name>
+		<Name>Pchela-1T</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -772,7 +708,7 @@
 	</spchela1t>
 	<ssu34>
 		<Type>Plane</Type>
-		<Name>su-34</Name>
+		<Name>SU-34</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -780,23 +716,15 @@
 	</ssu34>
 	<ssu39>
 		<Type>Plane</Type>
-		<Name>su-25</Name>
+		<Name>SU-25</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>0</cargo>
 	</ssu39>
-	<sparachute_tk_gue_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachute_tk_gue_ep1>
 	<suh1h_tk_gue_ep1>
 		<Type>Helicopter</Type>
-		<Name>uh-1h</Name>
+		<Name>UH-1H</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -804,31 +732,15 @@
 	</suh1h_tk_gue_ep1>
 	<smi17_un_cdf_ep1>
 		<Type>Helicopter</Type>
-		<Name>mi-8</Name>
+		<Name>Mi-8</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
 		<cargo>16</cargo>
 	</smi17_un_cdf_ep1>
-	<sparachuteg>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachuteg>
-	<scruisemissile1>
-		<Type>Ammo</Type>
-		<Name>cruise missile</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scruisemissile1>
 	<saw159_lynx_baf>
 		<Type>Helicopter</Type>
-		<Name>wildcat ah11</Name>
+		<Name>Wildcat AH11</Name>
 		<transportmaxweapons>18</transportmaxweapons>
 		<transportmaxmagazines>180</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -836,7 +748,7 @@
 	</saw159_lynx_baf>
 	<sbaf_apache_ah1_d>
 		<Type>Helicopter</Type>
-		<Name>apache ah1</Name>
+		<Name>Apache AH1</Name>
 		<transportmaxweapons>18</transportmaxweapons>
 		<transportmaxmagazines>180</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -844,7 +756,7 @@
 	</sbaf_apache_ah1_d>
 	<sbaf_merlin_hc3_d>
 		<Type>Helicopter</Type>
-		<Name>merlin hc3</Name>
+		<Name>Merlin HC3</Name>
 		<transportmaxweapons>18</transportmaxweapons>
 		<transportmaxmagazines>180</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -852,7 +764,7 @@
 	</sbaf_merlin_hc3_d>
 	<sch_47f_baf>
 		<Type>Helicopter</Type>
-		<Name>chinook hc4</Name>
+		<Name>Chinook HC4</Name>
 		<transportmaxweapons>36</transportmaxweapons>
 		<transportmaxmagazines>360</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -860,23 +772,15 @@
 	</sch_47f_baf>
 	<smi171sh_cz_ep1>
 		<Type>Helicopter</Type>
-		<Name>mi-171sh</Name>
+		<Name>Mi-171SH</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
 		<cargo>16</cargo>
 	</smi171sh_cz_ep1>
-	<smi171sh_rockets_cz_ep1>
-		<Type>Ammo</Type>
-		<Name>mi-171sh (rockets)</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>10</transportmaxbackpacks>
-		<cargo>16</cargo>
-	</smi171sh_rockets_cz_ep1>
 	<sa10_us_ep1>
 		<Type>Plane</Type>
-		<Name>a-10</Name>
+		<Name>A-10</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -884,7 +788,7 @@
 	</sa10_us_ep1>
 	<sah64d_ep1>
 		<Type>Helicopter</Type>
-		<Name>ah-64d</Name>
+		<Name>AH-64D</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -892,7 +796,7 @@
 	</sah64d_ep1>
 	<sah6j_ep1>
 		<Type>Helicopter</Type>
-		<Name>ah-6j</Name>
+		<Name>AH-6J</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -900,7 +804,7 @@
 	</sah6j_ep1>
 	<sah6x_ep1>
 		<Type>Helicopter</Type>
-		<Name>ah-6x</Name>
+		<Name>AH-6X</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -908,7 +812,7 @@
 	</sah6x_ep1>
 	<sc130j_us_ep1>
 		<Type>Plane</Type>
-		<Name>c-130j</Name>
+		<Name>C-130J</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -916,7 +820,7 @@
 	</sc130j_us_ep1>
 	<sch_47f_ep1>
 		<Type>Helicopter</Type>
-		<Name>ch-47f</Name>
+		<Name>CH-47F</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -924,7 +828,7 @@
 	</sch_47f_ep1>
 	<smh6j_ep1>
 		<Type>Helicopter</Type>
-		<Name>mh-6j</Name>
+		<Name>MH-6J</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -932,39 +836,15 @@
 	</smh6j_ep1>
 	<smq9predatorb_us_ep1>
 		<Type>Plane</Type>
-		<Name>mq-9</Name>
+		<Name>MQ-9</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>0</cargo>
 	</smq9predatorb_us_ep1>
-	<sparachute_us_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachute_us_ep1>
-	<sparachutebigwest_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutebigwest_ep1>
-	<sparachutemediumwest_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutemediumwest_ep1>
 	<suh60m_ep1>
 		<Type>Helicopter</Type>
-		<Name>uh-60m</Name>
+		<Name>UH-60M</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -972,7 +852,7 @@
 	</suh60m_ep1>
 	<smi17_cdf>
 		<Type>Helicopter</Type>
-		<Name>mi-17</Name>
+		<Name>Mi-17</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -980,7 +860,7 @@
 	</smi17_cdf>
 	<smi24_d>
 		<Type>Helicopter</Type>
-		<Name>mi-24d</Name>
+		<Name>Mi-24D</Name>
 		<transportmaxweapons>30</transportmaxweapons>
 		<transportmaxmagazines>150</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -988,20 +868,12 @@
 	</smi24_d>
 	<ssu25_cdf>
 		<Type>Plane</Type>
-		<Name>su-25</Name>
+		<Name>SU-25</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>0</cargo>
 	</ssu25_cdf>
-	<ssteerable_parachute_ep1>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</ssteerable_parachute_ep1>
 	<sa10>
 		<Type>Plane</Type>
 		<Name>A-10</Name>
@@ -1012,7 +884,7 @@
 	</sa10>
 	<sah1z>
 		<Type>Helicopter</Type>
-		<Name>ah-1z</Name>
+		<Name>AH-1Z</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -1020,7 +892,7 @@
 	</sah1z>
 	<sah64d>
 		<Type>Helicopter</Type>
-		<Name>ah-64d</Name>
+		<Name>AH-64D</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -1028,7 +900,7 @@
 	</sah64d>
 	<sah64d_sidewinders>
 		<Type>Helicopter</Type>
-		<Name>ah-64d</Name>
+		<Name>AH-64D</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>1</transportmaxbackpacks>
@@ -1036,7 +908,7 @@
 	</sah64d_sidewinders>
 	<sav8b>
 		<Type>Plane</Type>
-		<Name>av-8b (lgb)</Name>
+		<Name>AV-8B</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1044,7 +916,7 @@
 	</sav8b>
 	<sav8b2>
 		<Type>Plane</Type>
-		<Name>av-8b</Name>
+		<Name>AV-8B</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1052,23 +924,15 @@
 	</sav8b2>
 	<sc130j>
 		<Type>Plane</Type>
-		<Name>c-130j</Name>
+		<Name>C-130J</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>25</cargo>
 	</sc130j>
-	<scruisemissile2>
-		<Type>Ammo</Type>
-		<Name>cruise missile 2</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scruisemissile2>
 	<sf35b>
 		<Type>Plane</Type>
-		<Name>f-35b</Name>
+		<Name>F-35B</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1076,7 +940,7 @@
 	</sf35b>
 	<smh60s>
 		<Type>Helicopter</Type>
-		<Name>mh-60s</Name>
+		<Name>MH-60S</Name>
 		<transportmaxweapons>30</transportmaxweapons>
 		<transportmaxmagazines>150</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -1084,7 +948,7 @@
 	</smh60s>
 	<smq9predatorb>
 		<Type>Plane</Type>
-		<Name>mq-9</Name>
+		<Name>MQ-9</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1092,7 +956,7 @@
 	</smq9predatorb>
 	<smq9predatorb_campaign>
 		<Type>Plane</Type>
-		<Name>mq-9</Name>
+		<Name>MQ-9</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1106,30 +970,6 @@
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>24</cargo>
 	</smv22>
-	<sparachute>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachute>
-	<sparachutebigwest>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutebigwest>
-	<sparachutemediumwest>
-		<Type>Parachute</Type>
-		<Name>Parachute</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sparachutemediumwest>
 	<suh1y>
 		<Type>Helicopter</Type>
 		<Name>UH-1Y</Name>
@@ -1146,369 +986,9 @@
 		<transportmaxbackpacks>1</transportmaxbackpacks>
 		<cargo>7</cargo>
 	</suh1y_cutscene>
-	<sbaf_basicammunitionbox>
-		<Type>Ammo</Type>
-		<Name>baf basic ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_basicammunitionbox>
-	<sbaf_basicweapons>
-		<Type>Ammo</Type>
-		<Name>baf basic weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_basicweapons>
-	<sbaf_iedbox>
-		<Type>Ammo</Type>
-		<Name>explosives stash</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_iedbox>
-	<sbaf_launchers>
-		<Type>Ammo</Type>
-		<Name>baf launchers</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_launchers>
-	<sbaf_ordnancebox>
-		<Type>Ammo</Type>
-		<Name>baf ordnance</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_ordnancebox>
-	<sbaf_vehiclebox>
-		<Type>Ammo</Type>
-		<Name>baf vehicle ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_vehiclebox>
-	<sczbasicweapons_ep1>
-		<Type>Ammo</Type>
-		<Name>cz weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sczbasicweapons_ep1>
-	<sgerbasicweapons_ep1>
-		<Type>Ammo</Type>
-		<Name>ger weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sgerbasicweapons_ep1>
-	<sguerillacachebox>
-		<Type>Ammo</Type>
-		<Name>guerilla cache</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sguerillacachebox>
-	<sguerillacachebox_ep1>
-		<Type>Ammo</Type>
-		<Name>guerilla cache</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sguerillacachebox_ep1>
-	<sgunrack1>
-		<Type>Ammo</Type>
-		<Name>gun rack</Name>
-		<transportmaxweapons>20</transportmaxweapons>
-		<transportmaxmagazines>100</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sgunrack1>
-	<sgunrack2>
-		<Type>Ammo</Type>
-		<Name>gun rack (rifles)</Name>
-		<transportmaxweapons>20</transportmaxweapons>
-		<transportmaxmagazines>100</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sgunrack2>
-	<sgunracktk_ep1>
-		<Type>Ammo</Type>
-		<Name>gun rack (tk)</Name>
-		<transportmaxweapons>20</transportmaxweapons>
-		<transportmaxmagazines>100</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sgunracktk_ep1>
-	<sgunrackus_ep1>
-		<Type>Ammo</Type>
-		<Name>gun rack (us)</Name>
-		<transportmaxweapons>20</transportmaxweapons>
-		<transportmaxmagazines>100</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sgunrackus_ep1>
-	<slocalbasicammunitionbox>
-		<Type>Ammo</Type>
-		<Name>local basic ammunition</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</slocalbasicammunitionbox>
-	<slocalbasicweaponsbox>
-		<Type>Ammo</Type>
-		<Name>local basic weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</slocalbasicweaponsbox>
-	<sreammobox_ep1>
-		<Type>Ammo</Type>
-		<Name>ammo crates</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sreammobox_ep1>
-	<srubasicammunitionbox>
-		<Type>Ammo</Type>
-		<Name>ru basic ammunition</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</srubasicammunitionbox>
-	<srubasicweaponsbox>
-		<Type>Ammo</Type>
-		<Name>ru basic weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</srubasicweaponsbox>
-	<srulaunchersbox>
-		<Type>Ammo</Type>
-		<Name>ru launchers</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</srulaunchersbox>
-	<sruordnancebox>
-		<Type>Ammo</Type>
-		<Name>ru ordnance</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sruordnancebox>
-	<sruspecialweaponsbox>
-		<Type>Ammo</Type>
-		<Name>ru special weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sruspecialweaponsbox>
-	<sruvehiclebox>
-		<Type>Ammo</Type>
-		<Name>ru vehicle</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sruvehiclebox>
-	<sspecialweaponsbox>
-		<Type>Ammo</Type>
-		<Name>special weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sspecialweaponsbox>
-	<stkbasicammunitionbox_ep1>
-		<Type>Ammo</Type>
-		<Name>tk basic ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stkbasicammunitionbox_ep1>
-	<stkbasicweapons_ep1>
-		<Type>Ammo</Type>
-		<Name>tk basic weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stkbasicweapons_ep1>
-	<stklaunchers_ep1>
-		<Type>Ammo</Type>
-		<Name>tk launchers</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stklaunchers_ep1>
-	<stkordnancebox_ep1>
-		<Type>Ammo</Type>
-		<Name>tk ordnance</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stkordnancebox_ep1>
-	<stkspecialweapons_ep1>
-		<Type>Ammo</Type>
-		<Name>tk special weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stkspecialweapons_ep1>
-	<stkvehiclebox_ep1>
-		<Type>Ammo</Type>
-		<Name>tk vehicle ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stkvehiclebox_ep1>
-	<sunbasicammunitionbox_ep1>
-		<Type>Ammo</Type>
-		<Name>un basic ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sunbasicammunitionbox_ep1>
-	<sunbasicweapons_ep1>
-		<Type>Ammo</Type>
-		<Name>un basic weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sunbasicweapons_ep1>
-	<susbasicammunitionbox>
-		<Type>Ammo</Type>
-		<Name>us basic ammunition</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susbasicammunitionbox>
-	<susbasicammunitionbox_ep1>
-		<Type>Ammo</Type>
-		<Name>us army basic ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susbasicammunitionbox_ep1>
-	<susbasicweapons_ep1>
-		<Type>Ammo</Type>
-		<Name>us army basic weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susbasicweapons_ep1>
-	<susbasicweaponsbox>
-		<Type>Ammo</Type>
-		<Name>us basic weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susbasicweaponsbox>
-	<suslaunchers_ep1>
-		<Type>Ammo</Type>
-		<Name>us army launchers</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</suslaunchers_ep1>
-	<suslaunchersbox>
-		<Type>Ammo</Type>
-		<Name>us launchers</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</suslaunchersbox>
-	<susordnancebox>
-		<Type>Ammo</Type>
-		<Name>us ordnance</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susordnancebox>
-	<susordnancebox_ep1>
-		<Type>Ammo</Type>
-		<Name>us army ordnance</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susordnancebox_ep1>
-	<susspecialweapons_ep1>
-		<Type>Ammo</Type>
-		<Name>us army special weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susspecialweapons_ep1>
-	<susspecialweaponsbox>
-		<Type>Ammo</Type>
-		<Name>us special weapons</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susspecialweaponsbox>
-	<susvehiclebox>
-		<Type>Ammo</Type>
-		<Name>us vehicle ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susvehiclebox>
-	<susvehiclebox_ep1>
-		<Type>Ammo</Type>
-		<Name>us army vehicle ammo</Name>
-		<transportmaxweapons>5000</transportmaxweapons>
-		<transportmaxmagazines>20000</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</susvehiclebox_ep1>
-	<s1>
-		<Type>Ammo</Type>
-		<Name>weaponholder</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>0</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo />
-	</s1>
 	<sbmp2_hq_tk_ep1>
 		<Type>Armored</Type>
-		<Name>bmp-2 (hq)</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1516,7 +996,7 @@
 	</sbmp2_hq_tk_ep1>
 	<sbmp2_tk_ep1>
 		<Type>Armored</Type>
-		<Name>bmp-2</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1524,7 +1004,7 @@
 	</sbmp2_tk_ep1>
 	<sbrdm2_atgm_tk_ep1>
 		<Type>Armored</Type>
-		<Name>brdm-2 (atgm)</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1532,7 +1012,7 @@
 	</sbrdm2_atgm_tk_ep1>
 	<sbrdm2_tk_ep1>
 		<Type>Armored</Type>
-		<Name>brdm-2</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1540,7 +1020,7 @@
 	</sbrdm2_tk_ep1>
 	<sbtr60_tk_ep1>
 		<Type>Armored</Type>
-		<Name>btr-60</Name>
+		<Name>BTR-60</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1548,7 +1028,7 @@
 	</sbtr60_tk_ep1>
 	<sm113_tk_ep1>
 		<Type>Armored</Type>
-		<Name>m113</Name>
+		<Name>M113</Name>
 		<transportmaxweapons>20</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1556,7 +1036,7 @@
 	</sm113_tk_ep1>
 	<st34_tk_ep1>
 		<Type>Armored</Type>
-		<Name>t-34</Name>
+		<Name>T-34</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1564,7 +1044,7 @@
 	</st34_tk_ep1>
 	<st55_tk_ep1>
 		<Type>Armored</Type>
-		<Name>t-55</Name>
+		<Name>T-55</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1572,7 +1052,7 @@
 	</st55_tk_ep1>
 	<st72_tk_ep1>
 		<Type>Armored</Type>
-		<Name>t-72</Name>
+		<Name>T-72</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1580,7 +1060,7 @@
 	</st72_tk_ep1>
 	<szsu_tk_ep1>
 		<Type>Armored</Type>
-		<Name>zsu-23 shilka</Name>
+		<Name>ZSU-23</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1588,7 +1068,7 @@
 	</szsu_tk_ep1>
 	<sbtr40_mg_tk_ins_ep1>
 		<Type>Armored</Type>
-		<Name>btr-40 (dshkm)</Name>
+		<Name>BTR-40</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1596,7 +1076,7 @@
 	</sbtr40_mg_tk_ins_ep1>
 	<sbtr40_tk_ins_ep1>
 		<Type>Armored</Type>
-		<Name>btr-40</Name>
+		<Name>BTR-40</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1604,7 +1084,7 @@
 	</sbtr40_tk_ins_ep1>
 	<sbmp2_hq_ins>
 		<Type>Armored</Type>
-		<Name>bmp-2 (hq)</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1612,7 +1092,7 @@
 	</sbmp2_hq_ins>
 	<sbmp2_ins>
 		<Type>Armored</Type>
-		<Name>bmp-2</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1620,7 +1100,7 @@
 	</sbmp2_ins>
 	<sbrdm2_atgm_ins>
 		<Type>Armored</Type>
-		<Name>brdm-2 (atgm)</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1628,7 +1108,7 @@
 	</sbrdm2_atgm_ins>
 	<sbrdm2_ins>
 		<Type>Armored</Type>
-		<Name>brdm-2</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1636,7 +1116,7 @@
 	</sbrdm2_ins>
 	<st72_ins>
 		<Type>Armored</Type>
-		<Name>t-72</Name>
+		<Name>T-72</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1644,7 +1124,7 @@
 	</st72_ins>
 	<szsu_ins>
 		<Type>Armored</Type>
-		<Name>zsu-23 shilka</Name>
+		<Name>ZSU-23</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1652,7 +1132,7 @@
 	</szsu_ins>
 	<s2s6m_tunguska>
 		<Type>Armored</Type>
-		<Name>2s6m tunguska</Name>
+		<Name>2S6M Tunguska</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1660,7 +1140,7 @@
 	</s2s6m_tunguska>
 	<sbmp3>
 		<Type>Armored</Type>
-		<Name>bmp-3</Name>
+		<Name>BMP-3</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1668,7 +1148,7 @@
 	</sbmp3>
 	<sbtr90>
 		<Type>Armored</Type>
-		<Name>btr-90</Name>
+		<Name>BTR-90</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1676,23 +1156,23 @@
 	</sbtr90>
 	<sbtr90_hq>
 		<Type>Armored</Type>
-		<Name>btr-90 (hq)</Name>
+		<Name>BTR-90</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>0</cargo>
 	</sbtr90_hq>
 	<sgaz_vodnik>
-		<Type>Armored</Type>
-		<Name>vodnik (2xpk)</Name>
+		<Type>Car</Type>
+		<Name>Vodnik</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>10</cargo>
 	</sgaz_vodnik>
 	<sgaz_vodnik_hmg>
-		<Type>Armored</Type>
-		<Name>vodnik (bppu)</Name>
+		<Type>Car</Type>
+		<Name>Vodnik</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1700,7 +1180,7 @@
 	</sgaz_vodnik_hmg>
 	<st72_ru>
 		<Type>Armored</Type>
-		<Name>t-72</Name>
+		<Name>T-72</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1708,7 +1188,7 @@
 	</st72_ru>
 	<st90>
 		<Type>Armored</Type>
-		<Name>t-90</Name>
+		<Name>T-90</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1716,7 +1196,7 @@
 	</st90>
 	<sbrdm2_hq_tk_gue_ep1>
 		<Type>Armored</Type>
-		<Name>brdm-2 (hq)</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1724,7 +1204,7 @@
 	</sbrdm2_hq_tk_gue_ep1>
 	<sbrdm2_tk_gue_ep1>
 		<Type>Armored</Type>
-		<Name>brdm-2</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1732,7 +1212,7 @@
 	</sbrdm2_tk_gue_ep1>
 	<sbtr40_mg_tk_gue_ep1>
 		<Type>Armored</Type>
-		<Name>btr-40 (dshkm)</Name>
+		<Name>BTR-40</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1740,7 +1220,7 @@
 	</sbtr40_mg_tk_gue_ep1>
 	<sbtr40_tk_gue_ep1>
 		<Type>Armored</Type>
-		<Name>btr-40</Name>
+		<Name>BTR-40</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1748,7 +1228,7 @@
 	</sbtr40_tk_gue_ep1>
 	<st34_tk_gue_ep1>
 		<Type>Armored</Type>
-		<Name>t-34</Name>
+		<Name>T-34</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1756,7 +1236,7 @@
 	</st34_tk_gue_ep1>
 	<st55_tk_gue_ep1>
 		<Type>Armored</Type>
-		<Name>t-55</Name>
+		<Name>T-55</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1764,7 +1244,7 @@
 	</st55_tk_gue_ep1>
 	<sbmp2_un_ep1>
 		<Type>Armored</Type>
-		<Name>bmp-2</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1772,7 +1252,7 @@
 	</sbmp2_un_ep1>
 	<sm113_un_ep1>
 		<Type>Armored</Type>
-		<Name>m113</Name>
+		<Name>M113</Name>
 		<transportmaxweapons>20</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1780,7 +1260,7 @@
 	</sm113_un_ep1>
 	<sbmp2_gue>
 		<Type>Armored</Type>
-		<Name>bmp-2</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1788,7 +1268,7 @@
 	</sbmp2_gue>
 	<sbrdm2_gue>
 		<Type>Armored</Type>
-		<Name>brdm-2</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1796,7 +1276,7 @@
 	</sbrdm2_gue>
 	<sbrdm2_hq_gue>
 		<Type>Armored</Type>
-		<Name>brdm-2 (hq)</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1804,7 +1284,7 @@
 	</sbrdm2_hq_gue>
 	<st34>
 		<Type>Armored</Type>
-		<Name>t-34</Name>
+		<Name>T-34</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1812,7 +1292,7 @@
 	</st34>
 	<st72_gue>
 		<Type>Armored</Type>
-		<Name>t-72</Name>
+		<Name>T-72</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1820,7 +1300,7 @@
 	</st72_gue>
 	<sm1126_icv_m2_ep1>
 		<Type>Armored</Type>
-		<Name>stryker icv (m2)</Name>
+		<Name>Stryker</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1828,7 +1308,7 @@
 	</sm1126_icv_m2_ep1>
 	<sm1126_icv_mk19_ep1>
 		<Type>Armored</Type>
-		<Name>stryker icv (mk19)</Name>
+		<Name>Stryker</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1836,7 +1316,7 @@
 	</sm1126_icv_mk19_ep1>
 	<sm1128_mgs_ep1>
 		<Type>Armored</Type>
-		<Name>stryker mgs</Name>
+		<Name>Stryker</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1844,7 +1324,7 @@
 	</sm1128_mgs_ep1>
 	<sm1129_mc_ep1>
 		<Type>Armored</Type>
-		<Name>stryker mc</Name>
+		<Name>Stryker</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1852,7 +1332,7 @@
 	</sm1129_mc_ep1>
 	<sm1130_cv_ep1>
 		<Type>Armored</Type>
-		<Name>stryker cv</Name>
+		<Name>Stryker</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1860,7 +1340,7 @@
 	</sm1130_cv_ep1>
 	<sm1135_atgmv_ep1>
 		<Type>Armored</Type>
-		<Name>stryker (tow)</Name>
+		<Name>Stryker</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1868,7 +1348,7 @@
 	</sm1135_atgmv_ep1>
 	<sm1a1_us_des_ep1>
 		<Type>Armored</Type>
-		<Name>m1a1</Name>
+		<Name>M1A1</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1876,7 +1356,7 @@
 	</sm1a1_us_des_ep1>
 	<sm1a2_us_tusk_mg_ep1>
 		<Type>Armored</Type>
-		<Name>m1a2 tusk</Name>
+		<Name>M1A2 Tusk</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1884,7 +1364,7 @@
 	</sm1a2_us_tusk_mg_ep1>
 	<sm2a2_ep1>
 		<Type>Armored</Type>
-		<Name>m2a2 bradley ifv</Name>
+		<Name>M2A2 Bradley</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1892,7 +1372,7 @@
 	</sm2a2_ep1>
 	<sm2a3_ep1>
 		<Type>Armored</Type>
-		<Name>m2a3 era bradley ifv</Name>
+		<Name>M2A3 Bradley</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1900,7 +1380,7 @@
 	</sm2a3_ep1>
 	<sm6_ep1>
 		<Type>Armored</Type>
-		<Name>m6 linebacker</Name>
+		<Name>M6</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1908,7 +1388,7 @@
 	</sm6_ep1>
 	<smlrs_des_ep1>
 		<Type>Armored</Type>
-		<Name>m270 mlrs</Name>
+		<Name>M270</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1916,7 +1396,7 @@
 	</smlrs_des_ep1>
 	<sbmp2_cdf>
 		<Type>Armored</Type>
-		<Name>bmp-2</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1924,7 +1404,7 @@
 	</sbmp2_cdf>
 	<sbmp2_hq_cdf>
 		<Type>Armored</Type>
-		<Name>bmp-2 (hq)</Name>
+		<Name>BMP-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1932,7 +1412,7 @@
 	</sbmp2_hq_cdf>
 	<sbrdm2_atgm_cdf>
 		<Type>Armored</Type>
-		<Name>brdm-2 (atgm)</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1940,7 +1420,7 @@
 	</sbrdm2_atgm_cdf>
 	<sbrdm2_cdf>
 		<Type>Armored</Type>
-		<Name>brdm-2</Name>
+		<Name>BRMD-2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1948,7 +1428,7 @@
 	</sbrdm2_cdf>
 	<st72_cdf>
 		<Type>Armored</Type>
-		<Name>t-72</Name>
+		<Name>T-72</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1956,7 +1436,7 @@
 	</st72_cdf>
 	<szsu_cdf>
 		<Type>Armored</Type>
-		<Name>zsu-23 shilka</Name>
+		<Name>ZSU-23</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -1964,23 +1444,15 @@
 	</szsu_cdf>
 	<saav>
 		<Type>Armored</Type>
-		<Name>aavp7a1</Name>
+		<Name>AAVP7A1</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>19</cargo>
 	</saav>
-	<saav_cutscene>
-		<Type>Armored</Type>
-		<Name>aavp7a1</Name>
-		<transportmaxweapons>10</transportmaxweapons>
-		<transportmaxmagazines>100</transportmaxmagazines>
-		<transportmaxbackpacks>5</transportmaxbackpacks>
-		<cargo>4</cargo>
-	</saav_cutscene>
 	<slav25>
 		<Type>Armored</Type>
-		<Name>lav-25</Name>
+		<Name>LAV-25</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1988,7 +1460,7 @@
 	</slav25>
 	<slav25_hq>
 		<Type>Armored</Type>
-		<Name>lav-25 (hq)</Name>
+		<Name>LAV-25</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -1996,7 +1468,7 @@
 	</slav25_hq>
 	<sm1a1>
 		<Type>Armored</Type>
-		<Name>m1a1</Name>
+		<Name>M1A1</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -2004,7 +1476,7 @@
 	</sm1a1>
 	<sm1a2_tusk_mg>
 		<Type>Armored</Type>
-		<Name>m1a2 tusk</Name>
+		<Name>M1A2 Tusk</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -2012,23 +1484,23 @@
 	</sm1a2_tusk_mg>
 	<smlrs>
 		<Type>Armored</Type>
-		<Name>m270 mlrs</Name>
+		<Name>M270</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>1</cargo>
 	</smlrs>
 	<sbaf_fv510_d>
-		<Type>armouredd</Type>
-		<Name>fv510 warrior 2</Name>
+		<Type>Armored</Type>
+		<Name>FV510</Name>
 		<transportmaxweapons>22</transportmaxweapons>
 		<transportmaxmagazines>500</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>7</cargo>
 	</sbaf_fv510_d>
 	<sbaf_fv510_w>
-		<Type>armouredw</Type>
-		<Name>fv510 warrior 2</Name>
+		<Type>Armored</Type>
+		<Name>FV510</Name>
 		<transportmaxweapons>22</transportmaxweapons>
 		<transportmaxmagazines>500</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
@@ -2036,15 +1508,15 @@
 	</sbaf_fv510_w>
 	<sold_moto_tk_civ_ep1>
 		<Type>Car</Type>
-		<Name>old moto</Name>
+		<Name>Old Moto</Name>
 		<transportmaxweapons>0</transportmaxweapons>
 		<transportmaxmagazines>5</transportmaxmagazines>
 		<transportmaxbackpacks>0</transportmaxbackpacks>
 		<cargo>1</cargo>
 	</sold_moto_tk_civ_ep1>
 	<sural_tk_civ_ep1>
-		<Type>Car</Type>
-		<Name>ural</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2058,17 +1530,9 @@
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>13</cargo>
 	</sv3s_open_tk_civ_ep1>
-	<sfoldchair_with_cargo>
-		<Type>Car</Type>
-		<Name>folding chair</Name>
-		<transportmaxweapons>10</transportmaxweapons>
-		<transportmaxmagazines>50</transportmaxmagazines>
-		<transportmaxbackpacks>2</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</sfoldchair_with_cargo>
 	<sgrad_tk_ep1>
-		<Type>Car</Type>
-		<Name>bm-21 grad</Name>
+		<Type>Truck</Type>
+		<Name>BM-21</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2076,7 +1540,7 @@
 	</sgrad_tk_ep1>
 	<slandrover_mg_tk_ep1>
 		<Type>Car</Type>
-		<Name>military offroad (m2)</Name>
+		<Name>Military Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2084,7 +1548,7 @@
 	</slandrover_mg_tk_ep1>
 	<slandrover_spg9_tk_ep1>
 		<Type>Car</Type>
-		<Name>military offroad (spg9)</Name>
+		<Name>Military Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2092,7 +1556,7 @@
 	</slandrover_spg9_tk_ep1>
 	<smaz_543_scud_tk_ep1>
 		<Type>Car</Type>
-		<Name>9p117 scud-b</Name>
+		<Name>9p117</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2123,8 +1587,8 @@
 		<cargo>6</cargo>
 	</suaz_unarmed_tk_ep1>
 	<sural_zu23_tk_ep1>
-		<Type>Car</Type>
-		<Name>ural (zu-23)</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2163,8 +1627,8 @@
 		<cargo>1</cargo>
 	</slandrover_spg9_tk_ins_ep1>
 	<sgrad_ins>
-		<Type>Car</Type>
-		<Name>bm-21 grad</Name>
+		<Type>Truck</Type>
+		<Name>BM-21</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2172,7 +1636,7 @@
 	</sgrad_ins>
 	<soffroad_dshkm_ins>
 		<Type>Car</Type>
-		<Name>offroad (dshkm)</Name>
+		<Name>Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2180,7 +1644,7 @@
 	</soffroad_dshkm_ins>
 	<spickup_pk_ins>
 		<Type>Car</Type>
-		<Name>pickup (pk)</Name>
+		<Name>Pickup</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2219,8 +1683,8 @@
 		<cargo>1</cargo>
 	</suaz_spg9_ins>
 	<sural_ins>
-		<Type>Car</Type>
-		<Name>ural</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2243,8 +1707,8 @@
 		<cargo>14</cargo>
 	</suralopen_ins>
 	<sgrad_ru>
-		<Type>Car</Type>
-		<Name>bm-21 grad</Name>
+		<Type>Truck</Type>
+		<Name>BM-21</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2252,15 +1716,15 @@
 	</sgrad_ru>
 	<skamaz>
 		<Type>Truck</Type>
-		<Name>utility truck</Name>
+		<Name>Kamaz</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>12</cargo>
 	</skamaz>
 	<skamazopen>
-		<Type>Car</Type>
-		<Name>utility truck (open)</Name>
+		<Type>Truck</Type>
+		<Name>Kamaz</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2412,7 +1876,7 @@
 	</ssuv_pmc_baf>
 	<shmmwv_m1151_m2_cz_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv gpk (m2)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2420,7 +1884,7 @@
 	</shmmwv_m1151_m2_cz_des_ep1>
 	<slandrover_cz_ep1>
 		<Type>Car</Type>
-		<Name>military offroad</Name>
+		<Name>Military Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2428,7 +1892,7 @@
 	</slandrover_cz_ep1>
 	<slandrover_special_cz_ep1>
 		<Type>Car</Type>
-		<Name>military offroad special</Name>
+		<Name>Military Offroad Special</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2436,7 +1900,7 @@
 	</slandrover_special_cz_ep1>
 	<shmmwv_avenger_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv avenger</Name>
+		<Name>Humvee Avenger</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>3</transportmaxbackpacks>
@@ -2444,7 +1908,7 @@
 	</shmmwv_avenger_des_ep1>
 	<shmmwv_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>4</transportmaxbackpacks>
@@ -2452,7 +1916,7 @@
 	</shmmwv_des_ep1>
 	<shmmwv_m1035_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv utility</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>4</transportmaxbackpacks>
@@ -2460,7 +1924,7 @@
 	</shmmwv_m1035_des_ep1>
 	<shmmwv_m1151_m2_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv gpk (m2)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2468,7 +1932,7 @@
 	</shmmwv_m1151_m2_des_ep1>
 	<shmmwv_m998_crows_m2_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv crows (m2)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>4</transportmaxbackpacks>
@@ -2476,7 +1940,7 @@
 	</shmmwv_m998_crows_m2_des_ep1>
 	<shmmwv_m998_crows_mk19_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv crows (mk19)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>4</transportmaxbackpacks>
@@ -2484,7 +1948,7 @@
 	</shmmwv_m998_crows_mk19_des_ep1>
 	<shmmwv_m998a2_sov_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv sov</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>7</transportmaxbackpacks>
@@ -2492,7 +1956,7 @@
 	</shmmwv_m998a2_sov_des_ep1>
 	<shmmwv_mk19_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv (mk19)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2500,7 +1964,7 @@
 	</shmmwv_mk19_des_ep1>
 	<shmmwv_terminal_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv terminal</Name>
+		<Name>Humvee Terminal</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2508,23 +1972,23 @@
 	</shmmwv_terminal_ep1>
 	<shmmwv_tow_des_ep1>
 		<Type>Car</Type>
-		<Name>hmmwv (tow)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>3</cargo>
 	</shmmwv_tow_des_ep1>
 	<smtvr_des_ep1>
-		<Type>Car</Type>
-		<Name>mtvr</Name>
+		<Type>Truck</Type>
+		<Name>MTVR</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>12</cargo>
 	</smtvr_des_ep1>
 	<sgrad_cdf>
-		<Type>Car</Type>
-		<Name>bm-21 grad</Name>
+		<Type>Truck</Type>
+		<Name>BM-21</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2555,24 +2019,24 @@
 		<cargo>1</cargo>
 	</suaz_mg_cdf>
 	<sural_cdf>
-		<Type>Car</Type>
-		<Name>ural</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>14</cargo>
 	</sural_cdf>
 	<sural_zu23_cdf>
-		<Type>Car</Type>
-		<Name>ural (zu-23)</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>3</cargo>
 	</sural_zu23_cdf>
 	<suralopen_cdf>
-		<Type>Car</Type>
-		<Name>ural (open)</Name>
+		<Type>Truck</Type>
+		<Name>Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2580,7 +2044,7 @@
 	</suralopen_cdf>
 	<shmmwv>
 		<Type>Car</Type>
-		<Name>hmmwv</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>4</transportmaxbackpacks>
@@ -2588,7 +2052,7 @@
 	</shmmwv>
 	<shmmwv_armored>
 		<Type>Car</Type>
-		<Name>hmmwv (m240)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2596,7 +2060,7 @@
 	</shmmwv_armored>
 	<shmmwv_avenger>
 		<Type>Car</Type>
-		<Name>hmmwv avenger</Name>
+		<Name>Humvee Avenger</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>3</transportmaxbackpacks>
@@ -2604,7 +2068,7 @@
 	</shmmwv_avenger>
 	<shmmwv_m2>
 		<Type>Car</Type>
-		<Name>hmmwv (m2)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2612,7 +2076,7 @@
 	</shmmwv_m2>
 	<shmmwv_mk19>
 		<Type>Car</Type>
-		<Name>hmmwv (mk19)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2620,15 +2084,15 @@
 	</shmmwv_mk19>
 	<shmmwv_tow>
 		<Type>Car</Type>
-		<Name>hmmwv (tow)</Name>
+		<Name>Humvee</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>3</cargo>
 	</shmmwv_tow>
 	<smtvr>
-		<Type>Car</Type>
-		<Name>mtvr</Name>
+		<Type>Truck</Type>
+		<Name>MTVR</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2636,7 +2100,7 @@
 	</smtvr>
 	<stowingtractor>
 		<Type>Car</Type>
-		<Name>towing tractor</Name>
+		<Name>Towing Tractor</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2652,7 +2116,7 @@
 	</sbaf_atv_d>
 	<sbaf_jackal2_gmg_d>
 		<Type>Car</Type>
-		<Name>jackal 2 mwmik (gmg)</Name>
+		<Name>Jackal 2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>90</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2660,7 +2124,7 @@
 	</sbaf_jackal2_gmg_d>
 	<sbaf_jackal2_l2a1_d>
 		<Type>Car</Type>
-		<Name>jackal 2 mwmik (hmg)</Name>
+		<Name>Jackal 2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>90</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2668,7 +2132,7 @@
 	</sbaf_jackal2_l2a1_d>
 	<sbaf_offroad_d>
 		<Type>Car</Type>
-		<Name>offroad</Name>
+		<Name>Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>90</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2676,7 +2140,7 @@
 	</sbaf_offroad_d>
 	<sbaf_atv_w>
 		<Type>Car</Type>
-		<Name>atv</Name>
+		<Name>ATV</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2684,7 +2148,7 @@
 	</sbaf_atv_w>
 	<sbaf_jackal2_gmg_w>
 		<Type>Car</Type>
-		<Name>jackal 2 mwmik (gmg)</Name>
+		<Name>Jackal 2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>90</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2692,7 +2156,7 @@
 	</sbaf_jackal2_gmg_w>
 	<sbaf_jackal2_l2a1_w>
 		<Type>Car</Type>
-		<Name>jackal 2 mwmik (hmg)</Name>
+		<Name>Jackal 2</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>90</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2700,7 +2164,7 @@
 	</sbaf_jackal2_l2a1_w>
 	<sbaf_offroad_w>
 		<Type>Car</Type>
-		<Name>offroad</Name>
+		<Name>Offroad</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>90</transportmaxmagazines>
 		<transportmaxbackpacks>2</transportmaxbackpacks>
@@ -2708,7 +2172,7 @@
 	</sbaf_offroad_w>
 	<suralreammo_tk_ep1>
 		<Type>Truck</Type>
-		<Name>ural (ammunition)</Name>
+		<Name>Supply Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2716,7 +2180,7 @@
 	</suralreammo_tk_ep1>
 	<suralrefuel_tk_ep1>
 		<Type>Truck</Type>
-		<Name>ural (fuel)</Name>
+		<Name>Fuel Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2724,7 +2188,7 @@
 	</suralrefuel_tk_ep1>
 	<suralrepair_tk_ep1>
 		<Type>Truck</Type>
-		<Name>ural (repair)</Name>
+		<Name>Repair Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2732,7 +2196,7 @@
 	</suralrepair_tk_ep1>
 	<suralsalvage_tk_ep1>
 		<Type>Truck</Type>
-		<Name>supply truck</Name>
+		<Name>Supply Truck</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2740,7 +2204,7 @@
 	</suralsalvage_tk_ep1>
 	<suralsupply_tk_ep1>
 		<Type>Truck</Type>
-		<Name>salvage truck</Name>
+		<Name>Salvage Truck</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2748,7 +2212,7 @@
 	</suralsupply_tk_ep1>
 	<sbmp2_ambul_ins>
 		<Type>Truck</Type>
-		<Name>bmp-2 ambulance</Name>
+		<Name>BMP-2 ambulance</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2756,7 +2220,7 @@
 	</sbmp2_ambul_ins>
 	<smi17_medevac_ins>
 		<Type>Truck</Type>
-		<Name>mi-8mt medevac</Name>
+		<Name>Mi-8MT Medevac</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -2764,7 +2228,7 @@
 	</smi17_medevac_ins>
 	<suralreammo_ins>
 		<Type>Truck</Type>
-		<Name>ural (ammunition)</Name>
+		<Name>Supply Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2772,7 +2236,7 @@
 	</suralreammo_ins>
 	<suralrefuel_ins>
 		<Type>Truck</Type>
-		<Name>ural (fuel)</Name>
+		<Name>Fuel Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2780,7 +2244,7 @@
 	</suralrefuel_ins>
 	<suralrepair_ins>
 		<Type>Truck</Type>
-		<Name>ural (repair)</Name>
+		<Name>Repair Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2788,7 +2252,7 @@
 	</suralrepair_ins>
 	<sgaz_vodnik_medevac>
 		<Type>Truck</Type>
-		<Name>vodnik (ambulance)</Name>
+		<Name>Vodnik</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2796,7 +2260,7 @@
 	</sgaz_vodnik_medevac>
 	<skamazreammo>
 		<Type>Truck</Type>
-		<Name>utility truck (ammunition)</Name>
+		<Name>Supply Utility Truck</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2804,7 +2268,7 @@
 	</skamazreammo>
 	<skamazrefuel>
 		<Type>Truck</Type>
-		<Name>utility truck (fuel)</Name>
+		<Name>Fuel Utility Truck</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2812,15 +2276,15 @@
 	</skamazrefuel>
 	<skamazrepair>
 		<Type>Truck</Type>
-		<Name>utility truck (repair)</Name>
+		<Name>Repair Utility Truck</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>2</cargo>
 	</skamazrepair>
 	<smi17_medevac_ru>
-		<Type>Truck</Type>
-		<Name>mi-8mt medevac</Name>
+		<Type>Helicopter</Type>
+		<Name>Mi-8MT Medevac</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -2828,7 +2292,7 @@
 	</smi17_medevac_ru>
 	<sv3s_reammo_tk_gue_ep1>
 		<Type>Truck</Type>
-		<Name>v3s reammo</Name>
+		<Name>Supply V3S</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2836,7 +2300,7 @@
 	</sv3s_reammo_tk_gue_ep1>
 	<sv3s_refuel_tk_gue_ep1>
 		<Type>Truck</Type>
-		<Name>v3s refuel</Name>
+		<Name>Fuel V3S</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2844,7 +2308,7 @@
 	</sv3s_refuel_tk_gue_ep1>
 	<sv3s_repair_tk_gue_ep1>
 		<Type>Truck</Type>
-		<Name>v3s repair</Name>
+		<Name>Repair V3S</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2852,7 +2316,7 @@
 	</sv3s_repair_tk_gue_ep1>
 	<sv3s_salvage_tk_gue_ep1>
 		<Type>Truck</Type>
-		<Name>supply truck</Name>
+		<Name>Supply truck</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2860,7 +2324,7 @@
 	</sv3s_salvage_tk_gue_ep1>
 	<sv3s_supply_tk_gue_ep1>
 		<Type>Truck</Type>
-		<Name>salvage truck</Name>
+		<Name>Salvage Truck</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2868,7 +2332,7 @@
 	</sv3s_supply_tk_gue_ep1>
 	<shmmwv_ambulance_cz_des_ep1>
 		<Type>Truck</Type>
-		<Name>hmmwv (ambulance)</Name>
+		<Name>Humvee Ambulance</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>6</transportmaxbackpacks>
@@ -2876,15 +2340,15 @@
 	</shmmwv_ambulance_cz_des_ep1>
 	<shmmwv_ambulance_des_ep1>
 		<Type>Truck</Type>
-		<Name>hmmwv (ambulance)</Name>
+		<Name>Humvee Ambulance</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>6</transportmaxbackpacks>
 		<cargo>5</cargo>
 	</shmmwv_ambulance_des_ep1>
 	<sm1133_mev_ep1>
-		<Type>Truck</Type>
-		<Name>stryker mev</Name>
+		<Type>Armored</Type>
+		<Name>Stryker Ambulance</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
@@ -2892,7 +2356,7 @@
 	</sm1133_mev_ep1>
 	<smtvrreammo_des_ep1>
 		<Type>Truck</Type>
-		<Name>mtvr (ammunition)</Name>
+		<Name>Supply MTVR</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2900,7 +2364,7 @@
 	</smtvrreammo_des_ep1>
 	<smtvrrefuel_des_ep1>
 		<Type>Truck</Type>
-		<Name>mtvr (fuel)</Name>
+		<Name>Fuel MTVR</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2908,7 +2372,7 @@
 	</smtvrrefuel_des_ep1>
 	<smtvrrepair_des_ep1>
 		<Type>Truck</Type>
-		<Name>mtvr (repair)</Name>
+		<Name>Repair MTVR</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2916,7 +2380,7 @@
 	</smtvrrepair_des_ep1>
 	<smtvrsalvage_des_ep1>
 		<Type>Truck</Type>
-		<Name>supply truck</Name>
+		<Name>Supply Truck</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2924,31 +2388,31 @@
 	</smtvrsalvage_des_ep1>
 	<smtvrsupply_des_ep1>
 		<Type>Truck</Type>
-		<Name>salvage truck</Name>
+		<Name>Supply Salvage Truck</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>1</cargo>
 	</smtvrsupply_des_ep1>
 	<suh60m_mev_ep1>
-		<Type>Truck</Type>
-		<Name>uh-60m mev</Name>
+		<Type>Helicopter</Type>
+		<Name>UH-60M</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
 		<cargo>7</cargo>
 	</suh60m_mev_ep1>
 	<sbmp2_ambul_cdf>
-		<Type>Truck</Type>
-		<Name>bmp-2 ambulance</Name>
+		<Type>Armored</Type>
+		<Name>BMP-2 Ambulance</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>100</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>3</cargo>
 	</sbmp2_ambul_cdf>
 	<smi17_medevac_cdf>
-		<Type>Truck</Type>
-		<Name>mi-17-iva medevac</Name>
+		<Type>Helicopter</Type>
+		<Name>Mi-17 Medevac</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
@@ -2956,7 +2420,7 @@
 	</smi17_medevac_cdf>
 	<suralreammo_cdf>
 		<Type>Truck</Type>
-		<Name>ural (ammunition)</Name>
+		<Name>Supply Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2964,7 +2428,7 @@
 	</suralreammo_cdf>
 	<suralrefuel_cdf>
 		<Type>Truck</Type>
-		<Name>ural (fuel)</Name>
+		<Name>Fuel Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2972,7 +2436,7 @@
 	</suralrefuel_cdf>
 	<suralrepair_cdf>
 		<Type>Truck</Type>
-		<Name>ural (repair)</Name>
+		<Name>Repair Ural</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2980,7 +2444,7 @@
 	</suralrepair_cdf>
 	<shmmwv_ambulance>
 		<Type>Truck</Type>
-		<Name>hmmwv (ambulance)</Name>
+		<Name>Humvee Ambulance</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>6</transportmaxbackpacks>
@@ -2988,7 +2452,7 @@
 	</shmmwv_ambulance>
 	<smtvrreammo>
 		<Type>Truck</Type>
-		<Name>mtvr (ammunition)</Name>
+		<Name>Supply MTVR</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -2996,7 +2460,7 @@
 	</smtvrreammo>
 	<smtvrrefuel>
 		<Type>Truck</Type>
-		<Name>mtvr (fuel)</Name>
+		<Name>Fuel MTVR</Name>
 		<transportmaxweapons>50</transportmaxweapons>
 		<transportmaxmagazines>200</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
@@ -3004,507 +2468,10 @@
 	</smtvrrefuel>
 	<smtvrrepair>
 		<Type>Truck</Type>
-		<Name>mtvr (repair)</Name>
+		<Name>Repair MTVR</Name>
 		<transportmaxweapons>10</transportmaxweapons>
 		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>8</transportmaxbackpacks>
 		<cargo>2</cargo>
 	</smtvrrepair>
-	<schukar_allwaysenemy_ep1>
-		<Type>targets</Type>
-		<Name>bqm-74</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</schukar_allwaysenemy_ep1>
-	<schukar_ep1>
-		<Type>targets</Type>
-		<Name>bqm-74</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</schukar_ep1>
-	<schukar>
-		<Type>targets</Type>
-		<Name>bqm-74</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</schukar>
-	<schukar_allwaysenemy>
-		<Type>targets</Type>
-		<Name>bqm-74</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</schukar_allwaysenemy>
-	<swarfarereammotruck_ins>
-		<Type>warfareclassname</Type>
-		<Name>ural (ammunition)</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>2</cargo>
-	</swarfarereammotruck_ins>
-	<swarfaresalvagetruck_ins>
-		<Type>warfareclassname</Type>
-		<Name>salvage truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresalvagetruck_ins>
-	<swarfaresupplytruck_ins>
-		<Type>warfareclassname</Type>
-		<Name>supply truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresupplytruck_ins>
-	<swarfarereammotruck_ru>
-		<Type>warfareclassname</Type>
-		<Name>utility truck (ammunition)</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>2</cargo>
-	</swarfarereammotruck_ru>
-	<swarfaresalvagetruck_ru>
-		<Type>warfareclassname</Type>
-		<Name>salvage truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresalvagetruck_ru>
-	<swarfaresupplytruck_ru>
-		<Type>warfareclassname</Type>
-		<Name>supply truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresupplytruck_ru>
-	<swarfarereammotruck_gue>
-		<Type>warfareclassname</Type>
-		<Name>ural (ammunition)</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>2</cargo>
-	</swarfarereammotruck_gue>
-	<swarfarerepairtruck_gue>
-		<Type>warfareclassname</Type>
-		<Name>repair truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>13</cargo>
-	</swarfarerepairtruck_gue>
-	<swarfaresalvagetruck_gue>
-		<Type>warfareclassname</Type>
-		<Name>salvage truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresalvagetruck_gue>
-	<swarfaresupplytruck_gue>
-		<Type>warfareclassname</Type>
-		<Name>supply truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresupplytruck_gue>
-	<swarfarereammotruck_cdf>
-		<Type>warfareclassname</Type>
-		<Name>ural (ammunition)</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>2</cargo>
-	</swarfarereammotruck_cdf>
-	<swarfaresalvagetruck_cdf>
-		<Type>warfareclassname</Type>
-		<Name>salvage truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresalvagetruck_cdf>
-	<swarfaresupplytruck_cdf>
-		<Type>warfareclassname</Type>
-		<Name>supply truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresupplytruck_cdf>
-	<swarfarereammotruck_usmc>
-		<Type>warfareclassname</Type>
-		<Name>mtvr (ammunition)</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>2</cargo>
-	</swarfarereammotruck_usmc>
-	<swarfaresalvagetruck_usmc>
-		<Type>warfareclassname</Type>
-		<Name>salvage truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresalvagetruck_usmc>
-	<swarfaresupplytruck_usmc>
-		<Type>warfareclassname</Type>
-		<Name>supply truck</Name>
-		<transportmaxweapons>50</transportmaxweapons>
-		<transportmaxmagazines>200</transportmaxmagazines>
-		<transportmaxbackpacks>8</transportmaxbackpacks>
-		<cargo>1</cargo>
-	</swarfaresupplytruck_usmc>
-	
-	<sbaf_assaultpack_arammo>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_arammo>
-	<sbaf_assaultpack_atammo>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_atammo>
-	<sbaf_assaultpack_fac>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_fac>
-	<sbaf_assaultpack_haaammo>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_haaammo>
-	<sbaf_assaultpack_hatammo>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_hatammo>
-	<sbaf_assaultpack_lrrammo>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_lrrammo>
-	<sbaf_assaultpack_mgammo>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_mgammo>
-	<sbaf_assaultpack_rifleammo>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_rifleammo>
-	<sbaf_assaultpack_special>
-		<Type>Backpacks</Type>
-		<Name>British Assault Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>13</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sbaf_assaultpack_special>
-	<scz_backpack_ammo_ep1>
-		<Type>Backpacks</Type>
-		<Name>Czech Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>14</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scz_backpack_ammo_ep1>
-	<scz_backpack_ammomg_ep1>
-		<Type>Backpacks</Type>
-		<Name>Czech Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>14</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scz_backpack_ammomg_ep1>
-	<scz_backpack_ep1>
-		<Type>Backpacks</Type>
-		<Name>Czech Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>14</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scz_backpack_ep1>
-	<scz_backpack_specops_ep1>
-		<Type>Backpacks</Type>
-		<Name>Czech Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>14</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scz_backpack_specops_ep1>
-	<scz_vestpouch_ep1>
-		<Type>Backpacks</Type>
-		<Name>Vest Pouch</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>6</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scz_vestpouch_ep1>
-	<scz_vestpouch_m4_ep1>
-		<Type>Backpacks</Type>
-		<Name>Vest Pouch</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>6</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scz_vestpouch_m4_ep1>
-	<scz_vestpouch_sa58_ep1>
-		<Type>Backpacks</Type>
-		<Name>Vest Pouch</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>6</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</scz_vestpouch_sa58_ep1>
-	<sde_backpack_specops_ep1>
-		<Type>Backpacks</Type>
-		<Name>Specops Pack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>14</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sde_backpack_specops_ep1>
-	<sftmch_backpack_specops_ak>
-		<Type>Backpacks</Type>
-		<Name>Coyote Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sftmch_backpack_specops_ak>
-	<sftmch_backpack_specops_ak74>
-		<Type>Backpacks</Type>
-		<Name>Coyote Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sftmch_backpack_specops_ak74>
-	<sftmch_backpack_specops_stanag>
-		<Type>Backpacks</Type>
-		<Name>Coyote Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sftmch_backpack_specops_stanag>
-	<stk_alice_pack_ammomg_ep1>
-		<Type>Backpacks</Type>
-		<Name>Alice Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stk_alice_pack_ammomg_ep1>
-	<stk_alice_pack_ep1>
-		<Type>Backpacks</Type>
-		<Name>Alice Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stk_alice_pack_ep1>
-	<stk_alice_pack_explosives_ep1>
-		<Type>Backpacks</Type>
-		<Name>Alice Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stk_alice_pack_explosives_ep1>
-	<stk_assault_pack_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stk_assault_pack_ep1>
-	<stk_assault_pack_rpk_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stk_assault_pack_rpk_ep1>
-	<stk_rpg_backpack_ep1>
-		<Type>Backpacks</Type>
-		<Name>RPG Pack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stk_rpg_backpack_ep1>
-	<stka_alice_pack_ammo_ep1>
-		<Type>Backpacks</Type>
-		<Name>Alice Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stka_alice_pack_ammo_ep1>
-	<stka_assault_pack_ammo_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stka_assault_pack_ammo_ep1>
-	<stkg_alice_pack_ammoak47_ep1>
-		<Type>Backpacks</Type>
-		<Name>Alice Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stkg_alice_pack_ammoak47_ep1>
-	<stkg_alice_pack_ammoak74_ep1>
-		<Type>Backpacks</Type>
-		<Name>Alice Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</stkg_alice_pack_ammoak74_ep1>
-	<sus_assault_pack_ammo_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack (acu)</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_assault_pack_ammo_ep1>
-	<sus_assault_pack_ammosaw_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_assault_pack_ammosaw_ep1>
-	<sus_assault_pack_at_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_assault_pack_at_ep1>
-	<sus_assault_pack_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_assault_pack_ep1>
-	<sus_assault_pack_explosives_ep1>
-		<Type>Backpacks</Type>
-		<Name>Assault Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_assault_pack_explosives_ep1>
-	<sus_backpack_ammomg_ep1>
-		<Type>Backpacks</Type>
-		<Name>backpack (coyote)</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_backpack_ammomg_ep1>
-	<sus_backpack_at_ep1>
-		<Type>Backpacks</Type>
-		<Name>Coyote Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_backpack_at_ep1>
-	<sus_backpack_ep1>
-		<Type>Backpacks</Type>
-		<Name>Coyote Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_backpack_ep1>
-	<sus_backpack_specops_ep1>
-		<Type>Backpacks</Type>
-		<Name>Coyote Backpack</Name>
-		<transportmaxweapons>1</transportmaxweapons>
-		<transportmaxmagazines>12</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_backpack_specops_ep1>
-	<sus_patrol_pack_ammo_ep1>
-		<Type>Backpacks</Type>
-		<Name>Patrol Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_patrol_pack_ammo_ep1>
-	<sus_patrol_pack_ep1>
-		<Type>Backpacks</Type>
-		<Name>Patrol Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_patrol_pack_ep1>
-	<sus_patrol_pack_specops_ep1>
-		<Type>Backpacks</Type>
-		<Name>Patrol Backpack</Name>
-		<transportmaxweapons>0</transportmaxweapons>
-		<transportmaxmagazines>8</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
-		<cargo>0</cargo>
-	</sus_patrol_pack_specops_ep1>
 </vehicles>

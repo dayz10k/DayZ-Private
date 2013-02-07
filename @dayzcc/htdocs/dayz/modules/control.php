@@ -34,7 +34,10 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 		echo '<script type="text/javascript">$.unblockUI</script>';
 	}
 
-	if ((str_replace('"', "", explode(",", strtolower(exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV')))[0])) == strtolower($exeserver)) {
+	$tasklist = exec('tasklist /FI "IMAGENAME eq '.$exeserver.'" /FO CSV');
+	$tasklist = explode(",", strtolower($tasklist));
+	$tasklist = str_replace('"', "", $tasklist[0]);
+	if ($tasklist == strtolower($exeserver)) {
 		$serverrunning = true;
 	} else {
 		$serverrunning = false;
@@ -43,13 +46,11 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "cont
 	?>
 	
 	<script type="text/javascript">
-		function cblockUI() {
-			$.blockUI({ message: $('#blockMessage') });
-		}
+		function cblockUI() { $.blockUI({ message: $('#blockMessage') }); }
 	</script>
 	
 	<div id="blockMessage" style="display: none;">
-		<h1><img src="images/forms/spinner.gif" /> Waiting for action to complete.</h1><br /><h1>Please be patient ...</h1>
+		<h1><img src="images/forms/spinner.gif" /> Waiting ...</h1>
 	</div>
 
 	<div id="page-heading">
