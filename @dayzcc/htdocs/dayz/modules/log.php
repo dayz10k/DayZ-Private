@@ -58,7 +58,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "mana
 														<td width="10%"><center><strong><a href="index.php?view=log&type=battleye&download='.$filename.'">Download</a></strong></center></td>
 														<td width="10%"><center><strong><a href="index.php?view=log&type=battleye&delete='.$filename.'">Delete</a></strong></center></td>
 														<td width="15%">'.(formatBytes(filesize($filepath))).'</td>
-														<td width="25%">'.date ("Y-M-d H:i:s", filemtime($filepath)).'</td></tr>';
+														<td width="25%">'.date("Y-M-d H:i:s", filemtime($filepath)).'</td></tr>';
 												}
 											}
 											echo "</table>";
@@ -79,7 +79,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "mana
 														<td width="10%"><center><strong><a href="index.php?view=log&type=server&download='.$filename.'">Download</a></strong></center></td>
 														<td width="10%"><center><strong><a href="index.php?view=log&type=server&delete='.$filename.'">Delete</a></strong></center></td>
 														<td width="15%">'.(formatBytes(filesize($filepath))).'</td>
-														<td width="25%">'.date ("Y-M-d H:i:s", filemtime($filepath)).'</td></tr>';
+														<td width="25%">'.date("Y-M-d H:i:s", filemtime($filepath)).'</td></tr>';
 												}
 											}
 											echo "</table>";
