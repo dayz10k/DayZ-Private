@@ -125,12 +125,18 @@ function row_player($row, $world) {
 	$uuid = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row['unique_id'].'</a>';
 	$icon = '<img src="images/icons/player'.($row['is_dead'] ? '_dead' : '').'.png" title="" alt="" />';
 
+	if (array_key_exists(1, $Worldspace) && array_key_exists(2, $Worldspace)) {
+		$position = sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)));
+	} else {
+		$position = "000000";
+	}
+	
 	require_once('modules/calc.php');
 	$tablerow = '<tr>
 		<td align="center" class="gear_preview">'.$icon.'</td>
 		<td align="center" class="gear_preview">'.$name.'</td>
 		<td align="center" class="gear_preview">'.$uuid.'</td>
-		<td align="center" class="gear_preview">'.(sprintf("%03d",round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))).'</td>
+		<td align="center" class="gear_preview">'.$position.'</td>
 		<td align="center" class="gear_preview">'.$health.'</td>
 		<td align="center" class="gear_preview">'.$InventoryPreview.'</td>
 		<td align="center" class="gear_preview">'.$BackpackPreview.'</td>
@@ -220,6 +226,12 @@ function row_online_player($row, $player, $world) {
 	$uid = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row["unique_id"].'</a>';
 	$iconkick = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
 	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="images/icons/player_ban'.$dead.'.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
+	
+	if (array_key_exists(1, $Worldspace) && array_key_exists(2, $Worldspace)) {
+		$position = sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)));
+	} else {
+		$position = "000000";
+	}
 
 	require_once('modules/calc.php');
 	$tablerow = '<tr>
@@ -227,7 +239,7 @@ function row_online_player($row, $player, $world) {
 		<td align="center" class="gear_preview">'.$iconban.'</td>
 		<td align="center" class="gear_preview">'.$name.'</td>
 		<td align="center" class="gear_preview">'.$uid.'</td>
-		<td align="center" class="gear_preview">'.(sprintf("%03d",round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)))).'</td>
+		<td align="center" class="gear_preview">'.$position.'</td>
 		<td align="center" class="gear_preview">'.$health.'</font></td>
 		<td align="center" class="gear_preview">'.$InventoryPreview.'</td>
 		<td align="center" class="gear_preview">'.$BackpackPreview.'</td>
