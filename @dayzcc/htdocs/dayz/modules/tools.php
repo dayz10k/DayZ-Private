@@ -56,24 +56,18 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<p>5. &lt;LEFT CLICK&gt; and hold yellow circle for object and drag to place. Hold &lt;SHIFT&gt; while holding &lt;LEFT CLICK&gt; to rotate. Hold &lt;ALT&gt; while holding &lt;LEFT CLICK&gt; to raise or lower object.</p><br />
 					<p>6. Hover over the object and hit &lt;DELETE&gt; to remove.</p><br />
 					<p>7. Save your progress as "User mission" under name [Your Mission Name]</p><br />
-					<p>8. Copy files to the working directory:</p><br />
-					<p><strong><font color="#900122">For vehicles:</font></strong></p>
-					<p>Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
-					<p>Paste it to: "~\@dayzcc\htdocs\dayz\mission.sqf" and rename it to "vehicles.sqf"</p>
-					<br />
-					<p><strong><font color="#900122">For buildings:</font></strong></p>
-					<p>Copy file from: "%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
-					<p>Paste it to: "~\@dayzcc\htdocs\dayz\mission.sqf" and rename it to "buildings.sqf"</p>
-					<br />
-					<p>9. Press the "Import" buttons below to add the vehicles and/or buildings.</p>
-					
+					<p>8. Press the "Import" buttons below to upload the file from the following source and add the vehicles and/or buildings:</p><br />
+					<p>"%userprofile%\Documents\ArmA 2 Other Profiles\[Profile Name]\missions\[Your Mission Name].[World]\mission.sqf"</p>
+
 					<br />
 					<br />
 
 					<h2>IMPORT VEHICLES:</h2>
 					<p>Adds all vehicles to 'instance_vehicle' and 'vehicle' tables from 'vehicles.sqf' file to be spawned in on next restart.</p>
 					<br />
-					<strong><a href="index.php?view=tools&vehicle">Import</a></strong>
+					<form action="modules/lib/upload.php" method="post" enctype="multipart/form-data">
+						<input type="file" name="vehicles" /> <input type="submit" />
+					</form>
 
 					<br />
 					<br />
@@ -81,7 +75,9 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<h2>IMPORT BUILDINGS:</h2>
 					<p>Adds all buildings to 'instance_building' and 'building' tables from 'buildins.sqf' file to be spawned in on next restart.</p>
 					<br />
-					<strong><a href="index.php?view=tools&building">Import</a></strong>
+					<form action="modules/lib/upload.php" method="post" enctype="multipart/form-data">
+						<input type="file" name="buildings" /> <input type="submit" />
+					</form>
 				</div>
 			</td>
 			<td class="border-right"></td>
