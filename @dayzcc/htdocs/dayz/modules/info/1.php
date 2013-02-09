@@ -165,8 +165,8 @@ for ($i = 0; $i < count($Inventory); $i++){
 					<div id="gear_player">
 						<!-- General Info -->
 						<div class="gear_info">
-							<div class="EditableItem" data-type="model">
-								<img class="playermodel" src='images/models/<?php echo $model; ?>.png' alt='<?php echo $model; ?>' />
+							<div class="playermodel EditableItem" data-type="model">
+								<img src="images/models/<?php echo $model; ?>.png" alt="<?php echo $model; ?>" style="width: 100%;" />
 							</div>
 							<div id="gps" style="margin-left: 46px; margin-top: 54px">
 								<div class="gpstext" style="font-size: 22px; width: 60px; text-align: left; margin-left: 47px; margin-top: 13px">
