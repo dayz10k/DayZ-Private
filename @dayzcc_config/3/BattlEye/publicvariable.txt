@@ -13,6 +13,6 @@
 5 "rland"
 5 "rsetdir"
 5 "local_sefFuel"
-1 "spawn" !"_this spawn fnc_Hit;"
+1 "spawn" !"_this spawn server_playerHit;"
 1 "BIS_Effects"
 5 "hiveupdateresu"
