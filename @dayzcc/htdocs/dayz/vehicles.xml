@@ -4,16 +4,16 @@
 		<Type>Helicopter</Type>
 		<Name>AH-6X</Name>
 		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>5</transportmaxbackpacks>
+		<transportmaxmagazines>10</transportmaxmagazines>
+		<transportmaxbackpacks>2</transportmaxbackpacks>
 		<cargo>1</cargo>
 	</sah6x_dz>
 	<san2_dz>
 		<Type>Plane</Type>
 		<Name>AN-2</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>0</transportmaxbackpacks>
+		<transportmaxweapons>10</transportmaxweapons>
+		<transportmaxmagazines>80</transportmaxmagazines>
+		<transportmaxbackpacks>15</transportmaxbackpacks>
 		<cargo>15</cargo>
 	</san2_dz>
 	<satv_cz_ep1>
@@ -120,6 +120,14 @@
 		<transportmaxbackpacks>2</transportmaxbackpacks>
 		<cargo>1</cargo>
 	</shilux1_civil_3_open_ep1>
+	<shmmwv_dz>
+		<Type>Car</Type>
+		<Name>Humvee</Name>
+		<transportmaxweapons>4</transportmaxweapons>
+		<transportmaxmagazines>12</transportmaxmagazines>
+		<transportmaxbackpacks>4</transportmaxbackpacks>
+		<cargo>1</cargo>
+	</shmmwv_dz>
 	<sikarus>
 		<Type>Bus</Type>
 		<Name>Bus</Name>
@@ -205,14 +213,14 @@
 		<Name>MH-6J</Name>
 		<transportmaxweapons>3</transportmaxweapons>
 		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
+		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>5</cargo>
 	</smh6j_ep1>
 	<smi17_dz>
 		<Type>Helicopter</Type>
 		<Name>Mi-17</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
+		<transportmaxweapons>10</transportmaxweapons>
+		<transportmaxmagazines>50</transportmaxmagazines>
 		<transportmaxbackpacks>10</transportmaxbackpacks>
 		<cargo>16</cargo>
 	</smi17_dz>
@@ -419,9 +427,9 @@
 	<suh1h_dz>
 		<Type>Helicopter</Type>
 		<Name>UH-1H</Name>
-		<transportmaxweapons>3</transportmaxweapons>
-		<transportmaxmagazines>20</transportmaxmagazines>
-		<transportmaxbackpacks>1</transportmaxbackpacks>
+		<transportmaxweapons>5</transportmaxweapons>
+		<transportmaxmagazines>25</transportmaxmagazines>
+		<transportmaxbackpacks>4</transportmaxbackpacks>
 		<cargo>5</cargo>
 	</suh1h_dz>
 	<suralcivil>
