@@ -126,12 +126,12 @@ function row_player($row, $world) {
 	$icon = '<img src="images/icons/player'.($row['is_dead'] ? '_dead' : '').'.png" title="" alt="" />';
 
 	if (array_key_exists(1, $Worldspace) && array_key_exists(2, $Worldspace)) {
+		require_once('modules/calc.php');
 		$position = sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)));
 	} else {
 		$position = "000000";
 	}
-	
-	require_once('modules/calc.php');
+
 	$tablerow = '<tr>
 		<td align="center" class="gear_preview">'.$icon.'</td>
 		<td align="center" class="gear_preview">'.$name.'</td>
@@ -228,12 +228,12 @@ function row_online_player($row, $player, $world) {
 	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="images/icons/player_ban'.$dead.'.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
 	
 	if (array_key_exists(1, $Worldspace) && array_key_exists(2, $Worldspace)) {
+		require_once('modules/calc.php');
 		$position = sprintf("%03d", round(world_x($x, $world))).sprintf("%03d", round(world_y($y, $world)));
 	} else {
 		$position = "000000";
 	}
 
-	require_once('modules/calc.php');
 	$tablerow = '<tr>
 		<td align="center" class="gear_preview">'.$iconkick.'</td>
 		<td align="center" class="gear_preview">'.$iconban.'</td>
