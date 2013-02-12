@@ -10,11 +10,11 @@ class Mission
 		"dayz_equip",
 		"dayz_vehicles",
 		"cacharacters_pmc",
-		"ca_modules_functions",
 		"namalsk",
 		"ns_dayz",
 		"ns_modules",
-		"cacharacters_e"
+		"cacharacters_e",
+		"ca_modules_functions"
 	};
 	addOnsAuto[]=
 	{

@@ -7,20 +7,20 @@
 #define CheckModel true
 // Enable custom inventory
 #define CheckCustInv true
+// Enable object publishing check
+#define CheckObject true
 
-// Enable gender selection screen
-#define GenderSelect true
 // Enable kill messages
 #define KillMsgs true
 #define KillMsgsIngame true
 // Enable hit messages
 #define HitMsgs true
-#define HitMsgsIngame false
+#define HitMsgsIngame true
 
-// Spawn helicopter crashes
+// Spawn helicopter crashsites
 #define SpawnHelis true
 #define SpawnHelisCount 5
-// Spawn other wrecks
+// Spawn random other wrecks
 #define SpawnWrecks true
 #define SpawnWrecksCount 18
 // Spawn care packages
