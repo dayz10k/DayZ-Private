@@ -1,7 +1,7 @@
-insert into vehicle (class_name,damage_min,damage_max,fuel_min,fuel_max,limit_min,limit_max,parts,inventory) values
+insert ignore into vehicle (class_name,damage_min,damage_max,fuel_min,fuel_max,limit_min,limit_max,parts,inventory) values
   ('policecar', '0.100', '0.700', '0.200', '0.800', '0', '10', 'palivo,motor,karoserie,wheel_1_1_steering,wheel_1_2_steering,wheel_2_1_steering,wheel_2_2_steering', '[[[\"LeeEnfield\"], [1]], [[\"5x_22_LR_17_HMR\"], [3]], [[], []]]');
  
-insert into world_vehicle (vehicle_id, world_id, worldspace, chance) values
+insert ignore into world_vehicle (vehicle_id, world_id, worldspace, chance) values
   (53,1,'[225,[11226.5,6599.18,0.00393677]]',0.650),
   (53,1,'[206,[12085,6309.21,0.000282288]]',0.650),
   (53,1,'[215,[12987.4,6271,0.00111675]]',0.650),

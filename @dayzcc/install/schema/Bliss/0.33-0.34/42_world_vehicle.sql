@@ -1,4 +1,4 @@
-insert into world_vehicle (vehicle_id, world_id, worldspace, description, chance, last_modified) values
+insert ignore into world_vehicle (vehicle_id, world_id, worldspace, description, chance, last_modified) values
   (91,10,'[242,[10291.3,18354.9,-0.180809]]','',0.7,'0.34'),
   (29,10,'[354,[10951,17800.9,0.0223007]]','',0.7,'0.34'),
   (29,10,'[162,[10922.9,17345.1,0.0321388]]','',0.7,'0.34'),
