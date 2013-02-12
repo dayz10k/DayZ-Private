@@ -45,6 +45,9 @@ if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map")
 		Object = new Icon({ iconUrl: 'images/icons/Object.png' }),
 		Player = new Icon({ iconUrl: 'images/icons/player.png' }),
 		PlayerDead = new Icon({ iconUrl: 'images/icons/player_dead.png' });
+	var trackPolyline = L.Polyline.extend({ options: { uid: -1 }, });
+	var trackCircleMarker = L.CircleMarker.extend({ options: { uid: -1 }, });
+	var mapMarker = L.Marker.extend({ options: { uid: -1 }, });
 
 	map.on("mousemove", function (a) {
 		$("#mapCoords").html(fromLatLngToGps(a.latlng));
@@ -52,6 +55,10 @@ if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map")
 	
 	var intervalId;
 	var plotlayers = [];
+	var tracklines = [];
+	var tracklayers = [];
+	var trackstartlayers = [];
+	var trackendlayers = [];
 	var autorefresh = false;
 	
 	$('#map').append('<div id="mapCoords"><label>000 000</label></div>');
