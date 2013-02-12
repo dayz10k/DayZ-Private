@@ -44,8 +44,8 @@ if (!$res) {
 function get_folders() {
 	global $path, $schema;
 	$folders = array();
-	foreach(scandir($path."\\".$schema."\\mysql") as $dir) {
-		if (is_dir($path."\\".$schema."\\mysql\\".$dir)) {
+	foreach(scandir($path."\\".$schema) as $dir) {
+		if (is_dir($path."\\".$schema."\\".$dir)) {
 			if (preg_match("/([.0-9]{4})-?([.0-9]{4})?/", $dir, $matches)) {
 				if (isset($matches[2])) { $folders[] = array($matches[2], $dir); } else { $folders[] = array($matches[1], $dir); };
 			}
@@ -56,10 +56,10 @@ function get_folders() {
 function get_files($dir) {
 	global $path, $schema;
 	$files = array();
-	$handle = opendir($path."\\".$schema."\\mysql\\".$dir);
+	$handle = opendir($path."\\".$schema."\\".$dir);
 	while (false !== ($file = readdir($handle))) {
 		if (preg_match("/([0-9]+)_([_a-zA-Z0-9]*).sql/", $file)) {
-			$files[] = array($file, $path."\\".$schema."\\mysql\\".$dir."\\".$file);
+			$files[] = array($file, $path."\\".$schema."\\".$dir."\\".$file);
 		}
 	}
 	closedir($handle);
