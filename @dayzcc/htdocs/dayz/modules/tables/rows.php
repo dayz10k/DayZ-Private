@@ -13,8 +13,7 @@ function header_player($show, $order) {
 }
 function header_player_online($show) {
 	return '<tr>
-		<th class="product-table-header" style="width: 5%"><a>Kick</a></th>
-		<th class="product-table-header" style="width: 5%"><a>Ban</a></th>
+		<th class="product-table-header" style="width: 10%"><a>Controls</a></th>
 		<th class="product-table-header" style="width: 20%"><a>Name</a></th>
 		<th class="product-table-header" style="width: 10%"><a>UID</a></th>
 		<th class="product-table-header" style="width: 10%"><a>Position</a></th>
@@ -224,8 +223,8 @@ function row_online_player($row, $player, $world) {
 
 	$name = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$player[4].'</a>';
 	$uid = '<a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.$row["unique_id"].'</a>';
-	$iconkick = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="images/icons/player_kick'.$dead.'.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
-	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="images/icons/player_ban'.$dead.'.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
+	$iconkick = '<a href="index.php?view=actions&kick='.$player[0].'"><img src="images/icons/player_kick.png" title="Kick '.$player[4].'" alt="Kick '.$player[4].'"/></a>';
+	$iconban = '<a href="index.php?view=actions&ban='.$player[0].'"><img src="images/icons/player_ban.png" title="Ban '.$player[4].'" alt="Ban '.$player[4].'"/></a>';
 	
 	if (array_key_exists(1, $Worldspace) && array_key_exists(2, $Worldspace)) {
 		require_once('modules/calc.php');
@@ -235,8 +234,7 @@ function row_online_player($row, $player, $world) {
 	}
 
 	$tablerow = '<tr>
-		<td align="center" class="gear_preview">'.$iconkick.'</td>
-		<td align="center" class="gear_preview">'.$iconban.'</td>
+		<td align="center" class="gear_preview">'.$iconkick.$iconban.'</td>
 		<td align="center" class="gear_preview">'.$name.'</td>
 		<td align="center" class="gear_preview">'.$uid.'</td>
 		<td align="center" class="gear_preview">'.$position.'</td>
