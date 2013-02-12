@@ -215,7 +215,7 @@
 		<transportmaxmagazines>20</transportmaxmagazines>
 		<transportmaxbackpacks>5</transportmaxbackpacks>
 		<cargo>5</cargo>
-	</smh6j_ep1>
+	</smh6j_dz>
 	<smi17_dz>
 		<Type>Helicopter</Type>
 		<Name>Mi-17</Name>
