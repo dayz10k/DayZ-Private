@@ -70,12 +70,18 @@ function addMarkerToTrackline(id, pos) {
 		startMarker.setRadius(3);
 		startMarker.options.uid = id;
 
+		var endMarker = new trackCircleMarker(pos, { color: '#c00000', fill: true, fillColor: '#c00000', fillOpacity: 1 });
+		endMarker.bindPopup(desc);
+		endMarker.setRadius(3);
+		endMarker.options.uid = id;
+
 		tracklines.push(line);
 		tracklayers.push(line);
 		trackstartlayers.push(startMarker);
 
 		map.addLayer(line);
 		map.addLayer(startMarker);
+		map.addLayer(endMarker);
 	}
 }
 
@@ -99,6 +105,10 @@ function clearTrackLines() {
 			}
 
 			trackstartlayers.forEach(function(element) {
+				if (element.options.uid == uid) { map.removeLayer(element); }
+			});
+			
+			trackendlayers.forEach(function(element) {
 				if (element.options.uid == uid) { map.removeLayer(element); }
 			});
 		}
