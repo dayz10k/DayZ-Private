@@ -3,10 +3,6 @@
 mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die (mysql_error());
 mysql_select_db($dbname) or die (mysql_error());
 
-if (!isset($instance)) {
-	$instance = 1;
-}
-
 $coluser = "000000";
 $colpass = "000000";
 $message = "";
@@ -97,7 +93,7 @@ foreach (glob("../../../@dayzcc_config/*") as $info) {
 							<td><select name="instance" class="login-select">
 								<?php
 									foreach ($instances as $value) {
-										echo '<option value="'.$value.'"'.($value == $instance ? " selected" : "").'>'.$value.'</option>';
+										echo '<option value="'.$value.'"'.(intval($value) == (isset($_GET["instance"]) ? $_GET["instance"] : 1) ? " selected" : "").'>'.$value.'</option>';
 									}
 								?>
 							</select></td>

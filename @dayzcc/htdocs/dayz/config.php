@@ -6,6 +6,8 @@ if (!isset($_SESSION['user_id']))
 {
 	if (isset($_POST["instance"])) {
 		$serverinstance = intval($_POST["instance"]);
+	} else if (isset($_GET["instance"])) {
+		$serverinstance = intval($_GET["instance"]);
 	} else {
 		$serverinstance = 1;
 	}
