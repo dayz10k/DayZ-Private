@@ -73,7 +73,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "tool
 					<br />
 
 					<h2>IMPORT BUILDINGS:</h2>
-					<p>Adds all buildings to 'instance_building' and 'building' tables from 'buildins.sqf' file to be spawned in on next restart.</p>
+					<p>Adds all buildings to 'instance_building' and 'building' tables from 'buildings.sqf' file to be spawned in on next restart.</p>
 					<br />
 					<form action="modules/lib/upload.php" method="post" enctype="multipart/form-data">
 						<input type="file" name="buildings" /> <input type="submit" />
