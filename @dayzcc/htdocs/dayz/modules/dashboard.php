@@ -67,14 +67,14 @@ if (isset($_SESSION['user_id']))
 										$maxplayers = $data['gq_maxplayers'];
 										$numplayers = $data['gq_numplayers'];
 									} else {
-										$name = "Server is offline.";
-										$mod = "&nbsp;";
-										$maxplayers = "&nbsp;";
-										$numplayers = "&nbsp;";
+										$name = "Server is currently offline.";
+										$mod = $servermodlist;
+										$maxplayers = "-";
+										$numplayers = "-";
 									}
 								}
 								
-								echo "<h2>".$name."</h2><h2>Address:</h2><h3>".(getIP()).":".$serverport."</h3><h2>Mods:</h2><h3>".$mod."</h3><h2>Max players:</h2><h3>".$maxplayers."</h3><h2>Online players:</h2><h3>".$numplayers."</h3>";
+								echo "<h2>".$name."</h2><h2>Address:</h2><h3>".(getIP()).":".$serverport."</h3><h2>Modlist:</h2><h3>".$mod."</h3><h2>Maximum players:</h2><h3>".$maxplayers."</h3><h2>Online players:</h2><h3>".$numplayers."</h3>";
 							?>
 						</td>
 						<td width="10%">

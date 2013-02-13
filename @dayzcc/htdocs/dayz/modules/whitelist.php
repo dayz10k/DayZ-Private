@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "whit
 		
 		$tablerows .= '<form method="post"><tr>
 			<td align="center" class="gear_preview"><input type="hidden" name="id" value="'.$row['id'].'"><input type="submit" name="action" value="'.$button.'" style="width: 60px"></td>
-			<td align="center" class="gear_preview"><input type="hidden" name="status" value="'.$row['is_whitelisted'].'"><img src="images/icons/'.$icon.'"></td>
+			<td align="center" class="gear_preview"><input type="hidden" name="status" value="'.$row['is_whitelisted'].'"><img src="images/icons/'.$icon.'" alt="" /></td>
 			<td align="center" class="gear_preview">'.$row['name'].'</td>
 			<td align="center" class="gear_preview">'.$row['guid'].'</td>
 			</tr></form>';

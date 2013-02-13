@@ -3,6 +3,10 @@
 mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die (mysql_error());
 mysql_select_db($dbname) or die (mysql_error());
 
+if (!isset($instance)) {
+	$instance = 1;
+}
+
 $coluser = "000000";
 $colpass = "000000";
 $message = "";
@@ -61,6 +65,11 @@ if (!empty($_POST))
 	}
 }
 
+$instances = array();
+foreach (glob("../../../@dayzcc_config/*") as $info) {
+	if (is_dir($info)) { $instances[] = basename($info); }
+}
+
 ?>
 
 <html>
@@ -82,6 +91,16 @@ if (!empty($_POST))
 						<tr>
 							<th><font color="#<?php echo $colpass; ?>">Password</font></th>
 							<td><input type="password" name="password" value="" class="login-inp" /></td>
+						</tr>
+						<tr>
+							<th><font color="#000000">Instance</font></th>
+							<td><select name="instance" class="login-select">
+								<?php
+									foreach ($instances as $value) {
+										echo '<option value="'.$value.'"'.($value == $instance ? " selected" : "").'>'.$value.'</option>';
+									}
+								?>
+							</select></td>
 						</tr>
 						<tr>
 							<th></th>

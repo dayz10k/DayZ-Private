@@ -11,7 +11,7 @@ function markers_player($res, $world) {
 		$y = 0; if (array_key_exists(2, $Worldspace)) { $y = $Worldspace[2]; }
 
 		require_once('modules/calc.php');
-		$description = '<h2><a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.htmlspecialchars($row['name'], ENT_QUOTES).'</a></h2><table><tr><td><img style="width: 100px;" src="images/models/'.str_replace('"', '', $row['model']).'.png"></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Unique ID:</h2>'.$row['unique_id'].'<br /><br /><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
+		$description = '<h2><a href="index.php?view=info&show=1&uid='.$row['unique_id'].'&id='.$row['id'].'">'.htmlspecialchars($row['name'], ENT_QUOTES).'</a></h2><table><tr><td><img src="images/models/'.str_replace('"', '', $row['model']).'.png" alt="" style="width: 100px;" /></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Unique ID:</h2>'.$row['unique_id'].'<br /><br /><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
 		
 		$tmp = array();
 		$tmp["lat"] = (world_y($y, $world) / 10);
@@ -45,7 +45,7 @@ function markers_vehicle($res, $world) {
 		if (array_key_exists('s'.$ltype, $vehicles_xml['vehicles'])) { $class = $vehicles_xml['vehicles']['s'.$ltype]['Type']; } else { $class = "Car"; }
 
 		require_once('modules/calc.php');
-		$description = '<h2><a href="index.php?view=info&show=4&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img style="width: 100px;" src="images/vehicles/'.$ltype.'.png"\></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
+		$description = '<h2><a href="index.php?view=info&show=4&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img src="images/vehicles/'.$ltype.'.png" alt="" style="width: 100px;" /></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
 		
 		$tmp = array();
 		$tmp["lat"] = (world_y($y, $world) / 10);
@@ -79,7 +79,7 @@ function markers_deployable($res, $world) {
 		if (array_key_exists('s'.$ltype, $vehicles_xml['vehicles'])) { $class = $vehicles_xml['vehicles']['s'.$ltype]['Type']; } else { $class = "Car"; }
 
 		require_once('modules/calc.php');
-		$description = '<h2><a href="index.php?view=info&show=5&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img style="width: 100px;" src="images/vehicles/'.$ltype.'.png"\></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
+		$description = '<h2><a href="index.php?view=info&show=5&id='.$row['id'].'">'.$type.'</a></h2><table><tr><td><img src="images/vehicles/'.$ltype.'.png" alt="" style="width: 100px;" /></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
 		
 		$tmp = array();
 		$tmp["lat"] = (world_y($y, $world) / 10);
@@ -115,11 +115,11 @@ function markers_wreck($lines, $world) {
 			} else {
 				// Edits by SilveShot to differ between helicopter crashsites and other wrecks
 				if (strpos($line, "Spawning a crashed helicopter") !== false) {
-					$description = '<h2>Crashed Helicopter</h2><table><tr><td><img style="width: 100px;" src="images/vehicles/crashsite.png"></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
+					$description = '<h2>Crashed Helicopter</h2><table><tr><td><img src="images/vehicles/crashsite.png" alt="" style="width: 100px;" /></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
 					$tmp["icon"] = "Crashsite";
 					$tmp["title"] = "Crashed Helicopter";
 				} else {
-					$description = '<h2>Wreck</h2><table><tr><td><img style="width: 100px;" src="images/vehicles/wreck.png"></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
+					$description = '<h2>Wreck</h2><table><tr><td><img src="images/vehicles/wreck.png" alt="" style="width: 100px;" /></td><td>&nbsp;&nbsp;&nbsp;</td><td style="vertical-align: top;"><h2>Position:</h2>Left: '.round(world_x($x, $world)).'<br />Top: '.round(world_y($y, $world)).'</td></tr></table>';
 					$tmp["icon"] = "Wreck";
 					$tmp["title"] = "Wreck";
 				}

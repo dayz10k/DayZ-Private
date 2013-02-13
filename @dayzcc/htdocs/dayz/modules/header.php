@@ -11,7 +11,7 @@
 	<body>
 		<div id="page-top-outer">    
 			<div id="page-top">
-				<div id="logo"><a href="index.php"><img src="images/forms/login_logo.png" width="375px" height="75px" alt="" /></a></div>
+				<div id="logo"><a href="index.php"><img src="images/forms/login_logo.png" width="375px" height="75px" title="Instance <?php echo $serverinstance; ?>" alt="DayZ Controlcenter" /></a></div>
 				<div id="search"><?php include('modules/searchbar.php'); ?></div>
 			</div>
 		</div>

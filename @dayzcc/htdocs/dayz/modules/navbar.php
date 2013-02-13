@@ -95,9 +95,9 @@
 				<div id="nav-right">
 					<div class="nav-divider">&nbsp;</div>
 					<?php if (strcontains($_SESSION['user_permissions'], "user")) { ?>
-						<a href="index.php?view=users"><img src="images/forms/nav_myaccount.gif" width="67" height="14" alt="" /></a>
+						<a href="index.php?view=users"><img src="images/forms/nav_myaccount.gif" width="67" height="14" title="Accounts" alt="Accounts" /></a>
 					<?php } ?>
-					<a href="index.php?logout"><img src="images/forms/nav_logout.gif" width="64" height="14" alt="" /></a>
+					<a href="index.php?logout"><img src="images/forms/nav_logout.gif" width="64" height="14" alt="Logout" /></a>
 					<div class="clear">&nbsp;</div>
 				</div>
 			</div>

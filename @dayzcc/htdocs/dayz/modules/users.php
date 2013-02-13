@@ -92,7 +92,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 	{
 		?>
 			<div id="Popup" class="modalPopup" style="display: none;">
-				<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('Popup'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
+				<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('Popup'); return false;"><img src="images/forms/action_delete.gif" title="Close" alt="Close" /></a><br />
 				<?php include_once('modules/register.php'); ?>
 			</div>
 			<script type="text/javascript">ShowModalPopup('Popup');</script>
@@ -102,7 +102,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 	{
 		?>
 			<div id="Popup" class="modalPopup" style="display: none;">
-				<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('Popup'); return false;"><img src="images/forms/action_delete.gif" alt="" /></a><br />
+				<a id="closebutton" style="float: right;" href="#" onclick="HideModalPopup('Popup'); return false;"><img src="images/forms/action_delete.gif" title="Close" alt="Close" /></a><br />
 				<?php include_once('modules/register.php'); ?>
 			</div>
 			<script type="text/javascript">ShowModalPopup('Popup');</script>
@@ -153,7 +153,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			<td>
 				<div id="content-table-inner">
 					<div>
-						<img src="images/forms/icon_plus.gif" width="21" height="21" alt="Add new user" style="vertical-align: middle" />
+						<img src="images/forms/icon_plus.gif" width="21" height="21" title="Add new user" alt="" style="vertical-align: middle" />
 						<span style="vertical-align: middle"><a href="index.php?view=users&register"><b>Add new user</b></a></span>
 					</div>
 					<br />
