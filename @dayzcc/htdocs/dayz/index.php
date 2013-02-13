@@ -5,10 +5,6 @@
 session_start();
 
 include('config.php');
-$sitename = "DayZ Controlcenter Administration";
-$serverinstance = intval($serverinstance);
-$exeserver = "arma2oaserver_".$serverinstance.".exe";
-$pathserver = $patharma."\\@dayzcc_config\\".$serverinstance."\\".$exeserver;
 
 if (isset($_GET['logout']))
 {
@@ -19,6 +15,12 @@ if (isset($_GET['logout']))
 
 	if (isset($_SESSION['user_id'])) {
 		unset($_SESSION['user_id']);
+	}
+	if (isset($_SESSION['user_permissions'])) {
+		unset($_SESSION['user_permissions']);
+	}
+	if (isset($_SESSION['login'])) {
+		unset($_SESSION['login']);
 	}
 		
 	setcookie('login', '', 0, "/");
@@ -31,8 +33,6 @@ else
 {
 	if (isset($_SESSION['user_id']))
 	{
-		error_reporting(E_ALL ^ E_NOTICE);
-		
 		mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass) or die (mysql_error());
 		mysql_select_db($dbname) or die (mysql_error());
 

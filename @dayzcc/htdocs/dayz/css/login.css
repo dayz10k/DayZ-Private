@@ -79,3 +79,15 @@
 .login-submit:hover {
 	background: url(../images/forms/submit.gif) no-repeat 0 -29px;
 }
+
+.login-select {
+	background: #383838;
+	border: 1px solid #424242;
+	color: #fff;
+	width: 220px;
+	height: 28px;
+	padding: 3px;
+	line-height: 14px;
+	margin-right: 6px;
+	font-size: 16px;
+}
