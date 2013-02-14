@@ -17,6 +17,11 @@
 #define HitMsgs true
 #define HitMsgsIngame true
 
+// Switch between old and new way of spawning
+// OldSpawn true  - Wrecks, crashsites and care packages have there own sqf files and you can change the loot inside
+// OldSpawn false - Everything is in "server_spawnWreck", wrecks randomly de-/respawn while the server is running
+#define OldSpawn true
+
 // Spawn helicopter crashsites
 #define SpawnHelis true
 #define SpawnHelisCount 5
