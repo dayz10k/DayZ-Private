@@ -30,7 +30,7 @@ function getData(id) {
 				plotmark.bindPopup(data[i].description);
 				plotlayers.push(plotmark);
 				
-				if (id == 0 || id == 1 || id == 3 || id == 7) {
+				if (data[i].id == 0 || data[i].id == 1 || data[i].id == 3 || data[i].id == 7) {
 					addMarkerToTrackline(data[i].id, pos);
 				}
 			}
