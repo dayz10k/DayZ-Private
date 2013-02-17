@@ -2,12 +2,16 @@
 
 // Multi instance support was written by Krunch
 
-if (!isset($_SESSION['user_id']))
+if (!isset($_SESSION['user_id']) || isset($_GET["instance"]))
 {
 	if (isset($_POST["instance"])) {
 		$serverinstance = intval($_POST["instance"]);
 	} else if (isset($_GET["instance"])) {
-		$serverinstance = intval($_GET["instance"]);
+		if ($_GET["instance"] > 0) {
+			$serverinstance = intval($_GET["instance"]);
+		} else {
+			$serverinstance = 1;
+		}
 	} else {
 		$serverinstance = 1;
 	}
