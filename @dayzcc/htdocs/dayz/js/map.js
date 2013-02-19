@@ -15,8 +15,8 @@ function fromLatLngToGps(e) {
 
 // The map data function was written by Krunch and Crosire
 
-function getData(id) {
-	$.getJSON('js/map.php?id=' + id + '&callback=?', function(data) {
+function getData(map) {
+	$.getJSON('js/map.php?id=' + map + '&callback=?', function(data) {
 		if ("error" in data) {
 			if ($('#page-error').length == 0) { $('#map').before(data.error); }
 		} else {
@@ -30,7 +30,7 @@ function getData(id) {
 				plotmark.bindPopup(data[i].description);
 				plotlayers.push(plotmark);
 				
-				if (data[i].id == 0 || data[i].id == 1 || data[i].id == 3 || data[i].id == 7) {
+				if (map == 0 || map == 1 || map == 3 || map == 7) {
 					addMarkerToTrackline(data[i].id, pos);
 				}
 			}
@@ -41,12 +41,12 @@ function getData(id) {
 
 // Player tracking lines were written by Wriley and slightly altered by Crosire
 
-function addMarkerToTrackline(id, pos) {
+function addMarkerToTrackline(uid, pos) {
 	if (pos.lng == 0) { return; }
 
 	var found = false;
 	tracklines.forEach(function(element) {
-		if (element.options.uid == id) {
+		if (element.options.uid == uid) {
 			found = true;
 			if (!element.getLatLngs()[element.getLatLngs().length - 1].equals(pos)) { element.addLatLng(pos); }
 		}
@@ -58,7 +58,7 @@ function addMarkerToTrackline(id, pos) {
 		var line = new trackPolyline([], trackMouseOutOptions);
 
 		line.addLatLng(pos);
-		line.options.uid = id;
+		line.options.uid = uid;
 		line.on('mouseover', function(){
 			line.setStyle(trackMouseOverOptions);
 		});
@@ -68,12 +68,12 @@ function addMarkerToTrackline(id, pos) {
 
 		var startMarker = new trackCircleMarker(pos, { color: '#c00000', fill: true, fillColor: '#c00000', fillOpacity: 1 });
 		startMarker.setRadius(3);
-		startMarker.options.uid = id;
+		startMarker.options.uid = uid;
 
 		var endMarker = new trackCircleMarker(pos, { color: '#c00000', fill: true, fillColor: '#c00000', fillOpacity: 1 });
 		endMarker.bindPopup(desc);
 		endMarker.setRadius(3);
-		endMarker.options.uid = id;
+		endMarker.options.uid = uid;
 
 		tracklines.push(line);
 		tracklayers.push(line);
