@@ -5,7 +5,7 @@ if (isset($_FILES['vehicles']['name'])) {
 	$fileext = substr($filename, strpos($filename, '.') + 1, strlen($filename) - 1);
 	$filepath = "./../../vehicles.sqf";
 	
-	if ($fileext == ".sqf") {
+	if ($fileext == "sqf") {
 		if (move_uploaded_file($_FILES['vehicles']['tmp_name'], $filepath)) {
 			echo '<script type="text/javascript">window.location = "../../index.php?view=tools&vehicle";</script>';
 		}
@@ -17,7 +17,7 @@ if (isset($_FILES['vehicles']['name'])) {
 	$fileext = substr($filename, strpos($filename, '.'), strlen($filename) - 1);
 	$filepath = "./../../buildings.sqf"; 
 	
-	if ($fileext == ".sqf") {
+	if ($fileext == "sqf") {
 		if (move_uploaded_file($_FILES['buildings']['tmp_name'], $filepath)) {
 			echo '<script type="text/javascript">window.location = "../../index.php?view=tools&building";</script>';
 		}
