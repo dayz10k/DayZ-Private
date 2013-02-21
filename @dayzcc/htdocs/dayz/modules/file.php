@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "manage") !== false))
+if (isset($_SESSION['user_id']) and ((strpos($_SESSION['user_permissions'], "manage") !== false) || (strpos($_SESSION['user_permissions'], "log") !== false)))
 {
 	function formatBytes($bytes, $precision = 2) {
 		$units = array('B', 'KB', 'MB', 'GB', 'TB'); 

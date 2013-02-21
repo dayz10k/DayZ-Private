@@ -42,7 +42,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 			$errortext .= 'Login already used. ';
 		}
 
-		foreach (array('manage', 'control', 'table', 'map', 'tools', 'feed', 'user', 'whitelist') as $permission) {
+		foreach (array('manage', 'log', 'control', 'table', 'map', 'tools', 'feed', 'user', 'whitelist') as $permission) {
 			if (isset($_POST[$permission])) {
 				if ($_POST[$permission] == "on") { $permissions .= $permission.", "; }
 			}

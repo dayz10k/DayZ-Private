@@ -4,14 +4,16 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 {
 	$login = "Username";
 	$password = "Password";
-	$checked = array('manage' => true, 'control' => true, 'table' => true, 'map' => true, 'tools' => true, 'feed' => true, 'user' => true, 'whitelist' => true);
+	$checked = array('manage' => true, 'log' => true, 'control' => true, 'table' => true, 'map' => true, 'tools' => true, 'feed' => true, 'user' => true, 'whitelist' => true);
 	
 	if (isset($_GET['edit'])) {
 		$id = $_GET['edit'];
 		$login = mysql_fetch_assoc(mysql_query("SELECT `login` FROM `users` WHERE `id` = '{$id}' LIMIT 1"))['login'];
-		$checked = array('manage' => false, 'control' => false, 'table' => false, 'map' => false, 'tools' => false, 'feed' => false, 'user' => false, 'whitelist' => false);
+		$checked = array('manage' => false, 'log' => false, 'control' => false, 'table' => false, 'map' => false, 'tools' => false, 'feed' => false, 'user' => false, 'whitelist' => false);
+		$res = mysql_fetch_assoc(mysql_query("SELECT `permissions` FROM `users` WHERE `id` = '{$id}' LIMIT 1"));
+		$permissions = $res['permissions'];
 		
-		foreach (explode(',', str_replace(" ", "", mysql_fetch_assoc(mysql_query("SELECT `permissions` FROM `users` WHERE `id` = '{$id}' LIMIT 1"))['permissions'])) as $check) {
+		foreach (explode(',', str_replace(" ", "", $permissions)) as $check) {
 			$checked[$check] = true;
 		}
 	}
@@ -43,7 +45,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "user
 							<h2>Select the pages the user should be allowed to view:</h2>
 							<div style="border: 2px solid #ccc; width: 403px; height: 100px; padding-top: 6px; padding-left: 6px; overflow-y: scroll;">
 								<?php
-									$permissions = array( array('manage', '"Manage Overview"'), array('control', '"Server Control", "Logs", "BattlEye", "Bans"'), array('table', '"Playerlist", "Vehiclelist", "Deployablelist", "Check items", "Search"'), array('map', '"Playermap", "Vehiclemap", "Deployablemap", "Wreckmap"'), array('tools', '"Vehicle import tools"'), array('feed', '"Killfeed"'), array('whitelist', '"Whitelist"'), array('user', '"Accounts"') );
+									$permissions = array( array('manage', '"Manage Overview"'), array('log', '"Server and BattlEye Logs"'), array('control', '"Server Control", "Logs", "BattlEye", "Bans"'), array('table', '"Playerlist", "Vehiclelist", "Deployablelist", "Check items", "Search"'), array('map', '"Playermap", "Vehiclemap", "Deployablemap", "Wreckmap"'), array('tools', '"Vehicle import tools"'), array('feed', '"Killfeed"'), array('whitelist', '"Whitelist"'), array('user', '"Accounts"') );
 									for ($i = 0; $i < count($permissions); $i++) {
 										echo '<input type="checkbox" name="'.$permissions[$i][0].'" '.($checked[$permissions[$i][0]] ? 'checked' : '').' />&nbsp;&nbsp;&nbsp;'.$permissions[$i][1].'<br />';
 									}

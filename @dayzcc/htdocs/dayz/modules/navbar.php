@@ -15,7 +15,7 @@
 							<li class="root">
 								<a href="index.php" class="item">Dashboard</a>
 							</li>
-							<?php if (strcontains($_SESSION['user_permissions'], "control") || strcontains($_SESSION['user_permissions'], "manage") || strcontains($_SESSION['user_permissions'], "whitelist")) { ?>
+							<?php if (strcontains($_SESSION['user_permissions'], "control") || strcontains($_SESSION['user_permissions'], "manage") || strcontains($_SESSION['user_permissions'], "whitelist") || strcontains($_SESSION['user_permissions'], "log")) { ?>
 								<li class="root"><a class="item down">Manage</a>
 									<ul class="menu">
 										<?php if (strcontains($_SESSION['user_permissions'], "manage")) { ?>
@@ -24,8 +24,10 @@
 											<li><a href="index.php?view=control" class="item">Server Control</a></li>
 										<?php } if (strcontains($_SESSION['user_permissions'], "whitelist")) { ?>
 											<li><a href="index.php?view=whitelist" class="item">Whitelist</a></li>
-										<?php } if (strcontains($_SESSION['user_permissions'], "manage")) { ?>
-											<li class="nav-separator"><span></span></li>
+										<?php } if (strcontains($_SESSION['user_permissions'], "log")) {
+											if (strcontains($_SESSION['user_permissions'], "control") || strcontains($_SESSION['user_permissions'], "manage") || strcontains($_SESSION['user_permissions'], "whitelist")) { ?>
+												<li class="nav-separator"><span></span></li>
+											<?php } ?>
 											<li><a href="index.php?view=log&type=server" class="item down">Logs</a>
 												<ul class="menu">
 													<li><a href="index.php?view=log&type=server" class="item">Server</a></li>

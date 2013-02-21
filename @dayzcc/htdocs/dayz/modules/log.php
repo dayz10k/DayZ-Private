@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "manage") !== false))
+if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "log") !== false))
 {
 	$pagetitle = "Server Logs";
 	$type = "server";
