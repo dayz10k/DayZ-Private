@@ -14,7 +14,7 @@ if (isset($_FILES['vehicles']['name'])) {
 	}
 } else if (isset($_FILES['buildings']['name'])) {
 	$filename = basename($_FILES['buildings']['name']);
-	$fileext = substr($filename, strpos($filename, '.'), strlen($filename) - 1);
+	$fileext = substr($filename, strpos($filename, '.') + 1, strlen($filename) - 1);
 	$filepath = "./../../buildings.sqf"; 
 	
 	if ($fileext == "sqf") {
