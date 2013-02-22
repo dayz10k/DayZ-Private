@@ -6,7 +6,7 @@
 5 "remove"
 5 "delete"
 5 "set"
-5 "play"
+5 "play" !="_this spawn server_playerHit;"
 5 "clear"
 5 "disable" !="this enableSimulation false;this allowDammage false;this disableAI 'FSM';this disableAI 'ANIM';this disableAI 'MOVE';"
 5 "copy"
