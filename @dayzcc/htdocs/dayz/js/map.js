@@ -36,7 +36,6 @@ function getData(map_id) {
 			}
 		}
 	});
-	clearTrackLines();
 }
 
 // Player tracking lines were written by Wriley and slightly altered by Crosire
