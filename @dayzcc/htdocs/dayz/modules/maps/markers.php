@@ -19,6 +19,7 @@ function markers_player($res, $world) {
 		$tmp["icon"] = "Player".($row['is_dead'] ? "Dead" : "");
 		$tmp["title"] = htmlspecialchars($row['name'], ENT_QUOTES)." (".$row['unique_id'].")";
 		$tmp["description"] = $description;
+		$tmp["uid"] = $row['unique_id'];
 		
 		$markers[] = $tmp;
 	}
