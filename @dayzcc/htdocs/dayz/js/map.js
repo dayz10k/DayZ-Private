@@ -15,8 +15,8 @@ function fromLatLngToGps(e) {
 
 // The map data function was written by Krunch and Crosire
 
-function getData(map) {
-	$.getJSON('js/map.php?id=' + map + '&callback=?', function(data) {
+function getData(map_id) {
+	$.getJSON('js/map.php?id=' + map_id + '&callback=?', function(data) {
 		if ("error" in data) {
 			if ($('#page-error').length == 0) { $('#map').before(data.error); }
 		} else {
@@ -30,8 +30,8 @@ function getData(map) {
 				plotmark.bindPopup(data[i].description);
 				plotlayers.push(plotmark);
 				
-				if (map == 0 || map == 1 || map == 3 || map == 7) {
-					addMarkerToTrackline(data[i].id, pos);
+				if (map_id == 0 || map_id == 1 || map_id == 3 || map_id == 7) {
+					addMarkerToTrackline(data[i].uid, pos, data[i].description);
 				}
 			}
 		}
@@ -41,7 +41,7 @@ function getData(map) {
 
 // Player tracking lines were written by Wriley and slightly altered by Crosire
 
-function addMarkerToTrackline(uid, pos) {
+function addMarkerToTrackline(uid, pos, desc) {
 	if (pos.lng == 0) { return; }
 
 	var found = false;
