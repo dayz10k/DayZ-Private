@@ -7,6 +7,6 @@ $res3 = mysql_query("SELECT deployable.class_name, instance_deployable.* FROM `d
 $markers = array();
 $markers = array_merge($markers, markers_player($res1, $serverworld));
 $markers = array_merge($markers, markers_vehicle($res2, $serverworld));
-$markers = array_merge($markers, markers_vehicle($res3, $serverworld));
+$markers = array_merge($markers, markers_deployable($res3, $serverworld));
 
 ?>
