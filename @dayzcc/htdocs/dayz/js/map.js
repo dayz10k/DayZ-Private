@@ -26,6 +26,7 @@ function getData(map_id) {
 			for (i = 0; i < data.length; i++) {
 				var pos = new L.LatLng(data[i].lat, data[i].lng);
 				var plotmark = new L.marker(pos, { icon: eval(data[i].icon), title: data[i].title });
+				plotmark.options.uid = data[i].uid;
 				map.addLayer(plotmark);
 				plotmark.bindPopup(data[i].description);
 				plotlayers.push(plotmark);
@@ -78,6 +79,7 @@ function addMarkerToTrackline(uid, pos, desc) {
 		tracklines.push(line);
 		tracklayers.push(line);
 		trackstartlayers.push(startMarker);
+		trackendlayers.push(endMarker);
 
 		map.addLayer(line);
 		map.addLayer(startMarker);
@@ -95,9 +97,10 @@ function clearTrackLines() {
 		});
 
 		if (found) {
-			while(tracklines[i].getLatLngs().length > 50) { tracklines[i].getLatLngs().removeAt(0); }
+			while (tracklines[i].getLatLngs().length > 50) { tracklines[i].getLatLngs().removeAt(0); }
 		} else {
 			map.removeLayer(tracklines[i]);
+
 			if (tracklines.length > 1) {
 				tracklines.splice(i, 1);
 			} else {

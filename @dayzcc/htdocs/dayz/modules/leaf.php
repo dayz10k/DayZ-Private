@@ -61,21 +61,30 @@ if (isset($_SESSION['user_id']) && (strpos($_SESSION['user_permissions'], "map")
 	var trackendlayers = [];
 	var autorefresh = false;
 	
+	if (<?php echo $show; ?> == 0) {
+		autorefresh = true;
+	}
+	
+	function autorefreshToggle() {
+		if (autorefresh) {
+			$('#mapRefresh').css('background-color', "#404040");
+			$('#mapRefresh').css('background-color', "rgba(0, 0, 0, 0.5)");
+			intervalId = setInterval(function() { getData(<?php echo $show; ?>); }, 5000);
+		} else {
+			$('#mapRefresh').css('background-color', "#ff0000");
+			$('#mapRefresh').css('background-color', "rgba(255, 0, 0, 0.5)");
+			clearInterval(intervalId);
+		}
+	}
+	
 	$('#map').append('<div id="mapCoords"><label>000 000</label></div>');
 	$('#map').append('<div id="mapRefresh"><label>Auto refresh</label></div>');
 	$('#mapRefresh').click(function() {
-		if (autorefresh) {
-			$(this).css('background-color', "#ff0000");
-			$(this).css('background-color', "rgba(255, 0, 0, 0.5)");
-			clearInterval(intervalId);
-		} else {
-			$(this).css('background-color', "#404040");
-			$(this).css('background-color', "rgba(0, 0, 0, 0.5)");
-			intervalId = setInterval(function() { getData(<?php echo $show; ?>); }, 5000);
-		}
 		autorefresh = !autorefresh;
+		autorefreshToggle();
 	});
 	
+	autorefreshToggle();	
 	getData(<?php echo $show; ?>);
 	</script>
 
