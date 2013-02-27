@@ -31,7 +31,7 @@ function getData(map_id) {
 				plotmark.bindPopup(data[i].description);
 				plotlayers.push(plotmark);
 				
-				if (map_id == 0 || map_id == 1 || map_id == 3 || map_id == 7) {
+				if (map_id == 0 || map_id == 1) {
 					addMarkerToTrackline(data[i].uid, pos, data[i].description);
 				}
 			}
