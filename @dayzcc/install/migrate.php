@@ -18,8 +18,8 @@ $schema = (isset($args['schema']) ? $args['schema'] : "Bliss");
 $version = "0.00";
 
 // Connect to the MySQL server
-echo "Connecting to MySQL server on ".$dbhost." as ".$dbuser." to database ".$dbname."\n";
-$link = mysql_connect($dbhost, $dbuser, $dbpass);
+echo "Connecting to MySQL server on ".$dbhost.":".$dbport." as ".$dbuser." to database ".$dbname."\n";
+$link = mysql_connect($dbhost.':'.$dbport, $dbuser, $dbpass);
 if (!$link) {
 	echo "> Could not connect: ".(mysql_error())."\n";
 	exit(1);
