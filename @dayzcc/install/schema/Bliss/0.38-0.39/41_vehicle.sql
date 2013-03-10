@@ -8,4 +8,5 @@ insert ignore into vehicle (id, class_name, damage_min, damage_max, fuel_min, fu
   (98, 'HMMWV_Ambulance_DZ', 0.000, 0.500, 0.100, 0.800, 0, 1, null),
   (99, 'Oring_Ikarus', 0.000, 0.500, 0.100, 0.800, 0, 3, null),
   (100, 'Policecar', 0.000, 0.500, 0.100, 0.800, 0, 2, null),
-  (101, 'SUV_TK_EP1', 0.000, 0.500, 0.100, 0.800, 0, 2, null);
+  (101, 'SUV_TK_EP1', 0.000, 0.500, 0.100, 0.800, 0, 2, null),
+  (102, 'Ka137_PMC', 0.600, 0.900, 0.200, 0.500, 1, 2, null);
