@@ -67,19 +67,10 @@ if (isset($_SESSION['user_id']))
 				}
 				break;
 			case "database":
-				$action = "0";
-				if (isset($_GET['action'])) { $action = $_GET['action']; }
-				switch ($action) {
-					case "0":
-						mysql_query("TRUNCATE TABLE `log_entry`") or die(mysql_error());
-						mysql_query("DELETE FROM `survivor` WHERE `inventory` = '[[],[]]' AND `backpack` = '[\"\",[[],[]],[[],[]]]'  AND `id` NOT IN (SELECT DISTINCT `owner_id` FROM `instance_deployable`)") or die(mysql_error());
-						mysql_query("DELETE FROM `survivor` WHERE `worldspace` = '[]' AND `id` NOT IN (SELECT DISTINCT `owner_id` FROM `instance_deployable`)") or die(mysql_error());
-						mysql_query("DELETE FROM `survivor` WHERE `is_dead` = '1' AND `id` NOT IN (SELECT DISTINCT `owner_id` FROM `instance_deployable`)") or die(mysql_error());
-						break;
-					case "1":
-						echo '<script type="text/javascript">window.location = "index.php?view=dbrestore";</script>';
-						break;
-				}
+				mysql_query("TRUNCATE TABLE `log_entry`") or die(mysql_error());
+				mysql_query("DELETE FROM `survivor` WHERE `inventory` = '[[],[]]' AND `backpack` = '[\"\",[[],[]],[[],[]]]'  AND `id` NOT IN (SELECT DISTINCT `owner_id` FROM `instance_deployable`)") or die(mysql_error());
+				mysql_query("DELETE FROM `survivor` WHERE `worldspace` = '[]' AND `id` NOT IN (SELECT DISTINCT `owner_id` FROM `instance_deployable`)") or die(mysql_error());
+				mysql_query("DELETE FROM `survivor` WHERE `is_dead` = '1' AND `id` NOT IN (SELECT DISTINCT `owner_id` FROM `instance_deployable`)") or die(mysql_error());
 				break;
 		}
 		

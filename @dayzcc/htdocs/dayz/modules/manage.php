@@ -111,11 +111,7 @@ if (isset($_SESSION['user_id']) and (strpos($_SESSION['user_permissions'], "mana
 									<div align="center" id="message-green">
 										<table border="0" width="300px" cellpadding="0" cellspacing="0">
 											<tr>
-												<td class="green-left"><a href="javascript:if (confirm('This will delete all dead and invalid players and clears the database log. Do you want to continue?')) { window.location = 'index.php?view=actions&manage=database&action=0'; }">Cleanup Database</a></td>
-												<td class="green-right"><img src="images/forms/icon_green.gif" alt="" /></td>
-											</tr>
-											<tr>
-												<td class="green-left"><a href="index.php?view=actions&manage=database&action=1">Restore Database</a></td>
+												<td class="green-left"><a href="javascript:if (confirm('This will delete all dead and invalid players and clears the database log. Do you want to continue?')) { window.location = 'index.php?view=actions&manage=database'; }">Cleanup Database</a></td>
 												<td class="green-right"><img src="images/forms/icon_green.gif" alt="" /></td>
 											</tr>
 										</table>
