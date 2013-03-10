@@ -1,5 +1,5 @@
 // Mission Initialization
-startLoadingScreen ["", "DayZ_loadingScreen"];
+startLoadingScreen ["", "RscDisplayLoadCustom"];
 cutText ["", "BLACK OUT"];
 enableSaving [false, false];
 
@@ -45,6 +45,7 @@ if (!isServer && player != player) then {
 
 // Run the player monitor
 if (!isDedicated) then {
+	0 spawn { while {true} do { if ((cameraView == "EXTERNAL" || cameraView == "GROUP") && (vehicle player isKindOf "Air")) then { vehicle player switchCamera "INTERNAL"; titleText["This type of vehicle is 1st Person only!", "PLAIN DOWN", 5] }; sleep 0.1; }; };
 	0 fadeSound 0;
 	0 cutText [(localize "STR_AUTHENTICATING"), "BLACK FADED", 60];
 
